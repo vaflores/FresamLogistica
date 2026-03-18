@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="gradosCalidadProductorDataSet" targetNamespace="http://tempuri.org/gradosCalidadProductorDataSet.xsd" xmlns:mstns="http://tempuri.org/gradosCalidadProductorDataSet.xsd" xmlns="http://tempuri.org/gradosCalidadProductorDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="gradosCalidadProductorDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="gradosCalidadProductorDataSet" msprop:Generator_DataSetName="gradosCalidadProductorDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Productores" msprop:Generator_RowEvHandlerName="ProductoresRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductoresRowDeleted" msprop:Generator_RowDeletingName="ProductoresRowDeleting" msprop:Generator_RowEvArgName="ProductoresRowChangeEvent" msprop:Generator_TablePropName="Productores" msprop:Generator_RowChangedName="ProductoresRowChanged" msprop:Generator_RowChangingName="ProductoresRowChanging" msprop:Generator_TableClassName="ProductoresDataTable" msprop:Generator_RowClassName="ProductoresRow" msprop:Generator_TableVarName="tableProductores" msprop:Generator_UserTableName="Productores">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AgricultorId" msprop:Generator_ColumnPropNameInRow="AgricultorId" msprop:Generator_ColumnPropNameInTable="AgricultorIdColumn" msprop:Generator_ColumnVarNameInTable="columnAgricultorId" msprop:Generator_UserColumnName="AgricultorId" type="xs:string" minOccurs="0" />
+              <xs:element name="AgricultorNombre" msprop:Generator_ColumnPropNameInRow="AgricultorNombre" msprop:Generator_ColumnPropNameInTable="AgricultorNombreColumn" msprop:Generator_ColumnVarNameInTable="columnAgricultorNombre" msprop:Generator_UserColumnName="AgricultorNombre" type="xs:string" minOccurs="0" />
+              <xs:element name="NoRecepciones" msprop:Generator_ColumnPropNameInRow="NoRecepciones" msprop:Generator_ColumnPropNameInTable="NoRecepcionesColumn" msprop:Generator_ColumnVarNameInTable="columnNoRecepciones" msprop:Generator_UserColumnName="NoRecepciones" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalKgs" msprop:Generator_ColumnPropNameInRow="TotalKgs" msprop:Generator_ColumnPropNameInTable="TotalKgsColumn" msprop:Generator_ColumnVarNameInTable="columnTotalKgs" msprop:Generator_UserColumnName="TotalKgs" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalCajas" msprop:Generator_ColumnPropNameInRow="TotalCajas" msprop:Generator_ColumnPropNameInTable="TotalCajasColumn" msprop:Generator_ColumnVarNameInTable="columnTotalCajas" msprop:Generator_UserColumnName="TotalCajas" type="xs:string" minOccurs="0" />
+              <xs:element name="Aceptado" msprop:Generator_ColumnPropNameInRow="Aceptado" msprop:Generator_ColumnPropNameInTable="AceptadoColumn" msprop:Generator_ColumnVarNameInTable="columnAceptado" msprop:Generator_UserColumnName="Aceptado" type="xs:string" minOccurs="0" />
+              <xs:element name="Materia" msprop:Generator_ColumnPropNameInRow="Materia" msprop:Generator_ColumnPropNameInTable="MateriaColumn" msprop:Generator_ColumnVarNameInTable="columnMateria" msprop:Generator_UserColumnName="Materia" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Calidades" msprop:Generator_RowEvHandlerName="CalidadesRowChangeEventHandler" msprop:Generator_RowDeletedName="CalidadesRowDeleted" msprop:Generator_RowDeletingName="CalidadesRowDeleting" msprop:Generator_RowEvArgName="CalidadesRowChangeEvent" msprop:Generator_TablePropName="Calidades" msprop:Generator_RowChangedName="CalidadesRowChanged" msprop:Generator_RowChangingName="CalidadesRowChanging" msprop:Generator_TableClassName="CalidadesDataTable" msprop:Generator_RowClassName="CalidadesRow" msprop:Generator_TableVarName="tableCalidades" msprop:Generator_UserTableName="Calidades">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AgricultorId" msprop:Generator_ColumnPropNameInRow="AgricultorId" msprop:Generator_ColumnPropNameInTable="AgricultorIdColumn" msprop:Generator_ColumnVarNameInTable="columnAgricultorId" msprop:Generator_UserColumnName="AgricultorId" type="xs:string" minOccurs="0" />
+              <xs:element name="CalidadId" msprop:Generator_ColumnPropNameInRow="CalidadId" msprop:Generator_ColumnPropNameInTable="CalidadIdColumn" msprop:Generator_ColumnVarNameInTable="columnCalidadId" msprop:Generator_UserColumnName="CalidadId" type="xs:string" minOccurs="0" />
+              <xs:element name="CalidadNombre" msprop:Generator_ColumnPropNameInRow="CalidadNombre" msprop:Generator_ColumnPropNameInTable="CalidadNombreColumn" msprop:Generator_ColumnVarNameInTable="columnCalidadNombre" msprop:Generator_UserColumnName="CalidadNombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Valor" msprop:Generator_ColumnPropNameInRow="Valor" msprop:Generator_ColumnPropNameInTable="ValorColumn" msprop:Generator_ColumnVarNameInTable="columnValor" msprop:Generator_UserColumnName="Valor" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Productores_Calidades" msdata:parent="Productores" msdata:child="Calidades" msdata:parentkey="AgricultorId" msdata:childkey="AgricultorId" msprop:Generator_UserParentTable="Productores" msprop:Generator_UserChildTable="Calidades" msprop:Generator_RelationVarName="relationProductores_Calidades" msprop:Generator_ChildPropName="GetCalidadesRows" msprop:Generator_ParentPropName="ProductoresRow" msprop:Generator_UserRelationName="Productores_Calidades" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

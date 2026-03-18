@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="InspeccionVehiculosDataSet" targetNamespace="http://tempuri.org/InspeccionVehiculosDataSet.xsd" xmlns:mstns="http://tempuri.org/InspeccionVehiculosDataSet.xsd" xmlns="http://tempuri.org/InspeccionVehiculosDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="InspeccionVehiculosDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="InspeccionVehiculosDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="InspeccionVehiculosDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Vehiculos" msprop:Generator_RowEvHandlerName="VehiculosRowChangeEventHandler" msprop:Generator_RowDeletedName="VehiculosRowDeleted" msprop:Generator_RowDeletingName="VehiculosRowDeleting" msprop:Generator_RowEvArgName="VehiculosRowChangeEvent" msprop:Generator_TablePropName="Vehiculos" msprop:Generator_RowChangedName="VehiculosRowChanged" msprop:Generator_UserTableName="Vehiculos" msprop:Generator_RowChangingName="VehiculosRowChanging" msprop:Generator_RowClassName="VehiculosRow" msprop:Generator_TableClassName="VehiculosDataTable" msprop:Generator_TableVarName="tableVehiculos">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RecepcionId" msprop:Generator_ColumnPropNameInTable="RecepcionIdColumn" msprop:Generator_ColumnPropNameInRow="RecepcionId" msprop:Generator_UserColumnName="RecepcionId" msprop:Generator_ColumnVarNameInTable="columnRecepcionId" type="xs:string" minOccurs="0" />
+              <xs:element name="AgricultorId" msprop:Generator_ColumnPropNameInTable="AgricultorIdColumn" msprop:Generator_ColumnPropNameInRow="AgricultorId" msprop:Generator_UserColumnName="AgricultorId" msprop:Generator_ColumnVarNameInTable="columnAgricultorId" type="xs:string" minOccurs="0" />
+              <xs:element name="AgricultorNombre" msprop:Generator_ColumnPropNameInTable="AgricultorNombreColumn" msprop:Generator_ColumnPropNameInRow="AgricultorNombre" msprop:Generator_UserColumnName="AgricultorNombre" msprop:Generator_ColumnVarNameInTable="columnAgricultorNombre" type="xs:string" minOccurs="0" />
+              <xs:element name="RanchoId" msprop:Generator_ColumnPropNameInTable="RanchoIdColumn" msprop:Generator_ColumnPropNameInRow="RanchoId" msprop:Generator_UserColumnName="RanchoId" msprop:Generator_ColumnVarNameInTable="columnRanchoId" type="xs:string" minOccurs="0" />
+              <xs:element name="RanchoNombre" msprop:Generator_ColumnPropNameInTable="RanchoNombreColumn" msprop:Generator_ColumnPropNameInRow="RanchoNombre" msprop:Generator_UserColumnName="RanchoNombre" msprop:Generator_ColumnVarNameInTable="columnRanchoNombre" type="xs:string" minOccurs="0" />
+              <xs:element name="SectorId" msprop:Generator_ColumnPropNameInTable="SectorIdColumn" msprop:Generator_ColumnPropNameInRow="SectorId" msprop:Generator_UserColumnName="SectorId" msprop:Generator_ColumnVarNameInTable="columnSectorId" type="xs:string" minOccurs="0" />
+              <xs:element name="SectorNombre" msprop:Generator_ColumnPropNameInTable="SectorNombreColumn" msprop:Generator_ColumnPropNameInRow="SectorNombre" msprop:Generator_UserColumnName="SectorNombre" msprop:Generator_ColumnVarNameInTable="columnSectorNombre" type="xs:string" minOccurs="0" />
+              <xs:element name="NombreChofer" msprop:Generator_ColumnPropNameInTable="NombreChoferColumn" msprop:Generator_ColumnPropNameInRow="NombreChofer" msprop:Generator_UserColumnName="NombreChofer" msprop:Generator_ColumnVarNameInTable="columnNombreChofer" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_UserColumnName="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" type="xs:string" minOccurs="0" />
+              <xs:element name="Hora" msprop:Generator_ColumnPropNameInTable="HoraColumn" msprop:Generator_ColumnPropNameInRow="Hora" msprop:Generator_UserColumnName="Hora" msprop:Generator_ColumnVarNameInTable="columnHora" type="xs:string" minOccurs="0" />
+              <xs:element name="Color" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_UserColumnName="Color" msprop:Generator_ColumnVarNameInTable="columnColor" type="xs:string" minOccurs="0" />
+              <xs:element name="MarcaModelo" msprop:Generator_ColumnPropNameInTable="MarcaModeloColumn" msprop:Generator_ColumnPropNameInRow="MarcaModelo" msprop:Generator_UserColumnName="MarcaModelo" msprop:Generator_ColumnVarNameInTable="columnMarcaModelo" type="xs:string" minOccurs="0" />
+              <xs:element name="Placas" msprop:Generator_ColumnPropNameInTable="PlacasColumn" msprop:Generator_ColumnPropNameInRow="Placas" msprop:Generator_UserColumnName="Placas" msprop:Generator_ColumnVarNameInTable="columnPlacas" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalCajas" msprop:Generator_UserColumnName="TotalCajas" msprop:Generator_ColumnPropNameInTable="TotalCajasColumn" msprop:Generator_ColumnPropNameInRow="TotalCajas" msprop:Generator_ColumnVarNameInTable="columnTotalCajas" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Condiciones" msprop:Generator_RowEvHandlerName="CondicionesRowChangeEventHandler" msprop:Generator_RowDeletedName="CondicionesRowDeleted" msprop:Generator_RowDeletingName="CondicionesRowDeleting" msprop:Generator_RowEvArgName="CondicionesRowChangeEvent" msprop:Generator_TablePropName="Condiciones" msprop:Generator_RowChangedName="CondicionesRowChanged" msprop:Generator_UserTableName="Condiciones" msprop:Generator_RowChangingName="CondicionesRowChanging" msprop:Generator_RowClassName="CondicionesRow" msprop:Generator_TableClassName="CondicionesDataTable" msprop:Generator_TableVarName="tableCondiciones">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RecepcionId" msprop:Generator_ColumnPropNameInTable="RecepcionIdColumn" msprop:Generator_ColumnPropNameInRow="RecepcionId" msprop:Generator_UserColumnName="RecepcionId" msprop:Generator_ColumnVarNameInTable="columnRecepcionId" type="xs:string" minOccurs="0" />
+              <xs:element name="CondicionId" msprop:Generator_ColumnPropNameInTable="CondicionIdColumn" msprop:Generator_ColumnPropNameInRow="CondicionId" msprop:Generator_UserColumnName="CondicionId" msprop:Generator_ColumnVarNameInTable="columnCondicionId" type="xs:string" minOccurs="0" />
+              <xs:element name="CondicionNombre" msprop:Generator_ColumnPropNameInTable="CondicionNombreColumn" msprop:Generator_ColumnPropNameInRow="CondicionNombre" msprop:Generator_UserColumnName="CondicionNombre" msprop:Generator_ColumnVarNameInTable="columnCondicionNombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Valor" msprop:Generator_ColumnPropNameInTable="ValorColumn" msprop:Generator_ColumnPropNameInRow="Valor" msprop:Generator_UserColumnName="Valor" msprop:Generator_ColumnVarNameInTable="columnValor" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Vehiculos_Condiciones" msdata:parent="Vehiculos" msdata:child="Condiciones" msdata:parentkey="RecepcionId" msdata:childkey="RecepcionId" msprop:Generator_UserParentTable="Vehiculos" msprop:Generator_UserChildTable="Condiciones" msprop:Generator_RelationVarName="relationVehiculos_Condiciones" msprop:Generator_ChildPropName="GetCondicionesRows" msprop:Generator_ParentPropName="VehiculosRow" msprop:Generator_UserRelationName="Vehiculos_Condiciones" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

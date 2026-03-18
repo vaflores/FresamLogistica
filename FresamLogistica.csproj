@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5CAD83B1-83C7-48FC-B321-819A1E0CF805}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FresamLogistica</RootNamespace>
+    <AssemblyName>FresamLogistica</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>empaque.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\Configuraciones\CiudadesController.cs" />
+    <Compile Include="Controllers\Configuraciones\EstadosController.cs" />
+    <Compile Include="Controllers\Configuracion\RolesController.cs" />
+    <Compile Include="Controllers\Configuracion\RolesPermisosController.cs" />
+    <Compile Include="Controllers\Configuracion\UsuariosController.cs" />
+    <Compile Include="Controllers\General\AgricultoresController.cs" />
+    <Compile Include="Controllers\General\CiclosController.cs" />
+    <Compile Include="Controllers\General\DescuentosController.cs" />
+    <Compile Include="Controllers\General\RanchosController.cs" />
+    <Compile Include="Controllers\General\RecepcionesController.cs" />
+    <Compile Include="Controllers\General\SectoresController.cs" />
+    <Compile Include="Controllers\General\TarimasController.cs" />
+    <Compile Include="Controllers\General\VehiculosController.cs" />
+    <Compile Include="Controllers\Herramientas\CalidadesController.cs" />
+    <Compile Include="Controllers\Herramientas\CondicionesController.cs" />
+    <Compile Include="Controllers\Productos\FrutasController.cs" />
+    <Compile Include="Controllers\General\EmpresaController.cs" />
+    <Compile Include="Controllers\Herramientas\UnidadesMedidaController.cs" />
+    <Compile Include="Controllers\Productos\GradosController.cs" />
+    <Compile Include="Controllers\Productos\PreciosController.cs" />
+    <Compile Include="Controllers\Productos\VariedadesController.cs" />
+    <Compile Include="Controllers\Reportes\TitulosCalidadesController.cs" />
+    <Compile Include="Controllers\Reportes\TitulosEtiquetasController.cs" />
+    <Compile Include="Controllers\Reportes\TitulosGradosController.cs" />
+    <Compile Include="Controllers\Reportes\TitulosInspeccionesController.cs" />
+    <Compile Include="Helper\Constantes.cs" />
+    <Compile Include="Helper\DataGridViewHelper.cs" />
+    <Compile Include="Helper\EstadosHelper.cs" />
+    <Compile Include="Helper\FormulariosHelper.cs" />
+    <Compile Include="Helper\PasswordHelper.cs" />
+    <Compile Include="Helper\ReportMasterDetailHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helper\ReportMasterDetailHelper.Designer.cs">
+      <DependentUpon>ReportMasterDetailHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\ReportHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helper\ReportHelper.Designer.cs">
+      <DependentUpon>ReportHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\SesionActualHelper.cs" />
+    <Compile Include="Helper\TextBoxValidarEnteros.cs" />
+    <Compile Include="Helper\TextBoxValidarNumerosDecimales.cs" />
+    <Compile Include="Interfaces\ICatalogoCRUD.cs" />
+    <Compile Include="MDIPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIPrincipal.Designer.cs">
+      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Agricultores.cs" />
+    <Compile Include="Model\Calidades.cs" />
+    <Compile Include="Model\CalidadesRecepciones.cs" />
+    <Compile Include="Model\CicloCalidades.cs" />
+    <Compile Include="Model\CicloEtiquetas.cs" />
+    <Compile Include="Model\CicloGrados.cs" />
+    <Compile Include="Model\CicloInspecciones.cs" />
+    <Compile Include="Model\Ciclos.cs" />
+    <Compile Include="Model\Ciudades.cs" />
+    <Compile Include="Model\Condiciones.cs" />
+    <Compile Include="Model\CondicionesVehiculosRecepciones.cs" />
+    <Compile Include="Model\DescuentosRecepciones.cs" />
+    <Compile Include="Model\Empresa.cs" />
+    <Compile Include="Model\Estados.cs" />
+    <Compile Include="Model\Frutas.cs" />
+    <Compile Include="Model\GradosFruta.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\Pantallas.cs" />
+    <Compile Include="Model\Permisos.cs" />
+    <Compile Include="Model\Precios.cs" />
+    <Compile Include="Model\Ranchos.cs" />
+    <Compile Include="Model\Recepciones.cs" />
+    <Compile Include="Model\Roles.cs" />
+    <Compile Include="Model\RolesPermisos.cs" />
+    <Compile Include="Model\Sectores.cs" />
+    <Compile Include="Model\sysdiagrams.cs" />
+    <Compile Include="Model\Tarimas.cs" />
+    <Compile Include="Model\UnidadesMedida.cs" />
+    <Compile Include="Model\Usuarios.cs" />
+    <Compile Include="Model\Variedades.cs" />
+    <Compile Include="Model\Vehiculos.cs" />
+    <Compile Include="Model\VehiculosRecepciones.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\General\RecepcionReport\EtiquetaDataSet.cs">
+      <DependentUpon>EtiquetaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\General\RecepcionReport\EtiquetaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EtiquetaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\General\RecepcionReport\ReciboDataSet.cs">
+      <DependentUpon>ReciboDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\General\RecepcionReport\ReciboDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReciboDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Reportes\GradosCalidadProductor\gradosCalidadProductorDataSet.cs">
+      <DependentUpon>gradosCalidadProductorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Reportes\GradosCalidadProductor\gradosCalidadProductorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gradosCalidadProductorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Reportes\GradosCalidad\gradosCalidadesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gradosCalidadesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Reportes\InspeccionVehiculo\InspeccionVehiculosDataSet.cs">
+      <DependentUpon>InspeccionVehiculosDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Reportes\InspeccionVehiculo\InspeccionVehiculosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InspeccionVehiculosDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Reportes\MuestreoCalidad\muestreoCalidadDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>muestreoCalidadDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Reportes\RecepcionesAgricultorCiclo\recepcionesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>recepcionesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="ViewModels\CalidadesRecepcionesViewModel.cs" />
+    <Compile Include="ViewModels\CondicionesVehiculoViewModel.cs" />
+    <Compile Include="ViewModels\RecepcionesViewModel.cs" />
+    <Compile Include="ViewModels\RolesPermisosViewModel.cs" />
+    <Compile Include="ViewModels\SectoresVariedadesViewModel.cs" />
+    <Compile Include="ViewModels\VehiculosRecepcionesViewModel.cs" />
+    <Compile Include="Views\Configuracion\RolesPermisosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\RolesPermisosView.Designer.cs">
+      <DependentUpon>RolesPermisosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Configuracion\RolesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\RolesView.Designer.cs">
+      <DependentUpon>RolesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Configuracion\UsuariosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\UsuariosView.Designer.cs">
+      <DependentUpon>UsuariosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Configuracion\RolView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\RolView.Designer.cs">
+      <DependentUpon>RolView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Configuracion\UsuarioView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\UsuarioView.Designer.cs">
+      <DependentUpon>UsuarioView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\AgricultoresView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\AgricultoresView.Designer.cs">
+      <DependentUpon>AgricultoresView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\Agricultores\RanchoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\Agricultores\RanchoView.Designer.cs">
+      <DependentUpon>RanchoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\AgricultorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\AgricultorView.Designer.cs">
+      <DependentUpon>AgricultorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\CiclosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\CiclosView.Designer.cs">
+      <DependentUpon>CiclosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\CicloView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\CicloView.Designer.cs">
+      <DependentUpon>CicloView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\RecepcionesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\RecepcionesView.Designer.cs">
+      <DependentUpon>RecepcionesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\RecepcionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\RecepcionView.Designer.cs">
+      <DependentUpon>RecepcionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\SectoresView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\SectoresView.Designer.cs">
+      <DependentUpon>SectoresView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\SectorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\SectorView.Designer.cs">
+      <DependentUpon>SectorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\VehiculosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\VehiculosView.Designer.cs">
+      <DependentUpon>VehiculosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\VehiculoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\VehiculoView.Designer.cs">
+      <DependentUpon>VehiculoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\CalidadesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\CalidadesView.Designer.cs">
+      <DependentUpon>CalidadesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\CalidadView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\CalidadView.Designer.cs">
+      <DependentUpon>CalidadView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\CondicionesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\CondicionesView.Designer.cs">
+      <DependentUpon>CondicionesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\CondicionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\CondicionView.Designer.cs">
+      <DependentUpon>CondicionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Productos\FrutasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Productos\FrutasView.Designer.cs">
+      <DependentUpon>FrutasView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\EmpresaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\EmpresaView.Designer.cs">
+      <DependentUpon>EmpresaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\UnidadesMedidaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\UnidadesMedidaView.Designer.cs">
+      <DependentUpon>UnidadesMedidaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\UnidadMedidaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\UnidadMedidaView.Designer.cs">
+      <DependentUpon>UnidadMedidaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Productos\FrutaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Productos\FrutaView.Designer.cs">
+      <DependentUpon>FrutaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\GradosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\GradosView.Designer.cs">
+      <DependentUpon>GradosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\GradoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\GradoView.Designer.cs">
+      <DependentUpon>GradoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\PreciosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\PreciosView.Designer.cs">
+      <DependentUpon>PreciosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\PrecioView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\PrecioView.Designer.cs">
+      <DependentUpon>PrecioView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\VariedadView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Productos\Frutas\VariedadView.Designer.cs">
+      <DependentUpon>VariedadView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\GradosCalidadProductoresView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\GradosCalidadProductoresView.Designer.cs">
+      <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\RecepcionesAgricultorCicloView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\RecepcionesAgricultorCicloView.Designer.cs">
+      <DependentUpon>RecepcionesAgricultorCicloView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\MuestreoCalidadView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\MuestreoCalidadView.Designer.cs">
+      <DependentUpon>MuestreoCalidadView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\GradosCalidadView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\GradosCalidadView.Designer.cs">
+      <DependentUpon>GradosCalidadView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\InspeccionVehiculosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\InspeccionVehiculosView.Designer.cs">
+      <DependentUpon>InspeccionVehiculosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosCalidadesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosCalidadesView.Designer.cs">
+      <DependentUpon>TitulosCalidadesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosEtiquetasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosEtiquetasView.Designer.cs">
+      <DependentUpon>TitulosEtiquetasView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosGradosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosGradosView.Designer.cs">
+      <DependentUpon>TitulosGradosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosInspeccionesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosInspeccionesView.Designer.cs">
+      <DependentUpon>TitulosInspeccionesView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Helper\ReportMasterDetailHelper.resx">
+      <DependentUpon>ReportMasterDetailHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helper\ReportHelper.resx">
+      <DependentUpon>ReportHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIPrincipal.resx">
+      <DependentUpon>MDIPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Content Include="Reports\General\RecepcionReport\rptReciboRecepcion.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\General\RecepcionReport\rptEtiquetaRecepcion.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\InspeccionVehiculo\rptCondicionesVehiculo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\InspeccionVehiculo\rptInspeccionVehiculo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\GradosCalidad\rptCriterioAceptacion.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\GradosCalidad\rptGradosCalidades.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\GradosCalidadProductor\rptGradoCalidadProductor.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\GradosCalidadProductor\rptGradoCalidad.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\MuestreoCalidad\rptMuestreoCalidad.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\RecepcionesAgricultorCiclo\rptRecepcionesAgricultorCiclo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Views\Configuracion\RolesPermisosView.resx">
+      <DependentUpon>RolesPermisosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Configuracion\RolesView.resx">
+      <DependentUpon>RolesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Configuracion\UsuariosView.resx">
+      <DependentUpon>UsuariosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Configuracion\RolView.resx">
+      <DependentUpon>RolView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Configuracion\UsuarioView.resx">
+      <DependentUpon>UsuarioView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\AgricultoresView.resx">
+      <DependentUpon>AgricultoresView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\Agricultores\RanchoView.resx">
+      <DependentUpon>RanchoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\AgricultorView.resx">
+      <DependentUpon>AgricultorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\CiclosView.resx">
+      <DependentUpon>CiclosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\CicloView.resx">
+      <DependentUpon>CicloView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\RecepcionesView.resx">
+      <DependentUpon>RecepcionesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\RecepcionView.resx">
+      <DependentUpon>RecepcionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\SectoresView.resx">
+      <DependentUpon>SectoresView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\SectorView.resx">
+      <DependentUpon>SectorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\VehiculosView.resx">
+      <DependentUpon>VehiculosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\VehiculoView.resx">
+      <DependentUpon>VehiculoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\CalidadesView.resx">
+      <DependentUpon>CalidadesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\CalidadView.resx">
+      <DependentUpon>CalidadView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\CondicionesView.resx">
+      <DependentUpon>CondicionesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\CondicionView.resx">
+      <DependentUpon>CondicionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Productos\FrutasView.resx">
+      <DependentUpon>FrutasView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\EmpresaView.resx">
+      <DependentUpon>EmpresaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\UnidadesMedidaView.resx">
+      <DependentUpon>UnidadesMedidaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\UnidadMedidaView.resx">
+      <DependentUpon>UnidadMedidaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Productos\FrutaView.resx">
+      <DependentUpon>FrutaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Productos\Frutas\GradosView.resx">
+      <DependentUpon>GradosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Productos\Frutas\GradoView.resx">
+      <DependentUpon>GradoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Productos\Frutas\PreciosView.resx">
+      <DependentUpon>PreciosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Productos\Frutas\PrecioView.resx">
+      <DependentUpon>PrecioView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Productos\Frutas\VariedadView.resx">
+      <DependentUpon>VariedadView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\GradosCalidadProductoresView.resx">
+      <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\RecepcionesAgricultorCicloView.resx">
+      <DependentUpon>RecepcionesAgricultorCicloView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\MuestreoCalidadView.resx">
+      <DependentUpon>MuestreoCalidadView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\GradosCalidadView.resx">
+      <DependentUpon>GradosCalidadView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\InspeccionVehiculosView.resx">
+      <DependentUpon>InspeccionVehiculosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\Titulos\TitulosCalidadesView.resx">
+      <DependentUpon>TitulosCalidadesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\Titulos\TitulosEtiquetasView.resx">
+      <DependentUpon>TitulosEtiquetasView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\Titulos\TitulosGradosView.resx">
+      <DependentUpon>TitulosGradosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\Titulos\TitulosInspeccionesView.resx">
+      <DependentUpon>TitulosInspeccionesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Reports\General\RecepcionReport\EtiquetaDataSet.xsc">
+      <DependentUpon>EtiquetaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\General\RecepcionReport\EtiquetaDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EtiquetaDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\General\RecepcionReport\EtiquetaDataSet.xss">
+      <DependentUpon>EtiquetaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\General\RecepcionReport\ReciboDataSet.xsc">
+      <DependentUpon>ReciboDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\General\RecepcionReport\ReciboDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReciboDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\General\RecepcionReport\ReciboDataSet.xss">
+      <DependentUpon>ReciboDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\GradosCalidadProductor\gradosCalidadProductorDataSet.xsc">
+      <DependentUpon>gradosCalidadProductorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\GradosCalidadProductor\gradosCalidadProductorDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>gradosCalidadProductorDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Reportes\GradosCalidadProductor\gradosCalidadProductorDataSet.xss">
+      <DependentUpon>gradosCalidadProductorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\GradosCalidad\gradosCalidadesDataSet.xsc">
+      <DependentUpon>gradosCalidadesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\GradosCalidad\gradosCalidadesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>gradosCalidadesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Reportes\GradosCalidad\gradosCalidadesDataSet.xss">
+      <DependentUpon>gradosCalidadesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\InspeccionVehiculo\InspeccionVehiculosDataSet.xsc">
+      <DependentUpon>InspeccionVehiculosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\InspeccionVehiculo\InspeccionVehiculosDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InspeccionVehiculosDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Reportes\InspeccionVehiculo\InspeccionVehiculosDataSet.xss">
+      <DependentUpon>InspeccionVehiculosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\MuestreoCalidad\muestreoCalidadDataSet.xsc">
+      <DependentUpon>muestreoCalidadDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\MuestreoCalidad\muestreoCalidadDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>muestreoCalidadDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Reportes\MuestreoCalidad\muestreoCalidadDataSet.xss">
+      <DependentUpon>muestreoCalidadDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\RecepcionesAgricultorCiclo\recepcionesDataSet.xsc">
+      <DependentUpon>recepcionesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\RecepcionesAgricultorCiclo\recepcionesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>recepcionesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Reportes\RecepcionesAgricultorCiclo\recepcionesDataSet.xss">
+      <DependentUpon>recepcionesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\print-50.png" />
+    <None Include="Resources\delete-50.png" />
+    <None Include="Resources\save-50.png" />
+    <None Include="Resources\create-50.png" />
+    <None Include="Resources\icons8-create-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sync-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="berries_icon.ico" />
+    <Content Include="empaque.ico" />
+    <None Include="Resources\transfer-50.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
