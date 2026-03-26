@@ -12,6 +12,7 @@ namespace FresamLogistica.Model
         public Ciudades()
         {
             Agricultores = new HashSet<Agricultores>();
+            DestinosDesperdicio = new HashSet<DestinosDesperdicio>();
         }
 
         [Key]
@@ -44,5 +45,8 @@ namespace FresamLogistica.Model
         public virtual ICollection<Agricultores> Agricultores { get; set; }
 
         public virtual Estados Estados { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DestinosDesperdicio> DestinosDesperdicio { get; set; }
     }
 }

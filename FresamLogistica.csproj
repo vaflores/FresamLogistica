@@ -155,21 +155,30 @@
     <Compile Include="Model\Condiciones.cs" />
     <Compile Include="Model\CondicionesVehiculosRecepciones.cs" />
     <Compile Include="Model\DescuentosRecepciones.cs" />
+    <Compile Include="Model\DestinosDesperdicio.cs" />
+    <Compile Include="Model\DetalleRegistroDesperdicioRecolectado.cs" />
     <Compile Include="Model\Empresa.cs" />
     <Compile Include="Model\Estados.cs" />
+    <Compile Include="Model\Folios.cs" />
     <Compile Include="Model\Frutas.cs" />
     <Compile Include="Model\GradosFruta.cs" />
+    <Compile Include="Model\LoteFolios.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\Pantallas.cs" />
     <Compile Include="Model\Permisos.cs" />
     <Compile Include="Model\Precios.cs" />
+    <Compile Include="Model\Producciones.cs" />
+    <Compile Include="Model\ProveedoresDesperdicio.cs" />
     <Compile Include="Model\Ranchos.cs" />
     <Compile Include="Model\Recepciones.cs" />
+    <Compile Include="Model\RegistrosDesperdicioRecolectado.cs" />
     <Compile Include="Model\Roles.cs" />
     <Compile Include="Model\RolesPermisos.cs" />
     <Compile Include="Model\Sectores.cs" />
     <Compile Include="Model\sysdiagrams.cs" />
     <Compile Include="Model\Tarimas.cs" />
+    <Compile Include="Model\TipoDesperdicio.cs" />
+    <Compile Include="Model\TiposDestinoDesperdicio.cs" />
     <Compile Include="Model\UnidadesMedida.cs" />
     <Compile Include="Model\Usuarios.cs" />
     <Compile Include="Model\Variedades.cs" />
@@ -789,6 +798,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
+    <Folder Include="Views\Residuos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -24,19 +24,28 @@ namespace FresamLogistica.Model
         public virtual DbSet<Condiciones> Condiciones { get; set; }
         public virtual DbSet<CondicionesVehiculosRecepciones> CondicionesVehiculosRecepciones { get; set; }
         public virtual DbSet<DescuentosRecepciones> DescuentosRecepciones { get; set; }
+        public virtual DbSet<DestinosDesperdicio> DestinosDesperdicio { get; set; }
+        public virtual DbSet<DetalleRegistroDesperdicioRecolectado> DetalleRegistroDesperdicioRecolectado { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
+        public virtual DbSet<Folios> Folios { get; set; }
         public virtual DbSet<Frutas> Frutas { get; set; }
         public virtual DbSet<GradosFruta> GradosFruta { get; set; }
+        public virtual DbSet<LoteFolios> LoteFolios { get; set; }
         public virtual DbSet<Pantallas> Pantallas { get; set; }
         public virtual DbSet<Permisos> Permisos { get; set; }
         public virtual DbSet<Precios> Precios { get; set; }
+        public virtual DbSet<Producciones> Producciones { get; set; }
+        public virtual DbSet<ProveedoresDesperdicio> ProveedoresDesperdicio { get; set; }
         public virtual DbSet<Ranchos> Ranchos { get; set; }
         public virtual DbSet<Recepciones> Recepciones { get; set; }
+        public virtual DbSet<RegistrosDesperdicioRecolectado> RegistrosDesperdicioRecolectado { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Sectores> Sectores { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tarimas> Tarimas { get; set; }
+        public virtual DbSet<TipoDesperdicio> TipoDesperdicio { get; set; }
+        public virtual DbSet<TiposDestinoDesperdicio> TiposDestinoDesperdicio { get; set; }
         public virtual DbSet<UnidadesMedida> UnidadesMedida { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Variedades> Variedades { get; set; }
@@ -302,6 +311,11 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.Ciudades)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Ciudades>()
+                .HasMany(e => e.DestinosDesperdicio)
+                .WithRequired(e => e.Ciudades)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Condiciones>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -341,6 +355,31 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<DescuentosRecepciones>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DestinosDesperdicio>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DestinosDesperdicio>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DestinosDesperdicio>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DestinosDesperdicio>()
+                .HasMany(e => e.RegistrosDesperdicioRecolectado)
+                .WithRequired(e => e.DestinosDesperdicio)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DetalleRegistroDesperdicioRecolectado>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DetalleRegistroDesperdicioRecolectado>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
@@ -407,6 +446,14 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.Estados)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Folios>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Folios>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Frutas>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -425,12 +472,22 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Frutas>()
+                .HasMany(e => e.Producciones)
+                .WithRequired(e => e.Frutas)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Frutas>()
                 .HasMany(e => e.GradosFruta)
                 .WithRequired(e => e.Frutas)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Frutas>()
                 .HasMany(e => e.Precios)
+                .WithRequired(e => e.Frutas)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Frutas>()
+                .HasMany(e => e.TipoDesperdicio)
                 .WithRequired(e => e.Frutas)
                 .WillCascadeOnDelete(false);
 
@@ -456,6 +513,24 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<GradosFruta>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<LoteFolios>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<LoteFolios>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<LoteFolios>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<LoteFolios>()
+                .HasMany(e => e.Folios)
+                .WithRequired(e => e.LoteFolios)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Pantallas>()
                 .Property(e => e.nombre)
@@ -522,6 +597,51 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<Precios>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Producciones>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Producciones>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .Property(e => e.direccion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .Property(e => e.telefono)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .Property(e => e.email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .Property(e => e.licenciaSCT)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .Property(e => e.licenciaEcologica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresDesperdicio>()
+                .HasMany(e => e.RegistrosDesperdicioRecolectado)
+                .WithRequired(e => e.ProveedoresDesperdicio)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Ranchos>()
                 .Property(e => e.nombre)
@@ -595,6 +715,28 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.Recepciones)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
+                .Property(e => e.Observaciones)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
+                .HasMany(e => e.DetalleRegistroDesperdicioRecolectado)
+                .WithRequired(e => e.RegistrosDesperdicioRecolectado)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Roles>()
                 .Property(e => e.rol_id)
                 .IsUnicode(false);
@@ -660,6 +802,41 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<Tarimas>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<TipoDesperdicio>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TipoDesperdicio>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TipoDesperdicio>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TipoDesperdicio>()
+                .HasMany(e => e.DetalleRegistroDesperdicioRecolectado)
+                .WithRequired(e => e.TipoDesperdicio)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TiposDestinoDesperdicio>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TiposDestinoDesperdicio>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TiposDestinoDesperdicio>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TiposDestinoDesperdicio>()
+                .HasMany(e => e.DestinosDesperdicio)
+                .WithRequired(e => e.TiposDestinoDesperdicio)
+                .HasForeignKey(e => e.tipo_destino_desperdicio)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UnidadesMedida>()
                 .Property(e => e.nombre)

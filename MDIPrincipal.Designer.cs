@@ -77,6 +77,14 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.residuosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeResiduosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeDestinosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.destinosDeResiduosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foliosMunicipalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.produccionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registroDeEntregaDeResiduosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +95,7 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.frutasToolStripMenuItem,
+            this.residuosToolStripMenuItem,
             this.reportesToolStripMenuItem,
             this.herramientasToolStripMenuItem,
             this.configuraciónToolStripMenuItem,
@@ -103,10 +112,10 @@
             // fileMenu
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recepcionesToolStripMenuItem,
+            this.agricultoresToolStripMenuItem,
             this.ciclosToolStripMenuItem,
             this.empresaToolStripMenuItem,
-            this.agricultoresToolStripMenuItem,
+            this.recepcionesToolStripMenuItem,
             this.sectoresToolStripMenuItem,
             this.vehiculosToolStripMenuItem,
             this.toolStripSeparator5,
@@ -198,8 +207,8 @@
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gradosDeCalidadToolStripMenuItem,
             this.gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem,
-            this.muestreoDeCalidadToolStripMenuItem,
             this.inspecciónDeVehículosToolStripMenuItem,
+            this.muestreoDeCalidadToolStripMenuItem,
             this.recepcionesPorAgricultorYCicloToolStripMenuItem,
             this.titulosToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
@@ -217,14 +226,14 @@
             // 
             this.gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem.Name = "gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem";
             this.gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem.Size = new System.Drawing.Size(377, 26);
-            this.gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem.Text = "Grado de Calidad de la Fruta (Productores)";
+            this.gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem.Text = "G&rado de Calidad de la Fruta (Productores)";
             this.gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem.Click += new System.EventHandler(this.gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem_Click);
             // 
             // muestreoDeCalidadToolStripMenuItem
             // 
             this.muestreoDeCalidadToolStripMenuItem.Name = "muestreoDeCalidadToolStripMenuItem";
             this.muestreoDeCalidadToolStripMenuItem.Size = new System.Drawing.Size(377, 26);
-            this.muestreoDeCalidadToolStripMenuItem.Text = "Muestreo de &Calidad (Descuento)";
+            this.muestreoDeCalidadToolStripMenuItem.Text = "&Muestreo de Calidad (Descuento)";
             this.muestreoDeCalidadToolStripMenuItem.Click += new System.EventHandler(this.muestreoDeCalidadToolStripMenuItem_Click);
             // 
             // inspecciónDeVehículosToolStripMenuItem
@@ -315,9 +324,9 @@
             // configuraciónToolStripMenuItem
             // 
             this.configuraciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usuariosToolStripMenuItem,
+            this.permisosARolesToolStripMenuItem,
             this.rolesToolStripMenuItem,
-            this.permisosARolesToolStripMenuItem});
+            this.usuariosToolStripMenuItem});
             this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
             this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(120, 25);
             this.configuraciónToolStripMenuItem.Text = "&Configuración";
@@ -346,8 +355,8 @@
             // viewMenu
             // 
             this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolBarToolStripMenuItem,
-            this.statusBarToolStripMenuItem});
+            this.statusBarToolStripMenuItem,
+            this.toolBarToolStripMenuItem});
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.Size = new System.Drawing.Size(45, 25);
             this.viewMenu.Text = "&Ver";
@@ -430,7 +439,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.aboutToolStripMenuItem.Text = "&Acerca de... ...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -457,6 +466,62 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel.Text = "Estado";
+            // 
+            // residuosToolStripMenuItem
+            // 
+            this.residuosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.destinosDeResiduosToolStripMenuItem,
+            this.foliosMunicipalesToolStripMenuItem,
+            this.operadoresToolStripMenuItem,
+            this.produccionesToolStripMenuItem,
+            this.registroDeEntregaDeResiduosToolStripMenuItem,
+            this.tiposDeResiduosToolStripMenuItem,
+            this.tiposDeDestinosToolStripMenuItem});
+            this.residuosToolStripMenuItem.Name = "residuosToolStripMenuItem";
+            this.residuosToolStripMenuItem.Size = new System.Drawing.Size(85, 25);
+            this.residuosToolStripMenuItem.Text = "R&esiduos";
+            // 
+            // tiposDeResiduosToolStripMenuItem
+            // 
+            this.tiposDeResiduosToolStripMenuItem.Name = "tiposDeResiduosToolStripMenuItem";
+            this.tiposDeResiduosToolStripMenuItem.Size = new System.Drawing.Size(304, 26);
+            this.tiposDeResiduosToolStripMenuItem.Text = "&Tipos de Residuos";
+            // 
+            // tiposDeDestinosToolStripMenuItem
+            // 
+            this.tiposDeDestinosToolStripMenuItem.Name = "tiposDeDestinosToolStripMenuItem";
+            this.tiposDeDestinosToolStripMenuItem.Size = new System.Drawing.Size(304, 26);
+            this.tiposDeDestinosToolStripMenuItem.Text = "T&ipos de Destinos";
+            // 
+            // destinosDeResiduosToolStripMenuItem
+            // 
+            this.destinosDeResiduosToolStripMenuItem.Name = "destinosDeResiduosToolStripMenuItem";
+            this.destinosDeResiduosToolStripMenuItem.Size = new System.Drawing.Size(304, 26);
+            this.destinosDeResiduosToolStripMenuItem.Text = "&Destinos de Residuos";
+            // 
+            // foliosMunicipalesToolStripMenuItem
+            // 
+            this.foliosMunicipalesToolStripMenuItem.Name = "foliosMunicipalesToolStripMenuItem";
+            this.foliosMunicipalesToolStripMenuItem.Size = new System.Drawing.Size(304, 26);
+            this.foliosMunicipalesToolStripMenuItem.Text = "&Folios Municipales";
+            // 
+            // operadoresToolStripMenuItem
+            // 
+            this.operadoresToolStripMenuItem.Name = "operadoresToolStripMenuItem";
+            this.operadoresToolStripMenuItem.Size = new System.Drawing.Size(304, 26);
+            this.operadoresToolStripMenuItem.Text = "&Operadores";
+            // 
+            // produccionesToolStripMenuItem
+            // 
+            this.produccionesToolStripMenuItem.Name = "produccionesToolStripMenuItem";
+            this.produccionesToolStripMenuItem.Size = new System.Drawing.Size(304, 26);
+            this.produccionesToolStripMenuItem.Text = "&Producciones";
+            // 
+            // registroDeEntregaDeResiduosToolStripMenuItem
+            // 
+            this.registroDeEntregaDeResiduosToolStripMenuItem.Name = "registroDeEntregaDeResiduosToolStripMenuItem";
+            this.registroDeEntregaDeResiduosToolStripMenuItem.Size = new System.Drawing.Size(304, 26);
+            this.registroDeEntregaDeResiduosToolStripMenuItem.Text = "&Registro de Entrega de Residuos";
             // 
             // MDIPrincipal
             // 
@@ -534,6 +599,14 @@
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem permisosARolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesiónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem residuosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registroDeEntregaDeResiduosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeResiduosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeDestinosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem destinosDeResiduosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foliosMunicipalesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operadoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem produccionesToolStripMenuItem;
     }
 }
 
