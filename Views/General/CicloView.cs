@@ -145,7 +145,7 @@ namespace FresamLogistica.Views.General
                 if (_IdRegistroSeleccionado == 0)
                 {
                     _repo.Crear(registro);
-                    MessageBox.Show("Ciclo creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ciclo creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

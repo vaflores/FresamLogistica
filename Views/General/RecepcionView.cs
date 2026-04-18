@@ -502,6 +502,7 @@ namespace FresamLogistica.Views.General
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Recibo");
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Etiqueta");
             chkPrecioUnario.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Editar Precio Unitario");
+            tpCalidadDescuento.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Modificar Calidad/Descuento");
         }
 
         private void ConfigurarComboBoxEstatus()
@@ -806,7 +807,9 @@ namespace FresamLogistica.Views.General
                 new ReportParameter("pesoParam", _totalPesoNeto.ToString("N2")),
                 new ReportParameter("calificacionParam", GenerarCalidadReporte()),
                 new ReportParameter("importeParam", txtImporte.Text),
-                new ReportParameter("folioDiarioIdParam", txtFolioDiario.Text)
+                new ReportParameter("folioDiarioIdParam", txtFolioDiario.Text),
+                new ReportParameter("totalCajasParam", _totalCajas.ToString()),
+                new ReportParameter("mostrarImporteParam", chkMostrarImporte.Checked.ToString())
             };
 
             ReportHelper reporte = new ReportHelper("Reports/General/RecepcionReport/rptReciboRecepcion.rdlc", parametros, _dt);
@@ -991,6 +994,7 @@ namespace FresamLogistica.Views.General
                 row.Cells["peso_neto"].Value = "0.00";
 
             CalcularPrecioTotal();
+            CalcularTara2();
         }
 
         private void CargarDatosDescuentoPorRecepcion(DescuentosRecepciones _registro)
@@ -1199,6 +1203,7 @@ namespace FresamLogistica.Views.General
             {
                 txtPorcentaje.Text = "0.00";
             }
+            CalcularTara2();
         }
 
         private void CalcularPrecioTotal()
@@ -1237,6 +1242,24 @@ namespace FresamLogistica.Views.General
             catch (Exception)
             {
                 // Ignorar errores de cálculo
+            }
+        }
+
+        private void CalcularTara2()
+        {
+            foreach(DataGridViewRow row in dgvTarimas.Rows)
+            {
+                decimal pesoBruto = 0;
+                decimal tara1 = 0;
+                decimal porcentaje = 0;
+                // Validar valores numéricos
+                decimal.TryParse(Convert.ToString(row.Cells["peso_bruto"].Value), out pesoBruto);
+                decimal.TryParse(Convert.ToString(row.Cells["tara1"].Value), out tara1);
+                decimal.TryParse(txtPorcentaje.Text, out porcentaje);
+                if (pesoBruto > 0 && tara1 >= 0 && porcentaje >=0)
+                    row.Cells["tara2"].Value = ((pesoBruto - tara1)*porcentaje/100).ToString("N2");
+                else
+                    row.Cells["tara2"].Value = "0.00";
             }
         }
 

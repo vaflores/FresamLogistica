@@ -153,7 +153,7 @@ namespace FresamLogistica.Views.Productos.Frutas
                 if (_IdRegistroSeleccionado == 0)
                 {
                     _repo.Crear(registro);
-                    MessageBox.Show("Precio creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Precio creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

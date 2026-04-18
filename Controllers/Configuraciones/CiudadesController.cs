@@ -84,6 +84,18 @@ namespace FresamLogistica.Controllers.Configuraciones
                     .ToList();
             }
         }
+        public List<KeyValuePair<string, string>> ListarComboBoxCiudadesActivas()
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.Ciudades
+                    .Where(g => g.estado == "A")
+                    .AsEnumerable()
+                    .Select(g => new KeyValuePair<string, string>(g.ciudad_id.ToString(), g.nombre.ToString()))
+                    .OrderBy(KeyValuePair => KeyValuePair.Value)
+                    .ToList();
+            }
+        }
 
         private void AsignarIdSiCero(ref Ciudades entidad)
         {

@@ -38,12 +38,12 @@
             this.tcRegistros = new System.Windows.Forms.TabControl();
             this.tpRegistros = new System.Windows.Forms.TabPage();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
+            this.cmsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.crearNuevaRecepcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbCiclos = new System.Windows.Forms.ComboBox();
             this.lblGrados = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.lblFechaInicial = new System.Windows.Forms.Label();
-            this.cmsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.crearNuevaRecepcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenu.SuspendLayout();
             this.tcRegistros.SuspendLayout();
             this.tpRegistros.SuspendLayout();
@@ -158,45 +158,6 @@
             this.dgvRegistros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellDoubleClick);
             this.dgvRegistros.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRegistros_ColumnHeaderMouseClick);
             // 
-            // cbCiclos
-            // 
-            this.cbCiclos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCiclos.FormattingEnabled = true;
-            this.cbCiclos.Location = new System.Drawing.Point(75, 48);
-            this.cbCiclos.Name = "cbCiclos";
-            this.cbCiclos.Size = new System.Drawing.Size(250, 28);
-            this.cbCiclos.TabIndex = 36;
-            this.cbCiclos.SelectedIndexChanged += new System.EventHandler(this.cbCiclos_SelectedIndexChanged);
-            // 
-            // lblGrados
-            // 
-            this.lblGrados.AutoSize = true;
-            this.lblGrados.Location = new System.Drawing.Point(13, 51);
-            this.lblGrados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblGrados.Name = "lblGrados";
-            this.lblGrados.Size = new System.Drawing.Size(55, 20);
-            this.lblGrados.TabIndex = 35;
-            this.lblGrados.Text = "Ciclos:";
-            // 
-            // dtpFecha
-            // 
-            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(397, 51);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(125, 26);
-            this.dtpFecha.TabIndex = 37;
-            this.dtpFecha.ValueChanged += new System.EventHandler(this.dtpFecha_ValueChanged);
-            // 
-            // lblFechaInicial
-            // 
-            this.lblFechaInicial.AutoSize = true;
-            this.lblFechaInicial.Location = new System.Drawing.Point(332, 51);
-            this.lblFechaInicial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFechaInicial.Name = "lblFechaInicial";
-            this.lblFechaInicial.Size = new System.Drawing.Size(58, 20);
-            this.lblFechaInicial.TabIndex = 38;
-            this.lblFechaInicial.Text = "Fecha:";
-            // 
             // cmsMenu
             // 
             this.cmsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -210,6 +171,45 @@
             this.crearNuevaRecepcionToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.crearNuevaRecepcionToolStripMenuItem.Text = "Crear nueva recepcion";
             this.crearNuevaRecepcionToolStripMenuItem.Click += new System.EventHandler(this.crearNuevaRecepcionToolStripMenuItem_Click);
+            // 
+            // cbCiclos
+            // 
+            this.cbCiclos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCiclos.FormattingEnabled = true;
+            this.cbCiclos.Location = new System.Drawing.Point(67, 49);
+            this.cbCiclos.Name = "cbCiclos";
+            this.cbCiclos.Size = new System.Drawing.Size(250, 28);
+            this.cbCiclos.TabIndex = 36;
+            this.cbCiclos.SelectedIndexChanged += new System.EventHandler(this.cbCiclos_SelectedIndexChanged);
+            // 
+            // lblGrados
+            // 
+            this.lblGrados.AutoSize = true;
+            this.lblGrados.Location = new System.Drawing.Point(13, 52);
+            this.lblGrados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGrados.Name = "lblGrados";
+            this.lblGrados.Size = new System.Drawing.Size(47, 20);
+            this.lblGrados.TabIndex = 35;
+            this.lblGrados.Text = "Ciclo:";
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFecha.Location = new System.Drawing.Point(380, 49);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(125, 26);
+            this.dtpFecha.TabIndex = 37;
+            this.dtpFecha.ValueChanged += new System.EventHandler(this.dtpFecha_ValueChanged);
+            // 
+            // lblFechaInicial
+            // 
+            this.lblFechaInicial.AutoSize = true;
+            this.lblFechaInicial.Location = new System.Drawing.Point(324, 52);
+            this.lblFechaInicial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFechaInicial.Name = "lblFechaInicial";
+            this.lblFechaInicial.Size = new System.Drawing.Size(58, 20);
+            this.lblFechaInicial.TabIndex = 38;
+            this.lblFechaInicial.Text = "Fecha:";
             // 
             // RecepcionesView
             // 

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DetalleResiduos" targetNamespace="http://tempuri.org/DetalleResiduos.xsd" xmlns:mstns="http://tempuri.org/DetalleResiduos.xsd" xmlns="http://tempuri.org/DetalleResiduos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DetalleResiduos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DetalleResiduos" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DetalleResiduos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Detalle" msprop:Generator_RowEvHandlerName="DetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="DetalleRowDeleted" msprop:Generator_RowDeletingName="DetalleRowDeleting" msprop:Generator_RowEvArgName="DetalleRowChangeEvent" msprop:Generator_TablePropName="Detalle" msprop:Generator_RowChangedName="DetalleRowChanged" msprop:Generator_UserTableName="Detalle" msprop:Generator_RowChangingName="DetalleRowChanging" msprop:Generator_RowClassName="DetalleRow" msprop:Generator_TableClassName="DetalleDataTable" msprop:Generator_TableVarName="tableDetalle">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fecha" msprop:Generator_ColumnPropNameInTable="fechaColumn" msprop:Generator_ColumnPropNameInRow="fecha" msprop:Generator_UserColumnName="fecha" msprop:Generator_ColumnVarNameInTable="columnfecha" type="xs:string" minOccurs="0" />
+              <xs:element name="operador" msprop:Generator_ColumnPropNameInTable="operadorColumn" msprop:Generator_ColumnPropNameInRow="operador" msprop:Generator_UserColumnName="operador" msprop:Generator_ColumnVarNameInTable="columnoperador" type="xs:string" minOccurs="0" />
+              <xs:element name="fruta" msprop:Generator_ColumnPropNameInTable="frutaColumn" msprop:Generator_ColumnPropNameInRow="fruta" msprop:Generator_UserColumnName="fruta" msprop:Generator_ColumnVarNameInTable="columnfruta" type="xs:string" minOccurs="0" />
+              <xs:element name="tipo_residuo" msprop:Generator_ColumnPropNameInTable="tipo_residuoColumn" msprop:Generator_ColumnPropNameInRow="tipo_residuo" msprop:Generator_UserColumnName="tipo_residuo" msprop:Generator_ColumnVarNameInTable="columntipo_residuo" type="xs:string" minOccurs="0" />
+              <xs:element name="cantidad_residuo" msprop:Generator_ColumnPropNameInTable="cantidad_residuoColumn" msprop:Generator_ColumnPropNameInRow="cantidad_residuo" msprop:Generator_UserColumnName="cantidad_residuo" msprop:Generator_ColumnVarNameInTable="columncantidad_residuo" type="xs:string" minOccurs="0" />
+              <xs:element name="total_residuos_fecha" msprop:Generator_ColumnPropNameInTable="total_residuos_fechaColumn" msprop:Generator_ColumnPropNameInRow="total_residuos_fecha" msprop:Generator_UserColumnName="total_residuos_fecha" msprop:Generator_ColumnVarNameInTable="columntotal_residuos_fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="produccion_dia" msprop:Generator_UserColumnName="produccion_dia" msprop:Generator_ColumnPropNameInTable="produccion_diaColumn" msprop:Generator_ColumnPropNameInRow="produccion_dia" msprop:Generator_ColumnVarNameInTable="columnproduccion_dia" type="xs:string" minOccurs="0" />
+              <xs:element name="porcentaje_merma" msprop:Generator_ColumnPropNameInRow="porcentaje_merma" msprop:Generator_ColumnPropNameInTable="porcentaje_mermaColumn" msprop:Generator_ColumnVarNameInTable="columnporcentaje_merma" msprop:Generator_UserColumnName="porcentaje_merma" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

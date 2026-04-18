@@ -1,4 +1,5 @@
 ﻿using FresamLogistica.Controllers.Productos;
+using FresamLogistica.Controllers.Residuos;
 using FresamLogistica.Helper;
 using System;
 using System.Collections.Generic;
@@ -11,28 +12,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FresamLogistica.Views.Productos.Frutas
+namespace FresamLogistica.Views.Residuos
 {
     public partial class TipoResiduoView : Form
     {
-        private readonly PreciosController _repo;
-        private readonly GradosController _repoGrados = new GradosController();
+        private readonly TiposResiduosController _repo;
+        private readonly FrutasController _repoFrutas = new FrutasController();
         private int _IdRegistroSeleccionado;
         private int _IdFrutaSeleccionado;
-        public TipoResiduoView(int _idRegistro, string _IdGrado, int _IdFruta)
+        public TipoResiduoView(int _idRegistro, int _IdFruta)
         {
             InitializeComponent();
 
-            _repo = new PreciosController();
+            _repo = new TiposResiduosController();
 
             this.KeyPreview = true;
             this._IdRegistroSeleccionado = _idRegistro;
             this._IdFrutaSeleccionado = _IdFruta;
 
-            ConfigurarComboBoxGrados();
+            ConfigurarComboBoxFrutas();
             ConfigurarComboBoxEstado();
-            cbGrados.SelectedValue = _IdGrado;
+            cbFrutas.SelectedValue = _IdFruta.ToString();
             CargarDatosRegistroSeleccionado();
+
+            this.Tag = 29;
+            ValidarPermisos();
         }
 
         #region EventosFormulario
@@ -87,25 +91,26 @@ namespace FresamLogistica.Views.Productos.Frutas
 
         }
 
-        private void txtImporte_Leave(object sender, EventArgs e)
-        {
-            if (decimal.TryParse(txtImporte.Text, out decimal valor))
-            {
-                txtImporte.Text = valor.ToString("C2"); // Formato moneda con 2 decimales
-            }
-            else
-            {
-                txtImporte.Text = "0.00"; // Valor por defecto si no es válido
-            }
-        }
         #endregion
 
 
         #region MetodosPrivados
-
-        private void ConfigurarComboBoxGrados()
+        private void ValidarPermisos()
         {
-            EstadosHelper.GenerarEstadosDesdeLista(ref cbGrados, _repoGrados.ListarComboBoxFruta(_IdFrutaSeleccionado) );
+            // Aquí se deben implementar las validaciones de permisos según el usuario actual.
+            // Por ahora, habilitamos todos los botones.
+            tsbCrear.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Crear");
+            tsbGuardar.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Crear") ||
+                SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Editar");
+            tsbEliminar.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Eliminar");
+            tsbBuscar.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Consultar");
+            tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir");
+
+        }
+
+        private void ConfigurarComboBoxFrutas()
+        {
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbFrutas, _repoFrutas.ListarComboBox() );
         }
 
         private void ConfigurarComboBoxEstado()
@@ -120,15 +125,13 @@ namespace FresamLogistica.Views.Productos.Frutas
                 var registro = _repo.ObtenerPorId(_IdRegistroSeleccionado);
                 if (registro != null)
                 {
-                    cbGrados.SelectedValue = registro.grado_id;
-                    dtpFechaInicio.Value = registro.fecha_inicio;
-                    dtpFechaFin.Value = registro.fecha_fin ?? DateTime.Now;
-                    txtImporte.Text = registro.importe.ToString("C2");
+                    cbFrutas.SelectedValue = registro.fruta_id.ToString();
+                    txtNombre.Text = registro.nombre;
                     cbEstado.SelectedValue = registro.estado;
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró el precio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se encontró el tipo de residuo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Close();
                 }
             }
@@ -139,26 +142,23 @@ namespace FresamLogistica.Views.Productos.Frutas
             try
             {
 
-                var registro = new Model.Precios
+                var registro = new Model.TipoResiduo
                 {
-                    precio_id = _IdRegistroSeleccionado,
+                    tipo_residuo_id = _IdRegistroSeleccionado,
                     fruta_id = _IdFrutaSeleccionado,
-                    grado_id = cbGrados.SelectedValue.ToString(),
-                    fecha_inicio = dtpFechaInicio.Value,
-                    fecha_fin = dtpFechaFin.Value,
-                    importe = decimal.Parse(txtImporte.Text, System.Globalization.NumberStyles.Currency),
+                    nombre = txtNombre.Text.Trim(),
                     estado = cbEstado.SelectedValue.ToString()
                 };
 
                 if (_IdRegistroSeleccionado == 0)
                 {
                     _repo.Crear(registro);
-                    MessageBox.Show("Precio creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Tipo de residuo creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     _repo.Actualizar(registro);
-                    MessageBox.Show("Precio guardado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tipo de residuo guardado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 this.Close();
 
@@ -173,10 +173,8 @@ namespace FresamLogistica.Views.Productos.Frutas
         private void BorrarCampos()
         {
             _IdRegistroSeleccionado = 0;
-            cbGrados.SelectedIndex = 0;
-            dtpFechaInicio.Value = DateTime.Now;
-            dtpFechaFin.Value = DateTime.Now;
-            txtImporte.Clear();
+            cbFrutas.SelectedIndex = 0;
+            txtNombre.Clear();
             cbEstado.SelectedIndex = 0;
         }
 
@@ -187,17 +185,17 @@ namespace FresamLogistica.Views.Productos.Frutas
 
                 if (_IdRegistroSeleccionado != 0)
                 {
-                    var confirmResult = MessageBox.Show("¿Estás seguro de que deseas eliminar este precio?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    var confirmResult = MessageBox.Show("¿Estás seguro de que deseas eliminar este tipo de residuo?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (confirmResult == DialogResult.Yes)
                     {
                         _repo.Eliminar(_IdRegistroSeleccionado);
-                        MessageBox.Show("Precio eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Tipo de residuo eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No hay ningun precio seleccionado para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No hay ningun tipo de residuo seleccionado para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -214,22 +212,5 @@ namespace FresamLogistica.Views.Productos.Frutas
 
         #endregion
 
-        private void txtImporte_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permitir control keys
-            if (char.IsControl(e.KeyChar))
-                return;
-
-            // Permitir dígitos
-            if (char.IsDigit(e.KeyChar))
-                return;
-
-            // Permitir un solo punto decimal
-            if (e.KeyChar == '.' && !((TextBox)sender).Text.Contains("."))
-                return;
-
-            // Si nada aplica, bloquear
-            e.Handled = true;
-        }
     }
 }

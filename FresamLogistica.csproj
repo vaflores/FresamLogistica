@@ -99,6 +99,7 @@
     <Compile Include="Controllers\General\AgricultoresController.cs" />
     <Compile Include="Controllers\General\CiclosController.cs" />
     <Compile Include="Controllers\General\DescuentosController.cs" />
+    <Compile Include="Controllers\General\ProduccionesController.cs" />
     <Compile Include="Controllers\General\RanchosController.cs" />
     <Compile Include="Controllers\General\RecepcionesController.cs" />
     <Compile Include="Controllers\General\SectoresController.cs" />
@@ -112,10 +113,21 @@
     <Compile Include="Controllers\Productos\GradosController.cs" />
     <Compile Include="Controllers\Productos\PreciosController.cs" />
     <Compile Include="Controllers\Productos\VariedadesController.cs" />
+    <Compile Include="Controllers\Reportes\ReporteResiduosController.cs" />
+    <Compile Include="Controllers\Reportes\ResumenRecepcionesProductoAgricultorController.cs" />
     <Compile Include="Controllers\Reportes\TitulosCalidadesController.cs" />
     <Compile Include="Controllers\Reportes\TitulosEtiquetasController.cs" />
     <Compile Include="Controllers\Reportes\TitulosGradosController.cs" />
     <Compile Include="Controllers\Reportes\TitulosInspeccionesController.cs" />
+    <Compile Include="Controllers\Residuos\CiclosResiduosController.cs" />
+    <Compile Include="Controllers\Residuos\DestinosResiduosController.cs" />
+    <Compile Include="Controllers\Residuos\EmpresaGestoraResiduosController.cs" />
+    <Compile Include="Controllers\Residuos\FoliosController.cs" />
+    <Compile Include="Controllers\Residuos\LoteFoliosController.cs" />
+    <Compile Include="Controllers\Residuos\OperadoresResiduosController.cs" />
+    <Compile Include="Controllers\Residuos\RegistroResiduosRecolectadosController.cs" />
+    <Compile Include="Controllers\Residuos\TiposDestinosResiduosController.cs" />
+    <Compile Include="Controllers\Residuos\TiposResiduosController.cs" />
     <Compile Include="Helper\Constantes.cs" />
     <Compile Include="Helper\DataGridViewHelper.cs" />
     <Compile Include="Helper\EstadosHelper.cs" />
@@ -135,6 +147,7 @@
     </Compile>
     <Compile Include="Helper\SesionActualHelper.cs" />
     <Compile Include="Helper\TextBoxValidarEnteros.cs" />
+    <Compile Include="Helper\TextBoxValidarMonedas.cs" />
     <Compile Include="Helper\TextBoxValidarNumerosDecimales.cs" />
     <Compile Include="Interfaces\ICatalogoCRUD.cs" />
     <Compile Include="MDIPrincipal.cs">
@@ -151,34 +164,37 @@
     <Compile Include="Model\CicloGrados.cs" />
     <Compile Include="Model\CicloInspecciones.cs" />
     <Compile Include="Model\Ciclos.cs" />
+    <Compile Include="Model\CiclosResiduos.cs" />
     <Compile Include="Model\Ciudades.cs" />
     <Compile Include="Model\Condiciones.cs" />
     <Compile Include="Model\CondicionesVehiculosRecepciones.cs" />
     <Compile Include="Model\DescuentosRecepciones.cs" />
-    <Compile Include="Model\DestinosDesperdicio.cs" />
-    <Compile Include="Model\DetalleRegistroDesperdicioRecolectado.cs" />
+    <Compile Include="Model\DestinosResiduo.cs" />
+    <Compile Include="Model\DetalleRegistroResiduoRecolectado.cs" />
     <Compile Include="Model\Empresa.cs" />
+    <Compile Include="Model\EmpresaGestoraDeResiduos.cs" />
     <Compile Include="Model\Estados.cs" />
     <Compile Include="Model\Folios.cs" />
+    <Compile Include="Model\FoliosRegistroResiduoRecolectado.cs" />
     <Compile Include="Model\Frutas.cs" />
     <Compile Include="Model\GradosFruta.cs" />
     <Compile Include="Model\LoteFolios.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\OperadoresResiduos.cs" />
     <Compile Include="Model\Pantallas.cs" />
     <Compile Include="Model\Permisos.cs" />
     <Compile Include="Model\Precios.cs" />
     <Compile Include="Model\Producciones.cs" />
-    <Compile Include="Model\ProveedoresDesperdicio.cs" />
     <Compile Include="Model\Ranchos.cs" />
     <Compile Include="Model\Recepciones.cs" />
-    <Compile Include="Model\RegistrosDesperdicioRecolectado.cs" />
+    <Compile Include="Model\RegistrosResiduoRecolectado.cs" />
     <Compile Include="Model\Roles.cs" />
     <Compile Include="Model\RolesPermisos.cs" />
     <Compile Include="Model\Sectores.cs" />
     <Compile Include="Model\sysdiagrams.cs" />
     <Compile Include="Model\Tarimas.cs" />
-    <Compile Include="Model\TipoDesperdicio.cs" />
-    <Compile Include="Model\TiposDestinoDesperdicio.cs" />
+    <Compile Include="Model\TipoResiduo.cs" />
+    <Compile Include="Model\TiposDestinoResiduo.cs" />
     <Compile Include="Model\UnidadesMedida.cs" />
     <Compile Include="Model\Usuarios.cs" />
     <Compile Include="Model\Variedades.cs" />
@@ -236,7 +252,11 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ViewModels\CalidadesRecepcionesViewModel.cs" />
     <Compile Include="ViewModels\CondicionesVehiculoViewModel.cs" />
+    <Compile Include="ViewModels\DetalleRegistroResiduoRecolectadoViewModel.cs" />
+    <Compile Include="ViewModels\FoliosRegistroResiduoRecolectadoViewModel.cs" />
     <Compile Include="ViewModels\RecepcionesViewModel.cs" />
+    <Compile Include="ViewModels\RegistroResiduoRecolectadoListViewModel.cs" />
+    <Compile Include="ViewModels\RegistroResiduosRecolectadoViewModel.cs" />
     <Compile Include="ViewModels\RolesPermisosViewModel.cs" />
     <Compile Include="ViewModels\SectoresVariedadesViewModel.cs" />
     <Compile Include="ViewModels\VehiculosRecepcionesViewModel.cs" />
@@ -432,6 +452,18 @@
     <Compile Include="Views\Reportes\GradosCalidadProductoresView.Designer.cs">
       <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\ResumenRecepcionesProductoAgricultorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\ResumenRecepcionesProductoAgricultorView.Designer.cs">
+      <DependentUpon>ResumenRecepcionesProductoAgricultorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\ReporteResiduosRecolectadosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\ReporteResiduosRecolectadosView.Designer.cs">
+      <DependentUpon>ReporteResiduosRecolectadosView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\RecepcionesAgricultorCicloView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -479,6 +511,120 @@
     </Compile>
     <Compile Include="Views\Reportes\Titulos\TitulosInspeccionesView.Designer.cs">
       <DependentUpon>TitulosInspeccionesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\ProduccionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\ProduccionView.Designer.cs">
+      <DependentUpon>ProduccionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\CiclosResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\CiclosResiduosView.Designer.cs">
+      <DependentUpon>CiclosResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\CicloResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\CicloResiduosView.Designer.cs">
+      <DependentUpon>CicloResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\LoteFoliosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\LoteFoliosView.Designer.cs">
+      <DependentUpon>LoteFoliosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\LotesFoliosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\LotesFoliosView.Designer.cs">
+      <DependentUpon>LotesFoliosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\EmpresaGestoraResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\EmpresaGestoraResiduosView.Designer.cs">
+      <DependentUpon>EmpresaGestoraResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\DestinoResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\DestinoResiduosView.Designer.cs">
+      <DependentUpon>DestinoResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\EmpresasGestorasResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\EmpresasGestorasResiduosView.Designer.cs">
+      <DependentUpon>EmpresasGestorasResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\RecoleccionResiduosFolioView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\RecoleccionResiduosFolioView.Designer.cs">
+      <DependentUpon>RecoleccionResiduosFolioView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\RecoleccionResiduosDetalleView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\RecoleccionResiduosDetalleView.Designer.cs">
+      <DependentUpon>RecoleccionResiduosDetalleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\RecoleccionResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\RecoleccionResiduosView.Designer.cs">
+      <DependentUpon>RecoleccionResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\RecoleccionesResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\RecoleccionesResiduosView.Designer.cs">
+      <DependentUpon>RecoleccionesResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\TipoDestinoResiduoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\TipoDestinoResiduoView.Designer.cs">
+      <DependentUpon>TipoDestinoResiduoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\ProduccionesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\ProduccionesView.Designer.cs">
+      <DependentUpon>ProduccionesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\DestinosResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\DestinosResiduosView.Designer.cs">
+      <DependentUpon>DestinosResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\OperadorResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\OperadorResiduosView.Designer.cs">
+      <DependentUpon>OperadorResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\TiposDestinosResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\TiposDestinosResiduosView.Designer.cs">
+      <DependentUpon>TiposDestinosResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\TiposResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\TiposResiduosView.Designer.cs">
+      <DependentUpon>TiposResiduosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Residuos\TipoResiduoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Residuos\TipoResiduoView.Designer.cs">
+      <DependentUpon>TipoResiduoView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Helper\ReportMasterDetailHelper.resx">
       <DependentUpon>ReportMasterDetailHelper.cs</DependentUpon>
@@ -529,6 +675,12 @@
     <Content Include="Reports\Reportes\RecepcionesAgricultorCiclo\rptRecepcionesAgricultorCiclo.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\rptResumenRecepcionesProductoAgricultor.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Residuos\rptReporteResiduos.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Configuracion\RolesPermisosView.resx">
       <DependentUpon>RolesPermisosView.cs</DependentUpon>
     </EmbeddedResource>
@@ -625,6 +777,12 @@
     <EmbeddedResource Include="Views\Reportes\GradosCalidadProductoresView.resx">
       <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\ResumenRecepcionesProductoAgricultorView.resx">
+      <DependentUpon>ResumenRecepcionesProductoAgricultorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\ReporteResiduosRecolectadosView.resx">
+      <DependentUpon>ReporteResiduosRecolectadosView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\RecepcionesAgricultorCicloView.resx">
       <DependentUpon>RecepcionesAgricultorCicloView.cs</DependentUpon>
     </EmbeddedResource>
@@ -648,6 +806,63 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\Titulos\TitulosInspeccionesView.resx">
       <DependentUpon>TitulosInspeccionesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\ProduccionView.resx">
+      <DependentUpon>ProduccionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\CiclosResiduosView.resx">
+      <DependentUpon>CiclosResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\CicloResiduosView.resx">
+      <DependentUpon>CicloResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\LoteFoliosView.resx">
+      <DependentUpon>LoteFoliosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\LotesFoliosView.resx">
+      <DependentUpon>LotesFoliosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\EmpresaGestoraResiduosView.resx">
+      <DependentUpon>EmpresaGestoraResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\DestinoResiduosView.resx">
+      <DependentUpon>DestinoResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\EmpresasGestorasResiduosView.resx">
+      <DependentUpon>EmpresasGestorasResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\RecoleccionResiduosFolioView.resx">
+      <DependentUpon>RecoleccionResiduosFolioView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\RecoleccionResiduosDetalleView.resx">
+      <DependentUpon>RecoleccionResiduosDetalleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\RecoleccionResiduosView.resx">
+      <DependentUpon>RecoleccionResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\RecoleccionesResiduosView.resx">
+      <DependentUpon>RecoleccionesResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\TipoDestinoResiduoView.resx">
+      <DependentUpon>TipoDestinoResiduoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\ProduccionesView.resx">
+      <DependentUpon>ProduccionesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\DestinosResiduosView.resx">
+      <DependentUpon>DestinosResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\OperadorResiduosView.resx">
+      <DependentUpon>OperadorResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\TiposDestinosResiduosView.resx">
+      <DependentUpon>TiposDestinosResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\TiposResiduosView.resx">
+      <DependentUpon>TiposResiduosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Residuos\TipoResiduoView.resx">
+      <DependentUpon>TipoResiduoView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -744,6 +959,28 @@
     <None Include="Reports\Reportes\RecepcionesAgricultorCiclo\recepcionesDataSet.xss">
       <DependentUpon>recepcionesDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\recepcionesAgricultorDataSet.xsc">
+      <DependentUpon>recepcionesAgricultorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\recepcionesAgricultorDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>recepcionesAgricultorDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\recepcionesAgricultorDataSet.xss">
+      <DependentUpon>recepcionesAgricultorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Residuos\DetalleResiduos.xsc">
+      <DependentUpon>DetalleResiduos.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Residuos\DetalleResiduos.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DetalleResiduos1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\Residuos\DetalleResiduos.xss">
+      <DependentUpon>DetalleResiduos.xsd</DependentUpon>
+    </None>
     <None Include="Resources\print-50.png" />
     <None Include="Resources\delete-50.png" />
     <None Include="Resources\save-50.png" />
@@ -798,7 +1035,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
-    <Folder Include="Views\Residuos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

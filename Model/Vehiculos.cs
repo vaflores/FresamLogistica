@@ -11,6 +11,7 @@ namespace FresamLogistica.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vehiculos()
         {
+            RegistrosResiduoRecolectado = new HashSet<RegistrosResiduoRecolectado>();
             VehiculosRecepciones = new HashSet<VehiculosRecepciones>();
         }
 
@@ -45,6 +46,9 @@ namespace FresamLogistica.Model
         public string usuario_modifica { get; set; }
 
         public DateTime fecha_modifica { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RegistrosResiduoRecolectado> RegistrosResiduoRecolectado { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VehiculosRecepciones> VehiculosRecepciones { get; set; }

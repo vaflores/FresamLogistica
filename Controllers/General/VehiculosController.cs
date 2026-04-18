@@ -27,6 +27,26 @@ namespace FresamLogistica.Controllers.General
             }
         }
 
+        public int CrearVehiculo(Vehiculos entidad)
+        {
+            VehiculosRecepcionesViewModel vehiculo = ObtenerPorPlacas(entidad.placas);
+
+            if (vehiculo != null)
+            {
+                return vehiculo.VehiculoId;
+            }
+
+            using (var _context = new Model.Model())
+            {
+                AsignarIdSiCero(ref entidad);
+                SesionActualHelper.RegistrarSesionCrea(ref entidad);
+                _context.Vehiculos.Add(entidad);
+                _context.SaveChanges();
+            }
+
+            return entidad.vehiculo_id;
+        }
+
         public void CrearVehiculoRecepcionViewModel(VehiculosRecepcionesViewModel entidad)
         {
             VehiculosRecepcionesViewModel vehiculo = ObtenerPorPlacas(entidad.Placas);
@@ -57,17 +77,17 @@ namespace FresamLogistica.Controllers.General
             {
                 using (var _context = new Model.Model())
                 {
-                VehiculosRecepciones nuevaVehiculoRecepcion = new VehiculosRecepciones
-                {
-                    vehiculo_recepcion_id = 0,
-                    recepcion_id = entidad.RecepcionId,
-                    vehiculo_id = vehiculo.VehiculoId,
-                    nombre_chofer = entidad.Chofer
-                };
-                AsignarIdSiCero(ref nuevaVehiculoRecepcion);
-                SesionActualHelper.RegistrarSesionCrea(ref nuevaVehiculoRecepcion);
-                _context.VehiculosRecepciones.Add(nuevaVehiculoRecepcion);
-                _context.SaveChanges();
+                    VehiculosRecepciones nuevaVehiculoRecepcion = new VehiculosRecepciones
+                    {
+                        vehiculo_recepcion_id = 0,
+                        recepcion_id = entidad.RecepcionId,
+                        vehiculo_id = vehiculo.VehiculoId,
+                        nombre_chofer = entidad.Chofer
+                    };
+                    AsignarIdSiCero(ref nuevaVehiculoRecepcion);
+                    SesionActualHelper.RegistrarSesionCrea(ref nuevaVehiculoRecepcion);
+                    _context.VehiculosRecepciones.Add(nuevaVehiculoRecepcion);
+                    _context.SaveChanges();
                 }
             }
         }
@@ -131,7 +151,7 @@ namespace FresamLogistica.Controllers.General
             using (var _context = new Model.Model())
             {
                 return _context.VehiculosRecepciones
-                    .Where(r => r.recepcion_id == _idRecepcion )
+                    .Where(r => r.recepcion_id == _idRecepcion)
                     .FirstOrDefault();
             }
         }
@@ -221,7 +241,7 @@ namespace FresamLogistica.Controllers.General
                     .FirstOrDefault();
             }
 
-            if(vehiculo == null)
+            if (vehiculo == null)
             {
                 vehiculo = ObtenerPorPlacas(_placas);
             }
@@ -249,5 +269,14 @@ namespace FresamLogistica.Controllers.General
             }
         }
 
+        public Vehiculos ConsultarDatosVehiculoPorPlaca(string _placas)
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.Vehiculos
+                    .Where(r => r.placas == _placas)
+                    .FirstOrDefault();
+            }
+        }
     }
 }

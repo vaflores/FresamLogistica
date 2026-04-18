@@ -211,6 +211,8 @@
             // 
             // cbGrados
             // 
+            this.cbGrados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbGrados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGrados.Enabled = false;
             this.cbGrados.FormattingEnabled = true;
@@ -239,6 +241,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PrecioView";
             this.Text = "Precio";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormView_KeyDown);
             this.tsMenu.ResumeLayout(false);
             this.tsMenu.PerformLayout();
             this.ResumeLayout(false);

@@ -122,7 +122,7 @@ namespace FresamLogistica.Views.Configuracion
                 }
             }
 
-            return lista;
+            return lista.OrderBy(l=> l.NombrePermiso).OrderBy(l=> l.NombrePantalla).ToList();
         }
 
         private void ActualizarRegistro(string _IdRegistro)

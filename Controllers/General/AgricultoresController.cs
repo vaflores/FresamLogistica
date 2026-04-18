@@ -75,11 +75,18 @@ namespace FresamLogistica.Controllers.General
         {
             using (var _context = new Model.Model())
             {
-                return _context.Agricultores
+                var lista = _context.Agricultores
                     .AsEnumerable()
-                    .Select(g => new KeyValuePair<string, string>(g.agricultor_id.ToString(), g.nombre.ToString()))
-                    .OrderBy(KeyValuePair => KeyValuePair.Value)
+                    .Select(g => new KeyValuePair<string, string>(
+                        g.agricultor_id.ToString(),
+                        g.nombre))
+                    .OrderBy(x => x.Value)
                     .ToList();
+
+                // Agregar "Todos" al inicio
+                lista.Insert(0, new KeyValuePair<string, string>("", "Todos"));
+
+                return lista;
             }
         }
 

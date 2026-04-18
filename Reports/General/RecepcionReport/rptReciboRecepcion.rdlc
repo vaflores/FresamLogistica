@@ -180,11 +180,28 @@
                 </TextRuns>
                 <Style />
               </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>TOTAL DE CAJAS: </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!totalCajasParam.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
             <Top>1.035in</Top>
             <Left>0.01958in</Left>
-            <Height>0.78125in</Height>
+            <Height>0.91667in</Height>
             <Width>6.62311in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -390,7 +407,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>calidadesDataSet</DataSetName>
-            <Top>2.00125in</Top>
+            <Top>2.12625in</Top>
             <Height>0.5in</Height>
             <Width>2.87153in</Width>
             <ZIndex>3</ZIndex>
@@ -426,7 +443,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.64541in</Top>
+            <Top>3.77041in</Top>
             <Height>0.32292in</Height>
             <Width>1.73264in</Width>
             <ZIndex>4</ZIndex>
@@ -441,7 +458,7 @@
             </Style>
           </Textbox>
           <Line Name="Line2">
-            <Top>1.98292in</Top>
+            <Top>2.10792in</Top>
             <Left>0.01958in</Left>
             <Height>0in</Height>
             <Width>6.75946in</Width>
@@ -453,7 +470,7 @@
             </Style>
           </Line>
           <Line Name="Line3">
-            <Top>2.22729in</Top>
+            <Top>2.35229in</Top>
             <Left>0.01958in</Left>
             <Height>0in</Height>
             <Width>6.75946in</Width>
@@ -465,7 +482,7 @@
             </Style>
           </Line>
           <Line Name="Line4">
-            <Top>3.64541in</Top>
+            <Top>3.77041in</Top>
             <Left>2.98612in</Left>
             <Height>0in</Height>
             <Width>3.78313in</Width>
@@ -493,7 +510,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.64541in</Top>
+            <Top>3.77041in</Top>
             <Left>6.22853cm</Left>
             <Height>0.32292in</Height>
             <Width>0.51405in</Width>
@@ -527,7 +544,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.64541in</Top>
+            <Top>3.77041in</Top>
             <Left>7.7106cm</Left>
             <Height>0.32292in</Height>
             <Width>1.21476in</Width>
@@ -561,11 +578,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.64541in</Top>
+            <Top>3.77041in</Top>
             <Left>14.18382cm</Left>
             <Height>0.32292in</Height>
             <Width>1.19486in</Width>
             <ZIndex>10</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!mostrarImporteParam.Value = False</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -596,7 +616,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.00125in</Top>
+            <Top>2.12625in</Top>
             <Left>7.7106cm</Left>
             <Height>0.25in</Height>
             <Width>1.21476in</Width>
@@ -631,7 +651,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.00125in</Top>
+            <Top>2.12625in</Top>
             <Left>10.99735cm</Left>
             <Height>0.25in</Height>
             <Width>1.18507in</Width>
@@ -666,11 +686,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.98292in</Top>
+            <Top>2.10792in</Top>
             <Left>14.18382cm</Left>
             <Height>0.25in</Height>
             <Width>1.19486in</Width>
             <ZIndex>13</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!mostrarImporteParam.Value = False</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -700,7 +723,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.2134in</Top>
+            <Top>2.3384in</Top>
             <Left>7.73547cm</Left>
             <Height>0.28785in</Height>
             <Width>1.21476in</Width>
@@ -746,7 +769,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.2134in</Top>
+            <Top>2.3384in</Top>
             <Left>10.99735cm</Left>
             <Height>0.28785in</Height>
             <Width>1.19486in</Width>
@@ -780,11 +803,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.2134in</Top>
+            <Top>2.3384in</Top>
             <Left>14.20869cm</Left>
             <Height>0.28785in</Height>
             <Width>1.19486in</Width>
             <ZIndex>16</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!mostrarImporteParam.Value = False</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -917,11 +943,22 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="totalCajasParam">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="mostrarImporteParam">
+      <DataType>Boolean</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>3</NumberOfRows>
+      <NumberOfRows>4</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -977,6 +1014,16 @@
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>2</RowIndex>
           <ParameterName>folioDiarioIdParam</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>totalCajasParam</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>mostrarImporteParam</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

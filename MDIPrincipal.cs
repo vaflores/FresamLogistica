@@ -7,6 +7,7 @@ using FresamLogistica.Views.Herramientas;
 using FresamLogistica.Views.Productos;
 using FresamLogistica.Views.Reportes;
 using FresamLogistica.Views.Reportes.Titulos;
+using FresamLogistica.Views.Residuos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -178,6 +179,47 @@ namespace FresamLogistica
             Helper.FormulariosHelper.CargarFormularioHijo(new RolesView(), this);
         }
 
+        private void tiposDeResiduosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TiposResiduosView(), this);
+        }
+
+        private void tiposDeDestinosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TiposDestinosResiduosView(), this);
+        }
+        private void produccionesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ProduccionesView(), this);
+        }
+        private void destinosDeResiduosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new DestinosResiduosView(), this);
+        }
+        private void operadoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new EmpresasGestorasResiduosView(), this);
+        }
+        private void foliosMunicipalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new LotesFoliosView(), this);
+        }
+        private void registroDeEntregaDeResiduosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new RecoleccionesResiduosView(), this);
+        }
+        private void ciclosDeResiduosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new CiclosResiduosView(), this);
+        }
+        private void residuosRecolectadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ReporteResiduosRecolectadosView(), this);
+        }
+        private void resumenDeRecepciónDeProductoPorAgricultorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ResumenRecepcionesProductoAgricultorView(), this);
+        }
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormularios();
@@ -217,5 +259,6 @@ namespace FresamLogistica
                 childForm.Close();
             }
         }
+
     }
 }

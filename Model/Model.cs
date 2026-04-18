@@ -8,7 +8,7 @@ namespace FresamLogistica.Model
     public partial class Model : DbContext
     {
         public Model()
-            : base("name=Modelo")
+            : base("name=Model")
         {
         }
 
@@ -20,32 +20,35 @@ namespace FresamLogistica.Model
         public virtual DbSet<CicloGrados> CicloGrados { get; set; }
         public virtual DbSet<CicloInspecciones> CicloInspecciones { get; set; }
         public virtual DbSet<Ciclos> Ciclos { get; set; }
+        public virtual DbSet<CiclosResiduos> CiclosResiduos { get; set; }
         public virtual DbSet<Ciudades> Ciudades { get; set; }
         public virtual DbSet<Condiciones> Condiciones { get; set; }
         public virtual DbSet<CondicionesVehiculosRecepciones> CondicionesVehiculosRecepciones { get; set; }
         public virtual DbSet<DescuentosRecepciones> DescuentosRecepciones { get; set; }
-        public virtual DbSet<DestinosDesperdicio> DestinosDesperdicio { get; set; }
-        public virtual DbSet<DetalleRegistroDesperdicioRecolectado> DetalleRegistroDesperdicioRecolectado { get; set; }
+        public virtual DbSet<DestinosResiduo> DestinosResiduo { get; set; }
+        public virtual DbSet<DetalleRegistroResiduoRecolectado> DetalleRegistroResiduoRecolectado { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
+        public virtual DbSet<EmpresaGestoraDeResiduos> EmpresaGestoraDeResiduos { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
         public virtual DbSet<Folios> Folios { get; set; }
+        public virtual DbSet<FoliosRegistroResiduoRecolectado> FoliosRegistroResiduoRecolectado { get; set; }
         public virtual DbSet<Frutas> Frutas { get; set; }
         public virtual DbSet<GradosFruta> GradosFruta { get; set; }
         public virtual DbSet<LoteFolios> LoteFolios { get; set; }
+        public virtual DbSet<OperadoresResiduos> OperadoresResiduos { get; set; }
         public virtual DbSet<Pantallas> Pantallas { get; set; }
         public virtual DbSet<Permisos> Permisos { get; set; }
         public virtual DbSet<Precios> Precios { get; set; }
         public virtual DbSet<Producciones> Producciones { get; set; }
-        public virtual DbSet<ProveedoresDesperdicio> ProveedoresDesperdicio { get; set; }
         public virtual DbSet<Ranchos> Ranchos { get; set; }
         public virtual DbSet<Recepciones> Recepciones { get; set; }
-        public virtual DbSet<RegistrosDesperdicioRecolectado> RegistrosDesperdicioRecolectado { get; set; }
+        public virtual DbSet<RegistrosResiduoRecolectado> RegistrosResiduoRecolectado { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Sectores> Sectores { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tarimas> Tarimas { get; set; }
-        public virtual DbSet<TipoDesperdicio> TipoDesperdicio { get; set; }
-        public virtual DbSet<TiposDestinoDesperdicio> TiposDestinoDesperdicio { get; set; }
+        public virtual DbSet<TipoResiduo> TipoResiduo { get; set; }
+        public virtual DbSet<TiposDestinoResiduo> TiposDestinoResiduo { get; set; }
         public virtual DbSet<UnidadesMedida> UnidadesMedida { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Variedades> Variedades { get; set; }
@@ -289,6 +292,31 @@ namespace FresamLogistica.Model
                 .HasForeignKey(e => e.id_ciclo)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<CiclosResiduos>()
+                .Property(e => e.proxima_revision)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CiclosResiduos>()
+                .Property(e => e.edicion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CiclosResiduos>()
+                .Property(e => e.fecha_emision)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CiclosResiduos>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CiclosResiduos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CiclosResiduos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Ciudades>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -312,7 +340,7 @@ namespace FresamLogistica.Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Ciudades>()
-                .HasMany(e => e.DestinosDesperdicio)
+                .HasMany(e => e.DestinosResiduo)
                 .WithRequired(e => e.Ciudades)
                 .WillCascadeOnDelete(false);
 
@@ -358,28 +386,38 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<DestinosDesperdicio>()
+            modelBuilder.Entity<DestinosResiduo>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<DestinosDesperdicio>()
+            modelBuilder.Entity<DestinosResiduo>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DestinosResiduo>()
                 .Property(e => e.usuario_crea)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<DestinosDesperdicio>()
+            modelBuilder.Entity<DestinosResiduo>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<DestinosDesperdicio>()
-                .HasMany(e => e.RegistrosDesperdicioRecolectado)
-                .WithRequired(e => e.DestinosDesperdicio)
+            modelBuilder.Entity<DestinosResiduo>()
+                .HasMany(e => e.LoteFolios)
+                .WithRequired(e => e.DestinosResiduo)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<DetalleRegistroDesperdicioRecolectado>()
+            modelBuilder.Entity<DestinosResiduo>()
+                .HasMany(e => e.RegistrosResiduoRecolectado)
+                .WithRequired(e => e.DestinosResiduo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DetalleRegistroResiduoRecolectado>()
                 .Property(e => e.usuario_crea)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<DetalleRegistroDesperdicioRecolectado>()
+            modelBuilder.Entity<DetalleRegistroResiduoRecolectado>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
@@ -415,6 +453,44 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .Property(e => e.RFC)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .Property(e => e.telefono)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .Property(e => e.licenciaSCT)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .Property(e => e.licenciaEcologica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmpresaGestoraDeResiduos>()
+                .HasMany(e => e.OperadoresResiduos)
+                .WithRequired(e => e.EmpresaGestoraDeResiduos)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Estados>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -447,10 +523,27 @@ namespace FresamLogistica.Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Folios>()
+                .Property(e => e.costo)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Folios>()
                 .Property(e => e.usuario_crea)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Folios>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Folios>()
+                .HasMany(e => e.FoliosRegistroResiduoRecolectado)
+                .WithRequired(e => e.Folios)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<FoliosRegistroResiduoRecolectado>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<FoliosRegistroResiduoRecolectado>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
@@ -472,11 +565,6 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Frutas>()
-                .HasMany(e => e.Producciones)
-                .WithRequired(e => e.Frutas)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Frutas>()
                 .HasMany(e => e.GradosFruta)
                 .WithRequired(e => e.Frutas)
                 .WillCascadeOnDelete(false);
@@ -487,7 +575,12 @@ namespace FresamLogistica.Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Frutas>()
-                .HasMany(e => e.TipoDesperdicio)
+                .HasMany(e => e.Producciones)
+                .WithRequired(e => e.Frutas)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Frutas>()
+                .HasMany(e => e.TipoResiduo)
                 .WithRequired(e => e.Frutas)
                 .WillCascadeOnDelete(false);
 
@@ -515,6 +608,10 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<LoteFolios>()
+                .Property(e => e.importe)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<LoteFolios>()
                 .Property(e => e.estado)
                 .IsFixedLength()
                 .IsUnicode(false);
@@ -530,6 +627,28 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<LoteFolios>()
                 .HasMany(e => e.Folios)
                 .WithRequired(e => e.LoteFolios)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<OperadoresResiduos>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<OperadoresResiduos>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<OperadoresResiduos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<OperadoresResiduos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<OperadoresResiduos>()
+                .HasMany(e => e.RegistrosResiduoRecolectado)
+                .WithRequired(e => e.OperadoresResiduos)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Pantallas>()
@@ -606,43 +725,6 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .Property(e => e.nombre)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .Property(e => e.direccion)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .Property(e => e.telefono)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .Property(e => e.email)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .Property(e => e.licenciaSCT)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .Property(e => e.licenciaEcologica)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .Property(e => e.usuario_crea)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .Property(e => e.usuario_modifica)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ProveedoresDesperdicio>()
-                .HasMany(e => e.RegistrosDesperdicioRecolectado)
-                .WithRequired(e => e.ProveedoresDesperdicio)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Ranchos>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -715,26 +797,31 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.Recepciones)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
-                .Property(e => e.Observaciones)
+            modelBuilder.Entity<RegistrosResiduoRecolectado>()
+                .Property(e => e.observaciones)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
+            modelBuilder.Entity<RegistrosResiduoRecolectado>()
                 .Property(e => e.estado)
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
+            modelBuilder.Entity<RegistrosResiduoRecolectado>()
                 .Property(e => e.usuario_crea)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
+            modelBuilder.Entity<RegistrosResiduoRecolectado>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<RegistrosDesperdicioRecolectado>()
-                .HasMany(e => e.DetalleRegistroDesperdicioRecolectado)
-                .WithRequired(e => e.RegistrosDesperdicioRecolectado)
+            modelBuilder.Entity<RegistrosResiduoRecolectado>()
+                .HasMany(e => e.DetalleRegistroResiduoRecolectado)
+                .WithRequired(e => e.RegistrosResiduoRecolectado)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<RegistrosResiduoRecolectado>()
+                .HasMany(e => e.FoliosRegistroResiduoRecolectado)
+                .WithRequired(e => e.RegistrosResiduoRecolectado)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Roles>()
@@ -803,39 +890,49 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TipoDesperdicio>()
+            modelBuilder.Entity<TipoResiduo>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TipoDesperdicio>()
+            modelBuilder.Entity<TipoResiduo>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TipoResiduo>()
                 .Property(e => e.usuario_crea)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TipoDesperdicio>()
+            modelBuilder.Entity<TipoResiduo>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TipoDesperdicio>()
-                .HasMany(e => e.DetalleRegistroDesperdicioRecolectado)
-                .WithRequired(e => e.TipoDesperdicio)
+            modelBuilder.Entity<TipoResiduo>()
+                .HasMany(e => e.DetalleRegistroResiduoRecolectado)
+                .WithRequired(e => e.TipoResiduo)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<TiposDestinoDesperdicio>()
+            modelBuilder.Entity<TiposDestinoResiduo>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TiposDestinoDesperdicio>()
+            modelBuilder.Entity<TiposDestinoResiduo>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TiposDestinoResiduo>()
                 .Property(e => e.usuario_crea)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TiposDestinoDesperdicio>()
+            modelBuilder.Entity<TiposDestinoResiduo>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TiposDestinoDesperdicio>()
-                .HasMany(e => e.DestinosDesperdicio)
-                .WithRequired(e => e.TiposDestinoDesperdicio)
-                .HasForeignKey(e => e.tipo_destino_desperdicio)
+            modelBuilder.Entity<TiposDestinoResiduo>()
+                .HasMany(e => e.DestinosResiduo)
+                .WithRequired(e => e.TiposDestinoResiduo)
+                .HasForeignKey(e => e.tipo_destino_residuo)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UnidadesMedida>()
@@ -935,6 +1032,11 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<Vehiculos>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Vehiculos>()
+                .HasMany(e => e.RegistrosResiduoRecolectado)
+                .WithRequired(e => e.Vehiculos)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Vehiculos>()
                 .HasMany(e => e.VehiculosRecepciones)

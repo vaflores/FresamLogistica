@@ -17,11 +17,18 @@ namespace FresamLogistica.Model
         [Key]
         public int lote_folio_id { get; set; }
 
+        public int destino_residuo_id { get; set; }
+
         public DateTime fecha_compra { get; set; }
+
+        public DateTime fecha_vigencia { get; set; }
 
         public int folio_inicio { get; set; }
 
         public int folio_fin { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal importe { get; set; }
 
         [Required]
         [StringLength(1)]
@@ -38,6 +45,8 @@ namespace FresamLogistica.Model
         public string usuario_modifica { get; set; }
 
         public DateTime fecha_modifica { get; set; }
+
+        public virtual DestinosResiduo DestinosResiduo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Folios> Folios { get; set; }

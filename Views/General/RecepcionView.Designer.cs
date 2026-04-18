@@ -100,6 +100,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.txtPesoNeto = new System.Windows.Forms.TextBox();
+            this.chkMostrarImporte = new System.Windows.Forms.CheckBox();
             this.tsMenu.SuspendLayout();
             this.tpCalidadDescuento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCalidades)).BeginInit();
@@ -193,7 +194,7 @@
             // 
             // txtImporte
             // 
-            this.txtImporte.Location = new System.Drawing.Point(78, 114);
+            this.txtImporte.Location = new System.Drawing.Point(78, 110);
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(125, 26);
             this.txtImporte.TabIndex = 8;
@@ -203,7 +204,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 117);
+            this.label9.Location = new System.Drawing.Point(12, 113);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 20);
@@ -212,7 +213,7 @@
             // 
             // txtTarimas
             // 
-            this.txtTarimas.Location = new System.Drawing.Point(531, 80);
+            this.txtTarimas.Location = new System.Drawing.Point(531, 79);
             this.txtTarimas.Name = "txtTarimas";
             this.txtTarimas.Size = new System.Drawing.Size(125, 26);
             this.txtTarimas.TabIndex = 7;
@@ -221,7 +222,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(435, 83);
+            this.label6.Location = new System.Drawing.Point(435, 82);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 20);
@@ -232,7 +233,7 @@
             // 
             this.cbGrado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGrado.FormattingEnabled = true;
-            this.cbGrado.Location = new System.Drawing.Point(78, 80);
+            this.cbGrado.Location = new System.Drawing.Point(78, 79);
             this.cbGrado.Name = "cbGrado";
             this.cbGrado.Size = new System.Drawing.Size(125, 28);
             this.cbGrado.TabIndex = 5;
@@ -240,7 +241,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 83);
+            this.label5.Location = new System.Drawing.Point(12, 82);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 20);
@@ -261,7 +262,7 @@
             // lblGrados
             // 
             this.lblGrados.AutoSize = true;
-            this.lblGrados.Location = new System.Drawing.Point(13, 51);
+            this.lblGrados.Location = new System.Drawing.Point(12, 51);
             this.lblGrados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGrados.Name = "lblGrados";
             this.lblGrados.Size = new System.Drawing.Size(47, 20);
@@ -302,7 +303,7 @@
             this.tpCalidadDescuento.Controls.Add(this.dgvCalidades);
             this.tpCalidadDescuento.Location = new System.Drawing.Point(4, 29);
             this.tpCalidadDescuento.Name = "tpCalidadDescuento";
-            this.tpCalidadDescuento.Size = new System.Drawing.Size(903, 219);
+            this.tpCalidadDescuento.Size = new System.Drawing.Size(903, 232);
             this.tpCalidadDescuento.TabIndex = 3;
             this.tpCalidadDescuento.Text = "Calidad/Descuento";
             this.tpCalidadDescuento.UseVisualStyleBackColor = true;
@@ -430,7 +431,7 @@
             this.tpTarimas.Controls.Add(this.dgvTarimas);
             this.tpTarimas.Location = new System.Drawing.Point(4, 29);
             this.tpTarimas.Name = "tpTarimas";
-            this.tpTarimas.Size = new System.Drawing.Size(903, 219);
+            this.tpTarimas.Size = new System.Drawing.Size(903, 232);
             this.tpTarimas.TabIndex = 1;
             this.tpTarimas.Text = "Tarimas";
             this.tpTarimas.UseVisualStyleBackColor = true;
@@ -520,7 +521,7 @@
             this.tpVehiculo.Controls.Add(this.label10);
             this.tpVehiculo.Location = new System.Drawing.Point(4, 29);
             this.tpVehiculo.Name = "tpVehiculo";
-            this.tpVehiculo.Size = new System.Drawing.Size(903, 219);
+            this.tpVehiculo.Size = new System.Drawing.Size(903, 232);
             this.tpVehiculo.TabIndex = 2;
             this.tpVehiculo.Text = "Vehiculo";
             this.tpVehiculo.UseVisualStyleBackColor = true;
@@ -631,7 +632,7 @@
             this.tpGeneral.Location = new System.Drawing.Point(4, 29);
             this.tpGeneral.Name = "tpGeneral";
             this.tpGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGeneral.Size = new System.Drawing.Size(903, 219);
+            this.tpGeneral.Size = new System.Drawing.Size(903, 232);
             this.tpGeneral.TabIndex = 0;
             this.tpGeneral.Text = "General";
             this.tpGeneral.UseVisualStyleBackColor = true;
@@ -779,16 +780,16 @@
             this.tcRecepcion.Controls.Add(this.tpVehiculo);
             this.tcRecepcion.Controls.Add(this.tpTarimas);
             this.tcRecepcion.Controls.Add(this.tpCalidadDescuento);
-            this.tcRecepcion.Location = new System.Drawing.Point(12, 155);
+            this.tcRecepcion.Location = new System.Drawing.Point(12, 142);
             this.tcRecepcion.Name = "tcRecepcion";
             this.tcRecepcion.SelectedIndex = 0;
-            this.tcRecepcion.Size = new System.Drawing.Size(911, 252);
-            this.tcRecepcion.TabIndex = 11;
+            this.tcRecepcion.Size = new System.Drawing.Size(911, 265);
+            this.tcRecepcion.TabIndex = 15;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(210, 83);
+            this.label18.Location = new System.Drawing.Point(210, 82);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(93, 20);
@@ -798,7 +799,7 @@
             // txtCalificacion
             // 
             this.txtCalificacion.Enabled = false;
-            this.txtCalificacion.Location = new System.Drawing.Point(303, 80);
+            this.txtCalificacion.Location = new System.Drawing.Point(303, 79);
             this.txtCalificacion.Name = "txtCalificacion";
             this.txtCalificacion.Size = new System.Drawing.Size(125, 26);
             this.txtCalificacion.TabIndex = 6;
@@ -826,7 +827,7 @@
             // 
             // txtPrecioUnitario
             // 
-            this.txtPrecioUnitario.Location = new System.Drawing.Point(303, 112);
+            this.txtPrecioUnitario.Location = new System.Drawing.Point(303, 110);
             this.txtPrecioUnitario.Name = "txtPrecioUnitario";
             this.txtPrecioUnitario.Size = new System.Drawing.Size(125, 26);
             this.txtPrecioUnitario.TabIndex = 9;
@@ -836,7 +837,7 @@
             // chkPrecioUnario
             // 
             this.chkPrecioUnario.AutoSize = true;
-            this.chkPrecioUnario.Location = new System.Drawing.Point(667, 116);
+            this.chkPrecioUnario.Location = new System.Drawing.Point(662, 112);
             this.chkPrecioUnario.Name = "chkPrecioUnario";
             this.chkPrecioUnario.Size = new System.Drawing.Size(78, 24);
             this.chkPrecioUnario.TabIndex = 10;
@@ -847,7 +848,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(210, 115);
+            this.label19.Location = new System.Drawing.Point(210, 113);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(57, 20);
@@ -875,7 +876,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(438, 115);
+            this.label21.Location = new System.Drawing.Point(437, 113);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(87, 20);
@@ -885,17 +886,30 @@
             // txtPesoNeto
             // 
             this.txtPesoNeto.Enabled = false;
-            this.txtPesoNeto.Location = new System.Drawing.Point(531, 112);
+            this.txtPesoNeto.Location = new System.Drawing.Point(531, 110);
             this.txtPesoNeto.Name = "txtPesoNeto";
             this.txtPesoNeto.Size = new System.Drawing.Size(125, 26);
             this.txtPesoNeto.TabIndex = 62;
             this.txtPesoNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // chkMostrarImporte
+            // 
+            this.chkMostrarImporte.AutoSize = true;
+            this.chkMostrarImporte.Checked = true;
+            this.chkMostrarImporte.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMostrarImporte.Location = new System.Drawing.Point(738, 112);
+            this.chkMostrarImporte.Name = "chkMostrarImporte";
+            this.chkMostrarImporte.Size = new System.Drawing.Size(143, 24);
+            this.chkMostrarImporte.TabIndex = 11;
+            this.chkMostrarImporte.Text = "Imprimir Importe";
+            this.chkMostrarImporte.UseVisualStyleBackColor = true;
             // 
             // RecepcionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 419);
+            this.Controls.Add(this.chkMostrarImporte);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.txtPesoNeto);
             this.Controls.Add(this.txtFolioDiario);
@@ -1020,5 +1034,6 @@
         private System.Windows.Forms.ToolStripButton tsbDuplicar;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtPesoNeto;
+        private System.Windows.Forms.CheckBox chkMostrarImporte;
     }
 }

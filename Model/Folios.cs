@@ -11,15 +11,18 @@ namespace FresamLogistica.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Folios()
         {
-            RegistrosDesperdicioRecolectado = new HashSet<RegistrosDesperdicioRecolectado>();
+            FoliosRegistroResiduoRecolectado = new HashSet<FoliosRegistroResiduoRecolectado>();
         }
 
         [Key]
         public int folio_id { get; set; }
 
+        public int lote_folio_id { get; set; }
+
         public int numero { get; set; }
 
-        public int lote_folio_id { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? costo { get; set; }
 
         public bool utilizado { get; set; }
 
@@ -40,6 +43,6 @@ namespace FresamLogistica.Model
         public virtual LoteFolios LoteFolios { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegistrosDesperdicioRecolectado> RegistrosDesperdicioRecolectado { get; set; }
+        public virtual ICollection<FoliosRegistroResiduoRecolectado> FoliosRegistroResiduoRecolectado { get; set; }
     }
 }

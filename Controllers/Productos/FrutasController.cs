@@ -83,6 +83,18 @@ namespace FresamLogistica.Controllers.Productos
             }
         }
 
+        public List<KeyValuePair<string, string>> ListarComboBox(int _frutaId)
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.Frutas
+                    .Where(f => f.estado == "A" || f.fruta_id == _frutaId)
+                    .ToList()
+                    .Select(f => new KeyValuePair<string, string>(f.fruta_id.ToString(), f.nombre))
+                    .ToList();
+            }
+        }
+
         private void AsignarIdSiCero(ref Frutas entidad)
         {
             if (entidad.fruta_id == 0)

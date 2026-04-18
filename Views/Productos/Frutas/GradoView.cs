@@ -130,7 +130,7 @@ namespace FresamLogistica.Views.Productos.Frutas
                 if (string.IsNullOrWhiteSpace(_IdRegistroSeleccionado))
                 {
                     _repo.CrearOActualizar(registro);
-                    MessageBox.Show("Grado creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Grado creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

@@ -1,4 +1,4 @@
-﻿namespace FresamLogistica.Views.Productos.Frutas
+﻿namespace FresamLogistica.Views.Residuos
 {
     partial class TiposResiduosView
     {
@@ -37,8 +37,8 @@
             this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
-            this.cbGrados = new System.Windows.Forms.ComboBox();
-            this.lblGrados = new System.Windows.Forms.Label();
+            this.cbFrutas = new System.Windows.Forms.ComboBox();
+            this.lblFrutas = new System.Windows.Forms.Label();
             this.tcRegistros.SuspendLayout();
             this.tpRegistros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
@@ -154,40 +154,40 @@
             this.tsbImprimir.Text = "Imprimir";
             this.tsbImprimir.Click += new System.EventHandler(this.tsbImprimir_Click);
             // 
-            // cbGrados
+            // cbFrutas
             // 
-            this.cbGrados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGrados.FormattingEnabled = true;
-            this.cbGrados.Location = new System.Drawing.Point(78, 48);
-            this.cbGrados.Name = "cbGrados";
-            this.cbGrados.Size = new System.Drawing.Size(120, 28);
-            this.cbGrados.TabIndex = 34;
-            this.cbGrados.SelectedIndexChanged += new System.EventHandler(this.cbGrados_SelectedIndexChanged);
+            this.cbFrutas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFrutas.FormattingEnabled = true;
+            this.cbFrutas.Location = new System.Drawing.Point(78, 48);
+            this.cbFrutas.Name = "cbFrutas";
+            this.cbFrutas.Size = new System.Drawing.Size(200, 28);
+            this.cbFrutas.TabIndex = 34;
+            this.cbFrutas.SelectedIndexChanged += new System.EventHandler(this.cbFrutas_SelectedIndexChanged);
             // 
-            // lblGrados
+            // lblFrutas
             // 
-            this.lblGrados.AutoSize = true;
-            this.lblGrados.Enabled = false;
-            this.lblGrados.Location = new System.Drawing.Point(13, 51);
-            this.lblGrados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblGrados.Name = "lblGrados";
-            this.lblGrados.Size = new System.Drawing.Size(58, 20);
-            this.lblGrados.TabIndex = 33;
-            this.lblGrados.Text = "Grado:";
+            this.lblFrutas.AutoSize = true;
+            this.lblFrutas.Location = new System.Drawing.Point(13, 51);
+            this.lblFrutas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFrutas.Name = "lblFrutas";
+            this.lblFrutas.Size = new System.Drawing.Size(51, 20);
+            this.lblFrutas.TabIndex = 33;
+            this.lblFrutas.Text = "Fruta:";
             // 
-            // PreciosView
+            // TiposResiduosView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.cbGrados);
-            this.Controls.Add(this.lblGrados);
+            this.Controls.Add(this.cbFrutas);
+            this.Controls.Add(this.lblFrutas);
             this.Controls.Add(this.tcRegistros);
             this.Controls.Add(this.tsMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "PreciosView";
-            this.Text = "Precios";
+            this.Name = "TiposResiduosView";
+            this.Tag = "29";
+            this.Text = "Tipos de Residuos";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrutasView_KeyDown);
             this.tcRegistros.ResumeLayout(false);
             this.tpRegistros.ResumeLayout(false);
@@ -210,7 +210,7 @@
         private System.Windows.Forms.ToolStripButton tsbGuardar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.ToolStripButton tsbImprimir;
-        private System.Windows.Forms.ComboBox cbGrados;
-        private System.Windows.Forms.Label lblGrados;
+        private System.Windows.Forms.ComboBox cbFrutas;
+        private System.Windows.Forms.Label lblFrutas;
     }
 }

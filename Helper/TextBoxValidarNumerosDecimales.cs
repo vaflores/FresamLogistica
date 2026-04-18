@@ -14,6 +14,7 @@ namespace FresamLogistica.Helper
             textBox.KeyPress += TextBox_KeyPress;
             textBox.KeyDown += TextBox_KeyDown;
             textBox.Leave += TextBox_Leave;
+            textBox.TextAlign = HorizontalAlignment.Right;
         }
 
         private static void TextBox_KeyPress(object sender, KeyPressEventArgs e)

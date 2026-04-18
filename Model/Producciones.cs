@@ -18,17 +18,15 @@ namespace FresamLogistica.Model
 
         public decimal cantidad { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string usuario_crea { get; set; }
 
-        public DateTime fecha_crea { get; set; }
+        public DateTime? fecha_crea { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string usuario_modifica { get; set; }
 
-        public DateTime fecha_modifica { get; set; }
+        public DateTime? fecha_modifica { get; set; }
 
         public virtual Frutas Frutas { get; set; }
     }
