@@ -115,7 +115,9 @@ namespace FresamLogistica.Controllers.Herramientas
                                 CalidadRecepcionId = cr.calidad_recepcion_id,
                                 CalidadId = c.id_calidad,
                                 Nombre = c.nombre,
-                                Valor = cr.valor
+                                Valor = cr.valor,
+                                AfectaCalificacion = c.afecta_calificacion,
+                                IncluyeEnReporte = c.incluir_en_reporte
                             };
                 return query.ToList();
             }
@@ -146,7 +148,9 @@ namespace FresamLogistica.Controllers.Herramientas
                                 CalidadRecepcionId = 0,
                                 CalidadId = c.id_calidad,
                                 Nombre = c.nombre,
-                                Valor = 0
+                                Valor = 0,
+                                AfectaCalificacion = c.afecta_calificacion,
+                                IncluyeEnReporte = c.incluir_en_reporte
                             };
                 return query.ToList();
             }

@@ -115,6 +115,8 @@ namespace FresamLogistica.Views.Herramientas
                 {
                     txtNombre.Text = registro.nombre;
                     cbEstado.SelectedValue = registro.estado;
+                    chkAfectaCalificacion.Checked = registro.afecta_calificacion;
+                    chkIncluyeReporte.Checked = registro.incluir_en_reporte;
                 }
                 else
                 {
@@ -133,7 +135,9 @@ namespace FresamLogistica.Views.Herramientas
                 {
                     id_calidad = _IdRegistroSeleccionado,
                     nombre = txtNombre.Text,
-                    estado = cbEstado.SelectedValue.ToString()
+                    estado = cbEstado.SelectedValue.ToString(),
+                    afecta_calificacion = chkAfectaCalificacion.Checked,
+                    incluir_en_reporte = chkIncluyeReporte.Checked
                 };
                 if (_IdRegistroSeleccionado == 0)
                 {
@@ -159,6 +163,7 @@ namespace FresamLogistica.Views.Herramientas
             _IdRegistroSeleccionado = 0;
             txtNombre.Clear();
             cbEstado.SelectedIndex = 0;
+            chkAfectaCalificacion.Checked = false;
         }
 
         private void EliminarRegistro()
@@ -193,5 +198,6 @@ namespace FresamLogistica.Views.Herramientas
             Debug.WriteLine("Función no implementada.");
         }
         #endregion
+
     }
 }

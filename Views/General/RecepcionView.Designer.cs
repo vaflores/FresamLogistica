@@ -101,6 +101,8 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtPesoNeto = new System.Windows.Forms.TextBox();
             this.chkMostrarImporte = new System.Windows.Forms.CheckBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtTotalCajas = new System.Windows.Forms.TextBox();
             this.tsMenu.SuspendLayout();
             this.tpCalidadDescuento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCalidades)).BeginInit();
@@ -904,11 +906,32 @@
             this.chkMostrarImporte.Text = "Imprimir Importe";
             this.chkMostrarImporte.UseVisualStyleBackColor = true;
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(662, 82);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(53, 20);
+            this.label22.TabIndex = 64;
+            this.label22.Text = "Cajas:";
+            // 
+            // txtTotalCajas
+            // 
+            this.txtTotalCajas.Enabled = false;
+            this.txtTotalCajas.Location = new System.Drawing.Point(738, 79);
+            this.txtTotalCajas.Name = "txtTotalCajas";
+            this.txtTotalCajas.Size = new System.Drawing.Size(125, 26);
+            this.txtTotalCajas.TabIndex = 65;
+            this.txtTotalCajas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // RecepcionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 419);
+            this.Controls.Add(this.txtTotalCajas);
+            this.Controls.Add(this.label22);
             this.Controls.Add(this.chkMostrarImporte);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.txtPesoNeto);
@@ -1035,5 +1058,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtPesoNeto;
         private System.Windows.Forms.CheckBox chkMostrarImporte;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtTotalCajas;
     }
 }

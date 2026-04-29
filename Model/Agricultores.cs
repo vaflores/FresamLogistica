@@ -11,6 +11,7 @@ namespace FresamLogistica.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Agricultores()
         {
+            KardexCajas = new HashSet<KardexCajas>();
             Ranchos = new HashSet<Ranchos>();
             Recepciones = new HashSet<Recepciones>();
         }
@@ -62,9 +63,14 @@ namespace FresamLogistica.Model
         [StringLength(1)]
         public string estado { get; set; }
 
+        public virtual AgricultorCajasSaldo AgricultorCajasSaldo { get; set; }
+
         public virtual Ciudades Ciudades { get; set; }
 
         public virtual Estados Estados { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KardexCajas> KardexCajas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ranchos> Ranchos { get; set; }

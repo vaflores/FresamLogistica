@@ -39,6 +39,7 @@ namespace FresamLogistica.Views.General
         private readonly CalidadesController _repoCalidades = new CalidadesController();
         private readonly EmpresaController _repoEmpresa = new EmpresaController();
         private readonly TitulosEtiquetasController titulosEtiquetasController = new TitulosEtiquetasController();
+        private readonly KardexCajasController _repoKardexCajas = new KardexCajasController();
 
         private int _IdRegistroSeleccionado;
         private int _IdCicloSeleccionado;
@@ -89,6 +90,7 @@ namespace FresamLogistica.Views.General
             EstablecerFechasValidasEnElCiclo();
 
             ValidarPermisos();
+
         }
 
         #region EventosFormulario
@@ -220,6 +222,8 @@ namespace FresamLogistica.Views.General
             {
                 _idAgricultorSeleccionado = Convert.ToInt32(cbAgricultor.SelectedValue);
                 ConfigurarComboBoxRanchos();
+                CargarTotalCajasEnPrestamo();
+
             }
             catch (Exception)
             {
@@ -545,6 +549,11 @@ namespace FresamLogistica.Views.General
             EstadosHelper.GenerarEstadosDesdeLista(ref cbVariedad, _repoVariedades.ListarPorFrutaComboBox(this._IdFrutaSeleccionada));
         }
 
+        private void CargarTotalCajasEnPrestamo()
+        {
+            txtTotalCajas.Text = _repoKardexCajas.ObtenerSaldoActualCajas(this._idAgricultorSeleccionado).ToString();
+        }
+
         private void CargarDatosRegistroSeleccionado()
         {
             if (_IdRegistroSeleccionado > 0)
@@ -809,7 +818,9 @@ namespace FresamLogistica.Views.General
                 new ReportParameter("importeParam", txtImporte.Text),
                 new ReportParameter("folioDiarioIdParam", txtFolioDiario.Text),
                 new ReportParameter("totalCajasParam", _totalCajas.ToString()),
-                new ReportParameter("mostrarImporteParam", chkMostrarImporte.Checked.ToString())
+                new ReportParameter("mostrarImporteParam", chkMostrarImporte.Checked.ToString()),
+                new ReportParameter("totalCajasPrestamo", txtTotalCajas.Text),
+                new ReportParameter("precioCaja", _repoKardexCajas.ObtenerPrecioCaja().ToString("N2"))
             };
 
             ReportHelper reporte = new ReportHelper("Reports/General/RecepcionReport/rptReciboRecepcion.rdlc", parametros, _dt);
@@ -1095,6 +1106,7 @@ namespace FresamLogistica.Views.General
             DataGridViewHelper.AddColumn(dgv, "CalidadId", "CalidadId", 150, false);
             DataGridViewHelper.AddColumn(dgv, "Calidad", "Nombre", 250, true, true);
             DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Valor", "valor", 150, true, false);
+            DataGridViewHelper.AddColumnCheckBox(dgv, "AfectaCalificacion", "AfectaCalificacion", 100, false);
 
             //dgv.CellValueChanged += dgvTarimas_CellValueChanged;
 
@@ -1153,6 +1165,7 @@ namespace FresamLogistica.Views.General
                 _fila.Cells[1].Value = t.CalidadId;
                 _fila.Cells[2].Value = t.Nombre;
                 _fila.Cells[3].Value = t.Valor.ToString("N0");
+                _fila.Cells[4].Value = t.AfectaCalificacion;
                 dgvCalidades.Rows.Add(_fila);
             }
         }
@@ -1169,6 +1182,7 @@ namespace FresamLogistica.Views.General
                 _fila.Cells[1].Value = t.CalidadId;
                 _fila.Cells[2].Value = t.Nombre;
                 _fila.Cells[3].Value = t.Valor.ToString("N0");
+                _fila.Cells[4].Value = t.AfectaCalificacion;
                 dgvCalidades.Rows.Add(_fila);
             }
         }
@@ -1180,6 +1194,8 @@ namespace FresamLogistica.Views.General
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPesoCaja);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtDesecho);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPorcentaje);
+            Helper.TextBoxValidarNumerosDecimales.Attach(txtTotalCajas);
+
         }
 
         private void CalcularPorcentaje()
@@ -1268,7 +1284,7 @@ namespace FresamLogistica.Views.General
             try
             {
                 txtCalificacion.Text = (Constantes.Calificacion - dgvCalidades.Rows.Cast<DataGridViewRow>()
-                    .Where(r => r.Cells["valor"].Value != null && int.TryParse(r.Cells["valor"].Value.ToString(), out int val) && val > 0)
+                    .Where(r => r.Cells["valor"].Value != null && int.TryParse(r.Cells["valor"].Value.ToString(), out int val) && val > 0 && Convert.ToBoolean(r.Cells["AfectaCalificacion"].Value) == true)
                     .Sum(r => int.Parse(r.Cells["valor"].Value.ToString())))
                     .ToString("N0");
 

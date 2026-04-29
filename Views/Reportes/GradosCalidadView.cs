@@ -215,6 +215,8 @@ namespace FresamLogistica.Views.Reportes
 
                     foreach (var _c in _rec.CalidadesInfo)
                     {
+                        if (!_c.IncluyeEnReporte)
+                            continue;
                         DataRow _row = _dtDetail.NewRow();
                         _row["RecepcionId"] = _rec.RecepcionId;
                         _row["CondicionId"] = _c.CalidadId.ToString();
@@ -226,6 +228,8 @@ namespace FresamLogistica.Views.Reportes
 
                     foreach (var _c in _rec.CalidadesActivas)
                     {
+                        if (!_c.IncluyeEnReporte)
+                            continue;
                         DataRow _row = _dtDetail.NewRow();
                         _row["RecepcionId"] = _rec.RecepcionId;
                         _row["CondicionId"] = _c.CalidadId.ToString();

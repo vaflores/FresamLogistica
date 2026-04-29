@@ -79,7 +79,7 @@
                               <TextRun>
                                 <Value>Fecha</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
@@ -114,7 +114,7 @@
                               <TextRun>
                                 <Value>Operador</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
@@ -149,7 +149,7 @@
                               <TextRun>
                                 <Value>Fruta</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
@@ -206,7 +206,7 @@
                                 <TextRun>
                                   <Value>=Format(SUM(CDbl(Fields!cantidad_residuo.Value)), "N2")</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -240,7 +240,7 @@
                                 <TextRun>
                                   <Value>=Format(CDbl(Fields!total_residuos_fecha.Value),"N2")</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -274,7 +274,7 @@
                                 <TextRun>
                                   <Value>=Format(CDbl(Fields!produccion_dia.Value),"N2")</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -308,7 +308,7 @@
                                 <TextRun>
                                   <Value>=Format(CDbl(Fields!porcentaje_merma.Value),"N2")</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -360,7 +360,7 @@
                               <TextRun>
                                 <Value>=Fields!tipo_residuo.Value</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
@@ -398,7 +398,7 @@
                               <TextRun>
                                 <Value>Total</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
@@ -436,7 +436,7 @@
                               <TextRun>
                                 <Value>Producción</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
@@ -474,7 +474,7 @@
                               <TextRun>
                                 <Value>Porcentaje</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
@@ -515,7 +515,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>2.23829cm</Size>
+                    <Size>2.13246cm</Size>
                     <CellContents>
                       <Textbox Name="fecha">
                         <CanGrow>true</CanGrow>
@@ -526,7 +526,7 @@
                               <TextRun>
                                 <Value>=Fields!fecha.Value</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -560,7 +560,7 @@
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
-                        <Size>4.72538cm</Size>
+                        <Size>4.19621cm</Size>
                         <CellContents>
                           <Textbox Name="operador">
                             <CanGrow>true</CanGrow>
@@ -571,7 +571,7 @@
                                   <TextRun>
                                     <Value>=Fields!operador.Value</Value>
                                     <Style>
-                                      <FontSize>8pt</FontSize>
+                                      <FontSize>7pt</FontSize>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -605,7 +605,7 @@
                             </SortExpression>
                           </SortExpressions>
                           <TablixHeader>
-                            <Size>2.82038cm</Size>
+                            <Size>2.68809cm</Size>
                             <CellContents>
                               <Textbox Name="fruta">
                                 <CanGrow>true</CanGrow>
@@ -616,7 +616,7 @@
                                       <TextRun>
                                         <Value>=Fields!fruta.Value</Value>
                                         <Style>
-                                          <FontSize>8pt</FontSize>
+                                          <FontSize>7pt</FontSize>
                                         </Style>
                                       </TextRun>
                                     </TextRuns>
@@ -648,7 +648,7 @@
             <DataSetName>Detalle</DataSetName>
             <Top>0.17639cm</Top>
             <Height>1.2cm</Height>
-            <Width>17.96994cm</Width>
+            <Width>17.20265cm</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -663,10 +663,10 @@
           </Border>
         </Style>
       </Body>
-      <Width>10.08519in</Width>
+      <Width>9.45785in</Width>
       <Page>
         <PageHeader>
-          <Height>2.9114cm</Height>
+          <Height>2.9433cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -676,8 +676,8 @@
               <MIMEType>image/jpeg</MIMEType>
               <Sizing>FitProportional</Sizing>
               <Left>0.00002cm</Left>
-              <Height>2.9114cm</Height>
-              <Width>3.65195cm</Width>
+              <Height>2.3114cm</Height>
+              <Width>2.91112cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -693,7 +693,8 @@
                     <TextRun>
                       <Value>=Parameters!nombreEmpresaParam.Value</Value>
                       <Style>
-                        <FontSize>13pt</FontSize>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -703,9 +704,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>1.43777in</Left>
+              <Left>1.14612in</Left>
               <Height>0.305in</Height>
-              <Width>6.32216in</Width>
+              <Width>6.23882in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -726,7 +727,7 @@
                     <TextRun>
                       <Value>=Parameters!titulo1Param.Value</Value>
                       <Style>
-                        <FontSize>13pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -737,9 +738,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.7747cm</Top>
-              <Left>1.43777in</Left>
+              <Left>1.14612in</Left>
               <Height>0.3in</Height>
-              <Width>6.32216in</Width>
+              <Width>6.23882in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -760,7 +761,7 @@
                     <TextRun>
                       <Value>=Parameters!titulo2Param.Value</Value>
                       <Style>
-                        <FontSize>13pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -771,9 +772,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>1.5367cm</Top>
-              <Left>1.43777in</Left>
+              <Left>1.14612in</Left>
               <Height>0.305in</Height>
-              <Width>6.32216in</Width>
+              <Width>6.23882in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -786,7 +787,7 @@
               </Style>
             </Textbox>
             <Textbox Name="Textbox6">
-              <CanGrow>true</CanGrow>
+              <CanShrink>true</CanShrink>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
@@ -802,10 +803,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>1.39586cm</Top>
-              <Left>7.36063in</Left>
+              <Top>2.18722cm</Top>
+              <Left>7.39882in</Left>
               <Height>0.29767in</Height>
-              <Width>2.23611in</Width>
+              <Width>2.05903in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -818,7 +819,7 @@
               </Style>
             </Textbox>
             <Textbox Name="Textbox8">
-              <CanGrow>true</CanGrow>
+              <CanShrink>true</CanShrink>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
@@ -868,9 +869,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>7.82938in</Left>
+              <Left>7.39882in</Left>
               <Height>0.84722in</Height>
-              <Width>2.23611in</Width>
+              <Width>2.05903in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -900,9 +901,9 @@
               </Paragraphs>
               <rd:DefaultName>fechaEmisionParam</rd:DefaultName>
               <Top>2.3114cm</Top>
-              <Left>3.65194cm</Left>
+              <Left>2.91114cm</Left>
               <Height>0.6cm</Height>
-              <Width>16.05829cm</Width>
+              <Width>15.8466cm</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
@@ -922,7 +923,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>2.54cm</Height>
+          <Height>2.33592cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -932,7 +933,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Observaciones:_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</Value>
+                      <Value>Observaciones:______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -943,7 +944,7 @@
               <Top>0.20408cm</Top>
               <Left>0.00003cm</Left>
               <Height>1.35544cm</Height>
-              <Width>25.56631cm</Width>
+              <Width>24.02291cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -999,8 +1000,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox11</rd:DefaultName>
-              <Top>1.73592cm</Top>
-              <Left>15.84321cm</Left>
+              <Top>1.70063cm</Top>
+              <Left>14.29981cm</Left>
               <Height>0.6cm</Height>
               <Width>9.72313cm</Width>
               <ZIndex>2</ZIndex>

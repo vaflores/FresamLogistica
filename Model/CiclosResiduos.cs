@@ -8,6 +8,12 @@ namespace FresamLogistica.Model
 
     public partial class CiclosResiduos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CiclosResiduos()
+        {
+            TitulosReporteResiduos = new HashSet<TitulosReporteResiduos>();
+        }
+
         [Key]
         public int ciclo_residuos_id { get; set; }
 
@@ -39,5 +45,8 @@ namespace FresamLogistica.Model
         public string usuario_modifica { get; set; }
 
         public DateTime? fecha_modifica { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TitulosReporteResiduos> TitulosReporteResiduos { get; set; }
     }
 }

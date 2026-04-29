@@ -12,5 +12,7 @@ namespace FresamLogistica.ViewModels
         public int CalidadId { get; set; }
         public string Nombre { get; set; }
         public int Valor { get; set; } = 0;
+        public bool AfectaCalificacion { get; set; } = false;
+        public bool IncluyeEnReporte { get; set; } = false;
     }
 }

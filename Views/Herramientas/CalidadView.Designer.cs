@@ -38,24 +38,24 @@
             this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
+            this.chkAfectaCalificacion = new System.Windows.Forms.CheckBox();
+            this.chkIncluyeReporte = new System.Windows.Forms.CheckBox();
             this.tsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbEstado
             // 
-            this.cbEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Location = new System.Drawing.Point(412, 48);
+            this.cbEstado.Location = new System.Drawing.Point(110, 77);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(121, 28);
-            this.cbEstado.TabIndex = 17;
+            this.cbEstado.TabIndex = 3;
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(341, 51);
+            this.label1.Location = new System.Drawing.Point(13, 80);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
@@ -66,10 +66,10 @@
             // 
             this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNombre.Location = new System.Drawing.Point(116, 48);
+            this.txtNombre.Location = new System.Drawing.Point(110, 48);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(218, 26);
-            this.txtNombre.TabIndex = 11;
+            this.txtNombre.Size = new System.Drawing.Size(275, 26);
+            this.txtNombre.TabIndex = 1;
             // 
             // lblNombre
             // 
@@ -95,7 +95,7 @@
             this.tsMenu.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsMenu.Name = "tsMenu";
             this.tsMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.tsMenu.Size = new System.Drawing.Size(545, 45);
+            this.tsMenu.Size = new System.Drawing.Size(560, 45);
             this.tsMenu.TabIndex = 13;
             this.tsMenu.Text = "tsMenu";
             // 
@@ -149,11 +149,37 @@
             this.tsbImprimir.Text = "Imprimir";
             this.tsbImprimir.Click += new System.EventHandler(this.tsbImprimir_Click);
             // 
+            // chkAfectaCalificacion
+            // 
+            this.chkAfectaCalificacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkAfectaCalificacion.AutoSize = true;
+            this.chkAfectaCalificacion.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkAfectaCalificacion.Location = new System.Drawing.Point(385, 50);
+            this.chkAfectaCalificacion.Name = "chkAfectaCalificacion";
+            this.chkAfectaCalificacion.Size = new System.Drawing.Size(163, 24);
+            this.chkAfectaCalificacion.TabIndex = 2;
+            this.chkAfectaCalificacion.Text = "Afecta Calificación:";
+            this.chkAfectaCalificacion.UseVisualStyleBackColor = true;
+            // 
+            // chkIncluyeReporte
+            // 
+            this.chkIncluyeReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkIncluyeReporte.AutoSize = true;
+            this.chkIncluyeReporte.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkIncluyeReporte.Location = new System.Drawing.Point(386, 81);
+            this.chkIncluyeReporte.Name = "chkIncluyeReporte";
+            this.chkIncluyeReporte.Size = new System.Drawing.Size(162, 24);
+            this.chkIncluyeReporte.TabIndex = 4;
+            this.chkIncluyeReporte.Text = "Incluye en Reporte";
+            this.chkIncluyeReporte.UseVisualStyleBackColor = true;
+            // 
             // CalidadView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 84);
+            this.ClientSize = new System.Drawing.Size(560, 121);
+            this.Controls.Add(this.chkIncluyeReporte);
+            this.Controls.Add(this.chkAfectaCalificacion);
             this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNombre);
@@ -184,5 +210,7 @@
         private System.Windows.Forms.ToolStripButton tsbGuardar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.ToolStripButton tsbImprimir;
+        private System.Windows.Forms.CheckBox chkAfectaCalificacion;
+        private System.Windows.Forms.CheckBox chkIncluyeReporte;
     }
 }

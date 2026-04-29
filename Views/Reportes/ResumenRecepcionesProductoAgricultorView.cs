@@ -40,7 +40,7 @@ namespace FresamLogistica.Views.Reportes
             ConfigurarComboBoxAgricultores();
             dtpFechaFin.Checked = true;
 
-            //this.MaximizeBox = false;
+            this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             ValidarPermisos();

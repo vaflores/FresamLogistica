@@ -207,9 +207,11 @@ namespace FresamLogistica.Views.Reportes
 
                         foreach(var _c in _rec.CalidadesInfo)
                         {
+                            if (!_c.IncluyeEnReporte)
+                                continue;
                             foreach(DataRow _dtr in _dtDetail.Rows)
                             {
-                                if (_dtr["CalidadId"].ToString() == _c.CalidadId.ToString())
+                                if (_dtr["CalidadId"].ToString() == _c.CalidadId.ToString() && _dtr["AgricultorId"].ToString() == _fila["AgricultorId"].ToString())
                                 { 
                                     _dtr["Valor"] = (Convert.ToDecimal(_dtr["Valor"]) + _c.Valor).ToString();
                                     break;
@@ -231,6 +233,8 @@ namespace FresamLogistica.Views.Reportes
 
                         foreach (var _c in _rec.CalidadesInfo)
                         {
+                            if (!_c.IncluyeEnReporte)
+                                continue;
                             DataRow _row = _dtDetail.NewRow();
                             _row["AgricultorId"] = _rec.AgriculorId.ToString();
                             _row["CalidadId"] = _c.CalidadId.ToString();
@@ -242,6 +246,8 @@ namespace FresamLogistica.Views.Reportes
 
                         foreach (var _c in _rec.CalidadesActivas)
                         {
+                            if (!_c.IncluyeEnReporte)
+                                continue;
                             DataRow _row = _dtDetail.NewRow();
                             _row["AgricultorId"] = _rec.AgriculorId.ToString();
                             _row["CalidadId"] = _c.CalidadId.ToString();

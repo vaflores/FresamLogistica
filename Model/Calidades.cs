@@ -38,6 +38,10 @@ namespace FresamLogistica.Model
 
         public DateTime fecha_modifica { get; set; }
 
+        public bool afecta_calificacion { get; set; }
+
+        public bool incluir_en_reporte { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CalidadesRecepciones> CalidadesRecepciones { get; set; }
     }

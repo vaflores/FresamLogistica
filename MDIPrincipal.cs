@@ -220,6 +220,29 @@ namespace FresamLogistica
         {
             Helper.FormulariosHelper.CargarFormularioHijo(new ResumenRecepcionesProductoAgricultorView(), this);
         }
+        private void precioDeCajasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ConfiguracionCajasView(1), this);
+        }
+
+        private void kardesDeCajasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new KardexCajasView(), this);
+        }
+
+        private void residuosRecolectadosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TitulosReporteResiduosView(), this);
+        }
+
+        private void reporteRecepcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ReporteRecepcionesView(), this);
+        }
+        private void reporteCalidadesPorRecepciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ReporteCalidadesRecepcionesView(), this);
+        }
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormularios();

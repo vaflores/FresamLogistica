@@ -99,6 +99,7 @@
     <Compile Include="Controllers\General\AgricultoresController.cs" />
     <Compile Include="Controllers\General\CiclosController.cs" />
     <Compile Include="Controllers\General\DescuentosController.cs" />
+    <Compile Include="Controllers\General\KardexCajasController.cs" />
     <Compile Include="Controllers\General\ProduccionesController.cs" />
     <Compile Include="Controllers\General\RanchosController.cs" />
     <Compile Include="Controllers\General\RecepcionesController.cs" />
@@ -113,12 +114,14 @@
     <Compile Include="Controllers\Productos\GradosController.cs" />
     <Compile Include="Controllers\Productos\PreciosController.cs" />
     <Compile Include="Controllers\Productos\VariedadesController.cs" />
+    <Compile Include="Controllers\Reportes\ReporteCalidadesRecepcionesController.cs" />
     <Compile Include="Controllers\Reportes\ReporteResiduosController.cs" />
     <Compile Include="Controllers\Reportes\ResumenRecepcionesProductoAgricultorController.cs" />
     <Compile Include="Controllers\Reportes\TitulosCalidadesController.cs" />
     <Compile Include="Controllers\Reportes\TitulosEtiquetasController.cs" />
     <Compile Include="Controllers\Reportes\TitulosGradosController.cs" />
     <Compile Include="Controllers\Reportes\TitulosInspeccionesController.cs" />
+    <Compile Include="Controllers\Reportes\TitulosReporteResiduosController.cs" />
     <Compile Include="Controllers\Residuos\CiclosResiduosController.cs" />
     <Compile Include="Controllers\Residuos\DestinosResiduosController.cs" />
     <Compile Include="Controllers\Residuos\EmpresaGestoraResiduosController.cs" />
@@ -156,6 +159,7 @@
     <Compile Include="MDIPrincipal.Designer.cs">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\AgricultorCajasSaldo.cs" />
     <Compile Include="Model\Agricultores.cs" />
     <Compile Include="Model\Calidades.cs" />
     <Compile Include="Model\CalidadesRecepciones.cs" />
@@ -168,6 +172,7 @@
     <Compile Include="Model\Ciudades.cs" />
     <Compile Include="Model\Condiciones.cs" />
     <Compile Include="Model\CondicionesVehiculosRecepciones.cs" />
+    <Compile Include="Model\ConfiguracionGeneralCajas.cs" />
     <Compile Include="Model\DescuentosRecepciones.cs" />
     <Compile Include="Model\DestinosResiduo.cs" />
     <Compile Include="Model\DetalleRegistroResiduoRecolectado.cs" />
@@ -178,6 +183,7 @@
     <Compile Include="Model\FoliosRegistroResiduoRecolectado.cs" />
     <Compile Include="Model\Frutas.cs" />
     <Compile Include="Model\GradosFruta.cs" />
+    <Compile Include="Model\KardexCajas.cs" />
     <Compile Include="Model\LoteFolios.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\OperadoresResiduos.cs" />
@@ -195,6 +201,7 @@
     <Compile Include="Model\Tarimas.cs" />
     <Compile Include="Model\TipoResiduo.cs" />
     <Compile Include="Model\TiposDestinoResiduo.cs" />
+    <Compile Include="Model\TitulosReporteResiduos.cs" />
     <Compile Include="Model\UnidadesMedida.cs" />
     <Compile Include="Model\Usuarios.cs" />
     <Compile Include="Model\Variedades.cs" />
@@ -249,6 +256,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>recepcionesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Reportes\ReporteCalidadesRecepciones\dtsRecepciones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsRecepciones.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Reportes\ReporteRecepciones\dtsRecepciones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsRecepciones.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ViewModels\CalidadesRecepcionesViewModel.cs" />
     <Compile Include="ViewModels\CondicionesVehiculoViewModel.cs" />
@@ -290,6 +307,12 @@
     <Compile Include="Views\Configuracion\UsuarioView.Designer.cs">
       <DependentUpon>UsuarioView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\General\KardexCajasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\KardexCajasView.Designer.cs">
+      <DependentUpon>KardexCajasView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\General\AgricultoresView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +342,12 @@
     </Compile>
     <Compile Include="Views\General\CicloView.Designer.cs">
       <DependentUpon>CicloView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\KardexMofimientoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\KardexMofimientoView.Designer.cs">
+      <DependentUpon>KardexMofimientoView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\General\RecepcionesView.cs">
       <SubType>Form</SubType>
@@ -361,6 +390,12 @@
     </Compile>
     <Compile Include="Views\Herramientas\CalidadesView.Designer.cs">
       <DependentUpon>CalidadesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\ConfiguracionCajasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\ConfiguracionCajasView.Designer.cs">
+      <DependentUpon>ConfiguracionCajasView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Herramientas\CalidadView.cs">
       <SubType>Form</SubType>
@@ -452,6 +487,18 @@
     <Compile Include="Views\Reportes\GradosCalidadProductoresView.Designer.cs">
       <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\ReporteRecepcionesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\ReporteRecepcionesView.Designer.cs">
+      <DependentUpon>ReporteRecepcionesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\ReporteCalidadesRecepcionesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\ReporteCalidadesRecepcionesView.Designer.cs">
+      <DependentUpon>ReporteCalidadesRecepcionesView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\ResumenRecepcionesProductoAgricultorView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,6 +546,12 @@
     </Compile>
     <Compile Include="Views\Reportes\Titulos\TitulosEtiquetasView.Designer.cs">
       <DependentUpon>TitulosEtiquetasView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosReporteResiduosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosReporteResiduosView.Designer.cs">
+      <DependentUpon>TitulosReporteResiduosView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reportes\Titulos\TitulosGradosView.cs">
       <SubType>Form</SubType>
@@ -675,6 +728,12 @@
     <Content Include="Reports\Reportes\RecepcionesAgricultorCiclo\rptRecepcionesAgricultorCiclo.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\Reportes\ReporteRecepciones\rptReporteRecepciones.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Reportes\ReporteCalidadesRecepciones\rptReporteCalidadesRecepciones.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\rptResumenRecepcionesProductoAgricultor.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -696,6 +755,9 @@
     <EmbeddedResource Include="Views\Configuracion\UsuarioView.resx">
       <DependentUpon>UsuarioView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\KardexCajasView.resx">
+      <DependentUpon>KardexCajasView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\General\AgricultoresView.resx">
       <DependentUpon>AgricultoresView.cs</DependentUpon>
     </EmbeddedResource>
@@ -710,6 +772,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\General\CicloView.resx">
       <DependentUpon>CicloView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\KardexMofimientoView.resx">
+      <DependentUpon>KardexMofimientoView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\General\RecepcionesView.resx">
       <DependentUpon>RecepcionesView.cs</DependentUpon>
@@ -731,6 +796,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Herramientas\CalidadesView.resx">
       <DependentUpon>CalidadesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\ConfiguracionCajasView.resx">
+      <DependentUpon>ConfiguracionCajasView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Herramientas\CalidadView.resx">
       <DependentUpon>CalidadView.cs</DependentUpon>
@@ -777,6 +845,12 @@
     <EmbeddedResource Include="Views\Reportes\GradosCalidadProductoresView.resx">
       <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\ReporteRecepcionesView.resx">
+      <DependentUpon>ReporteRecepcionesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\ReporteCalidadesRecepcionesView.resx">
+      <DependentUpon>ReporteCalidadesRecepcionesView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\ResumenRecepcionesProductoAgricultorView.resx">
       <DependentUpon>ResumenRecepcionesProductoAgricultorView.cs</DependentUpon>
     </EmbeddedResource>
@@ -800,6 +874,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\Titulos\TitulosEtiquetasView.resx">
       <DependentUpon>TitulosEtiquetasView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\Titulos\TitulosReporteResiduosView.resx">
+      <DependentUpon>TitulosReporteResiduosView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\Titulos\TitulosGradosView.resx">
       <DependentUpon>TitulosGradosView.cs</DependentUpon>
@@ -959,6 +1036,28 @@
     <None Include="Reports\Reportes\RecepcionesAgricultorCiclo\recepcionesDataSet.xss">
       <DependentUpon>recepcionesDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Reports\Reportes\ReporteCalidadesRecepciones\dtsRecepciones.xsc">
+      <DependentUpon>dtsRecepciones.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\ReporteCalidadesRecepciones\dtsRecepciones.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsRecepciones.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Reportes\ReporteCalidadesRecepciones\dtsRecepciones.xss">
+      <DependentUpon>dtsRecepciones.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\ReporteRecepciones\dtsRecepciones.xsc">
+      <DependentUpon>dtsRecepciones.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\ReporteRecepciones\dtsRecepciones.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsRecepciones.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Reportes\ReporteRecepciones\dtsRecepciones.xss">
+      <DependentUpon>dtsRecepciones.xsd</DependentUpon>
+    </None>
     <None Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\recepcionesAgricultorDataSet.xsc">
       <DependentUpon>recepcionesAgricultorDataSet.xsd</DependentUpon>
     </None>
@@ -1034,7 +1133,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\ControlCajas\" />
     <Folder Include="Properties\DataSources\" />
+    <Folder Include="Views\ControlCajas\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

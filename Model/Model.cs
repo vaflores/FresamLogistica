@@ -12,6 +12,7 @@ namespace FresamLogistica.Model
         {
         }
 
+        public virtual DbSet<AgricultorCajasSaldo> AgricultorCajasSaldo { get; set; }
         public virtual DbSet<Agricultores> Agricultores { get; set; }
         public virtual DbSet<Calidades> Calidades { get; set; }
         public virtual DbSet<CalidadesRecepciones> CalidadesRecepciones { get; set; }
@@ -24,6 +25,7 @@ namespace FresamLogistica.Model
         public virtual DbSet<Ciudades> Ciudades { get; set; }
         public virtual DbSet<Condiciones> Condiciones { get; set; }
         public virtual DbSet<CondicionesVehiculosRecepciones> CondicionesVehiculosRecepciones { get; set; }
+        public virtual DbSet<ConfiguracionGeneralCajas> ConfiguracionGeneralCajas { get; set; }
         public virtual DbSet<DescuentosRecepciones> DescuentosRecepciones { get; set; }
         public virtual DbSet<DestinosResiduo> DestinosResiduo { get; set; }
         public virtual DbSet<DetalleRegistroResiduoRecolectado> DetalleRegistroResiduoRecolectado { get; set; }
@@ -34,6 +36,7 @@ namespace FresamLogistica.Model
         public virtual DbSet<FoliosRegistroResiduoRecolectado> FoliosRegistroResiduoRecolectado { get; set; }
         public virtual DbSet<Frutas> Frutas { get; set; }
         public virtual DbSet<GradosFruta> GradosFruta { get; set; }
+        public virtual DbSet<KardexCajas> KardexCajas { get; set; }
         public virtual DbSet<LoteFolios> LoteFolios { get; set; }
         public virtual DbSet<OperadoresResiduos> OperadoresResiduos { get; set; }
         public virtual DbSet<Pantallas> Pantallas { get; set; }
@@ -49,6 +52,7 @@ namespace FresamLogistica.Model
         public virtual DbSet<Tarimas> Tarimas { get; set; }
         public virtual DbSet<TipoResiduo> TipoResiduo { get; set; }
         public virtual DbSet<TiposDestinoResiduo> TiposDestinoResiduo { get; set; }
+        public virtual DbSet<TitulosReporteResiduos> TitulosReporteResiduos { get; set; }
         public virtual DbSet<UnidadesMedida> UnidadesMedida { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Variedades> Variedades { get; set; }
@@ -58,6 +62,18 @@ namespace FresamLogistica.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AgricultorCajasSaldo>()
+                .Property(e => e.total_cajas)
+                .HasPrecision(10, 0);
+
+            modelBuilder.Entity<AgricultorCajasSaldo>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultorCajasSaldo>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Agricultores>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -94,6 +110,15 @@ namespace FresamLogistica.Model
                 .Property(e => e.estado)
                 .IsFixedLength()
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Agricultores>()
+                .HasOptional(e => e.AgricultorCajasSaldo)
+                .WithRequired(e => e.Agricultores);
+
+            modelBuilder.Entity<Agricultores>()
+                .HasMany(e => e.KardexCajas)
+                .WithRequired(e => e.Agricultores)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Agricultores>()
                 .HasMany(e => e.Ranchos)
@@ -317,6 +342,11 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<CiclosResiduos>()
+                .HasMany(e => e.TitulosReporteResiduos)
+                .WithRequired(e => e.CiclosResiduos)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Ciudades>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -371,6 +401,18 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<CondicionesVehiculosRecepciones>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ConfiguracionGeneralCajas>()
+                .Property(e => e.costo_caja)
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<ConfiguracionGeneralCajas>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ConfiguracionGeneralCajas>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
@@ -604,6 +646,38 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<GradosFruta>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<KardexCajas>()
+                .Property(e => e.tipo_movimiento)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<KardexCajas>()
+                .Property(e => e.entrada)
+                .HasPrecision(10, 0);
+
+            modelBuilder.Entity<KardexCajas>()
+                .Property(e => e.salida)
+                .HasPrecision(10, 0);
+
+            modelBuilder.Entity<KardexCajas>()
+                .Property(e => e.saldo_anterior)
+                .HasPrecision(10, 0);
+
+            modelBuilder.Entity<KardexCajas>()
+                .Property(e => e.saldo_actual)
+                .HasPrecision(10, 0);
+
+            modelBuilder.Entity<KardexCajas>()
+                .Property(e => e.observaciones)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<KardexCajas>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<KardexCajas>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
@@ -934,6 +1008,31 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.TiposDestinoResiduo)
                 .HasForeignKey(e => e.tipo_destino_residuo)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TitulosReporteResiduos>()
+                .Property(e => e.titulo1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TitulosReporteResiduos>()
+                .Property(e => e.titulo2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TitulosReporteResiduos>()
+                .Property(e => e.titulo3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TitulosReporteResiduos>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TitulosReporteResiduos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TitulosReporteResiduos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
 
             modelBuilder.Entity<UnidadesMedida>()
                 .Property(e => e.nombre)

@@ -22,7 +22,7 @@ namespace FresamLogistica.Views.Reportes
 {
     public partial class ReporteResiduosRecolectadosView : Form
     {
-        private readonly TitulosInspeccionesController _repo;
+        private readonly TitulosReporteResiduosController _repo;
         private readonly CiclosResiduosController _repoCiclos = new CiclosResiduosController();
         private readonly EmpresaController _repoEmpresa = new EmpresaController();
         private readonly FrutasController _repoFrutas = new FrutasController();
@@ -36,7 +36,7 @@ namespace FresamLogistica.Views.Reportes
 
             this.KeyPreview = true;
 
-            _repo = new TitulosInspeccionesController();
+            _repo = new TitulosReporteResiduosController();
             ConfigurarComboBoxFrutas();
             dtpFechaFin.Checked = true;
 
@@ -188,15 +188,15 @@ namespace FresamLogistica.Views.Reportes
                 var _titulos = _repo.ObtenerPorCicloId(_ciclos);
                 var _empresa = _repoEmpresa.ObtenerPorId(1);
                 byte[] _logoByte = _empresa.logo;
-                
+
 
                 List<ReportParameter> parametros = new List<ReportParameter>()
                 {
                     new ReportParameter("logoParam", Convert.ToBase64String(_logoByte)),
                     new ReportParameter("nombreEmpresaParam", _empresa.nombre),
-                    new ReportParameter("titulo1Param", _titulos == null ? "" : _titulos.titulo1),
-                    new ReportParameter("titulo2Param", _titulos == null ? "" : _titulos.titulo2),
-                    new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
+                    new ReportParameter("titulo1Param", _titulos.titulo1.ToString()),
+                    new ReportParameter("titulo2Param", _titulos.titulo2.ToString()),
+                    new ReportParameter("titulo3Param", _titulos.titulo3.ToString()),
                     new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),

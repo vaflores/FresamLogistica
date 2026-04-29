@@ -93,8 +93,7 @@ namespace FresamLogistica.Controllers.Reportes
                                       .FirstOrDefault();
 
                     entidad.grado_id = ultimoId + 1;
-                }
-                ;
+                };
             }
         }
     }
