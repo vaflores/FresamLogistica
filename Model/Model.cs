@@ -38,6 +38,8 @@ namespace FresamLogistica.Model
         public virtual DbSet<GradosFruta> GradosFruta { get; set; }
         public virtual DbSet<KardexCajas> KardexCajas { get; set; }
         public virtual DbSet<LoteFolios> LoteFolios { get; set; }
+        public virtual DbSet<MuestreosCalidadesRecepciones> MuestreosCalidadesRecepciones { get; set; }
+        public virtual DbSet<MuestreosRecepciones> MuestreosRecepciones { get; set; }
         public virtual DbSet<OperadoresResiduos> OperadoresResiduos { get; set; }
         public virtual DbSet<Pantallas> Pantallas { get; set; }
         public virtual DbSet<Permisos> Permisos { get; set; }
@@ -149,6 +151,12 @@ namespace FresamLogistica.Model
 
             modelBuilder.Entity<Calidades>()
                 .HasMany(e => e.CalidadesRecepciones)
+                .WithRequired(e => e.Calidades)
+                .HasForeignKey(e => e.calidad_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Calidades>()
+                .HasMany(e => e.MuestreosCalidadesRecepciones)
                 .WithRequired(e => e.Calidades)
                 .HasForeignKey(e => e.calidad_id)
                 .WillCascadeOnDelete(false);
@@ -703,6 +711,31 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.LoteFolios)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<MuestreosCalidadesRecepciones>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MuestreosCalidadesRecepciones>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MuestreosRecepciones>()
+                .Property(e => e.observaciones)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MuestreosRecepciones>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MuestreosRecepciones>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MuestreosRecepciones>()
+                .HasMany(e => e.MuestreosCalidadesRecepciones)
+                .WithRequired(e => e.MuestreosRecepciones)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<OperadoresResiduos>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -858,6 +891,11 @@ namespace FresamLogistica.Model
 
             modelBuilder.Entity<Recepciones>()
                 .HasMany(e => e.DescuentosRecepciones)
+                .WithRequired(e => e.Recepciones)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Recepciones>()
+                .HasMany(e => e.MuestreosRecepciones)
                 .WithRequired(e => e.Recepciones)
                 .WillCascadeOnDelete(false);
 

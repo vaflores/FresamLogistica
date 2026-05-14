@@ -365,7 +365,7 @@ namespace FresamLogistica.Views.General
                     }
                     else
                     {
-                        dgvCalidades.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "0";
+                        dgvTarimas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "0";
                     }
                 }
 
@@ -422,9 +422,9 @@ namespace FresamLogistica.Views.General
 
                 if (e.ColumnIndex == 3)
                 {
-                    if (decimal.TryParse(dgvTarimas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out decimal valor))
+                    if (decimal.TryParse(dgvCalidades.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out decimal valor))
                     {
-                        dgvTarimas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = valor.ToString("N0");
+                        dgvCalidades.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = valor.ToString("N0");
                     }
                     else
                     {

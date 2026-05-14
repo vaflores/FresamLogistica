@@ -100,6 +100,7 @@
     <Compile Include="Controllers\General\CiclosController.cs" />
     <Compile Include="Controllers\General\DescuentosController.cs" />
     <Compile Include="Controllers\General\KardexCajasController.cs" />
+    <Compile Include="Controllers\General\MuestreosRecepcionesController.cs" />
     <Compile Include="Controllers\General\ProduccionesController.cs" />
     <Compile Include="Controllers\General\RanchosController.cs" />
     <Compile Include="Controllers\General\RecepcionesController.cs" />
@@ -186,6 +187,8 @@
     <Compile Include="Model\KardexCajas.cs" />
     <Compile Include="Model\LoteFolios.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\MuestreosCalidadesRecepciones.cs" />
+    <Compile Include="Model\MuestreosRecepciones.cs" />
     <Compile Include="Model\OperadoresResiduos.cs" />
     <Compile Include="Model\Pantallas.cs" />
     <Compile Include="Model\Permisos.cs" />
@@ -349,6 +352,24 @@
     <Compile Include="Views\General\KardexMofimientoView.Designer.cs">
       <DependentUpon>KardexMofimientoView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\General\MuestreosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\MuestreosView.Designer.cs">
+      <DependentUpon>MuestreosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\MuestraView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\MuestraView.Designer.cs">
+      <DependentUpon>MuestraView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\MuestreoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\MuestreoView.Designer.cs">
+      <DependentUpon>MuestreoView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\General\RecepcionesView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -486,6 +507,12 @@
     </Compile>
     <Compile Include="Views\Reportes\GradosCalidadProductoresView.Designer.cs">
       <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\ReporteMuestrasCalidadesRecepcionesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\ReporteMuestrasCalidadesRecepcionesView.Designer.cs">
+      <DependentUpon>ReporteMuestrasCalidadesRecepcionesView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reportes\ReporteRecepcionesView.cs">
       <SubType>Form</SubType>
@@ -776,6 +803,15 @@
     <EmbeddedResource Include="Views\General\KardexMofimientoView.resx">
       <DependentUpon>KardexMofimientoView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\MuestreosView.resx">
+      <DependentUpon>MuestreosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\MuestraView.resx">
+      <DependentUpon>MuestraView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\MuestreoView.resx">
+      <DependentUpon>MuestreoView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\General\RecepcionesView.resx">
       <DependentUpon>RecepcionesView.cs</DependentUpon>
     </EmbeddedResource>
@@ -844,6 +880,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\GradosCalidadProductoresView.resx">
       <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\ReporteMuestrasCalidadesRecepcionesView.resx">
+      <DependentUpon>ReporteMuestrasCalidadesRecepcionesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\ReporteRecepcionesView.resx">
       <DependentUpon>ReporteRecepcionesView.cs</DependentUpon>

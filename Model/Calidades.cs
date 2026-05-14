@@ -12,6 +12,7 @@ namespace FresamLogistica.Model
         public Calidades()
         {
             CalidadesRecepciones = new HashSet<CalidadesRecepciones>();
+            MuestreosCalidadesRecepciones = new HashSet<MuestreosCalidadesRecepciones>();
         }
 
         [Key]
@@ -44,5 +45,8 @@ namespace FresamLogistica.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CalidadesRecepciones> CalidadesRecepciones { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MuestreosCalidadesRecepciones> MuestreosCalidadesRecepciones { get; set; }
     }
 }

@@ -243,6 +243,10 @@ namespace FresamLogistica
         {
             Helper.FormulariosHelper.CargarFormularioHijo(new ReporteCalidadesRecepcionesView(), this);
         }
+        private void muestreosPorRecepciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MuestreosView(), this);
+        }
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormularios();
@@ -283,5 +287,9 @@ namespace FresamLogistica
             }
         }
 
+        private void reporteMuestrasPorRecepcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ReporteMuestrasCalidadesRecepcionesView(), this);
+        }
     }
 }

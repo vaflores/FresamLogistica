@@ -38,5 +38,34 @@ namespace FresamLogistica.Controllers.Reportes
                 }
             }
         }
+
+        public async Task<DataTable> ObtenereporteReporteMuestrasCalidadesRecepcionesAsync(DateTime fechaInicio, DateTime fechaFin)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_ReporteCalidadesMuestrasRecepciones";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@fechaInicio", fechaInicio));
+                    command.Parameters.Add(new SqlParameter("@fechaFin", fechaFin));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
+            }
+        }
     }
 }

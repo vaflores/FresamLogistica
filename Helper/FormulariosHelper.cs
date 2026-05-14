@@ -61,6 +61,7 @@ namespace FresamLogistica.Helper
                     return;
                 }
             }
+            formulario.StartPosition = FormStartPosition.CenterScreen;
             formulario.ShowDialog();
         }
     }

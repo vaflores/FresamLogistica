@@ -30,6 +30,9 @@
         {
             this.tcRegistros = new System.Windows.Forms.TabControl();
             this.tpRegistros = new System.Windows.Forms.TabPage();
+            this.tsOpciones = new System.Windows.Forms.ToolStrip();
+            this.tsbAddGrid = new System.Windows.Forms.ToolStripButton();
+            this.tsbDelGrid = new System.Windows.Forms.ToolStripButton();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
             this.tsMenu = new System.Windows.Forms.ToolStrip();
             this.tsbBuscar = new System.Windows.Forms.ToolStripButton();
@@ -39,15 +42,11 @@
             this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
             this.cbAgricultor = new System.Windows.Forms.ComboBox();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.tsOpciones = new System.Windows.Forms.ToolStrip();
-            this.tsbSyncGrid = new System.Windows.Forms.ToolStripButton();
-            this.tsbAddGrid = new System.Windows.Forms.ToolStripButton();
-            this.tsbDelGrid = new System.Windows.Forms.ToolStripButton();
             this.tcRegistros.SuspendLayout();
             this.tpRegistros.SuspendLayout();
+            this.tsOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
             this.tsMenu.SuspendLayout();
-            this.tsOpciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcRegistros
@@ -74,6 +73,39 @@
             this.tpRegistros.TabIndex = 0;
             this.tpRegistros.Text = "Kardex";
             this.tpRegistros.UseVisualStyleBackColor = true;
+            // 
+            // tsOpciones
+            // 
+            this.tsOpciones.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsOpciones.ImageScalingSize = new System.Drawing.Size(30, 30);
+            this.tsOpciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbAddGrid,
+            this.tsbDelGrid});
+            this.tsOpciones.Location = new System.Drawing.Point(3, 3);
+            this.tsOpciones.MinimumSize = new System.Drawing.Size(0, 45);
+            this.tsOpciones.Name = "tsOpciones";
+            this.tsOpciones.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.tsOpciones.Size = new System.Drawing.Size(946, 45);
+            this.tsOpciones.TabIndex = 8;
+            this.tsOpciones.Text = "toolStrip1";
+            // 
+            // tsbAddGrid
+            // 
+            this.tsbAddGrid.Image = global::FresamLogistica.Properties.Resources.create_50;
+            this.tsbAddGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAddGrid.Name = "tsbAddGrid";
+            this.tsbAddGrid.Size = new System.Drawing.Size(115, 42);
+            this.tsbAddGrid.Text = "Recepción";
+            this.tsbAddGrid.Click += new System.EventHandler(this.tsbAddGrid_Click);
+            // 
+            // tsbDelGrid
+            // 
+            this.tsbDelGrid.Image = global::FresamLogistica.Properties.Resources.remove_50;
+            this.tsbDelGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDelGrid.Name = "tsbDelGrid";
+            this.tsbDelGrid.Size = new System.Drawing.Size(97, 42);
+            this.tsbDelGrid.Text = "Entrega";
+            this.tsbDelGrid.Click += new System.EventHandler(this.tsbDelGrid_Click);
             // 
             // dgvRegistros
             // 
@@ -178,52 +210,6 @@
             this.lblNombre.TabIndex = 43;
             this.lblNombre.Text = "Agricultor:";
             // 
-            // tsOpciones
-            // 
-            this.tsOpciones.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsOpciones.ImageScalingSize = new System.Drawing.Size(30, 30);
-            this.tsOpciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbSyncGrid,
-            this.tsbAddGrid,
-            this.tsbDelGrid});
-            this.tsOpciones.Location = new System.Drawing.Point(3, 3);
-            this.tsOpciones.MinimumSize = new System.Drawing.Size(0, 45);
-            this.tsOpciones.Name = "tsOpciones";
-            this.tsOpciones.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.tsOpciones.Size = new System.Drawing.Size(946, 45);
-            this.tsOpciones.TabIndex = 8;
-            this.tsOpciones.Text = "toolStrip1";
-            // 
-            // tsbSyncGrid
-            // 
-            this.tsbSyncGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSyncGrid.Image = global::FresamLogistica.Properties.Resources.sync_50;
-            this.tsbSyncGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSyncGrid.Name = "tsbSyncGrid";
-            this.tsbSyncGrid.Size = new System.Drawing.Size(34, 42);
-            this.tsbSyncGrid.Text = "Buscar";
-            this.tsbSyncGrid.Click += new System.EventHandler(this.tsbSyncGrid_Click);
-            // 
-            // tsbAddGrid
-            // 
-            this.tsbAddGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbAddGrid.Image = global::FresamLogistica.Properties.Resources.create_50;
-            this.tsbAddGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAddGrid.Name = "tsbAddGrid";
-            this.tsbAddGrid.Size = new System.Drawing.Size(34, 42);
-            this.tsbAddGrid.Text = "Crear";
-            this.tsbAddGrid.Click += new System.EventHandler(this.tsbAddGrid_Click);
-            // 
-            // tsbDelGrid
-            // 
-            this.tsbDelGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbDelGrid.Image = global::FresamLogistica.Properties.Resources.remove_50;
-            this.tsbDelGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelGrid.Name = "tsbDelGrid";
-            this.tsbDelGrid.Size = new System.Drawing.Size(34, 42);
-            this.tsbDelGrid.Text = "Eliminar";
-            this.tsbDelGrid.Click += new System.EventHandler(this.tsbDelGrid_Click);
-            // 
             // KardexCajasView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -241,11 +227,11 @@
             this.tcRegistros.ResumeLayout(false);
             this.tpRegistros.ResumeLayout(false);
             this.tpRegistros.PerformLayout();
+            this.tsOpciones.ResumeLayout(false);
+            this.tsOpciones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).EndInit();
             this.tsMenu.ResumeLayout(false);
             this.tsMenu.PerformLayout();
-            this.tsOpciones.ResumeLayout(false);
-            this.tsOpciones.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,7 +251,6 @@
         private System.Windows.Forms.ComboBox cbAgricultor;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.ToolStrip tsOpciones;
-        private System.Windows.Forms.ToolStripButton tsbSyncGrid;
         private System.Windows.Forms.ToolStripButton tsbAddGrid;
         private System.Windows.Forms.ToolStripButton tsbDelGrid;
     }

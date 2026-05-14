@@ -13,6 +13,7 @@ namespace FresamLogistica.Model
         {
             CalidadesRecepciones = new HashSet<CalidadesRecepciones>();
             DescuentosRecepciones = new HashSet<DescuentosRecepciones>();
+            MuestreosRecepciones = new HashSet<MuestreosRecepciones>();
             Tarimas = new HashSet<Tarimas>();
             VehiculosRecepciones = new HashSet<VehiculosRecepciones>();
         }
@@ -71,6 +72,9 @@ namespace FresamLogistica.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DescuentosRecepciones> DescuentosRecepciones { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MuestreosRecepciones> MuestreosRecepciones { get; set; }
 
         public virtual Sectores Sectores { get; set; }
 

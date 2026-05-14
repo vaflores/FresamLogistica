@@ -204,5 +204,49 @@ namespace FresamLogistica.Controllers.Herramientas
                 ;
             }
         }
+
+        public List<CalidadesRecepcionesViewModel> ListarCalidadesPorMuestreoId(int _muestreoId)
+        {
+            using (var _context = new Model.Model())
+            {
+                var query = from mcr in _context.MuestreosCalidadesRecepciones
+                            join c in _context.Calidades on mcr.calidad_id equals c.id_calidad
+                            where mcr.muestreo_id == _muestreoId
+                            select new CalidadesRecepcionesViewModel
+                            {
+                                CalidadRecepcionId = mcr.muestreo_id,
+                                CalidadId = c.id_calidad,
+                                Nombre = c.nombre,
+                                Valor = mcr.valor,
+                                AfectaCalificacion = c.afecta_calificacion,
+                                IncluyeEnReporte = c.incluir_en_reporte
+                            };
+                return query.ToList();
+            }
+        }
+
+        public List<CalidadesRecepcionesViewModel> ListarCalidadesActivasSinValorPorMuestreoId(int _muestreoId)
+        {
+            using (var _context = new Model.Model())
+            {
+                var query = from c in _context.Calidades
+                            where c.estado == "A"
+                                  && !_context.MuestreosCalidadesRecepciones
+                                              .Where(mcr => mcr.muestreo_id == _muestreoId)
+                                              .Select(mcr => mcr.calidad_id)
+                                              .Contains(c.id_calidad)
+                            select new CalidadesRecepcionesViewModel
+                            {
+                                CalidadRecepcionId = 0,
+                                CalidadId = c.id_calidad,
+                                Nombre = c.nombre,
+                                Valor = 0,
+                                AfectaCalificacion = c.afecta_calificacion,
+                                IncluyeEnReporte = c.incluir_en_reporte
+                            };
+                return query.ToList();
+            }
+        }
+
     }
 }

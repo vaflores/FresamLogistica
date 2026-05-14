@@ -100,7 +100,7 @@ namespace FresamLogistica.Controllers.General
                 {
                     agricultor_id = agricultorId,
                     fecha = fecha,
-                    tipo_movimiento = esIngreso ? "Engrada" : "Salida",
+                    tipo_movimiento = esIngreso ? "Entrada" : "Salida",
                     entrada = esIngreso ? cantidad : 0,
                     salida = esIngreso ? 0 : cantidad,
                     saldo_anterior = _context.AgricultorCajasSaldo.Where(s => s.agricultor_id == agricultorId).Select(s => s.total_cajas).FirstOrDefault(),

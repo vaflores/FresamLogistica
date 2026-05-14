@@ -71,6 +71,7 @@ namespace FresamLogistica.Controllers.General
                 return _context.Sectores.ToList();
             }
         }
+
         public List<SectoresVariedadesViewModel> ListarPorRanchoCiclo(int _ranchoId, int _cicloId)
         {
             using (var _context = new Model.Model())
@@ -103,6 +104,39 @@ namespace FresamLogistica.Controllers.General
             }
         }
 
+        public List<SectoresVariedadesViewModel> ListarPorRancho(int _ranchoId)
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.Sectores
+                    .Join(_context.Variedades,
+                          sector => sector.variedad_id,
+                          variedad => variedad.variedad_id,
+                          (sector, variedad) => new SectoresVariedadesViewModel
+                          {
+                              sector_id = sector.sector_id,
+                              superficie = sector.superficie,
+                              variedad_id = variedad.variedad_id,
+                              nombre_variedad = variedad.nombre,
+                              estado = sector.estado,
+                              rancho_id = sector.id_rancho,
+                              ciclo_id = sector.id_ciclo,
+                              nombre = sector.nombre,
+                              fruta_id = _context.Frutas
+                                                    .Where(f => f.fruta_id == variedad.id_fruta)
+                                                    .Select(f => f.fruta_id)
+                                                    .FirstOrDefault(),
+                              nombre_fruta = _context.Frutas
+                                                    .Where(f => f.fruta_id == variedad.id_fruta)
+                                                    .Select(f => f.nombre)
+                                                    .FirstOrDefault()
+                          })
+                    .Where(a => a.rancho_id == _ranchoId)
+                    .OrderBy(r => r.ciclo_id)
+                    .ToList();
+            }
+        }
+
         public List<KeyValuePair<string,string>> ListarPorRanchoCicloComboBox(int _ranchoId, int _cicloId)
         {
             List<SectoresVariedadesViewModel> _list = ListarPorRanchoCiclo(_ranchoId,_cicloId);
@@ -112,6 +146,14 @@ namespace FresamLogistica.Controllers.General
                     .ToList();
         }
 
+        public List<KeyValuePair<string, string>> ListarPorRanchoComboBox(int _ranchoId)
+        {
+            List<SectoresVariedadesViewModel> _list = ListarPorRancho(_ranchoId);
+
+            return _list
+                    .Select(v => new KeyValuePair<string, string>(v.sector_id.ToString(), v.nombre))
+                    .ToList();
+        }
         private void AsignarIdSiCero(ref Sectores entidad)
         {
             if (entidad.sector_id == 0)
