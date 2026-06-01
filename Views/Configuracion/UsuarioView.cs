@@ -18,6 +18,7 @@ namespace FresamLogistica.Views.Configuracion
     {
         private readonly UsuariosController _repo;
         private readonly RolesController _repoRoles = new RolesController();
+        private readonly EmpleadosController _repoEmpleados = new EmpleadosController();
         private string _IdRegistroSeleccionado;
         public UsuarioView(string _IdRegistro)
         {
@@ -30,6 +31,7 @@ namespace FresamLogistica.Views.Configuracion
 
             ConfigurarComboBoxEstatus();
             ConfigurarComboBoxRoles();
+            ConfigurarComboBoxEmpleados();
 
             CargarDatosRegistroSeleccionado();
         }
@@ -98,11 +100,20 @@ namespace FresamLogistica.Views.Configuracion
 
         private void ConfigurarComboBoxRoles()
         {
-            var roles = _repoRoles.ListarComboBox();
-            cbRol.DataSource = roles;
+            var datos = _repoRoles.ListarComboBox();
+            cbRol.DataSource = datos;
             cbRol.DisplayMember = "Value";
             cbRol.ValueMember = "Key";
             cbRol.SelectedIndex = -1;
+        }
+
+        private void ConfigurarComboBoxEmpleados()
+        {
+            var datos = _repoEmpleados.ListarComboBox();
+            cbEmpleados.DataSource = datos;
+            cbEmpleados.DisplayMember = "Value";
+            cbEmpleados.ValueMember = "Key";
+            cbEmpleados.SelectedIndex = -1;
         }
 
         private void CargarDatosRegistroSeleccionado()
@@ -115,6 +126,7 @@ namespace FresamLogistica.Views.Configuracion
                     txtUsuario.Text = registro.usuario_id;
                     txtPassword.Text = Helper.PasswordHelper.Decrypt(registro.password, Constantes.claveSecreta);
                     cbRol.SelectedValue = registro.rol_id;
+                    cbEmpleados.SelectedValue = registro.empleado_id.HasValue ? registro.empleado_id.Value.ToString() : "";
                     cbEstado.SelectedValue = registro.estado;
                 }
                 else
@@ -135,6 +147,7 @@ namespace FresamLogistica.Views.Configuracion
                     usuario_id = txtUsuario.Text.Trim(),
                     password = Helper.PasswordHelper.Encrypt(txtPassword.Text.Trim(),Constantes.claveSecreta),
                     rol_id = cbRol.SelectedValue.ToString(),
+                    empleado_id = cbEmpleados.SelectedIndex != -1 ? (int?)Convert.ToInt32(cbEmpleados.SelectedValue) : null,
                     estado = cbEstado.SelectedValue.ToString()
                 };
 
@@ -170,8 +183,9 @@ namespace FresamLogistica.Views.Configuracion
             _IdRegistroSeleccionado = "";
             txtUsuario.Clear();
             txtPassword.Clear();
-            cbRol.SelectedValue = "A";
-            cbEstado.SelectedIndex = -1;
+            cbRol.SelectedIndex = -1;
+            cbEmpleados.SelectedIndex = -1;
+            cbEstado.SelectedValue = "A";
         }
 
         private void EliminarRegistro()

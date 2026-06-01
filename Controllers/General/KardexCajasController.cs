@@ -92,15 +92,16 @@ namespace FresamLogistica.Controllers.General
             }
         }
 
-        public void AgregarMovimientoKardex(int agricultorId, DateTime fecha, decimal cantidad, bool esIngreso, string observaciones = "")
+        public int AgregarMovimientoKardex(int agricultorId, DateTime fecha, decimal cantidad, bool esIngreso, string observaciones = "")
         {
+            int movimientoId;
             using (var _context = new Model.Model())
             {
                 var movimiento = new KardexCajas
                 {
                     agricultor_id = agricultorId,
                     fecha = fecha,
-                    tipo_movimiento = esIngreso ? "Entrada" : "Salida",
+                    tipo_movimiento = esIngreso ? "Recepción" : "Entrega",
                     entrada = esIngreso ? cantidad : 0,
                     salida = esIngreso ? 0 : cantidad,
                     saldo_anterior = _context.AgricultorCajasSaldo.Where(s => s.agricultor_id == agricultorId).Select(s => s.total_cajas).FirstOrDefault(),
@@ -110,9 +111,11 @@ namespace FresamLogistica.Controllers.General
                 SesionActualHelper.RegistrarSesionCrea(ref movimiento);
                 _context.KardexCajas.Add(movimiento);
                 _context.SaveChanges();
+                movimientoId = movimiento.kardex_id;
             }
-
+            
             ActualizarSaldoCajasAgricultor(agricultorId, fecha, cantidad, esIngreso);
+            return movimientoId;
         }
 
         public List<KardexCajas> ObtenerMovimientosKardex(int agricultorId)
@@ -128,6 +131,14 @@ namespace FresamLogistica.Controllers.General
             using (var _context = new Model.Model())
             {
                 return _context.AgricultorCajasSaldo.Where(s => s.agricultor_id == agricultorId).Select(s => s.total_cajas).FirstOrDefault();
+            }
+        }
+
+        public KardexCajas ObtenerMovimientoKardexPorId(int movimientoId)
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.KardexCajas.Find(movimientoId);
             }
         }
     }

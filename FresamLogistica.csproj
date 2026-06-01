@@ -93,6 +93,8 @@
   <ItemGroup>
     <Compile Include="Controllers\Configuraciones\CiudadesController.cs" />
     <Compile Include="Controllers\Configuraciones\EstadosController.cs" />
+    <Compile Include="Controllers\Configuracion\EmpleadosController.cs" />
+    <Compile Include="Controllers\Configuracion\PuestosController.cs" />
     <Compile Include="Controllers\Configuracion\RolesController.cs" />
     <Compile Include="Controllers\Configuracion\RolesPermisosController.cs" />
     <Compile Include="Controllers\Configuracion\UsuariosController.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Controllers\General\CiclosController.cs" />
     <Compile Include="Controllers\General\DescuentosController.cs" />
     <Compile Include="Controllers\General\KardexCajasController.cs" />
+    <Compile Include="Controllers\General\KardexCondicionesCajasController.cs" />
     <Compile Include="Controllers\General\MuestreosRecepcionesController.cs" />
     <Compile Include="Controllers\General\ProduccionesController.cs" />
     <Compile Include="Controllers\General\RanchosController.cs" />
@@ -108,6 +111,7 @@
     <Compile Include="Controllers\General\TarimasController.cs" />
     <Compile Include="Controllers\General\VehiculosController.cs" />
     <Compile Include="Controllers\Herramientas\CalidadesController.cs" />
+    <Compile Include="Controllers\Herramientas\CondicionesCajasController.cs" />
     <Compile Include="Controllers\Herramientas\CondicionesController.cs" />
     <Compile Include="Controllers\Productos\FrutasController.cs" />
     <Compile Include="Controllers\General\EmpresaController.cs" />
@@ -172,11 +176,14 @@
     <Compile Include="Model\CiclosResiduos.cs" />
     <Compile Include="Model\Ciudades.cs" />
     <Compile Include="Model\Condiciones.cs" />
+    <Compile Include="Model\CondicionesCajas.cs" />
     <Compile Include="Model\CondicionesVehiculosRecepciones.cs" />
+    <Compile Include="Model\ConfiguracionFirmasReportes.cs" />
     <Compile Include="Model\ConfiguracionGeneralCajas.cs" />
     <Compile Include="Model\DescuentosRecepciones.cs" />
     <Compile Include="Model\DestinosResiduo.cs" />
     <Compile Include="Model\DetalleRegistroResiduoRecolectado.cs" />
+    <Compile Include="Model\Empleados.cs" />
     <Compile Include="Model\Empresa.cs" />
     <Compile Include="Model\EmpresaGestoraDeResiduos.cs" />
     <Compile Include="Model\Estados.cs" />
@@ -185,6 +192,7 @@
     <Compile Include="Model\Frutas.cs" />
     <Compile Include="Model\GradosFruta.cs" />
     <Compile Include="Model\KardexCajas.cs" />
+    <Compile Include="Model\KardexCondicionesCajas.cs" />
     <Compile Include="Model\LoteFolios.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\MuestreosCalidadesRecepciones.cs" />
@@ -194,6 +202,7 @@
     <Compile Include="Model\Permisos.cs" />
     <Compile Include="Model\Precios.cs" />
     <Compile Include="Model\Producciones.cs" />
+    <Compile Include="Model\Puestos.cs" />
     <Compile Include="Model\Ranchos.cs" />
     <Compile Include="Model\Recepciones.cs" />
     <Compile Include="Model\RegistrosResiduoRecolectado.cs" />
@@ -212,6 +221,11 @@
     <Compile Include="Model\VehiculosRecepciones.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\General\KardexMovimiento\dtsCondicionesCajas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsCondicionesCajas.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\General\RecepcionReport\EtiquetaDataSet.cs">
       <DependentUpon>EtiquetaDataSet.xsd</DependentUpon>
     </Compile>
@@ -271,6 +285,7 @@
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ViewModels\CalidadesRecepcionesViewModel.cs" />
+    <Compile Include="ViewModels\CondicionesCajasViewModel.cs" />
     <Compile Include="ViewModels\CondicionesVehiculoViewModel.cs" />
     <Compile Include="ViewModels\DetalleRegistroResiduoRecolectadoViewModel.cs" />
     <Compile Include="ViewModels\FoliosRegistroResiduoRecolectadoViewModel.cs" />
@@ -286,11 +301,29 @@
     <Compile Include="Views\Configuracion\RolesPermisosView.Designer.cs">
       <DependentUpon>RolesPermisosView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Configuracion\PuestosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\PuestosView.Designer.cs">
+      <DependentUpon>PuestosView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Configuracion\RolesView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Configuracion\RolesView.Designer.cs">
       <DependentUpon>RolesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Configuracion\PuestoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\PuestoView.Designer.cs">
+      <DependentUpon>PuestoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Configuracion\EmpleadosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\EmpleadosView.Designer.cs">
+      <DependentUpon>EmpleadosView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Configuracion\UsuariosView.cs">
       <SubType>Form</SubType>
@@ -303,6 +336,12 @@
     </Compile>
     <Compile Include="Views\Configuracion\RolView.Designer.cs">
       <DependentUpon>RolView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Configuracion\EmpleadoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Configuracion\EmpleadoView.Designer.cs">
+      <DependentUpon>EmpleadoView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Configuracion\UsuarioView.cs">
       <SubType>Form</SubType>
@@ -346,11 +385,17 @@
     <Compile Include="Views\General\CicloView.Designer.cs">
       <DependentUpon>CicloView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\General\KardexMofimientoView.cs">
+    <Compile Include="Views\General\KardexMovimientoRecepcionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\General\KardexMofimientoView.Designer.cs">
-      <DependentUpon>KardexMofimientoView.cs</DependentUpon>
+    <Compile Include="Views\General\KardexMovimientoRecepcionView.Designer.cs">
+      <DependentUpon>KardexMovimientoRecepcionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\KardexMovimientoEntregaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\KardexMovimientoEntregaView.Designer.cs">
+      <DependentUpon>KardexMovimientoEntregaView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\General\MuestreosView.cs">
       <SubType>Form</SubType>
@@ -411,6 +456,18 @@
     </Compile>
     <Compile Include="Views\Herramientas\CalidadesView.Designer.cs">
       <DependentUpon>CalidadesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\CondicionesCajasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\CondicionesCajasView.Designer.cs">
+      <DependentUpon>CondicionesCajasView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Herramientas\CondicionCajasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Herramientas\CondicionCajasView.Designer.cs">
+      <DependentUpon>CondicionCajasView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Herramientas\ConfiguracionCajasView.cs">
       <SubType>Form</SubType>
@@ -761,6 +818,12 @@
     <Content Include="Reports\Reportes\ReporteCalidadesRecepciones\rptReporteCalidadesRecepciones.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\General\KardexMovimiento\rptKardexMovimientoEntrega.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\General\KardexMovimiento\rptKardexMovimientoRecepcion.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\rptResumenRecepcionesProductoAgricultor.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -770,14 +833,26 @@
     <EmbeddedResource Include="Views\Configuracion\RolesPermisosView.resx">
       <DependentUpon>RolesPermisosView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Configuracion\PuestosView.resx">
+      <DependentUpon>PuestosView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Configuracion\RolesView.resx">
       <DependentUpon>RolesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Configuracion\PuestoView.resx">
+      <DependentUpon>PuestoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Configuracion\EmpleadosView.resx">
+      <DependentUpon>EmpleadosView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Configuracion\UsuariosView.resx">
       <DependentUpon>UsuariosView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Configuracion\RolView.resx">
       <DependentUpon>RolView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Configuracion\EmpleadoView.resx">
+      <DependentUpon>EmpleadoView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Configuracion\UsuarioView.resx">
       <DependentUpon>UsuarioView.cs</DependentUpon>
@@ -800,8 +875,11 @@
     <EmbeddedResource Include="Views\General\CicloView.resx">
       <DependentUpon>CicloView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\General\KardexMofimientoView.resx">
-      <DependentUpon>KardexMofimientoView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\General\KardexMovimientoRecepcionView.resx">
+      <DependentUpon>KardexMovimientoRecepcionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\KardexMovimientoEntregaView.resx">
+      <DependentUpon>KardexMovimientoEntregaView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\General\MuestreosView.resx">
       <DependentUpon>MuestreosView.cs</DependentUpon>
@@ -832,6 +910,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Herramientas\CalidadesView.resx">
       <DependentUpon>CalidadesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\CondicionesCajasView.resx">
+      <DependentUpon>CondicionesCajasView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Herramientas\CondicionCajasView.resx">
+      <DependentUpon>CondicionCajasView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Herramientas\ConfiguracionCajasView.resx">
       <DependentUpon>ConfiguracionCajasView.cs</DependentUpon>
@@ -998,6 +1082,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Reports\General\KardexMovimiento\dtsCondicionesCajas.xsc">
+      <DependentUpon>dtsCondicionesCajas.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\General\KardexMovimiento\dtsCondicionesCajas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsCondicionesCajas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\General\KardexMovimiento\dtsCondicionesCajas.xss">
+      <DependentUpon>dtsCondicionesCajas.xsd</DependentUpon>
+    </None>
     <None Include="Reports\General\RecepcionReport\EtiquetaDataSet.xsc">
       <DependentUpon>EtiquetaDataSet.xsd</DependentUpon>
     </None>

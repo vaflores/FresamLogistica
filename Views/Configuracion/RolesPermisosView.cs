@@ -29,7 +29,6 @@ namespace FresamLogistica.Views.Configuracion
 
             _repo = new RolesPermisosController();
 
-
             ConfigurarDataGridView(dgvRegistros);
             ConfigurarComboBoxRoles();
             CargarRegistros();
@@ -211,7 +210,6 @@ namespace FresamLogistica.Views.Configuracion
 
         private void cbRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             try
             {
                 _IdRolSeleccionado = cbRoles.SelectedValue.ToString();

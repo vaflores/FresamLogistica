@@ -36,6 +36,10 @@ namespace FresamLogistica.Model
 
         public DateTime fecha_modifica { get; set; }
 
+        public int? empleado_id { get; set; }
+
+        public virtual Empleados Empleados { get; set; }
+
         public virtual Roles Roles { get; set; }
     }
 }

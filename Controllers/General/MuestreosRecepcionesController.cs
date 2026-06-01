@@ -289,7 +289,7 @@ namespace FresamLogistica.Controllers.General
                                     CalidadId = GetInt(row, "calidad_id"),
                                     Nombre = GetStr(row, "calidad"),
                                     Valor = GetInt(row, "valor"),
-                                    AfectaCalificacion = false,
+                                    AfectaCalificacion = GetInt(row, "afecta_calificacion") == 1,
                                     IncluyeEnReporte = false
                                 });
                             }

@@ -82,5 +82,30 @@ namespace FresamLogistica.Controllers.Configuracion
                 return usuario;
             }
         }
+
+        public string ObtenerNombreEmpleadoUsuario(string usuarioId)
+        {
+            using (var _context = new Model.Model())
+            {
+                var query = from u in _context.Usuarios
+                            join e in _context.Empleados on u.empleado_id equals e.empleado_id
+                            where u.usuario_id == usuarioId
+                            select e.apellido_paterno + " " + e.apellido_materno + " " + e.nombre;
+                return query.FirstOrDefault();
+            }
+        }
+
+        public string ObtenerPuestoEmpleadoUsuario(string usuarioId)
+        {
+            using (var _context = new Model.Model())
+            {
+                var query = from u in _context.Usuarios
+                            join e in _context.Empleados on u.empleado_id equals e.empleado_id
+                            join p in _context.Puestos on e.puesto_id equals p.puesto_id
+                            where u.usuario_id == usuarioId
+                            select p.nombre;
+                return query.FirstOrDefault();
+            }
+        }
     }
 }

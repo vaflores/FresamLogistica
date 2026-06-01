@@ -506,7 +506,17 @@ namespace FresamLogistica.Views.General
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Recibo");
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Etiqueta");
             chkPrecioUnario.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Editar Precio Unitario");
-            tpCalidadDescuento.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Modificar Calidad/Descuento");
+            HabilitarControlesTpCalidadDescuento(SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Modificar Calidad/Descuento"));
+        }
+
+        private void HabilitarControlesTpCalidadDescuento(bool opcionHabilitar)
+        {
+            dgvCalidades.Enabled = opcionHabilitar;
+            txtPesoCaja.Enabled = opcionHabilitar;
+            txtDesecho.Enabled = opcionHabilitar;
+            txtPorcentaje.Enabled = opcionHabilitar;
+            chkAceptado.Enabled = opcionHabilitar;
+            chkMateria.Enabled = opcionHabilitar;
         }
 
         private void ConfigurarComboBoxEstatus()
@@ -580,6 +590,9 @@ namespace FresamLogistica.Views.General
                     //Cargar Info Vehiculo
                     CargarVehiculoInfo(registro.VehiculoInfo);
 
+                    //Cargar Info Descuentos
+                    CargarDatosDescuentoPorRecepcion(registro.Descuentos);
+
                     //Cargar Info Tarimas
                     CargarDatosTarimasGrid(registro.TarimasInfo);
 
@@ -587,9 +600,6 @@ namespace FresamLogistica.Views.General
                     {
                         CalcularPesoNeto(row);
                     }
-
-                    //Cargar Info Descuentos
-                    CargarDatosDescuentoPorRecepcion(registro.Descuentos);
 
                     //Cargar Info Condiciones
                     if(registro.VehiculoInfo != null)

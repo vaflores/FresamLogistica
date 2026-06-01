@@ -31,8 +31,8 @@
             this.tcRegistros = new System.Windows.Forms.TabControl();
             this.tpRegistros = new System.Windows.Forms.TabPage();
             this.tsOpciones = new System.Windows.Forms.ToolStrip();
-            this.tsbAddGrid = new System.Windows.Forms.ToolStripButton();
             this.tsbDelGrid = new System.Windows.Forms.ToolStripButton();
+            this.tsbAddGrid = new System.Windows.Forms.ToolStripButton();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
             this.tsMenu = new System.Windows.Forms.ToolStrip();
             this.tsbBuscar = new System.Windows.Forms.ToolStripButton();
@@ -79,8 +79,8 @@
             this.tsOpciones.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsOpciones.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.tsOpciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbAddGrid,
-            this.tsbDelGrid});
+            this.tsbDelGrid,
+            this.tsbAddGrid});
             this.tsOpciones.Location = new System.Drawing.Point(3, 3);
             this.tsOpciones.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsOpciones.Name = "tsOpciones";
@@ -89,35 +89,38 @@
             this.tsOpciones.TabIndex = 8;
             this.tsOpciones.Text = "toolStrip1";
             // 
-            // tsbAddGrid
-            // 
-            this.tsbAddGrid.Image = global::FresamLogistica.Properties.Resources.create_50;
-            this.tsbAddGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAddGrid.Name = "tsbAddGrid";
-            this.tsbAddGrid.Size = new System.Drawing.Size(115, 42);
-            this.tsbAddGrid.Text = "Recepción";
-            this.tsbAddGrid.Click += new System.EventHandler(this.tsbAddGrid_Click);
-            // 
             // tsbDelGrid
             // 
-            this.tsbDelGrid.Image = global::FresamLogistica.Properties.Resources.remove_50;
+            this.tsbDelGrid.Image = global::FresamLogistica.Properties.Resources.create_50;
             this.tsbDelGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDelGrid.Name = "tsbDelGrid";
             this.tsbDelGrid.Size = new System.Drawing.Size(97, 42);
             this.tsbDelGrid.Text = "Entrega";
             this.tsbDelGrid.Click += new System.EventHandler(this.tsbDelGrid_Click);
             // 
+            // tsbAddGrid
+            // 
+            this.tsbAddGrid.Image = global::FresamLogistica.Properties.Resources.remove_50;
+            this.tsbAddGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAddGrid.Name = "tsbAddGrid";
+            this.tsbAddGrid.Size = new System.Drawing.Size(115, 42);
+            this.tsbAddGrid.Text = "Recepción";
+            this.tsbAddGrid.Click += new System.EventHandler(this.tsbAddGrid_Click);
+            // 
             // dgvRegistros
             // 
             this.dgvRegistros.AllowUserToAddRows = false;
             this.dgvRegistros.AllowUserToDeleteRows = false;
+            this.dgvRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRegistros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegistros.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvRegistros.Location = new System.Drawing.Point(3, 51);
             this.dgvRegistros.Name = "dgvRegistros";
             this.dgvRegistros.ReadOnly = true;
             this.dgvRegistros.Size = new System.Drawing.Size(946, 286);
             this.dgvRegistros.TabIndex = 0;
+            this.dgvRegistros.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistros_CellContentClick);
             this.dgvRegistros.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRegistros_ColumnHeaderMouseClick);
             // 
             // tsMenu

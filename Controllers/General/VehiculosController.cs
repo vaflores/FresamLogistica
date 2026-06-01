@@ -39,6 +39,7 @@ namespace FresamLogistica.Controllers.General
             using (var _context = new Model.Model())
             {
                 AsignarIdSiCero(ref entidad);
+                entidad.estado = "A";
                 SesionActualHelper.RegistrarSesionCrea(ref entidad);
                 _context.Vehiculos.Add(entidad);
                 _context.SaveChanges();

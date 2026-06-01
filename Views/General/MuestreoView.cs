@@ -327,6 +327,7 @@ namespace FresamLogistica.Views.General
         private void ConfigurarComboBoxGrados()
         {
             EstadosHelper.GenerarEstadosDesdeLista(ref cbGrado, _repoGrados.ListarComboBoxFruta(this._IdFrutaSeleccionada));
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbGradoPromedio, _repoGrados.ListarComboBoxFruta(this._IdFrutaSeleccionada));
         }
         
         private void ConfigurarComboBoxAgricultores()
@@ -406,6 +407,8 @@ namespace FresamLogistica.Views.General
                     //Cargar Datos Promedio
                     ActualizarDatosDescuentosPromedio(_repoMuestreos.ConsultarPromedioDescuentosRecepcion(_IdRegistroSeleccionado));
                     CargarDatosCalidadesActivas(_repoMuestreos.ConsultarPromedioCalidadesRecepcion(_IdRegistroSeleccionado), dgvCalidadesPromedio);
+
+                    EstablecerCalificacion();
 
                 }
                 else
@@ -571,6 +574,7 @@ namespace FresamLogistica.Views.General
             cbFruta.Enabled = false;
             cbVariedad.Enabled = false;
             cbGrado.Enabled = false;
+            cbGradoPromedio.Enabled = false;
             cbAgricultor.Enabled = false;
             cbRancho.Enabled = false;
             cbSector.Enabled = false;
@@ -583,6 +587,7 @@ namespace FresamLogistica.Views.General
             txtRecepcion.Enabled = false;
             txtTotalCajas.Enabled = false;
             txtCalificacion.Enabled = false;
+            txtCalificacionPromedio.Enabled = false;
 
             txtPlacas.Enabled = false;
             txtColor.Enabled = false;
@@ -818,6 +823,7 @@ namespace FresamLogistica.Views.General
 
         private void CargarDatosCalidadesActivas(List<CalidadesRecepcionesViewModel> _registros, DataGridView _dgv)
         {
+            _dgv.Rows.Clear();
             if (_registros.Count == 0) return;
 
             DataGridViewRow _fila = new DataGridViewRow();
@@ -875,7 +881,13 @@ namespace FresamLogistica.Views.General
                     .Sum(r => int.Parse(r.Cells["valor"].Value.ToString())))
                     .ToString("N0");
 
+                txtCalificacionPromedio.Text = (Constantes.Calificacion - dgvCalidadesPromedio.Rows.Cast<DataGridViewRow>()
+                    .Where(r => r.Cells["valor"].Value != null && int.TryParse(r.Cells["valor"].Value.ToString(), out int val) && val > 0 && Convert.ToBoolean(r.Cells["AfectaCalificacion"].Value) == true)
+                    .Sum(r => int.Parse(r.Cells["valor"].Value.ToString())))
+                    .ToString("N0");
+
                 cbGrado.SelectedValue = _repoGrados.ObtenerGradoIdPorFrutaIdCalificacion(_IdFrutaSeleccionada, Int32.Parse(txtCalificacion.Text));
+                cbGradoPromedio.SelectedValue = _repoGrados.ObtenerGradoIdPorFrutaIdCalificacion(_IdFrutaSeleccionada, Int32.Parse(txtCalificacionPromedio.Text));
 
             }
             catch (Exception)
@@ -904,6 +916,7 @@ namespace FresamLogistica.Views.General
                 txtPorcentajePromedio.Text = tableDescuentos.Rows[0]["porcentaje_promedio"].ToString();
                 chkAceptadoPromedio.Checked = Convert.ToBoolean(tableDescuentos.Rows[0]["aceptado"]);
                 chkMateriaPromedio.Checked = Convert.ToBoolean(tableDescuentos.Rows[0]["materia"]);
+                txtObservacionesPromedio.Text = tableDescuentos.Rows[0]["observaciones"].ToString();
             }
             else
             {
@@ -912,8 +925,8 @@ namespace FresamLogistica.Views.General
                 txtPorcentajePromedio.Text = "0.00";
                 chkAceptadoPromedio.Checked = false;
                 chkMateriaPromedio.Checked = false;
+                txtObservacionesPromedio.Text = string.Empty;
             }
-            txtObservaciones.Text = string.Empty;
         }
 
         #endregion

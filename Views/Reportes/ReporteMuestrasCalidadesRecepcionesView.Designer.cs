@@ -39,6 +39,10 @@
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnGenerar = new System.Windows.Forms.Button();
+            this.cbVerifica = new System.Windows.Forms.ComboBox();
+            this.cbElabora = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +60,7 @@
             this.tsMenu.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsMenu.Name = "tsMenu";
             this.tsMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.tsMenu.Size = new System.Drawing.Size(363, 45);
+            this.tsMenu.Size = new System.Drawing.Size(493, 45);
             this.tsMenu.TabIndex = 30;
             this.tsMenu.Text = "tsMenu";
             // 
@@ -134,6 +138,7 @@
             // 
             // dtpFechaFin
             // 
+            this.dtpFechaFin.Checked = false;
             this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaFin.Location = new System.Drawing.Point(111, 79);
             this.dtpFechaFin.Name = "dtpFechaFin";
@@ -154,7 +159,7 @@
             // btnGenerar
             // 
             this.btnGenerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerar.Location = new System.Drawing.Point(268, 48);
+            this.btnGenerar.Location = new System.Drawing.Point(401, 48);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(83, 57);
             this.btnGenerar.TabIndex = 36;
@@ -162,11 +167,53 @@
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
+            // cbVerifica
+            // 
+            this.cbVerifica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVerifica.FormattingEnabled = true;
+            this.cbVerifica.Location = new System.Drawing.Point(163, 139);
+            this.cbVerifica.Name = "cbVerifica";
+            this.cbVerifica.Size = new System.Drawing.Size(321, 28);
+            this.cbVerifica.TabIndex = 46;
+            this.cbVerifica.SelectedIndexChanged += new System.EventHandler(this.cbVerifica_SelectedIndexChanged);
+            // 
+            // cbElabora
+            // 
+            this.cbElabora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbElabora.FormattingEnabled = true;
+            this.cbElabora.Location = new System.Drawing.Point(163, 108);
+            this.cbElabora.Name = "cbElabora";
+            this.cbElabora.Size = new System.Drawing.Size(321, 28);
+            this.cbElabora.TabIndex = 45;
+            this.cbElabora.SelectedIndexChanged += new System.EventHandler(this.cbElabora_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 142);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 20);
+            this.label3.TabIndex = 48;
+            this.label3.Text = "Firma Verifica:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 111);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(151, 20);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "Firma Responsable:";
+            // 
             // ReporteMuestrasCalidadesRecepcionesView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 120);
+            this.ClientSize = new System.Drawing.Size(493, 174);
+            this.Controls.Add(this.cbVerifica);
+            this.Controls.Add(this.cbElabora);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.dtpFechaFin);
             this.Controls.Add(this.label1);
@@ -199,5 +246,9 @@
         private System.Windows.Forms.DateTimePicker dtpFechaFin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGenerar;
+        private System.Windows.Forms.ComboBox cbVerifica;
+        private System.Windows.Forms.ComboBox cbElabora;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

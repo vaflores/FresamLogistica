@@ -129,6 +129,7 @@ namespace FresamLogistica.Views.Configuracion
             //Crear columnas
             DataGridViewHelper.AddColumn(dgv, "Usuario Id", _columnaSeleccionada, 100);
             DataGridViewHelper.AddColumn(dgv, "Rol", "rol_id", 300);
+            DataGridViewHelper.AddColumn(dgv, "Empleado Id", "empleado_id", 100);
             DataGridViewHelper.AddColumn(dgv, "Estado", "estado", 100);
 
             DataGridViewHelper.AddColumnEditar(dgv, "Editar", "Editar", 50);

@@ -45,6 +45,10 @@
             this.cNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cVisiblw = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cColReporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbVerifica = new System.Windows.Forms.ComboBox();
+            this.cbElabora = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tsMenu.SuspendLayout();
             this.tcRegistros.SuspendLayout();
             this.tpRegistros.SuspendLayout();
@@ -65,7 +69,7 @@
             this.tsMenu.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsMenu.Name = "tsMenu";
             this.tsMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.tsMenu.Size = new System.Drawing.Size(454, 45);
+            this.tsMenu.Size = new System.Drawing.Size(497, 45);
             this.tsMenu.TabIndex = 30;
             this.tsMenu.Text = "tsMenu";
             // 
@@ -126,7 +130,7 @@
             // dtpFechaInicio
             // 
             this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaInicio.Location = new System.Drawing.Point(111, 48);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(164, 48);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(145, 26);
             this.dtpFechaInicio.TabIndex = 32;
@@ -145,7 +149,7 @@
             // 
             this.dtpFechaFin.Checked = false;
             this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaFin.Location = new System.Drawing.Point(111, 79);
+            this.dtpFechaFin.Location = new System.Drawing.Point(164, 79);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.ShowCheckBox = true;
             this.dtpFechaFin.Size = new System.Drawing.Size(145, 26);
@@ -163,7 +167,7 @@
             // 
             // btnGenerar
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(262, 48);
+            this.btnGenerar.Location = new System.Drawing.Point(402, 48);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(83, 57);
             this.btnGenerar.TabIndex = 36;
@@ -177,10 +181,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tcRegistros.Controls.Add(this.tpRegistros);
-            this.tcRegistros.Location = new System.Drawing.Point(12, 111);
+            this.tcRegistros.Location = new System.Drawing.Point(12, 173);
             this.tcRegistros.Name = "tcRegistros";
             this.tcRegistros.SelectedIndex = 0;
-            this.tcRegistros.Size = new System.Drawing.Size(430, 408);
+            this.tcRegistros.Size = new System.Drawing.Size(473, 386);
             this.tcRegistros.TabIndex = 37;
             // 
             // tpRegistros
@@ -189,7 +193,7 @@
             this.tpRegistros.Location = new System.Drawing.Point(4, 29);
             this.tpRegistros.Name = "tpRegistros";
             this.tpRegistros.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRegistros.Size = new System.Drawing.Size(422, 375);
+            this.tpRegistros.Size = new System.Drawing.Size(465, 353);
             this.tpRegistros.TabIndex = 0;
             this.tpRegistros.Text = "Columnas";
             this.tpRegistros.UseVisualStyleBackColor = true;
@@ -206,7 +210,7 @@
             this.dgvRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRegistros.Location = new System.Drawing.Point(3, 3);
             this.dgvRegistros.Name = "dgvRegistros";
-            this.dgvRegistros.Size = new System.Drawing.Size(416, 369);
+            this.dgvRegistros.Size = new System.Drawing.Size(459, 347);
             this.dgvRegistros.TabIndex = 0;
             // 
             // cNombre
@@ -228,11 +232,53 @@
             this.cColReporte.ReadOnly = true;
             this.cColReporte.Visible = false;
             // 
+            // cbVerifica
+            // 
+            this.cbVerifica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVerifica.FormattingEnabled = true;
+            this.cbVerifica.Location = new System.Drawing.Point(164, 139);
+            this.cbVerifica.Name = "cbVerifica";
+            this.cbVerifica.Size = new System.Drawing.Size(321, 28);
+            this.cbVerifica.TabIndex = 46;
+            this.cbVerifica.SelectedIndexChanged += new System.EventHandler(this.cbVerifica_SelectedIndexChanged);
+            // 
+            // cbElabora
+            // 
+            this.cbElabora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbElabora.FormattingEnabled = true;
+            this.cbElabora.Location = new System.Drawing.Point(164, 108);
+            this.cbElabora.Name = "cbElabora";
+            this.cbElabora.Size = new System.Drawing.Size(321, 28);
+            this.cbElabora.TabIndex = 45;
+            this.cbElabora.SelectedIndexChanged += new System.EventHandler(this.cbElabora_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 142);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 20);
+            this.label3.TabIndex = 48;
+            this.label3.Text = "Firma Verifica:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 111);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(151, 20);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "Firma Responsable:";
+            // 
             // ReporteRecepcionesView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 531);
+            this.ClientSize = new System.Drawing.Size(497, 571);
+            this.Controls.Add(this.cbVerifica);
+            this.Controls.Add(this.cbElabora);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.tcRegistros);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.dtpFechaFin);
@@ -275,5 +321,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cNombre;
         private System.Windows.Forms.DataGridViewCheckBoxColumn cVisiblw;
         private System.Windows.Forms.DataGridViewTextBoxColumn cColReporte;
+        private System.Windows.Forms.ComboBox cbVerifica;
+        private System.Windows.Forms.ComboBox cbElabora;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

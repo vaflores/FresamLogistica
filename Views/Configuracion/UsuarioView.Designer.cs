@@ -42,6 +42,8 @@
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbRol = new System.Windows.Forms.ComboBox();
+            this.cbEmpleados = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,10 +51,10 @@
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword.Location = new System.Drawing.Point(121, 80);
+            this.txtPassword.Location = new System.Drawing.Point(110, 77);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(356, 26);
+            this.txtPassword.Size = new System.Drawing.Size(367, 26);
             this.txtPassword.TabIndex = 2;
             // 
             // txtUsuario
@@ -60,15 +62,15 @@
             this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtUsuario.Location = new System.Drawing.Point(121, 48);
+            this.txtUsuario.Location = new System.Drawing.Point(110, 48);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(356, 26);
+            this.txtUsuario.Size = new System.Drawing.Size(367, 26);
             this.txtUsuario.TabIndex = 1;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(13, 115);
+            this.label13.Location = new System.Drawing.Point(13, 109);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(37, 20);
@@ -78,7 +80,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(13, 83);
+            this.label12.Location = new System.Drawing.Point(13, 80);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(96, 20);
@@ -168,15 +170,15 @@
             // 
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Location = new System.Drawing.Point(121, 146);
+            this.cbEstado.Location = new System.Drawing.Point(110, 168);
             this.cbEstado.Name = "cbEstado";
-            this.cbEstado.Size = new System.Drawing.Size(117, 28);
-            this.cbEstado.TabIndex = 4;
+            this.cbEstado.Size = new System.Drawing.Size(128, 28);
+            this.cbEstado.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 149);
+            this.label1.Location = new System.Drawing.Point(13, 171);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 20);
@@ -189,16 +191,39 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRol.FormattingEnabled = true;
-            this.cbRol.Location = new System.Drawing.Point(121, 112);
+            this.cbRol.Location = new System.Drawing.Point(110, 106);
             this.cbRol.Name = "cbRol";
-            this.cbRol.Size = new System.Drawing.Size(356, 28);
+            this.cbRol.Size = new System.Drawing.Size(367, 28);
             this.cbRol.TabIndex = 3;
+            // 
+            // cbEmpleados
+            // 
+            this.cbEmpleados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbEmpleados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEmpleados.FormattingEnabled = true;
+            this.cbEmpleados.Location = new System.Drawing.Point(110, 137);
+            this.cbEmpleados.Name = "cbEmpleados";
+            this.cbEmpleados.Size = new System.Drawing.Size(367, 28);
+            this.cbEmpleados.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 140);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.TabIndex = 74;
+            this.label2.Text = "Empleado:";
             // 
             // UsuarioView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 192);
+            this.ClientSize = new System.Drawing.Size(489, 221);
+            this.Controls.Add(this.cbEmpleados);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cbRol);
             this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.label1);
@@ -236,5 +261,7 @@
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbRol;
+        private System.Windows.Forms.ComboBox cbEmpleados;
+        private System.Windows.Forms.Label label2;
     }
 }

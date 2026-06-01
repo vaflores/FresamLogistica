@@ -156,5 +156,23 @@ namespace FresamLogistica.Helper
                 dgv.Columns.Add(column);
             }
         }
+
+        public static void AddButtonColumn(System.Windows.Forms.DataGridView dgv, string headerText, string dataPropertyName, int width = 50)
+        {
+            if (dgv.Columns[dataPropertyName] == null)
+            {
+                DataGridViewButtonColumn column = new DataGridViewButtonColumn
+                {
+                    HeaderText = headerText,
+                    DataPropertyName = dataPropertyName,
+                    Name = dataPropertyName,
+                    Width = width,
+                    Text = dataPropertyName,
+                    UseColumnTextForButtonValue = true
+                    
+                };
+                dgv.Columns.Add(column);
+            }
+        }
     }
 }

@@ -17,14 +17,14 @@ using System.Windows.Forms;
 
 namespace FresamLogistica.Views.Residuos
 {
-    public partial class KardexMofimientoView : Form
+    public partial class KardexMovimientoEntregaView : Form
     {
         private readonly KardexCajasController _repo;
 
         private int _agricultorId;
         private bool _tipoMovimiento;
 
-        public KardexMofimientoView(int idAgricultor, bool tipoMovimiento)
+        public KardexMovimientoEntregaView(int idAgricultor, bool tipoMovimiento)
         {
             InitializeComponent();
 
@@ -34,12 +34,12 @@ namespace FresamLogistica.Views.Residuos
             this._agricultorId = idAgricultor;
             this._tipoMovimiento = tipoMovimiento;
 
-            txtTipoMovimiento.Text = _tipoMovimiento ? "Entrada" : "Salida";
+            txtTipoMovimiento.Text = _tipoMovimiento ? "Recepción" : "Entrega";
 
             Helper.TextBoxValidarEnteros.Attach(txtCantidad);
 
-            //this.Tag = 26;
-            //ValidarPermisos();
+            this.Tag = 36;
+            ValidarPermisos();
         }
 
         #region EventosFormulario
@@ -120,7 +120,6 @@ namespace FresamLogistica.Views.Residuos
         {
             try
             {
- 
                 if (Convert.ToInt16(txtCantidad.Text) > 0)
                 {
                     _repo.AgregarMovimientoKardex(_agricultorId, dtpFecha.Value, Convert.ToInt16(txtCantidad.Text), _tipoMovimiento, txtObservaciones.Text);
@@ -143,7 +142,7 @@ namespace FresamLogistica.Views.Residuos
         private void BorrarCampos()
         {
             dtpFecha.Value = DateTime.Today;
-            txtTipoMovimiento.Text = _tipoMovimiento ? "Entrada" : "Salida";
+            txtTipoMovimiento.Text = _tipoMovimiento ? "Recepción" : "Entrega";
             txtCantidad.Text = "0";
         }
 

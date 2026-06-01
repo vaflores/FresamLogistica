@@ -8,6 +8,12 @@ namespace FresamLogistica.Model
 
     public partial class KardexCajas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KardexCajas()
+        {
+            KardexCondicionesCajas = new HashSet<KardexCondicionesCajas>();
+        }
+
         [Key]
         public int kardex_id { get; set; }
 
@@ -43,5 +49,8 @@ namespace FresamLogistica.Model
         public DateTime fecha_modifica { get; set; }
 
         public virtual Agricultores Agricultores { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KardexCondicionesCajas> KardexCondicionesCajas { get; set; }
     }
 }

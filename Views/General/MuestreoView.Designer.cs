@@ -99,6 +99,10 @@
             this.txtFolioDiario = new System.Windows.Forms.TextBox();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.lblFechaInicial = new System.Windows.Forms.Label();
+            this.txtCalificacionPromedio = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cbGradoPromedio = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.tsMenu.SuspendLayout();
             this.tpCalidadDescuento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCalidades)).BeginInit();
@@ -192,15 +196,15 @@
             // 
             this.cbGrado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGrado.FormattingEnabled = true;
-            this.cbGrado.Location = new System.Drawing.Point(536, 78);
+            this.cbGrado.Location = new System.Drawing.Point(574, 37);
             this.cbGrado.Name = "cbGrado";
-            this.cbGrado.Size = new System.Drawing.Size(125, 28);
+            this.cbGrado.Size = new System.Drawing.Size(150, 28);
             this.cbGrado.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(469, 81);
+            this.label5.Location = new System.Drawing.Point(458, 40);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 20);
@@ -236,12 +240,16 @@
             this.tpCalidadDescuento.Controls.Add(this.txtDesecho);
             this.tpCalidadDescuento.Controls.Add(this.txtPesoCaja);
             this.tpCalidadDescuento.Controls.Add(this.label16);
+            this.tpCalidadDescuento.Controls.Add(this.txtCalificacion);
             this.tpCalidadDescuento.Controls.Add(this.label15);
+            this.tpCalidadDescuento.Controls.Add(this.label18);
             this.tpCalidadDescuento.Controls.Add(this.label14);
+            this.tpCalidadDescuento.Controls.Add(this.cbGrado);
+            this.tpCalidadDescuento.Controls.Add(this.label5);
             this.tpCalidadDescuento.Controls.Add(this.dgvCalidades);
             this.tpCalidadDescuento.Location = new System.Drawing.Point(4, 29);
             this.tpCalidadDescuento.Name = "tpCalidadDescuento";
-            this.tpCalidadDescuento.Size = new System.Drawing.Size(915, 189);
+            this.tpCalidadDescuento.Size = new System.Drawing.Size(915, 274);
             this.tpCalidadDescuento.TabIndex = 3;
             this.tpCalidadDescuento.Text = "Calidad/Descuento en la Recepción";
             this.tpCalidadDescuento.UseVisualStyleBackColor = true;
@@ -249,7 +257,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(457, 102);
+            this.label17.Location = new System.Drawing.Point(458, 159);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(118, 20);
@@ -263,16 +271,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtObservaciones.Enabled = false;
-            this.txtObservaciones.Location = new System.Drawing.Point(461, 123);
+            this.txtObservaciones.Location = new System.Drawing.Point(461, 182);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(451, 61);
+            this.txtObservaciones.Size = new System.Drawing.Size(451, 92);
             this.txtObservaciones.TabIndex = 5;
             // 
             // chkMateria
             // 
             this.chkMateria.AutoSize = true;
-            this.chkMateria.Location = new System.Drawing.Point(729, 40);
+            this.chkMateria.Location = new System.Drawing.Point(730, 99);
             this.chkMateria.Name = "chkMateria";
             this.chkMateria.Size = new System.Drawing.Size(140, 24);
             this.chkMateria.TabIndex = 7;
@@ -282,7 +290,7 @@
             // chkAceptado
             // 
             this.chkAceptado.AutoSize = true;
-            this.chkAceptado.Location = new System.Drawing.Point(729, 11);
+            this.chkAceptado.Location = new System.Drawing.Point(730, 70);
             this.chkAceptado.Name = "chkAceptado";
             this.chkAceptado.Size = new System.Drawing.Size(97, 24);
             this.chkAceptado.TabIndex = 6;
@@ -292,7 +300,7 @@
             // txtPorcentaje
             // 
             this.txtPorcentaje.Enabled = false;
-            this.txtPorcentaje.Location = new System.Drawing.Point(573, 67);
+            this.txtPorcentaje.Location = new System.Drawing.Point(574, 126);
             this.txtPorcentaje.Name = "txtPorcentaje";
             this.txtPorcentaje.Size = new System.Drawing.Size(150, 26);
             this.txtPorcentaje.TabIndex = 4;
@@ -300,7 +308,7 @@
             // 
             // txtDesecho
             // 
-            this.txtDesecho.Location = new System.Drawing.Point(573, 38);
+            this.txtDesecho.Location = new System.Drawing.Point(574, 97);
             this.txtDesecho.Name = "txtDesecho";
             this.txtDesecho.Size = new System.Drawing.Size(150, 26);
             this.txtDesecho.TabIndex = 3;
@@ -310,7 +318,7 @@
             // 
             // txtPesoCaja
             // 
-            this.txtPesoCaja.Location = new System.Drawing.Point(573, 9);
+            this.txtPesoCaja.Location = new System.Drawing.Point(574, 68);
             this.txtPesoCaja.Name = "txtPesoCaja";
             this.txtPesoCaja.Size = new System.Drawing.Size(150, 26);
             this.txtPesoCaja.TabIndex = 2;
@@ -321,7 +329,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(457, 70);
+            this.label16.Location = new System.Drawing.Point(458, 129);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(89, 20);
@@ -331,7 +339,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(457, 41);
+            this.label15.Location = new System.Drawing.Point(458, 100);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 20);
@@ -341,7 +349,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(457, 12);
+            this.label14.Location = new System.Drawing.Point(458, 71);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(109, 20);
@@ -358,7 +366,7 @@
             this.dgvCalidades.Location = new System.Drawing.Point(0, 0);
             this.dgvCalidades.Name = "dgvCalidades";
             this.dgvCalidades.ReadOnly = true;
-            this.dgvCalidades.Size = new System.Drawing.Size(450, 186);
+            this.dgvCalidades.Size = new System.Drawing.Size(450, 269);
             this.dgvCalidades.TabIndex = 1;
             this.dgvCalidades.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCalidades_CellEndEdit);
             this.dgvCalidades.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvCalidades_CellValidating);
@@ -370,7 +378,7 @@
             this.tpMuestreos.Controls.Add(this.dgvMuestreos);
             this.tpMuestreos.Location = new System.Drawing.Point(4, 29);
             this.tpMuestreos.Name = "tpMuestreos";
-            this.tpMuestreos.Size = new System.Drawing.Size(915, 189);
+            this.tpMuestreos.Size = new System.Drawing.Size(915, 274);
             this.tpMuestreos.TabIndex = 1;
             this.tpMuestreos.Text = "Muestreos";
             this.tpMuestreos.UseVisualStyleBackColor = true;
@@ -430,7 +438,7 @@
             this.dgvMuestreos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMuestreos.Location = new System.Drawing.Point(0, 48);
             this.dgvMuestreos.Name = "dgvMuestreos";
-            this.dgvMuestreos.Size = new System.Drawing.Size(915, 141);
+            this.dgvMuestreos.Size = new System.Drawing.Size(915, 224);
             this.dgvMuestreos.TabIndex = 6;
             this.dgvMuestreos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMuestreos_CellContentClick);
             this.dgvMuestreos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMuestreos_CellDoubleClick);
@@ -448,7 +456,7 @@
             this.tpVehiculo.Controls.Add(this.label10);
             this.tpVehiculo.Location = new System.Drawing.Point(4, 29);
             this.tpVehiculo.Name = "tpVehiculo";
-            this.tpVehiculo.Size = new System.Drawing.Size(915, 189);
+            this.tpVehiculo.Size = new System.Drawing.Size(915, 274);
             this.tpVehiculo.TabIndex = 2;
             this.tpVehiculo.Text = "Vehiculo";
             this.tpVehiculo.UseVisualStyleBackColor = true;
@@ -463,7 +471,7 @@
             this.dgvCondiciones.Location = new System.Drawing.Point(484, 0);
             this.dgvCondiciones.Name = "dgvCondiciones";
             this.dgvCondiciones.ReadOnly = true;
-            this.dgvCondiciones.Size = new System.Drawing.Size(431, 186);
+            this.dgvCondiciones.Size = new System.Drawing.Size(431, 269);
             this.dgvCondiciones.TabIndex = 5;
             // 
             // txtMarcaModelo
@@ -556,7 +564,7 @@
             this.tpGeneral.Location = new System.Drawing.Point(4, 29);
             this.tpGeneral.Name = "tpGeneral";
             this.tpGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGeneral.Size = new System.Drawing.Size(915, 189);
+            this.tpGeneral.Size = new System.Drawing.Size(915, 274);
             this.tpGeneral.TabIndex = 0;
             this.tpGeneral.Text = "General";
             this.tpGeneral.UseVisualStyleBackColor = true;
@@ -689,11 +697,15 @@
             this.tcRecepcion.Location = new System.Drawing.Point(12, 112);
             this.tcRecepcion.Name = "tcRecepcion";
             this.tcRecepcion.SelectedIndex = 0;
-            this.tcRecepcion.Size = new System.Drawing.Size(923, 222);
+            this.tcRecepcion.Size = new System.Drawing.Size(923, 307);
             this.tcRecepcion.TabIndex = 15;
             // 
             // tpCalidadDescuentoMuestreo
             // 
+            this.tpCalidadDescuentoMuestreo.Controls.Add(this.txtCalificacionPromedio);
+            this.tpCalidadDescuentoMuestreo.Controls.Add(this.label23);
+            this.tpCalidadDescuentoMuestreo.Controls.Add(this.cbGradoPromedio);
+            this.tpCalidadDescuentoMuestreo.Controls.Add(this.label24);
             this.tpCalidadDescuentoMuestreo.Controls.Add(this.label9);
             this.tpCalidadDescuentoMuestreo.Controls.Add(this.txtObservacionesPromedio);
             this.tpCalidadDescuentoMuestreo.Controls.Add(this.chkMateriaPromedio);
@@ -707,7 +719,7 @@
             this.tpCalidadDescuentoMuestreo.Controls.Add(this.dgvCalidadesPromedio);
             this.tpCalidadDescuentoMuestreo.Location = new System.Drawing.Point(4, 29);
             this.tpCalidadDescuentoMuestreo.Name = "tpCalidadDescuentoMuestreo";
-            this.tpCalidadDescuentoMuestreo.Size = new System.Drawing.Size(915, 189);
+            this.tpCalidadDescuentoMuestreo.Size = new System.Drawing.Size(915, 274);
             this.tpCalidadDescuentoMuestreo.TabIndex = 4;
             this.tpCalidadDescuentoMuestreo.Text = "Calidad/Descuento del Muestreo";
             this.tpCalidadDescuentoMuestreo.UseVisualStyleBackColor = true;
@@ -715,7 +727,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(457, 102);
+            this.label9.Location = new System.Drawing.Point(458, 159);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 20);
@@ -729,17 +741,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtObservacionesPromedio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtObservacionesPromedio.Enabled = false;
-            this.txtObservacionesPromedio.Location = new System.Drawing.Point(461, 123);
+            this.txtObservacionesPromedio.Location = new System.Drawing.Point(461, 182);
             this.txtObservacionesPromedio.Multiline = true;
             this.txtObservacionesPromedio.Name = "txtObservacionesPromedio";
-            this.txtObservacionesPromedio.Size = new System.Drawing.Size(451, 61);
+            this.txtObservacionesPromedio.Size = new System.Drawing.Size(451, 92);
             this.txtObservacionesPromedio.TabIndex = 64;
             // 
             // chkMateriaPromedio
             // 
             this.chkMateriaPromedio.AutoSize = true;
             this.chkMateriaPromedio.Enabled = false;
-            this.chkMateriaPromedio.Location = new System.Drawing.Point(729, 40);
+            this.chkMateriaPromedio.Location = new System.Drawing.Point(730, 99);
             this.chkMateriaPromedio.Name = "chkMateriaPromedio";
             this.chkMateriaPromedio.Size = new System.Drawing.Size(140, 24);
             this.chkMateriaPromedio.TabIndex = 66;
@@ -750,7 +762,7 @@
             // 
             this.chkAceptadoPromedio.AutoSize = true;
             this.chkAceptadoPromedio.Enabled = false;
-            this.chkAceptadoPromedio.Location = new System.Drawing.Point(729, 11);
+            this.chkAceptadoPromedio.Location = new System.Drawing.Point(730, 70);
             this.chkAceptadoPromedio.Name = "chkAceptadoPromedio";
             this.chkAceptadoPromedio.Size = new System.Drawing.Size(97, 24);
             this.chkAceptadoPromedio.TabIndex = 65;
@@ -760,7 +772,7 @@
             // txtPorcentajePromedio
             // 
             this.txtPorcentajePromedio.Enabled = false;
-            this.txtPorcentajePromedio.Location = new System.Drawing.Point(573, 67);
+            this.txtPorcentajePromedio.Location = new System.Drawing.Point(574, 126);
             this.txtPorcentajePromedio.Name = "txtPorcentajePromedio";
             this.txtPorcentajePromedio.Size = new System.Drawing.Size(150, 26);
             this.txtPorcentajePromedio.TabIndex = 63;
@@ -769,7 +781,7 @@
             // txtDesechoPromedio
             // 
             this.txtDesechoPromedio.Enabled = false;
-            this.txtDesechoPromedio.Location = new System.Drawing.Point(573, 38);
+            this.txtDesechoPromedio.Location = new System.Drawing.Point(574, 97);
             this.txtDesechoPromedio.Name = "txtDesechoPromedio";
             this.txtDesechoPromedio.Size = new System.Drawing.Size(150, 26);
             this.txtDesechoPromedio.TabIndex = 62;
@@ -779,7 +791,7 @@
             // txtPesoCajaPromedio
             // 
             this.txtPesoCajaPromedio.Enabled = false;
-            this.txtPesoCajaPromedio.Location = new System.Drawing.Point(573, 9);
+            this.txtPesoCajaPromedio.Location = new System.Drawing.Point(574, 68);
             this.txtPesoCajaPromedio.Name = "txtPesoCajaPromedio";
             this.txtPesoCajaPromedio.Size = new System.Drawing.Size(150, 26);
             this.txtPesoCajaPromedio.TabIndex = 61;
@@ -789,7 +801,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(457, 70);
+            this.label19.Location = new System.Drawing.Point(458, 129);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(89, 20);
@@ -799,7 +811,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(457, 41);
+            this.label21.Location = new System.Drawing.Point(458, 100);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(77, 20);
@@ -809,7 +821,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(457, 12);
+            this.label22.Location = new System.Drawing.Point(458, 71);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(109, 20);
@@ -826,13 +838,13 @@
             this.dgvCalidadesPromedio.Location = new System.Drawing.Point(0, 0);
             this.dgvCalidadesPromedio.Name = "dgvCalidadesPromedio";
             this.dgvCalidadesPromedio.ReadOnly = true;
-            this.dgvCalidadesPromedio.Size = new System.Drawing.Size(450, 186);
+            this.dgvCalidadesPromedio.Size = new System.Drawing.Size(450, 269);
             this.dgvCalidadesPromedio.TabIndex = 60;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(250, 81);
+            this.label18.Location = new System.Drawing.Point(458, 11);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(93, 20);
@@ -842,9 +854,9 @@
             // txtCalificacion
             // 
             this.txtCalificacion.Enabled = false;
-            this.txtCalificacion.Location = new System.Drawing.Point(341, 78);
+            this.txtCalificacion.Location = new System.Drawing.Point(574, 8);
             this.txtCalificacion.Name = "txtCalificacion";
-            this.txtCalificacion.Size = new System.Drawing.Size(125, 26);
+            this.txtCalificacion.Size = new System.Drawing.Size(150, 26);
             this.txtCalificacion.TabIndex = 6;
             this.txtCalificacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalificacion.TextChanged += new System.EventHandler(this.txtCalificacion_TextChanged);
@@ -904,11 +916,49 @@
             this.lblFechaInicial.TabIndex = 63;
             this.lblFechaInicial.Text = "Fecha:";
             // 
+            // txtCalificacionPromedio
+            // 
+            this.txtCalificacionPromedio.Enabled = false;
+            this.txtCalificacionPromedio.Location = new System.Drawing.Point(574, 8);
+            this.txtCalificacionPromedio.Name = "txtCalificacionPromedio";
+            this.txtCalificacionPromedio.Size = new System.Drawing.Size(150, 26);
+            this.txtCalificacionPromedio.TabIndex = 72;
+            this.txtCalificacionPromedio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(458, 11);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(93, 20);
+            this.label23.TabIndex = 74;
+            this.label23.Text = "Calificación:";
+            // 
+            // cbGradoPromedio
+            // 
+            this.cbGradoPromedio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGradoPromedio.FormattingEnabled = true;
+            this.cbGradoPromedio.Location = new System.Drawing.Point(574, 37);
+            this.cbGradoPromedio.Name = "cbGradoPromedio";
+            this.cbGradoPromedio.Size = new System.Drawing.Size(150, 28);
+            this.cbGradoPromedio.TabIndex = 71;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(458, 40);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(58, 20);
+            this.label24.TabIndex = 73;
+            this.label24.Text = "Grado:";
+            // 
             // MuestreoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 346);
+            this.ClientSize = new System.Drawing.Size(947, 431);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.lblFechaInicial);
             this.Controls.Add(this.txtFolioDiario);
@@ -917,14 +967,10 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtTotalCajas);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtCalificacion);
             this.Controls.Add(this.txtRecepcion);
-            this.Controls.Add(this.label18);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.tcRecepcion);
             this.Controls.Add(this.tsMenu);
-            this.Controls.Add(this.cbGrado);
-            this.Controls.Add(this.label5);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MuestreoView";
@@ -1029,5 +1075,9 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.DataGridView dgvCalidadesPromedio;
+        private System.Windows.Forms.TextBox txtCalificacionPromedio;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox cbGradoPromedio;
+        private System.Windows.Forms.Label label24;
     }
 }

@@ -1,4 +1,5 @@
-﻿using FresamLogistica.Controllers.General;
+﻿using FresamLogistica.Controllers.Configuracion;
+using FresamLogistica.Controllers.General;
 using FresamLogistica.Controllers.Productos;
 using FresamLogistica.Controllers.Reportes;
 using FresamLogistica.Controllers.Residuos;
@@ -28,8 +29,10 @@ namespace FresamLogistica.Views.Reportes
         private readonly CiclosController _repoCiclos = new CiclosController();
         private readonly EmpresaController _repoEmpresa = new EmpresaController();
         private readonly ReporteCalidadesRecepcionesController controller = new ReporteCalidadesRecepcionesController();
+        private readonly EmpleadosController _repoEmpleados = new EmpleadosController();
 
-        private DataTable datosImpresion = new DataTable();
+        private string nombreElabora = string.Empty;
+        private string nombreVerifica = string.Empty;
 
         public ReporteMuestrasCalidadesRecepcionesView()
         {
@@ -38,12 +41,14 @@ namespace FresamLogistica.Views.Reportes
             this.KeyPreview = true;
 
             _repo = new TitulosCalidadesController();
-            dtpFechaFin.Checked = true;
+            dtpFechaFin.Checked = false;
 
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             ValidarPermisos();
+
+            ConfigurarComboBoxFirmas();
         }
 
         #region EventosFormulario
@@ -102,6 +107,13 @@ namespace FresamLogistica.Views.Reportes
         #endregion
 
         #region MetodosPrivados
+        private void ConfigurarComboBoxFirmas()
+        {
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbElabora, _repoEmpleados.ListarComboBox());
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbVerifica, _repoEmpleados.ListarComboBox());
+            cbElabora.SelectedIndex = -1;
+            cbVerifica.SelectedIndex = -1;
+        }
 
         private void ValidarPermisos()
         {
@@ -154,8 +166,11 @@ namespace FresamLogistica.Views.Reportes
                     return;
                 }
 
-                datosImpresion = _residuos;
-
+                if (string.IsNullOrWhiteSpace(nombreElabora) || string.IsNullOrWhiteSpace(nombreVerifica))
+                {
+                    MessageBox.Show("Falta seleccionar nombre de responsable y verifica.", "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 var _ciclos = _repoCiclos.ObtenerCicloPorFecha(dtpFechaInicio.Value);
                 Ciclos _ciclo = _repoCiclos.ObtenerPorId(_ciclos);
@@ -175,7 +190,10 @@ namespace FresamLogistica.Views.Reportes
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
-                    new ReportParameter("edicionParam", _ciclo?.edicion)
+                    new ReportParameter("edicionParam", _ciclo?.edicion),
+
+                    new ReportParameter("responsableParam", nombreElabora),
+                    new ReportParameter("verificaParam", nombreVerifica)
                 };
 
 
@@ -251,5 +269,24 @@ namespace FresamLogistica.Views.Reportes
         }
         #endregion
 
+        private void cbElabora_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                nombreElabora = cbElabora.Text;
+            }
+            catch (Exception ex)
+            { }
+        }
+
+        private void cbVerifica_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                nombreVerifica = cbVerifica.Text;
+            }
+            catch (Exception ex)
+            { }
+        }
     }
 }

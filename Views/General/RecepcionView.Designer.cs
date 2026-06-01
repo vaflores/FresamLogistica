@@ -329,7 +329,7 @@
             this.txtObservaciones.Location = new System.Drawing.Point(461, 134);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(430, 65);
+            this.txtObservaciones.Size = new System.Drawing.Size(439, 95);
             this.txtObservaciones.TabIndex = 5;
             // 
             // chkMateria
@@ -421,7 +421,7 @@
             this.dgvCalidades.Location = new System.Drawing.Point(0, 0);
             this.dgvCalidades.Name = "dgvCalidades";
             this.dgvCalidades.ReadOnly = true;
-            this.dgvCalidades.Size = new System.Drawing.Size(450, 206);
+            this.dgvCalidades.Size = new System.Drawing.Size(450, 232);
             this.dgvCalidades.TabIndex = 1;
             this.dgvCalidades.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCalidades_CellEndEdit);
             this.dgvCalidades.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvCalidades_CellValidating);
@@ -503,9 +503,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTarimas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTarimas.Location = new System.Drawing.Point(3, 48);
+            this.dgvTarimas.Location = new System.Drawing.Point(0, 48);
             this.dgvTarimas.Name = "dgvTarimas";
-            this.dgvTarimas.Size = new System.Drawing.Size(900, 155);
+            this.dgvTarimas.Size = new System.Drawing.Size(903, 184);
             this.dgvTarimas.TabIndex = 6;
             this.dgvTarimas.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTarimas_CellEndEdit);
             this.dgvTarimas.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTarimas_CellValidating);
@@ -538,7 +538,7 @@
             this.dgvCondiciones.Location = new System.Drawing.Point(472, 0);
             this.dgvCondiciones.Name = "dgvCondiciones";
             this.dgvCondiciones.ReadOnly = true;
-            this.dgvCondiciones.Size = new System.Drawing.Size(431, 206);
+            this.dgvCondiciones.Size = new System.Drawing.Size(431, 229);
             this.dgvCondiciones.TabIndex = 5;
             // 
             // txtMarcaModelo
@@ -812,7 +812,7 @@
             // 
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Location = new System.Drawing.Point(738, 48);
+            this.cbEstado.Location = new System.Drawing.Point(788, 48);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(125, 28);
             this.cbEstado.TabIndex = 4;
@@ -912,14 +912,14 @@
             this.label22.Location = new System.Drawing.Point(662, 82);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(53, 20);
+            this.label22.Size = new System.Drawing.Size(128, 20);
             this.label22.TabIndex = 64;
-            this.label22.Text = "Cajas:";
+            this.label22.Text = "Cajas prestadas:";
             // 
             // txtTotalCajas
             // 
             this.txtTotalCajas.Enabled = false;
-            this.txtTotalCajas.Location = new System.Drawing.Point(738, 79);
+            this.txtTotalCajas.Location = new System.Drawing.Point(788, 79);
             this.txtTotalCajas.Name = "txtTotalCajas";
             this.txtTotalCajas.Size = new System.Drawing.Size(125, 26);
             this.txtTotalCajas.TabIndex = 65;

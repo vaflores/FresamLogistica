@@ -48,6 +48,10 @@
             this.tpRegistros = new System.Windows.Forms.TabPage();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
             this.tcRegistros = new System.Windows.Forms.TabControl();
+            this.cbVerifica = new System.Windows.Forms.ComboBox();
+            this.cbElabora = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tsMenu.SuspendLayout();
             this.tpTotales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTotales)).BeginInit();
@@ -133,7 +137,7 @@
             // dtpFechaInicio
             // 
             this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaInicio.Location = new System.Drawing.Point(111, 48);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(162, 48);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(145, 26);
             this.dtpFechaInicio.TabIndex = 1;
@@ -152,7 +156,7 @@
             // 
             this.dtpFechaFin.Checked = false;
             this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaFin.Location = new System.Drawing.Point(111, 79);
+            this.dtpFechaFin.Location = new System.Drawing.Point(162, 79);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.ShowCheckBox = true;
             this.dtpFechaFin.Size = new System.Drawing.Size(145, 26);
@@ -171,7 +175,7 @@
             // btnGenerar
             // 
             this.btnGenerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerar.Location = new System.Drawing.Point(489, 47);
+            this.btnGenerar.Location = new System.Drawing.Point(400, 48);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(83, 57);
             this.btnGenerar.TabIndex = 4;
@@ -185,16 +189,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbFrutas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFrutas.FormattingEnabled = true;
-            this.cbFrutas.Location = new System.Drawing.Point(315, 48);
+            this.cbFrutas.Location = new System.Drawing.Point(162, 108);
             this.cbFrutas.Name = "cbFrutas";
-            this.cbFrutas.Size = new System.Drawing.Size(168, 28);
+            this.cbFrutas.Size = new System.Drawing.Size(321, 28);
             this.cbFrutas.TabIndex = 3;
             // 
             // lblGrados
             // 
             this.lblGrados.AutoSize = true;
             this.lblGrados.Enabled = false;
-            this.lblGrados.Location = new System.Drawing.Point(263, 53);
+            this.lblGrados.Location = new System.Drawing.Point(13, 111);
             this.lblGrados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGrados.Name = "lblGrados";
             this.lblGrados.Size = new System.Drawing.Size(51, 20);
@@ -206,7 +210,7 @@
             this.tpTotales.Controls.Add(this.dgvTotales);
             this.tpTotales.Location = new System.Drawing.Point(4, 29);
             this.tpTotales.Name = "tpTotales";
-            this.tpTotales.Size = new System.Drawing.Size(912, 360);
+            this.tpTotales.Size = new System.Drawing.Size(912, 267);
             this.tpTotales.TabIndex = 2;
             this.tpTotales.Text = "Totales Mensuales";
             this.tpTotales.UseVisualStyleBackColor = true;
@@ -220,7 +224,7 @@
             this.dgvTotales.Location = new System.Drawing.Point(0, 0);
             this.dgvTotales.Name = "dgvTotales";
             this.dgvTotales.ReadOnly = true;
-            this.dgvTotales.Size = new System.Drawing.Size(912, 360);
+            this.dgvTotales.Size = new System.Drawing.Size(912, 267);
             this.dgvTotales.TabIndex = 1;
             // 
             // tpMes
@@ -228,7 +232,7 @@
             this.tpMes.Controls.Add(this.dgvMensual);
             this.tpMes.Location = new System.Drawing.Point(4, 29);
             this.tpMes.Name = "tpMes";
-            this.tpMes.Size = new System.Drawing.Size(912, 360);
+            this.tpMes.Size = new System.Drawing.Size(912, 267);
             this.tpMes.TabIndex = 1;
             this.tpMes.Text = "Mensual por Tipo";
             this.tpMes.UseVisualStyleBackColor = true;
@@ -242,7 +246,7 @@
             this.dgvMensual.Location = new System.Drawing.Point(0, 0);
             this.dgvMensual.Name = "dgvMensual";
             this.dgvMensual.ReadOnly = true;
-            this.dgvMensual.Size = new System.Drawing.Size(912, 360);
+            this.dgvMensual.Size = new System.Drawing.Size(912, 267);
             this.dgvMensual.TabIndex = 1;
             // 
             // tpRegistros
@@ -251,7 +255,7 @@
             this.tpRegistros.Location = new System.Drawing.Point(4, 29);
             this.tpRegistros.Name = "tpRegistros";
             this.tpRegistros.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRegistros.Size = new System.Drawing.Size(912, 360);
+            this.tpRegistros.Size = new System.Drawing.Size(912, 267);
             this.tpRegistros.TabIndex = 0;
             this.tpRegistros.Text = "Detalle";
             this.tpRegistros.UseVisualStyleBackColor = true;
@@ -265,7 +269,7 @@
             this.dgvRegistros.Location = new System.Drawing.Point(3, 3);
             this.dgvRegistros.Name = "dgvRegistros";
             this.dgvRegistros.ReadOnly = true;
-            this.dgvRegistros.Size = new System.Drawing.Size(906, 354);
+            this.dgvRegistros.Size = new System.Drawing.Size(906, 261);
             this.dgvRegistros.TabIndex = 0;
             // 
             // tcRegistros
@@ -276,17 +280,59 @@
             this.tcRegistros.Controls.Add(this.tpRegistros);
             this.tcRegistros.Controls.Add(this.tpMes);
             this.tcRegistros.Controls.Add(this.tpTotales);
-            this.tcRegistros.Location = new System.Drawing.Point(17, 111);
+            this.tcRegistros.Location = new System.Drawing.Point(17, 204);
             this.tcRegistros.Name = "tcRegistros";
             this.tcRegistros.SelectedIndex = 0;
-            this.tcRegistros.Size = new System.Drawing.Size(920, 393);
+            this.tcRegistros.Size = new System.Drawing.Size(920, 300);
             this.tcRegistros.TabIndex = 5;
+            // 
+            // cbVerifica
+            // 
+            this.cbVerifica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVerifica.FormattingEnabled = true;
+            this.cbVerifica.Location = new System.Drawing.Point(162, 170);
+            this.cbVerifica.Name = "cbVerifica";
+            this.cbVerifica.Size = new System.Drawing.Size(321, 28);
+            this.cbVerifica.TabIndex = 46;
+            this.cbVerifica.SelectedIndexChanged += new System.EventHandler(this.cbVerifica_SelectedIndexChanged);
+            // 
+            // cbElabora
+            // 
+            this.cbElabora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbElabora.FormattingEnabled = true;
+            this.cbElabora.Location = new System.Drawing.Point(162, 139);
+            this.cbElabora.Name = "cbElabora";
+            this.cbElabora.Size = new System.Drawing.Size(321, 28);
+            this.cbElabora.TabIndex = 45;
+            this.cbElabora.SelectedIndexChanged += new System.EventHandler(this.cbElabora_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 173);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 20);
+            this.label3.TabIndex = 48;
+            this.label3.Text = "Firma Verifica:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 142);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(151, 20);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "Firma Responsable:";
             // 
             // ReporteResiduosRecolectadosView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 516);
+            this.Controls.Add(this.cbVerifica);
+            this.Controls.Add(this.cbElabora);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cbFrutas);
             this.Controls.Add(this.lblGrados);
             this.Controls.Add(this.tcRegistros);
@@ -339,5 +385,9 @@
         private System.Windows.Forms.TabPage tpRegistros;
         private System.Windows.Forms.DataGridView dgvRegistros;
         private System.Windows.Forms.TabControl tcRegistros;
+        private System.Windows.Forms.ComboBox cbVerifica;
+        private System.Windows.Forms.ComboBox cbElabora;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

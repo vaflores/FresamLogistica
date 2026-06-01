@@ -1,7 +1,8 @@
-﻿using FresamLogistica.Controllers.General;
-using FresamLogistica.Controllers.Residuos;
+﻿using FresamLogistica.Controllers.Configuracion;
+using FresamLogistica.Controllers.General;
 using FresamLogistica.Controllers.Productos;
 using FresamLogistica.Controllers.Reportes;
+using FresamLogistica.Controllers.Residuos;
 using FresamLogistica.Helper;
 using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
@@ -25,8 +26,12 @@ namespace FresamLogistica.Views.Reportes
         private readonly TitulosCalidadesController _repo;
         private readonly CiclosResiduosController _repoCiclos = new CiclosResiduosController();
         private readonly EmpresaController _repoEmpresa = new EmpresaController();
-        private readonly AgricultoresController _repoAgricultores = new AgricultoresController();
         private readonly RecepcionesController controller = new RecepcionesController();
+        private readonly EmpleadosController _repoEmpleados = new EmpleadosController();
+
+        private string nombreElabora = string.Empty;
+        private string nombreVerifica = string.Empty;
+
 
         public ReporteRecepcionesView()
         {
@@ -42,6 +47,8 @@ namespace FresamLogistica.Views.Reportes
 
             AgrgarRegistros();
             ValidarPermisos();
+
+            ConfigurarComboBoxFirmas();
         }
 
         #region EventosFormulario
@@ -100,6 +107,13 @@ namespace FresamLogistica.Views.Reportes
         #endregion
 
         #region MetodosPrivados
+        private void ConfigurarComboBoxFirmas()
+        {
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbElabora, _repoEmpleados.ListarComboBox());
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbVerifica, _repoEmpleados.ListarComboBox());
+            cbElabora.SelectedIndex = -1;
+            cbVerifica.SelectedIndex = -1;
+        }
 
         private void ValidarPermisos()
         {
@@ -111,20 +125,21 @@ namespace FresamLogistica.Views.Reportes
         private void AgrgarRegistros()
         {
             //Agregar datos al DataGridView o a la fuente de datos correspondiente.
-             
-            dgvRegistros.Rows.Add("Recepción Id", true, "recepcion_id");
-            dgvRegistros.Rows.Add("Fecha", true, "fecha");
-            dgvRegistros.Rows.Add("Folio Diario", true, "id_folio_diario");
+
+            dgvRegistros.Rows.Add("Recepción Id", false, "recepcion_id");
+            dgvRegistros.Rows.Add("Fecha", false, "fecha");
+            dgvRegistros.Rows.Add("Folio Diario", false, "id_folio_diario");
             dgvRegistros.Rows.Add("Agricultor", true, "agricultor");
             dgvRegistros.Rows.Add("Rancho", false, "rancho");
             dgvRegistros.Rows.Add("Sector", false, "sector");
-            dgvRegistros.Rows.Add("Variedad", true, "variedad");
-            dgvRegistros.Rows.Add("Calidad", true, "calidad");
+            dgvRegistros.Rows.Add("Variedad", false, "variedad");
+            dgvRegistros.Rows.Add("Calidad", false, "calidad");
             dgvRegistros.Rows.Add("Grado", true, "grado_id");
+            dgvRegistros.Rows.Add("Descuento", true, "descuento");
             dgvRegistros.Rows.Add("Cantidad de Cajas", true, "no_tarimas");
-            dgvRegistros.Rows.Add("Peso Neto", true, "peso_neto");
-            dgvRegistros.Rows.Add("Precio Unitario", true, "precio_unitario");
-            dgvRegistros.Rows.Add("Importe", true, "importe");
+            dgvRegistros.Rows.Add("Peso Neto", false, "peso_neto");
+            dgvRegistros.Rows.Add("Precio Unitario", false, "precio_unitario");
+            dgvRegistros.Rows.Add("Importe", false, "importe");
             dgvRegistros.Rows.Add("Estado", false, "estado");
         }
 
@@ -171,13 +186,19 @@ namespace FresamLogistica.Views.Reportes
                     MessageBox.Show("No existen datos para imprimir en el rango de fechas seleccionado.", "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                                
+
+                if (string.IsNullOrWhiteSpace(nombreElabora) || string.IsNullOrWhiteSpace(nombreVerifica))
+                {
+                    MessageBox.Show("Falta seleccionar nombre de responsable y verifica.", "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var _ciclos = _repoCiclos.ObtenerCicloResiduosPorFecha(dtpFechaInicio.Value);
                 CiclosResiduos _ciclo = _repoCiclos.ObtenerPorCicloResiduosId(_ciclos);
                 var _titulos = _repo.ObtenerPorCicloId(_ciclos);
                 var _empresa = _repoEmpresa.ObtenerPorId(1);
                 byte[] _logoByte = _empresa.logo;
-                
+
 
                 List<ReportParameter> parametros = new List<ReportParameter>()
                 {
@@ -186,7 +207,7 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("titulo1Param", _titulos == null ? "" : _titulos.titulo1),
                     new ReportParameter("titulo2Param", "Resumen de Recepciones de Producto por Agricultor "),
                     new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
-                    new ReportParameter("fechaReporteParam", !dtpFechaFin.Checked ? 
+                    new ReportParameter("fechaReporteParam", !dtpFechaFin.Checked ?
                         dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper() :
                         dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper() + " AL " + dtpFechaFin.Value.ToString("dd/MM/yyyy").ToUpper()),
 
@@ -201,11 +222,17 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("rancho", ElCampoEsVisible("Rancho")),
                     new ReportParameter("sector", ElCampoEsVisible("Sector")),
                     new ReportParameter("variedad", ElCampoEsVisible("Variedad")),
-                    new ReportParameter("no_tarimas", ElCampoEsVisible("Cantidad de Tarimas")),
+                    new ReportParameter("calidad", ElCampoEsVisible("Calidad")),
+                    new ReportParameter("grado", ElCampoEsVisible("Grado")),
+                    new ReportParameter("no_tarimas", ElCampoEsVisible("Cantidad de Cajas")),
                     new ReportParameter("peso_neto", ElCampoEsVisible("Peso Neto")),
                     new ReportParameter("precio_unitario", ElCampoEsVisible("Precio Unitario")),
                     new ReportParameter("importe", ElCampoEsVisible("Importe")),
-                    new ReportParameter("estado", ElCampoEsVisible("Estado"))
+                    new ReportParameter("estado", ElCampoEsVisible("Estado")),
+                    new ReportParameter("descuento", ElCampoEsVisible("Descuento")),
+
+                    new ReportParameter("responsableParam", nombreElabora),
+                    new ReportParameter("verificaParam", nombreVerifica)
 
                 };
 
@@ -221,6 +248,7 @@ namespace FresamLogistica.Views.Reportes
                 _dtMaster.Columns.Add("variedad", typeof(string));
                 _dtMaster.Columns.Add("calidad", typeof(string));
                 _dtMaster.Columns.Add("grado_id", typeof(string));
+                _dtMaster.Columns.Add("descuento", typeof(string));
                 _dtMaster.Columns.Add("no_tarimas", typeof(string));
                 _dtMaster.Columns.Add("peso_neto", typeof(string));
                 _dtMaster.Columns.Add("precio_unitario", typeof(string));
@@ -240,6 +268,7 @@ namespace FresamLogistica.Views.Reportes
                     _row["variedad"] = fila["variedad"].ToString();
                     _row["calidad"] = Convert.ToInt32(fila["calidad"]).ToString("N0");
                     _row["grado_id"] = fila["grado_id"].ToString();
+                    _row["descuento"] = Convert.ToDecimal(fila["descuento"]).ToString("N2");
                     _row["no_tarimas"] = Convert.ToInt32(fila["no_tarimas"]).ToString("N0");
                     _row["peso_neto"] = Convert.ToDecimal(fila["peso_neto"]).ToString("N2");
                     _row["precio_unitario"] = Convert.ToDecimal(fila["precio_unitario"]).ToString("C2");
@@ -290,5 +319,24 @@ namespace FresamLogistica.Views.Reportes
         }
         #endregion
 
+        private void cbElabora_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                nombreElabora = cbElabora.Text;
+            }
+            catch (Exception ex)
+            { }
+        }
+
+        private void cbVerifica_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                nombreVerifica = cbVerifica.Text;
+            }
+            catch (Exception ex)
+            { }
+        }
     }
 }

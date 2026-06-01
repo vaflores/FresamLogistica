@@ -24,11 +24,14 @@ namespace FresamLogistica.Model
         public virtual DbSet<CiclosResiduos> CiclosResiduos { get; set; }
         public virtual DbSet<Ciudades> Ciudades { get; set; }
         public virtual DbSet<Condiciones> Condiciones { get; set; }
+        public virtual DbSet<CondicionesCajas> CondicionesCajas { get; set; }
         public virtual DbSet<CondicionesVehiculosRecepciones> CondicionesVehiculosRecepciones { get; set; }
+        public virtual DbSet<ConfiguracionFirmasReportes> ConfiguracionFirmasReportes { get; set; }
         public virtual DbSet<ConfiguracionGeneralCajas> ConfiguracionGeneralCajas { get; set; }
         public virtual DbSet<DescuentosRecepciones> DescuentosRecepciones { get; set; }
         public virtual DbSet<DestinosResiduo> DestinosResiduo { get; set; }
         public virtual DbSet<DetalleRegistroResiduoRecolectado> DetalleRegistroResiduoRecolectado { get; set; }
+        public virtual DbSet<Empleados> Empleados { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<EmpresaGestoraDeResiduos> EmpresaGestoraDeResiduos { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
@@ -37,6 +40,7 @@ namespace FresamLogistica.Model
         public virtual DbSet<Frutas> Frutas { get; set; }
         public virtual DbSet<GradosFruta> GradosFruta { get; set; }
         public virtual DbSet<KardexCajas> KardexCajas { get; set; }
+        public virtual DbSet<KardexCondicionesCajas> KardexCondicionesCajas { get; set; }
         public virtual DbSet<LoteFolios> LoteFolios { get; set; }
         public virtual DbSet<MuestreosCalidadesRecepciones> MuestreosCalidadesRecepciones { get; set; }
         public virtual DbSet<MuestreosRecepciones> MuestreosRecepciones { get; set; }
@@ -45,6 +49,7 @@ namespace FresamLogistica.Model
         public virtual DbSet<Permisos> Permisos { get; set; }
         public virtual DbSet<Precios> Precios { get; set; }
         public virtual DbSet<Producciones> Producciones { get; set; }
+        public virtual DbSet<Puestos> Puestos { get; set; }
         public virtual DbSet<Ranchos> Ranchos { get; set; }
         public virtual DbSet<Recepciones> Recepciones { get; set; }
         public virtual DbSet<RegistrosResiduoRecolectado> RegistrosResiduoRecolectado { get; set; }
@@ -404,11 +409,53 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.Condiciones)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<CondicionesCajas>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CondicionesCajas>()
+                .Property(e => e.descripcion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CondicionesCajas>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CondicionesCajas>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CondicionesCajas>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CondicionesCajas>()
+                .HasMany(e => e.KardexCondicionesCajas)
+                .WithRequired(e => e.CondicionesCajas)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<CondicionesVehiculosRecepciones>()
                 .Property(e => e.usuario_crea)
                 .IsUnicode(false);
 
             modelBuilder.Entity<CondicionesVehiculosRecepciones>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ConfiguracionFirmasReportes>()
+                .Property(e => e.reporte_clave)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ConfiguracionFirmasReportes>()
+                .Property(e => e.etiqueta_firma)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ConfiguracionFirmasReportes>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ConfiguracionFirmasReportes>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
@@ -470,6 +517,35 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<DetalleRegistroResiduoRecolectado>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Empleados>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Empleados>()
+                .Property(e => e.apellido_paterno)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Empleados>()
+                .Property(e => e.apellido_materno)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Empleados>()
+                .Property(e => e.estado)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Empleados>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Empleados>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Empleados>()
+                .HasMany(e => e.ConfiguracionFirmasReportes)
+                .WithRequired(e => e.Empleados)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Empresa>()
                 .Property(e => e.nombre)
@@ -689,6 +765,19 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<KardexCajas>()
+                .HasMany(e => e.KardexCondicionesCajas)
+                .WithRequired(e => e.KardexCajas)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<KardexCondicionesCajas>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<KardexCondicionesCajas>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<LoteFolios>()
                 .Property(e => e.importe)
                 .HasPrecision(19, 4);
@@ -831,6 +920,27 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<Producciones>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Puestos>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Puestos>()
+                .Property(e => e.estado)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Puestos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Puestos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Puestos>()
+                .HasMany(e => e.Empleados)
+                .WithRequired(e => e.Puestos)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Ranchos>()
                 .Property(e => e.nombre)

@@ -1,8 +1,11 @@
-﻿using FresamLogistica.Controllers.General;
+﻿using FresamLogistica.Controllers.Configuracion;
+using FresamLogistica.Controllers.General;
 using FresamLogistica.Controllers.Productos;
 using FresamLogistica.Helper;
+using FresamLogistica.Model;
 using FresamLogistica.Views.Productos;
 using FresamLogistica.Views.Residuos;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,10 +21,15 @@ namespace FresamLogistica.Views.General
 {
     public partial class KardexCajasView : Form
     {
-        private readonly AgricultoresController _repoAgricultores = new AgricultoresController();
         private readonly KardexCajasController _repoKardexCajas;
+        private readonly AgricultoresController _repoAgricultores = new AgricultoresController();
+        private readonly EmpresaController _repoEmpresa = new EmpresaController();
+        private readonly UsuariosController _repoUsuarios = new UsuariosController();
+        private readonly KardexCondicionesCajasController _repoCondicionesCajas = new KardexCondicionesCajasController();
 
         private int _IdRegistroSeleccionado = 0;
+
+        private string _colImpresion = "Documento";
 
         public KardexCajasView()
         {
@@ -35,7 +43,8 @@ namespace FresamLogistica.Views.General
             CargarRegistros();
             DataGridViewHelper.SortDataGridViewByColumn(dgvRegistros, 0, _repoKardexCajas.ObtenerMovimientosKardex(_IdRegistroSeleccionado));
 
-            //ValidarPermisos();
+            this.Tag = 36;
+            ValidarPermisos();
         }
         #region EventosFormulario
         private void tsbBuscar_Click(object sender, EventArgs e)
@@ -92,6 +101,73 @@ namespace FresamLogistica.Views.General
             }
         }
 
+        private void tsbSyncGrid_Click(object sender, EventArgs e)
+        {
+            CargarRegistros();
+        }
+
+        private void tsbAddGrid_Click(object sender, EventArgs e)
+        {
+            if (_IdRegistroSeleccionado == 0)
+            {
+                MessageBox.Show("No hay un agricultor seleccionado para realizar movimientos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Helper.FormulariosHelper.CargarFormulario(new KardexMovimientoRecepcionView(_IdRegistroSeleccionado, true), this);
+            CargarRegistros();
+        }
+
+        private void tsbDelGrid_Click(object sender, EventArgs e)
+        {
+            if(_IdRegistroSeleccionado == 0)
+            {
+                MessageBox.Show("No hay un agricultor seleccionado para realizar movimientos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Helper.FormulariosHelper.CargarFormulario(new KardexMovimientoEntregaView(_IdRegistroSeleccionado, false), this);
+            CargarRegistros();
+        }
+
+        private void dgvRegistros_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verifica que sea la columna del botón y una fila válida
+            if (e.RowIndex >= 0 &&
+                dgvRegistros.Columns[e.ColumnIndex].Name == "Imprimir" &&
+                SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir")
+                )
+            {
+                // Obtén el objeto actual (puede ser por ID)
+                var id = dgvRegistros.Rows[e.RowIndex].Cells[1].Value.ToString();
+                var tipoMovimiento = dgvRegistros.Rows[e.RowIndex].Cells[4].Value.ToString();
+                var fechaMovimiento = Convert.ToDateTime(dgvRegistros.Rows[e.RowIndex].Cells[3].Value);
+                var esEntrada = tipoMovimiento.ToString() == "Entrega" ? true : false;
+                var cantCajas = esEntrada ? dgvRegistros.Rows[e.RowIndex].Cells[6].Value.ToString() : dgvRegistros.Rows[e.RowIndex].Cells[5].Value.ToString();
+                var observaciones = dgvRegistros.Rows[e.RowIndex].Cells[9].Value.ToString();
+
+                ImprimirMovimiento(Convert.ToInt32(id),tipoMovimiento, fechaMovimiento, cantCajas, observaciones, esEntrada);
+                // Lógica de edición (por ejemplo, abrir otro formulario)
+                //ActualizarRegistro(id);
+            }
+            else if (e.RowIndex >= 0 &&
+                dgvRegistros.Columns[e.ColumnIndex].Name == "Imprimir")
+            {
+                MessageBox.Show("No tiene permiso para imprimir el documento.", "Permiso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void cbAgricultor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _IdRegistroSeleccionado = Convert.ToInt32(cbAgricultor.SelectedValue);
+                CargarRegistros();
+            }
+            catch
+            {
+                _IdRegistroSeleccionado = 0;
+                CargarRegistros();
+            }
+        }
 
         #endregion
 
@@ -105,6 +181,28 @@ namespace FresamLogistica.Views.General
             tsbEliminar.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Eliminar");
             tsbBuscar.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Consultar");
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir");
+        }
+
+        private void ConfigurarDataGridView(DataGridView dgv)
+        {
+            DataGridViewHelper.SetDataGridViewProperties(dgv);
+
+            dgv.Columns.Clear();
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+
+            DataGridViewHelper.AddButtonColumn(dgv, _colImpresion, "Imprimir", 100);
+
+            //Crear columnas
+            DataGridViewHelper.AddColumn(dgv, "Kardex Id", "kardex_id", 75, true);
+            DataGridViewHelper.AddColumn(dgv, "Agricultor Id", "agricultor_id", 100, false);
+            DataGridViewHelper.AddColumnFecha(dgv, "Fecha del Movimiento", "fecha", 100);
+            DataGridViewHelper.AddColumn(dgv, "Tipo de Movimiento", "tipo_movimiento", 100);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Recepción", "entrada", 100);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Entrega", "salida", 100);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Saldo Anterior", "saldo_anterior", 100);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Saldo Actualizado", "saldo_actual", 100);
+            DataGridViewHelper.AddColumn(dgv, "Observaciones", "observaciones", 500);
+
         }
 
         private void ConfigurarComboBoxAgricultores()
@@ -138,55 +236,73 @@ namespace FresamLogistica.Views.General
         {
             Debug.WriteLine("Función no implementada.");
         }
-        private void ConfigurarDataGridView(DataGridView dgv)
-        {
-            DataGridViewHelper.SetDataGridViewProperties(dgv);
 
-            dgv.Columns.Clear();
 
-            //Crear columnas
-            DataGridViewHelper.AddColumn(dgv, "Kardex Id", "kardex_id", 100, false);
-            DataGridViewHelper.AddColumn(dgv, "Agricultor Id", "agricultor_id", 100, false);
-            DataGridViewHelper.AddColumnFecha(dgv, "Fecha del Movimiento", "fecha", 100);
-            DataGridViewHelper.AddColumn(dgv, "Tipo de Movimiento", "tipo_movimiento", 100);
-            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Entrada", "entrada", 100);
-            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Salida", "salida", 100);
-            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Saldo Anterior", "saldo_anterior", 100);
-            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Saldo Actualizado", "saldo_actual", 100);
-            DataGridViewHelper.AddColumn(dgv, "Observaciones", "observaciones", 100);
-
-        }
-
-        #endregion
-
-        private void cbAgricultor_SelectedIndexChanged(object sender, EventArgs e)
+        private void ImprimirMovimiento(int folioId, string tipoMovimiento, DateTime fechaMovimiento, string cantCajas, string observaciones, bool esEntrada)
         {
             try
             {
-                _IdRegistroSeleccionado = Convert.ToInt32(cbAgricultor.SelectedValue);
-                CargarRegistros();
+
+                var _empresa = _repoEmpresa.ObtenerPorId(1);
+                var _movimiento = _repoKardexCajas.ObtenerMovimientoKardexPorId(folioId);
+                string nombreEmpleado = _repoUsuarios.ObtenerNombreEmpleadoUsuario(_movimiento.usuario_crea);
+                string puestoEmpleado = _repoUsuarios.ObtenerPuestoEmpleadoUsuario(_movimiento.usuario_crea);
+                byte[] _logoByte = _empresa.logo;
+
+                List<ReportParameter> parametros = new List<ReportParameter>()
+                    {
+                    new ReportParameter("logo", Convert.ToBase64String(_logoByte)),
+                    new ReportParameter("pEmpresa", _empresa.nombre),
+                    new ReportParameter("pTipoMovimiento", tipoMovimiento.ToUpper()),
+                    new ReportParameter("pFolio", folioId.ToString()),
+                    new ReportParameter("pFecha", fechaMovimiento.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("pAgricultor", cbAgricultor.Text),
+                    new ReportParameter("pCantidadCajas", cantCajas),
+                    new ReportParameter("pObservaciones", observaciones),
+                    new ReportParameter("pEntrada", esEntrada ? "False" : "True"),
+                    new ReportParameter("pNombreEmpleado", nombreEmpleado),
+                    new ReportParameter("pPuestoEmpleado", puestoEmpleado)
+
+                };
+
+                ReportHelper reporte;
+                if (tipoMovimiento.ToUpper() == "ENTREGA")
+                {
+                    reporte = new ReportHelper(
+                        "Reports/General/KardexMovimiento/rptKardexMovimientoEntrega.rdlc",
+                        parametros);
+                }
+                else
+                {
+
+                    DataTable _dtMaster = new DataTable("CondicionesCajas");
+
+                    _dtMaster.Columns.Add("nombre", typeof(string));
+                    _dtMaster.Columns.Add("valor", typeof(string));
+
+                    var condiciones = _repoCondicionesCajas.ListarPorKardex(folioId);
+                    
+                    foreach (var item in condiciones)
+                    {
+                        _dtMaster.Rows.Add(item.Nombre, item.Valor);
+                    }
+
+
+                    reporte = new ReportHelper(
+                        "Reports/General/KardexMovimiento/rptKardexMovimientoRecepcion.rdlc",
+                        parametros,
+                        _dtMaster);
+                }
+
+
+                reporte.ShowDialog();
             }
-            catch
+            catch (Exception ex)
             {
-                _IdRegistroSeleccionado = 0;
+                MessageBox.Show("Ocurrió un error al generar el reporte: " + ex.Message, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+}
+        #endregion
 
-        private void tsbSyncGrid_Click(object sender, EventArgs e)
-        {
-            CargarRegistros();
-        }
-
-        private void tsbAddGrid_Click(object sender, EventArgs e)
-        {
-            Helper.FormulariosHelper.CargarFormulario(new KardexMofimientoView(_IdRegistroSeleccionado, true), this);
-            CargarRegistros();
-        }
-
-        private void tsbDelGrid_Click(object sender, EventArgs e)
-        {
-            Helper.FormulariosHelper.CargarFormulario(new KardexMofimientoView(_IdRegistroSeleccionado, false), this);
-            CargarRegistros();
-        }
     }
 }

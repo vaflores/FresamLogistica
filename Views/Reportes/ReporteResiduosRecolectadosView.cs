@@ -1,7 +1,8 @@
-﻿using FresamLogistica.Controllers.General;
-using FresamLogistica.Controllers.Residuos;
+﻿using FresamLogistica.Controllers.Configuracion;
+using FresamLogistica.Controllers.General;
 using FresamLogistica.Controllers.Productos;
 using FresamLogistica.Controllers.Reportes;
+using FresamLogistica.Controllers.Residuos;
 using FresamLogistica.Helper;
 using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
@@ -27,6 +28,10 @@ namespace FresamLogistica.Views.Reportes
         private readonly EmpresaController _repoEmpresa = new EmpresaController();
         private readonly FrutasController _repoFrutas = new FrutasController();
         private readonly ReporteResiduosController controller = new ReporteResiduosController();
+        private readonly EmpleadosController _repoEmpleados = new EmpleadosController();
+
+        private string nombreElabora = string.Empty;
+        private string nombreVerifica = string.Empty;
 
         private DataTable datosImpresion = new DataTable();
 
@@ -44,6 +49,8 @@ namespace FresamLogistica.Views.Reportes
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             ValidarPermisos();
+
+            ConfigurarComboBoxFirmas();
         }
 
         #region EventosFormulario
@@ -102,6 +109,13 @@ namespace FresamLogistica.Views.Reportes
         #endregion
 
         #region MetodosPrivados
+        private void ConfigurarComboBoxFirmas()
+        {
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbElabora, _repoEmpleados.ListarComboBox());
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbVerifica, _repoEmpleados.ListarComboBox());
+            cbElabora.SelectedIndex = -1;
+            cbVerifica.SelectedIndex = -1;
+        }
 
         private void ValidarPermisos()
         {
@@ -180,6 +194,12 @@ namespace FresamLogistica.Views.Reportes
                     return;
                 }
 
+                if (string.IsNullOrWhiteSpace(nombreElabora) || string.IsNullOrWhiteSpace(nombreVerifica))
+                {
+                    MessageBox.Show("Falta seleccionar nombre de responsable y verifica.", "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 datosImpresion = _residuos;
 
                 
@@ -201,7 +221,10 @@ namespace FresamLogistica.Views.Reportes
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
-                    new ReportParameter("edicionParam", _ciclo?.edicion)
+                    new ReportParameter("edicionParam", _ciclo?.edicion),
+
+                    new ReportParameter("responsableParam", nombreElabora),
+                    new ReportParameter("verificaParam", nombreVerifica)
                 };
 
 
@@ -335,6 +358,26 @@ namespace FresamLogistica.Views.Reportes
         private void ConfigurarComboBoxFrutas()
         {
             EstadosHelper.GenerarEstadosDesdeLista(ref cbFrutas, _repoFrutas.ListarComboBox());
+        }
+
+        private void cbElabora_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                nombreElabora = cbElabora.Text;
+            }
+            catch (Exception ex)
+            { }
+        }
+
+        private void cbVerifica_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                nombreVerifica = cbVerifica.Text;
+            }
+            catch (Exception ex)
+            { }
         }
     }
 }

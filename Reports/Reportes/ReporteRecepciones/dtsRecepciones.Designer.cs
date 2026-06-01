@@ -307,6 +307,8 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             private global::System.Data.DataColumn columngrado_id;
             
+            private global::System.Data.DataColumn columndescuento;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RecepcionesDataTable() {
@@ -454,6 +456,14 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn descuentoColumn {
+                get {
+                    return this.columndescuento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -489,7 +499,7 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RecepcionesRow AddRecepcionesRow(string recepcion_id, string fecha, string id_folio_diario, string agricultor, string rancho, string sector, string variedad, string no_tarimas, string peso_neto, string precio_unitario, string importe, string estado, string calidad, string grado_id) {
+            public RecepcionesRow AddRecepcionesRow(string recepcion_id, string fecha, string id_folio_diario, string agricultor, string rancho, string sector, string variedad, string no_tarimas, string peso_neto, string precio_unitario, string importe, string estado, string calidad, string grado_id, string descuento) {
                 RecepcionesRow rowRecepcionesRow = ((RecepcionesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         recepcion_id,
@@ -505,7 +515,8 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
                         importe,
                         estado,
                         calidad,
-                        grado_id};
+                        grado_id,
+                        descuento};
                 rowRecepcionesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRecepcionesRow);
                 return rowRecepcionesRow;
@@ -542,6 +553,7 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
                 this.columnestado = base.Columns["estado"];
                 this.columncalidad = base.Columns["calidad"];
                 this.columngrado_id = base.Columns["grado_id"];
+                this.columndescuento = base.Columns["descuento"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -575,6 +587,8 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
                 base.Columns.Add(this.columncalidad);
                 this.columngrado_id = new global::System.Data.DataColumn("grado_id", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columngrado_id);
+                this.columndescuento = new global::System.Data.DataColumn("descuento", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndescuento);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -941,6 +955,22 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string descuento {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecepciones.descuentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'descuento\' de la tabla \'Recepciones\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecepciones.descuentoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Isrecepcion_idNull() {
                 return this.IsNull(this.tableRecepciones.recepcion_idColumn);
             }
@@ -1105,6 +1135,18 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void Setgrado_idNull() {
                 this[this.tableRecepciones.grado_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsdescuentoNull() {
+                return this.IsNull(this.tableRecepciones.descuentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetdescuentoNull() {
+                this[this.tableRecepciones.descuentoColumn] = global::System.Convert.DBNull;
             }
         }
         
