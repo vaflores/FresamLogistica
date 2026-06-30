@@ -198,6 +198,7 @@ namespace FresamLogistica.Views.Reportes
                 var _titulos = _repo.ObtenerPorCicloId(_ciclos);
                 var _empresa = _repoEmpresa.ObtenerPorId(1);
                 byte[] _logoByte = _empresa.logo;
+                var totalCajas = TotalCajas(_recepciones);
 
 
                 List<ReportParameter> parametros = new List<ReportParameter>()
@@ -230,6 +231,7 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("importe", ElCampoEsVisible("Importe")),
                     new ReportParameter("estado", ElCampoEsVisible("Estado")),
                     new ReportParameter("descuento", ElCampoEsVisible("Descuento")),
+                    new ReportParameter("totalCajas", totalCajas.ToString("N0")),
 
                     new ReportParameter("responsableParam", nombreElabora),
                     new ReportParameter("verificaParam", nombreVerifica)
@@ -303,6 +305,17 @@ namespace FresamLogistica.Views.Reportes
                 }
             }
             return "False";
+        }
+
+        public int TotalCajas(DataTable recepcionesDt)
+        {
+            var totalCajas = 0;
+            foreach (DataRow fila in recepcionesDt.Rows)
+            {
+                totalCajas += Convert.ToInt32(fila["no_tarimas"]);
+            }
+
+            return totalCajas;
         }
 
         private bool ValidarFechas()
