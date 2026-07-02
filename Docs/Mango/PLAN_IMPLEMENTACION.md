@@ -246,36 +246,53 @@ Fuera del alcance hasta contar con definición funcional y de trazabilidad.
     nombre y estado activo/inactivo.
 20. Los reportes reutilizarán la cabecera actual y el logotipo almacenado en la
     tabla `Empresa`.
+21. Los rangos de grados deben cubrir todo el intervalo 0-100 sin huecos y se
+    bloquearán rangos traslapados.
+22. Una recepción sin muestras tendrá calificación 100 y el grado que
+    corresponda. La cantidad de muestras en cero permitirá identificar que no
+    fue muestreada.
+23. El peso neto no será obligatorio. Si no se captura se almacenará en cero y
+    el sistema no bloqueará guardado, impresión ni reportes.
+24. El cuerpo y los campos definitivos de la papeleta se definirán después. Esto
+    no bloquea las entregas de base de datos, modelos, catálogos, recepción o
+    muestreo.
 
 ## 9. Dudas pendientes
 
 Agregar las respuestas directamente debajo de cada pregunta.
 
-1. **Rangos de grados:** el límite de la calificación ya quedó definido entre 0
-   y 100. Falta decidir la validación del catálogo: ¿los rangos de grados deben
-   cubrir todo el intervalo 0-100 sin huecos y se deben bloquear rangos
-   traslapados?
+1. **Catálogos de producto existentes:** la base ya contiene la fruta `MANGO`,
+   las variedades `KENT` y `KEIIT`, y el grado `A` para el rango 90-100.
+   ¿Reutilizamos las tablas existentes `Frutas`, `Variedades` y `GradosFruta`
+   para Mango, dejando únicamente las calidades en tablas independientes? Esta
+   es la opción recomendada porque esos catálogos ya están separados por fruta.
 
-   **Respuesta:**
+   **Respuesta:** Si, usemos las mismas tablas no necesitamos crear mas.
 
-2. **Resultado sin muestras:** cuando una recepción no tenga muestras,
-   ¿calificación y grado deben mostrarse vacíos, o debe mostrarse calificación
-   100 con el grado correspondiente? Se recomienda dejarlos vacíos para no
-   interpretar como evaluada una recepción que no fue muestreada.
+2. **Catálogo completo de grados:** actualmente Mango solo tiene el grado
+   `A = 90-100`, por lo que no cumple la regla de cubrir 0-100. Indicar los
+   nombres y rangos de los grados faltantes.
 
-   **Respuesta:**
+   **Respuesta:** Dejaremos la funcionalidad actual y usaremos lo existente ya que actualmente para Fresas funciona bien asi.
 
-3. **Peso oficial:** ¿la recepción puede guardarse temporalmente sin peso neto?
-   Si es posible, ¿qué acción debe exigir que el peso sea mayor que cero:
-   imprimir la papeleta, incluirla en reportes o alguna otra?
+3. **Catálogo de calidades:** indicar los nombres de las calidades o defectos
+   iniciales de Mango. Confirmar también si todos restan a la calificación y si
+   todos deben aparecer en reportes.
 
-   **Respuesta:**
+   **Respuesta:** Asi es, esos campos deben de existir para saber cuales afectan y cuales aparecen en reportes como en Fresas.
 
-4. **Cuerpo de la papeleta:** ya se confirmó que se reutilizarán la cabecera y
-   el logotipo actuales. Falta adjuntar o identificar el formato del cuerpo
-   para definir los campos y su distribución en el RDLC de Mango.
+4. **Ciclos:** el proceso de Fresa relaciona cada recepción con `Ciclos`, pero
+   los documentos de Mango no mencionan ciclos o temporadas. ¿Las recepciones
+   de Mango deben relacionarse con el ciclo existente o serán independientes?
 
-   **Respuesta / archivo:**
+   **Respuesta:** Deberan de relacionarse tambien con el ciclo actual segun la fecha como en Fresas.
+
+5. **Aceptación/rechazo:** confirmar si la decisión se registra una sola vez en
+   la recepción general o individualmente en cada muestreo. Se recomienda
+   guardarla en la recepción general y dejar los muestreos únicamente como
+   evidencia de calidad.
+
+   **Respuesta:** La regla es que se puede rechazar en la recepcion general o, si una muestra es rechazada se rechaza la recepcion general
 
 ## 10. Pendientes para una reunión posterior
 
@@ -283,3 +300,14 @@ Agregar las respuestas directamente debajo de cada pregunta.
    la regla RN-06 nunca podrá modificar el peso neto.
 2. Definir si los catálogos de proveedor, propietario, predio y localidad
    necesitarán datos adicionales a nombre y estado.
+3. Definir los campos y la distribución del cuerpo de la papeleta de Mango.
+
+## 11. Estado para iniciar
+
+La estructura general de la Entrega 1 ya puede comenzar: catálogos propios,
+recepción, muestreos, detalle de calidades, resultado agregado, descuento
+informativo, restricciones e índices.
+
+Antes de cerrar los scripts y sus datos iniciales deben responderse las cinco
+dudas de la sección anterior. Los reportes y transpaleos no bloquean el inicio y
+permanecen fuera de esta primera construcción.
