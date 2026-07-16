@@ -486,7 +486,7 @@ namespace FresamLogistica.Views.General
 
         private void chkPrecioUnario_CheckedChanged(object sender, EventArgs e)
         {
-            txtPrecioUnitario.Enabled = chkPrecioUnario.Checked;
+            txtPrecioUnitario.Enabled = chkPrecioUnitario.Checked;
             EstablecerCalificacion();
         }
         #endregion
@@ -505,7 +505,7 @@ namespace FresamLogistica.Views.General
             tsbBuscar.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Consultar");
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Recibo");
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Etiqueta");
-            chkPrecioUnario.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Editar Precio Unitario");
+            chkPrecioUnitario.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Editar Precio Unitario");
             HabilitarControlesTpCalidadDescuento(SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Modificar Calidad/Descuento"));
         }
 
@@ -622,7 +622,7 @@ namespace FresamLogistica.Views.General
                     {
                         if(registro.PrecioUnitario != _precioFrutaGrado)
                         { 
-                            chkPrecioUnario.Checked = true;
+                            chkPrecioUnitario.Checked = true;
                             txtPrecioUnitario.Text = registro.PrecioUnitario.Value.ToString("N2");
                         }
                     }
@@ -1241,7 +1241,7 @@ namespace FresamLogistica.Views.General
                 _totalCajas = 0;
                 _IdGradoSeleccionado = cbGrado.SelectedValue.ToString();
 
-                if (chkPrecioUnario.Checked)
+                if (chkPrecioUnitario.Checked)
                     _precioFrutaGrado = txtPrecioUnitario.Text.Length > 0 ? decimal.Parse(txtPrecioUnitario.Text) : 0;
                 else
                 {

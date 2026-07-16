@@ -12,6 +12,7 @@ namespace FresamLogistica.Model
         public Frutas()
         {
             GradosFruta = new HashSet<GradosFruta>();
+            MangoConfiguracion = new HashSet<MangoConfiguracion>();
             Precios = new HashSet<Precios>();
             Producciones = new HashSet<Producciones>();
             TipoResiduo = new HashSet<TipoResiduo>();
@@ -48,6 +49,9 @@ namespace FresamLogistica.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GradosFruta> GradosFruta { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MangoConfiguracion> MangoConfiguracion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Precios> Precios { get; set; }

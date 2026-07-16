@@ -71,6 +71,29 @@ namespace FresamLogistica.Controllers.General
             }
         }
 
+        public void CrearVehiculoMangoRecepcionViewModel(VehiculosRecepcionesViewModel entidad)
+        {
+            VehiculosRecepcionesViewModel vehiculo = ObtenerPorPlacas(entidad.Placas);
+            if (vehiculo == null)
+            {
+                using (var _context = new Model.Model())
+                {
+                    Vehiculos nuevaVehiculo = new Vehiculos
+                    {
+                        vehiculo_id = 0,
+                        placas = entidad.Placas,
+                        marca_modelo = entidad.MarcaModelo,
+                        color = entidad.Color,
+                        estado = "A"
+                    };
+                    AsignarIdSiCero(ref nuevaVehiculo);
+                    SesionActualHelper.RegistrarSesionCrea(ref nuevaVehiculo);
+                    _context.Vehiculos.Add(nuevaVehiculo);
+                    _context.SaveChanges();
+                }
+            }
+        }
+
         public void CrearVehiculoRecepcion(VehiculosRecepcionesViewModel entidad)
         {
             VehiculosRecepcionesViewModel vehiculo = ObtenerPorPlacas(entidad.Placas);
@@ -88,6 +111,28 @@ namespace FresamLogistica.Controllers.General
                     AsignarIdSiCero(ref nuevaVehiculoRecepcion);
                     SesionActualHelper.RegistrarSesionCrea(ref nuevaVehiculoRecepcion);
                     _context.VehiculosRecepciones.Add(nuevaVehiculoRecepcion);
+                    _context.SaveChanges();
+                }
+            }
+        }
+
+        public void CrearVehiculoMangoRecepcion(VehiculosRecepcionesViewModel entidad)
+        {
+            VehiculosRecepcionesViewModel vehiculo = ObtenerPorPlacas(entidad.Placas);
+            if (vehiculo != null)
+            {
+                using (var _context = new Model.Model())
+                {
+                    MangoVehiculoRecepcion nuevaVehiculoRecepcion = new MangoVehiculoRecepcion
+                    {
+                        mango_vehiculo_recepcion_id = 0,
+                        mango_recepcion_id = entidad.RecepcionId,
+                        vehiculo_id = vehiculo.VehiculoId,
+                        nombre_chofer = entidad.Chofer
+                    };
+
+                    SesionActualHelper.RegistrarSesionCrea(ref nuevaVehiculoRecepcion);
+                    _context.MangoVehiculoRecepcion.Add(nuevaVehiculoRecepcion);
                     _context.SaveChanges();
                 }
             }
@@ -114,6 +159,23 @@ namespace FresamLogistica.Controllers.General
             using (var _context = new Model.Model())
             {
                 var registro = _context.VehiculosRecepciones.Find(entidad.VehiculoRecepcionId);
+                if (registro != null)
+                {
+                    registro.vehiculo_id = entidad.VehiculoId;
+                    registro.nombre_chofer = entidad.Chofer;
+
+                    SesionActualHelper.RegistrarUsuarioModifica(ref registro);
+                    _context.Entry(registro).CurrentValues.SetValues(registro);
+                    _context.SaveChanges();
+                }
+            }
+        }
+
+        public void ActualizarVehiculoMangoRecepcionViewModel(VehiculosRecepcionesViewModel entidad)
+        {
+            using (var _context = new Model.Model())
+            {
+                var registro = _context.MangoVehiculoRecepcion.Find(entidad.VehiculoRecepcionId);
                 if (registro != null)
                 {
                     registro.vehiculo_id = entidad.VehiculoId;
@@ -157,6 +219,16 @@ namespace FresamLogistica.Controllers.General
             }
         }
 
+        public MangoVehiculoRecepcion ObtenerPorMangoRecepcionIdVehiculoId(int _idRecepcion, int _idVehiculo)
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.MangoVehiculoRecepcion
+                    .Where(r => r.mango_recepcion_id == _idRecepcion)
+                    .FirstOrDefault();
+            }
+        }
+
         public VehiculosRecepcionesViewModel ObtenerVehiculoRecepcionPorRecepcionId(int _RececionId)
         {
             using (var _context = new Model.Model())
@@ -167,6 +239,27 @@ namespace FresamLogistica.Controllers.General
                     {
                         VehiculoRecepcionId = r.vehiculo_recepcion_id,
                         RecepcionId = r.recepcion_id,
+                        VehiculoId = r.vehiculo_id,
+                        Chofer = r.nombre_chofer,
+                        Placas = r.Vehiculos.placas,
+                        Color = r.Vehiculos.color,
+                        MarcaModelo = r.Vehiculos.marca_modelo,
+                        Estado = r.Vehiculos.estado
+                    })
+                    .FirstOrDefault();
+            }
+        }
+
+        public VehiculosRecepcionesViewModel ObtenerVehiculoMangoRecepcionPorRecepcionId(int _RececionId)
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.MangoVehiculoRecepcion
+                    .Where(r => r.mango_recepcion_id == _RececionId)
+                    .Select(r => new VehiculosRecepcionesViewModel
+                    {
+                        VehiculoRecepcionId = r.mango_vehiculo_recepcion_id,
+                        RecepcionId = r.mango_recepcion_id,
                         VehiculoId = r.vehiculo_id,
                         Chofer = r.nombre_chofer,
                         Placas = r.Vehiculos.placas,
@@ -232,6 +325,35 @@ namespace FresamLogistica.Controllers.General
                     {
                         VehiculoRecepcionId = r.vehiculo_recepcion_id,
                         RecepcionId = r.recepcion_id,
+                        VehiculoId = r.vehiculo_id,
+                        Chofer = r.nombre_chofer,
+                        Placas = r.Vehiculos.placas,
+                        Color = r.Vehiculos.color,
+                        MarcaModelo = r.Vehiculos.marca_modelo,
+                        Estado = r.Vehiculos.estado
+                    })
+                    .FirstOrDefault();
+            }
+
+            if (vehiculo == null)
+            {
+                vehiculo = ObtenerPorPlacas(_placas);
+            }
+            return vehiculo;
+        }
+
+
+        public VehiculosRecepcionesViewModel ObtenerPorPlacasMango(string _placas, int _idProveedor)
+        {
+            VehiculosRecepcionesViewModel vehiculo;
+            using (var _context = new Model.Model())
+            {
+                vehiculo = _context.MangoVehiculoRecepcion
+                    .Where(r => r.Vehiculos.placas == _placas)
+                    .Select(r => new VehiculosRecepcionesViewModel
+                    {
+                        VehiculoRecepcionId = r.mango_vehiculo_recepcion_id,
+                        RecepcionId = r.mango_recepcion_id,
                         VehiculoId = r.vehiculo_id,
                         Chofer = r.nombre_chofer,
                         Placas = r.Vehiculos.placas,

@@ -8,6 +8,7 @@ using FresamLogistica.Views.Productos;
 using FresamLogistica.Views.Reportes;
 using FresamLogistica.Views.Reportes.Titulos;
 using FresamLogistica.Views.Residuos;
+using FresamLogistica.Views.Mango;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -272,5 +273,41 @@ namespace FresamLogistica
         {
             Helper.FormulariosHelper.CargarFormularioHijo(new PuestosView(), this);
         }
+
+        #region Mangos 
+        private void calidadesToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoCalidadesView(), this);
+        }
+
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoProveedoresView(), this);
+        }
+
+        private void propietariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoPropietariosView(), this);
+        }
+        private void localidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoLocalidadesView(), this);
+        }
+        private void prediosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoPrediosView(), this);
+        }
+
+        private void recepcionesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoRecepcionesView(), this);
+        }
+
+        private void etiquetasDeMangoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TitulosMangoEtiquetasView(), this);
+        }
+
+        #endregion
     }
 }

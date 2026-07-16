@@ -15,6 +15,8 @@ namespace FresamLogistica.Model
             CicloEtiquetas = new HashSet<CicloEtiquetas>();
             CicloGrados = new HashSet<CicloGrados>();
             CicloInspecciones = new HashSet<CicloInspecciones>();
+            CicloMangos = new HashSet<CicloMangos>();
+            MangoRecepciones = new HashSet<MangoRecepciones>();
             Recepciones = new HashSet<Recepciones>();
             Sectores = new HashSet<Sectores>();
         }
@@ -63,6 +65,12 @@ namespace FresamLogistica.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CicloInspecciones> CicloInspecciones { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CicloMangos> CicloMangos { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MangoRecepciones> MangoRecepciones { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recepciones> Recepciones { get; set; }

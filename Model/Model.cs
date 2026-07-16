@@ -20,6 +20,7 @@ namespace FresamLogistica.Model
         public virtual DbSet<CicloEtiquetas> CicloEtiquetas { get; set; }
         public virtual DbSet<CicloGrados> CicloGrados { get; set; }
         public virtual DbSet<CicloInspecciones> CicloInspecciones { get; set; }
+        public virtual DbSet<CicloMangos> CicloMangos { get; set; }
         public virtual DbSet<Ciclos> Ciclos { get; set; }
         public virtual DbSet<CiclosResiduos> CiclosResiduos { get; set; }
         public virtual DbSet<Ciudades> Ciudades { get; set; }
@@ -42,6 +43,19 @@ namespace FresamLogistica.Model
         public virtual DbSet<KardexCajas> KardexCajas { get; set; }
         public virtual DbSet<KardexCondicionesCajas> KardexCondicionesCajas { get; set; }
         public virtual DbSet<LoteFolios> LoteFolios { get; set; }
+        public virtual DbSet<MangoCalidades> MangoCalidades { get; set; }
+        public virtual DbSet<MangoCalidadesRecepcion> MangoCalidadesRecepcion { get; set; }
+        public virtual DbSet<MangoCondicionesVehiculoRecepcion> MangoCondicionesVehiculoRecepcion { get; set; }
+        public virtual DbSet<MangoConfiguracion> MangoConfiguracion { get; set; }
+        public virtual DbSet<MangoDescuentos> MangoDescuentos { get; set; }
+        public virtual DbSet<MangoLocalidades> MangoLocalidades { get; set; }
+        public virtual DbSet<MangoMuestreos> MangoMuestreos { get; set; }
+        public virtual DbSet<MangoMuestreosCalidades> MangoMuestreosCalidades { get; set; }
+        public virtual DbSet<MangoPredios> MangoPredios { get; set; }
+        public virtual DbSet<MangoPropietarios> MangoPropietarios { get; set; }
+        public virtual DbSet<MangoProveedores> MangoProveedores { get; set; }
+        public virtual DbSet<MangoRecepciones> MangoRecepciones { get; set; }
+        public virtual DbSet<MangoVehiculoRecepcion> MangoVehiculoRecepcion { get; set; }
         public virtual DbSet<MuestreosCalidadesRecepciones> MuestreosCalidadesRecepciones { get; set; }
         public virtual DbSet<MuestreosRecepciones> MuestreosRecepciones { get; set; }
         public virtual DbSet<OperadoresResiduos> OperadoresResiduos { get; set; }
@@ -274,6 +288,31 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<CicloMangos>()
+                .Property(e => e.titulo1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangos>()
+                .Property(e => e.titulo2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangos>()
+                .Property(e => e.titulo3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangos>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Ciclos>()
                 .Property(e => e.estado)
                 .IsFixedLength()
@@ -316,6 +355,16 @@ namespace FresamLogistica.Model
 
             modelBuilder.Entity<Ciclos>()
                 .HasMany(e => e.CicloInspecciones)
+                .WithRequired(e => e.Ciclos)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ciclos>()
+                .HasMany(e => e.CicloMangos)
+                .WithRequired(e => e.Ciclos)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ciclos>()
+                .HasMany(e => e.MangoRecepciones)
                 .WithRequired(e => e.Ciclos)
                 .WillCascadeOnDelete(false);
 
@@ -406,6 +455,11 @@ namespace FresamLogistica.Model
 
             modelBuilder.Entity<Condiciones>()
                 .HasMany(e => e.CondicionesVehiculosRecepciones)
+                .WithRequired(e => e.Condiciones)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Condiciones>()
+                .HasMany(e => e.MangoCondicionesVehiculoRecepcion)
                 .WithRequired(e => e.Condiciones)
                 .WillCascadeOnDelete(false);
 
@@ -798,6 +852,220 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<LoteFolios>()
                 .HasMany(e => e.Folios)
                 .WithRequired(e => e.LoteFolios)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoCalidades>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoCalidades>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoCalidades>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoCalidades>()
+                .HasMany(e => e.MangoCalidadesRecepcion)
+                .WithRequired(e => e.MangoCalidades)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoCalidades>()
+                .HasMany(e => e.MangoMuestreosCalidades)
+                .WithRequired(e => e.MangoCalidades)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoCalidadesRecepcion>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoCalidadesRecepcion>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoCondicionesVehiculoRecepcion>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoCondicionesVehiculoRecepcion>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoConfiguracion>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoConfiguracion>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoDescuentos>()
+                .Property(e => e.observaciones)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoDescuentos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoDescuentos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoLocalidades>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoLocalidades>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoLocalidades>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoLocalidades>()
+                .HasMany(e => e.MangoPredios)
+                .WithRequired(e => e.MangoLocalidades)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoMuestreos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoMuestreos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoMuestreos>()
+                .HasMany(e => e.MangoMuestreosCalidades)
+                .WithRequired(e => e.MangoMuestreos)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoMuestreosCalidades>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoMuestreosCalidades>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoPredios>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoPredios>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoPredios>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoPredios>()
+                .HasMany(e => e.MangoRecepciones)
+                .WithRequired(e => e.MangoPredios)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoPropietarios>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoPropietarios>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoPropietarios>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoPropietarios>()
+                .HasMany(e => e.MangoPredios)
+                .WithRequired(e => e.MangoPropietarios)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoProveedores>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoProveedores>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoProveedores>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoProveedores>()
+                .Property(e => e.codigo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoProveedores>()
+                .HasMany(e => e.MangoRecepciones)
+                .WithRequired(e => e.MangoProveedores)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .Property(e => e.grado_id)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .Property(e => e.importe)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .Property(e => e.precio_unitario)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .HasMany(e => e.MangoCalidadesRecepcion)
+                .WithRequired(e => e.MangoRecepciones)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .HasMany(e => e.MangoDescuentos)
+                .WithRequired(e => e.MangoRecepciones)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .HasMany(e => e.MangoMuestreos)
+                .WithRequired(e => e.MangoRecepciones)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoRecepciones>()
+                .HasMany(e => e.MangoVehiculoRecepcion)
+                .WithRequired(e => e.MangoRecepciones)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoVehiculoRecepcion>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoVehiculoRecepcion>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoVehiculoRecepcion>()
+                .HasMany(e => e.MangoCondicionesVehiculoRecepcion)
+                .WithRequired(e => e.MangoVehiculoRecepcion)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MuestreosCalidadesRecepciones>()
@@ -1251,6 +1519,11 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Variedades>()
+                .HasMany(e => e.MangoRecepciones)
+                .WithRequired(e => e.Variedades)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Variedades>()
                 .HasMany(e => e.Sectores)
                 .WithRequired(e => e.Variedades)
                 .WillCascadeOnDelete(false);
@@ -1279,6 +1552,11 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<Vehiculos>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Vehiculos>()
+                .HasMany(e => e.MangoVehiculoRecepcion)
+                .WithRequired(e => e.Vehiculos)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Vehiculos>()
                 .HasMany(e => e.RegistrosResiduoRecolectado)

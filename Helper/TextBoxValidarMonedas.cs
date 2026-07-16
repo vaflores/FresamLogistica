@@ -57,7 +57,7 @@ namespace FresamLogistica.Helper
         {
             var txt = (TextBox)sender;
 
-            if (decimal.TryParse(txt.Text, out decimal valor))
+            if (decimal.TryParse(txt.Text, System.Globalization.NumberStyles.Currency, null, out decimal valor))
             {
                 // Formato de 2 decimales
                 txt.Text = valor.ToString("C2");

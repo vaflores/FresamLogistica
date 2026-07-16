@@ -21,6 +21,14 @@ namespace FresamLogistica.Model
         [StringLength(100)]
         public string etiqueta_firma { get; set; }
 
+        public int orden { get; set; }
+
+        public bool mostrar_nombre { get; set; }
+
+        public bool mostrar_puesto { get; set; }
+
+        public bool activo { get; set; }
+
         [Required]
         [StringLength(50)]
         public string usuario_crea { get; set; }
