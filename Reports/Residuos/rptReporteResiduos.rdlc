@@ -179,16 +179,16 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.58225cm</Width>
+                  <Width>2.86768cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.86788cm</Width>
+                  <Width>2.15331cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.86788cm</Width>
+                  <Width>2.15331cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.86788cm</Width>
+                  <Width>2.15331cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -509,13 +509,8 @@
                       <GroupExpression>=Fields!fecha.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!fecha.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
                   <TablixHeader>
-                    <Size>2.13246cm</Size>
+                    <Size>2.41789cm</Size>
                     <CellContents>
                       <Textbox Name="fecha">
                         <CanGrow>true</CanGrow>
@@ -560,7 +555,7 @@
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
-                        <Size>4.19621cm</Size>
+                        <Size>4.48164cm</Size>
                         <CellContents>
                           <Textbox Name="operador">
                             <CanGrow>true</CanGrow>
@@ -605,7 +600,7 @@
                             </SortExpression>
                           </SortExpressions>
                           <TablixHeader>
-                            <Size>2.68809cm</Size>
+                            <Size>2.97352cm</Size>
                             <CellContents>
                               <Textbox Name="fruta">
                                 <CanGrow>true</CanGrow>
@@ -648,7 +643,7 @@
             <DataSetName>Detalle</DataSetName>
             <Top>0.17639cm</Top>
             <Height>1.2cm</Height>
-            <Width>17.20265cm</Width>
+            <Width>19.20066cm</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -706,7 +701,7 @@
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Left>1.14612in</Left>
               <Height>0.305in</Height>
-              <Width>5.8777in</Width>
+              <Width>5.6277in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -740,7 +735,7 @@
               <Top>0.7747cm</Top>
               <Left>1.14612in</Left>
               <Height>0.3in</Height>
-              <Width>5.8777in</Width>
+              <Width>5.6277in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -774,7 +769,7 @@
               <Top>1.5367cm</Top>
               <Left>1.14612in</Left>
               <Height>0.305in</Height>
-              <Width>5.8777in</Width>
+              <Width>5.6277in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -903,7 +898,7 @@
               <Top>2.3114cm</Top>
               <Left>2.91114cm</Left>
               <Height>0.6cm</Height>
-              <Width>14.92936cm</Width>
+              <Width>14.29436cm</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
