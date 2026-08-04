@@ -31,19 +31,23 @@ namespace FresamLogistica.ViewModels.Mango
         public Decimal PesoBruto { get; set; }
         public Decimal Tara { get; set; }
         public Decimal PesoNeto { get; set; }
-        public int? CalidadPromedio { get; set; }
+        public Decimal? CalidadPromedio { get; set; }
         public string GradoId { get; set; }
         public decimal? Importe { get; set; }
         public decimal? PrecioUnitario { get; set; }
         public string Placas { get; set; }
         public string Estado { get; set; }
+        public decimal? PorcentajeCosto { get; set; }
+        public bool AplicarPorcentajeCosto { get; set; }
+        public int? ResponsableEmpleadoId { get; set; }
+        public int? VerificaEmpleadoId { get; set; }
 
         public VehiculosRecepcionesViewModel VehiculoInfo { get; set; }
 
         public MangoDescuentos Descuentos { get; set; }
 
-        public List<CalidadesRecepcionesViewModel> CalidadesInfo { get; set; }
+        public List<MangoCalidadesRecepcionesViewModel> CalidadesInfo { get; set; }
 
-        public List<CalidadesRecepcionesViewModel> CalidadesActivas { get; set; }
+        public List<MangoCalidadesRecepcionesViewModel> CalidadesActivas { get; set; }
     }
 }

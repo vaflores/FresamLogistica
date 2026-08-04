@@ -38,6 +38,10 @@ namespace FresamLogistica.Model
 
         public DateTime fecha_modifica { get; set; }
 
+        public decimal? porcentaje_maduro { get; set; }
+
+        public bool porcentaje_descuento_afecta_peso { get; set; }
+
         public virtual MangoRecepciones MangoRecepciones { get; set; }
     }
 }

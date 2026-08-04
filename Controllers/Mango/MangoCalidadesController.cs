@@ -2,6 +2,7 @@
 using FresamLogistica.Interfaces;
 using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
+using FresamLogistica.ViewModels.Mango;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public void CrearCalidadesRecepcionesViewModel(CalidadesRecepcionesViewModel calidad)
+        public void CrearCalidadesRecepcionesViewModel(MangoCalidadesRecepcionesViewModel calidad)
         {
             using (var _context = new Model.Model())
             {
@@ -104,21 +105,22 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public List<CalidadesRecepcionesViewModel> ListarCalidadesPorRecepcionId(int _recepcionId)
+        public List<MangoCalidadesRecepcionesViewModel> ListarCalidadesPorRecepcionId(int _recepcionId)
         {
             using (var _context = new Model.Model())
             {
                 var query = from cr in _context.MangoCalidadesRecepcion
                             join c in _context.MangoCalidades on cr.calidad_id equals c.calidad_id
                             where cr.mango_recepcion_id == _recepcionId
-                            select new CalidadesRecepcionesViewModel
+                            select new MangoCalidadesRecepcionesViewModel
                             {
                                 CalidadRecepcionId = cr.calidad_recepcion_id,
                                 CalidadId = c.calidad_id,
                                 Nombre = c.nombre,
                                 Valor = cr.valor,
                                 AfectaCalificacion = c.afecta_calificacion,
-                                IncluyeEnReporte = c.visible_reporte
+                                IncluyeEnReporte = c.visible_reporte,
+                                UsoPorcentajeMangoChico = c.uso_porcentaje_chico
                             };
                 return query.ToList();
             }
@@ -134,7 +136,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public List<CalidadesRecepcionesViewModel> ListarCalidadesActivasSinValorPorRecepcionId(int _recepcionId)
+        public List<MangoCalidadesRecepcionesViewModel> ListarCalidadesActivasSinValorPorRecepcionId(int _recepcionId)
         {
             using (var _context = new Model.Model())
             {
@@ -144,14 +146,15 @@ namespace FresamLogistica.Controllers.Mango
                                               .Where(cr => cr.mango_recepcion_id == _recepcionId)
                                               .Select(cr => cr.calidad_id)
                                               .Contains(c.calidad_id)
-                            select new CalidadesRecepcionesViewModel
+                            select new MangoCalidadesRecepcionesViewModel
                             {
                                 CalidadRecepcionId = 0,
                                 CalidadId = c.calidad_id,
                                 Nombre = c.nombre,
                                 Valor = 0,
                                 AfectaCalificacion = c.afecta_calificacion,
-                                IncluyeEnReporte = c.visible_reporte
+                                IncluyeEnReporte = c.visible_reporte,
+                                UsoPorcentajeMangoChico = c.uso_porcentaje_chico
                             };
                 return query.ToList();
             }
@@ -206,27 +209,28 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public List<CalidadesRecepcionesViewModel> ListarCalidadesPorMuestreoId(int _muestreoId)
+        public List<MangoCalidadesRecepcionesViewModel> ListarCalidadesPorMuestreoId(int _muestreoId)
         {
             using (var _context = new Model.Model())
             {
                 var query = from mcr in _context.MangoMuestreosCalidades
                             join c in _context.MangoCalidades on mcr.calidad_id equals c.calidad_id
                             where mcr.muestreo_id == _muestreoId
-                            select new CalidadesRecepcionesViewModel
+                            select new MangoCalidadesRecepcionesViewModel
                             {
                                 CalidadRecepcionId = mcr.muestreo_id,
                                 CalidadId = c.calidad_id,
                                 Nombre = c.nombre,
                                 Valor = mcr.valor,
                                 AfectaCalificacion = c.afecta_calificacion,
-                                IncluyeEnReporte = c.visible_reporte
+                                IncluyeEnReporte = c.visible_reporte,
+                                UsoPorcentajeMangoChico = c.uso_porcentaje_chico
                             };
                 return query.ToList();
             }
         }
 
-        public List<CalidadesRecepcionesViewModel> ListarCalidadesActivasSinValorPorMuestreoId(int _muestreoId)
+        public List<MangoCalidadesRecepcionesViewModel> ListarCalidadesActivasSinValorPorMuestreoId(int _muestreoId)
         {
             using (var _context = new Model.Model())
             {
@@ -236,14 +240,15 @@ namespace FresamLogistica.Controllers.Mango
                                               .Where(mcr => mcr.muestreo_id == _muestreoId)
                                               .Select(mcr => mcr.calidad_id)
                                               .Contains(c.calidad_id)
-                            select new CalidadesRecepcionesViewModel
+                            select new MangoCalidadesRecepcionesViewModel
                             {
                                 CalidadRecepcionId = 0,
                                 CalidadId = c.calidad_id,
                                 Nombre = c.nombre,
                                 Valor = 0,
                                 AfectaCalificacion = c.afecta_calificacion,
-                                IncluyeEnReporte = c.visible_reporte
+                                IncluyeEnReporte = c.visible_reporte,
+                                UsoPorcentajeMangoChico = c.uso_porcentaje_chico
                             };
                 return query.ToList();
             }

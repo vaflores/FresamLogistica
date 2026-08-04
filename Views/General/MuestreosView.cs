@@ -162,12 +162,12 @@ namespace FresamLogistica.Views.General
             //Crear columnas
             DataGridViewHelper.AddColumn(dgv, "Recepcion Id", "recepcion_id", 100);
             DataGridViewHelper.AddColumn(dgv, "Folio recepcion diaria", "id_folio_diario", 100);
-            DataGridViewHelper.AddColumnFecha(dgv, "Fecha", "Fecha", 150);
-            DataGridViewHelper.AddColumn(dgv, "Código Id", "AgriculorId", 0, true);
+            DataGridViewHelper.AddColumnFecha(dgv, "Fecha", "fecha", 150);
+            DataGridViewHelper.AddColumn(dgv, "Código Id", "agricultor_id", 0, true);
             DataGridViewHelper.AddColumn(dgv, "Agricultor", "nombre_agricultor", 150);
             DataGridViewHelper.AddColumn(dgv, "Fruta", "nombre_fruta", 150);
-            DataGridViewHelper.AddColumn(dgv, "Variedad", "nombre:variedad", 150);
-            DataGridViewHelper.AddColumn(dgv, "Placas Vehículo", "Placas", 150);
+            DataGridViewHelper.AddColumn(dgv, "Variedad", "nombre_variedad", 150);
+            DataGridViewHelper.AddColumn(dgv, "Placas Vehículo", "placas", 150);
             DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "No. Tarimas", "total_tarimas", 100);
             DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Total Cajas", "total_cajas", 100);
             DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Total Muestreos", "total_muestreos", 100);

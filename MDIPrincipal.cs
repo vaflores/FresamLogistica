@@ -308,6 +308,16 @@ namespace FresamLogistica
             Helper.FormulariosHelper.CargarFormularioHijo(new TitulosMangoEtiquetasView(), this);
         }
 
+        private void inspecciónDeVehículosMangoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoInspeccionVehiculosView(), this);
+        }
         #endregion
+
+        private void muestreosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoMuestreosView(), this);
+        }
+
     }
 }

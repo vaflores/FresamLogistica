@@ -44,6 +44,7 @@ namespace FresamLogistica.Views.Mango
         private readonly MangoCalidadesController _repoCalidades = new MangoCalidadesController();
         private readonly EmpresaController _repoEmpresa = new EmpresaController();
         private readonly TitulosMangoEtiquetasController _titulosEtiquetasController = new TitulosMangoEtiquetasController();
+        private readonly MangoMuestreosController _repoMuestreos = new MangoMuestreosController();
 
         private int _IdRegistroSeleccionado;
         private int _IdCicloSeleccionado;
@@ -70,7 +71,6 @@ namespace FresamLogistica.Views.Mango
             this.KeyPreview = true;
 
             _repo = new MangoRecepcionesController();
-
 
             ConfigurarComboBoxEstatus();
             ConfigurarComboBoxCiclos();
@@ -298,11 +298,11 @@ namespace FresamLogistica.Views.Mango
                 // Ejemplo: columna 3
                 if (e.ColumnIndex == 3)
                 {
-                    if (!int.TryParse(e.FormattedValue.ToString(), out _))
+                    if (!decimal.TryParse(e.FormattedValue.ToString(), out _))
                     {
-                        MessageBox.Show("Solo se permiten números enteros.");
+                        MessageBox.Show("Solo se permiten números.");
                         //e.Cancel = true; // evita que pierda el foco
-                        dgvCalidades.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "0";
+                        dgvCalidades.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "0.00";
                         e.Cancel = false; // no marcar error
                     }
                 }
@@ -318,7 +318,7 @@ namespace FresamLogistica.Views.Mango
                 {
                     if (decimal.TryParse(dgvCalidades.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out decimal valor))
                     {
-                        dgvCalidades.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = valor.ToString("N0");
+                        dgvCalidades.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = valor.ToString("N2");
                     }
                     else
                     {
@@ -341,12 +341,12 @@ namespace FresamLogistica.Views.Mango
 
         private void txtPesoCaja_TextChanged(object sender, EventArgs e)
         {
-            CalcularPorcentaje();
+            CalcularPorcentajes();
         }
 
         private void txtDesecho_TextChanged(object sender, EventArgs e)
         {
-            CalcularPorcentaje();
+            CalcularPorcentajes();
         }
 
         private void txtPlacas_TextChanged(object sender, EventArgs e)
@@ -403,6 +403,19 @@ namespace FresamLogistica.Views.Mango
             tsbBuscar.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Consultar");
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Recibo");
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Etiqueta");
+            HabilitarControlesTpCalidadDescuento(SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Modificar Calidad/Descuento"));
+        }
+        private void HabilitarControlesTpCalidadDescuento(bool opcionHabilitar)
+        {
+            dgvCalidades.Enabled = opcionHabilitar;
+            //txtPesoCaja.Enabled = opcionHabilitar;
+            //txtDesecho.Enabled = opcionHabilitar;
+            //txtPorcentaje.Enabled = opcionHabilitar;
+            chkAceptado.Enabled = opcionHabilitar;
+            chkMateria.Enabled = opcionHabilitar;
+            chkAfectaPeso.Enabled = opcionHabilitar;
+            txtPorcentajeMaduro.Enabled = opcionHabilitar;
+            txtObservaciones.Enabled = opcionHabilitar;
         }
 
         private void ConfigurarComboBoxEstatus()
@@ -473,6 +486,8 @@ namespace FresamLogistica.Views.Mango
                     txtPesoBruto.Text = registro.PesoBruto.ToString("N2");
                     txtTara.Text = registro.Tara.ToString("N2");
                     txtPesoNeto.Text = registro.PesoNeto.ToString();
+                    txtPorcentajeCosto.Text = registro.PorcentajeCosto?.ToString("N2");
+                    chkAplicaPorcentajeCostos.Checked = registro.AplicarPorcentajeCosto;
 
                     cbProveedores.SelectedValue = registro.ProveedorId.ToString();
                     cbLocalidades.SelectedValue = registro.LocalidadId.ToString();
@@ -502,8 +517,9 @@ namespace FresamLogistica.Views.Mango
                     }
 
                     //Cargar Info Calidades
-                    CargarDatosCalidadesRecepcion(registro.CalidadesInfo);
-                    CargarDatosCalidadesActivas(registro.CalidadesActivas);
+                    //CargarDatosCalidadesRecepcion(registro.CalidadesInfo);
+                    registro.CalidadesActivas.AddRange(registro.CalidadesInfo);
+                    CargarDatosCalidadesRecepcion(registro.CalidadesActivas.OrderBy(i => i.CalidadId).ToList());
                     
                     EstablecerCalificacion();
 
@@ -514,7 +530,11 @@ namespace FresamLogistica.Views.Mango
                             txtPrecioUnitario.Text = registro.PrecioUnitario.Value.ToString("C2");
                         }
                     }
-                    
+
+                    CalcularPorcentajes();
+                    CalcularPrecioTotal();
+
+                    txtPorcentajeMangoChico.Text = _repoMuestreos.ObtenerPromedioMangoChicoPorMuestreosRecepcion(_IdRegistroSeleccionado).ToString("N2");
                 }
                 else
                 {
@@ -535,7 +555,7 @@ namespace FresamLogistica.Views.Mango
                 CargarDatosCalidadesActivas(_repoCalidades.ListarCalidadesActivasSinValorPorRecepcionId(0));
 
                 EstablecerCalificacion();
-                CalcularPorcentaje();
+                CalcularPorcentajes();
             }
         }
 
@@ -563,12 +583,14 @@ namespace FresamLogistica.Views.Mango
                     PesoBruto = decimal.Parse(txtPesoBruto.Text),
                     Tara = decimal.Parse(txtTara.Text),
                     PesoNeto = decimal.Parse(txtPesoNeto.Text),
-                    CalidadPromedio = int.Parse(txtCalificacion.Text),
+                    CalidadPromedio = decimal.Parse(txtCalificacion.Text),
                     GradoId = _IdGradoSeleccionado,
                     Importe = decimal.Parse(txtImporte.Text, System.Globalization.NumberStyles.Currency),
                     Placas = txtPlacas.Text,
                     PrecioUnitario = decimal.Parse(txtPrecioUnitario.Text, System.Globalization.NumberStyles.Currency),
-                    Estado = cbEstado.SelectedValue.ToString()
+                    Estado = cbEstado.SelectedValue.ToString(),
+                    AplicarPorcentajeCosto = chkAplicaPorcentajeCostos.Checked,
+                    PorcentajeCosto = decimal.Parse(txtPorcentajeCosto.Text)
                 };
 
                 //Cargar Info Vehiculo
@@ -593,7 +615,9 @@ namespace FresamLogistica.Views.Mango
                     porcentaje = decimal.Parse(txtPorcentaje.Text),
                     observaciones = txtObservaciones.Text,
                     aceptado = chkAceptado.Checked,
-                    materia = chkMateria.Checked
+                    materia = chkMateria.Checked,
+                    porcentaje_descuento_afecta_peso = chkAfectaPeso.Checked,
+                    porcentaje_maduro = decimal.Parse(txtPorcentajeMaduro.Text)
                 };
                 registro.Descuentos = descuentos;
 
@@ -614,15 +638,15 @@ namespace FresamLogistica.Views.Mango
                 registro.VehiculoInfo.CondicionesVehiculoInfo = condcionesVehiculo;
 
                 //Cargar Info Calidades
-                List<CalidadesRecepcionesViewModel> calidadesRecepcion = new List<CalidadesRecepcionesViewModel>();
+                List<MangoCalidadesRecepcionesViewModel> calidadesRecepcion = new List<MangoCalidadesRecepcionesViewModel>();
                 foreach (DataGridViewRow row in dgvCalidades.Rows)
                 {
-                    CalidadesRecepcionesViewModel calidad = new CalidadesRecepcionesViewModel()
+                    MangoCalidadesRecepcionesViewModel calidad = new MangoCalidadesRecepcionesViewModel()
                     {
                         CalidadRecepcionId = row.Cells["CalidadRecepcionId"].Value != null ? Convert.ToInt32(row.Cells["CalidadRecepcionId"].Value) : 0,
                         CalidadId = row.Cells["CalidadId"].Value != null ? Convert.ToInt32(row.Cells["CalidadId"].Value) : 0,
                         Nombre = row.Cells["Nombre"].Value != null ? row.Cells["Nombre"].Value.ToString() : string.Empty,
-                        Valor = row.Cells["Valor"].Value != null ? Convert.ToInt32(row.Cells["Valor"].Value) : 0
+                        Valor = row.Cells["Valor"].Value != null ? Convert.ToDecimal(row.Cells["Valor"].Value) : 0
                     };
                     calidadesRecepcion.Add(calidad);
                 }
@@ -746,19 +770,24 @@ namespace FresamLogistica.Views.Mango
             cbPropietarios.Enabled = false;
             cbGrados.Enabled = false;
             txtCalificacion.Enabled = false;
+            chkAplicaPorcentajeCostos.Enabled = true;
+            txtPorcentajeCosto.Enabled = true;
 
             txtFolioCiclo.Enabled = false;
             txtFolioProveedor.Enabled = false;
-            txtPrecioUnitario.Enabled = Enabled;
+            txtPrecioUnitario.Enabled = true;
             txtImporte.Enabled = false;
+            txtPorcentaje.Enabled = false;
+            txtDesecho.Enabled = false;
+            txtPorcentajeMangoChico.Enabled = false;
         }
 
         private void CargarDatosSectorSeleccionado()
         {
-            if (_IdPredioSeleccionado > 0)
-            {
-                cbPropietarios.SelectedValue = this._IdPropietarioSeleccionado.ToString();
-            }
+                if (_IdPredioSeleccionado > 0)
+                {
+                    cbPropietarios.SelectedValue = this._IdPropietarioSeleccionado.ToString();
+                }
         }
 
         private void CargarDatosDescuentoPorRecepcion(MangoDescuentos _registro)
@@ -771,6 +800,7 @@ namespace FresamLogistica.Views.Mango
                 txtObservaciones.Text = string.Empty;
                 chkAceptado.Checked = false;
                 chkMateria.Checked = false;
+                chkAfectaPeso.Checked = false;
             }
             else 
             { 
@@ -781,6 +811,8 @@ namespace FresamLogistica.Views.Mango
                 txtObservaciones.Text = _registro.observaciones;
                 chkAceptado.Checked = _registro.aceptado;
                 chkMateria.Checked = _registro.materia;
+                chkAfectaPeso.Checked = _registro.porcentaje_descuento_afecta_peso;
+                txtPorcentajeMaduro.Text = _registro.porcentaje_maduro?.ToString("N2");
             }
         }
 
@@ -822,6 +854,7 @@ namespace FresamLogistica.Views.Mango
             DataGridViewHelper.AddColumn(dgv, "Calidad", "Nombre", 250, true, true);
             DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Valor", "valor", 150, true, false);
             DataGridViewHelper.AddColumnCheckBox(dgv, "AfectaCalificacion", "AfectaCalificacion", 100, false);
+            DataGridViewHelper.AddColumnCheckBox(dgv, "UsoPorcentajeMangoChico", "UsoPorcentajeMangoChico", 100, false);
 
             dgv.CurrentCellDirtyStateChanged += (s, e) =>
             {
@@ -865,37 +898,39 @@ namespace FresamLogistica.Views.Mango
             }
         }
 
-        private void CargarDatosCalidadesActivas(List<CalidadesRecepcionesViewModel> _registros)
+        private void CargarDatosCalidadesActivas(List<MangoCalidadesRecepcionesViewModel> _registros)
         {
             if (_registros.Count == 0) return;
 
             DataGridViewRow _fila = new DataGridViewRow();
-            foreach (CalidadesRecepcionesViewModel t in _registros)
+            foreach (MangoCalidadesRecepcionesViewModel t in _registros)
             {
                 _fila = new DataGridViewRow();
                 _fila.CreateCells(dgvCalidades);
                 _fila.Cells[0].Value = t.CalidadRecepcionId;
                 _fila.Cells[1].Value = t.CalidadId;
                 _fila.Cells[2].Value = t.Nombre;
-                _fila.Cells[3].Value = t.Valor.ToString("N0");
+                _fila.Cells[3].Value = t.Valor.ToString("N2");
                 _fila.Cells[4].Value = t.AfectaCalificacion;
+                _fila.Cells[5].Value = t.UsoPorcentajeMangoChico;
                 dgvCalidades.Rows.Add(_fila);
             }
         }
 
-        private void CargarDatosCalidadesRecepcion(List<CalidadesRecepcionesViewModel> _registros)
+        private void CargarDatosCalidadesRecepcion(List<MangoCalidadesRecepcionesViewModel> _registros)
         {
             dgvCalidades.Rows.Clear();
             DataGridViewRow _fila = new DataGridViewRow();
-            foreach (CalidadesRecepcionesViewModel t in _registros)
+            foreach (MangoCalidadesRecepcionesViewModel t in _registros)
             {
                 _fila = new DataGridViewRow();
                 _fila.CreateCells(dgvCalidades);
                 _fila.Cells[0].Value = t.CalidadRecepcionId;
                 _fila.Cells[1].Value = t.CalidadId;
                 _fila.Cells[2].Value = t.Nombre;
-                _fila.Cells[3].Value = t.Valor.ToString("N0");
+                _fila.Cells[3].Value = t.Valor.ToString("N2");
                 _fila.Cells[4].Value = t.AfectaCalificacion;
+                _fila.Cells[5].Value = t.UsoPorcentajeMangoChico;
                 dgvCalidades.Rows.Add(_fila);
             }
         }
@@ -910,6 +945,7 @@ namespace FresamLogistica.Views.Mango
             Helper.TextBoxValidarMonedas.Attach(txtPrecioUnitario);
             Helper.TextBoxValidarMonedas.Attach(txtImporte);
 
+            Helper.TextBoxValidarNumerosDecimales.Attach(txtPorcentajeCosto);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPesoBruto);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtTara);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPesoNeto);
@@ -917,6 +953,7 @@ namespace FresamLogistica.Views.Mango
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPesoCaja);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtDesecho);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPorcentaje);
+            Helper.TextBoxValidarNumerosDecimales.Attach(txtPorcentajeMaduro);
 
         }
 
@@ -943,14 +980,50 @@ namespace FresamLogistica.Views.Mango
             }
         }
 
+        private void CalcularPorcentajes()
+        {
+            try
+            {
+                decimal porcentaje = 0;
+                decimal pesoCaja = Convert.ToDecimal(txtPesoCaja.Text);
+
+                foreach (DataGridViewRow row in dgvCalidades.Rows)
+                {
+                    if (!Convert.ToBoolean(row.Cells["AfectaCalificacion"].Value))
+                        continue;
+
+                    if (Convert.ToBoolean(row.Cells["UsoPorcentajeMangoChico"].Value))
+                        porcentaje += (Convert.ToDecimal(row.Cells["Valor"].Value) / 2);
+                    else
+                        porcentaje += Convert.ToDecimal(row.Cells["Valor"].Value);
+
+                    if (Convert.ToBoolean(row.Cells["UsoPorcentajeMangoChico"].Value))
+                        txtPorcentajeMangoChico.Text = (Convert.ToDecimal(row.Cells["Valor"].Value) * 100 / pesoCaja).ToString("N2");
+
+                }
+
+                txtDesecho.Text = porcentaje.ToString("N2");
+
+                porcentaje = Math.Round(porcentaje * 100 / pesoCaja, 2);
+                txtPorcentaje.Text = porcentaje.ToString("N2");
+            }
+            catch
+            {
+                txtDesecho.Text = "0.00";
+                txtPorcentaje.Text = "0.00";
+            }
+        }
+
         private void CalcularPrecioTotal()
         {
             try
             {
+                CalcularPesoNeto();
                 _IdGradoSeleccionado = cbGrados.SelectedValue.ToString();
 
                 _precioFrutaGrado = _repoPrecios.ObtenerPrecioActual(_IdFrutaSeleccionada, _IdGradoSeleccionado, dtpFecha.Value);
                 decimal _precioRecepcion = decimal.Parse(txtPrecioUnitario.Text, System.Globalization.NumberStyles.Currency);
+                _totalPesoNeto = decimal.Parse(txtPesoNeto.Text);
 
                 if (_precioFrutaGrado != _precioRecepcion && _precioRecepcion > 0)
                     _precioFrutaGrado = txtPrecioUnitario.Text.Length > 0 ? decimal.Parse(txtPrecioUnitario.Text, System.Globalization.NumberStyles.Currency) : 0;
@@ -959,9 +1032,16 @@ namespace FresamLogistica.Views.Mango
                     txtPrecioUnitario.Text = _precioFrutaGrado.ToString("C2");
                 }
 
-                _totalPesoNeto = decimal.Parse(txtPesoNeto.Text);
+                if (chkAplicaPorcentajeCostos.Checked)
+                {
+                    decimal porcentajeCosto = decimal.Parse(txtPorcentajeCosto.Text);
+                    _totalPrecio = _precioFrutaGrado * (_totalPesoNeto * (1 - (porcentajeCosto/100)));
+                }
+                else
+                {
+                    _totalPrecio = _totalPesoNeto * _precioFrutaGrado;
+                }
 
-                _totalPrecio = _totalPesoNeto * _precioFrutaGrado;
                 txtImporte.Text = _totalPrecio.ToString("C2");
                 txtPesoNeto.Text = _totalPesoNeto.ToString("N2");
 
@@ -976,12 +1056,9 @@ namespace FresamLogistica.Views.Mango
         {
             try
             {
-                txtCalificacion.Text = (Constantes.Calificacion - dgvCalidades.Rows.Cast<DataGridViewRow>()
-                    .Where(r => r.Cells["valor"].Value != null && int.TryParse(r.Cells["valor"].Value.ToString(), out int val) && val > 0 && Convert.ToBoolean(r.Cells["AfectaCalificacion"].Value) == true)
-                    .Sum(r => int.Parse(r.Cells["valor"].Value.ToString())))
-                    .ToString("N0");
+                txtCalificacion.Text = (100 - Convert.ToDecimal(txtPorcentaje.Text)).ToString("N2");
 
-                cbGrados.SelectedValue = _repoGrados.ObtenerGradoIdPorFrutaIdCalificacion(_IdFrutaSeleccionada, Int32.Parse(txtCalificacion.Text));
+                cbGrados.SelectedValue = _repoGrados.ObtenerGradoIdPorFrutaIdMangoCalificacion(_IdFrutaSeleccionada, Convert.ToInt16(decimal.Parse(txtCalificacion.Text)));
                 txtPrecioUnitario.Text = _repoPrecios.ObtenerPrecioActual(_IdFrutaSeleccionada, _IdGradoSeleccionado, dtpFecha.Value).ToString("C2");
 
             }
@@ -1019,31 +1096,6 @@ namespace FresamLogistica.Views.Mango
             CargarVehiculoInfo(_repoVehiculos.ObtenerPorPlacasMango(txtPlacas.Text.Trim(), _idProveedorSeleccionado));
         }
         
-        private string GenerarCalidadReporte()
-        {
-            if(txtImporte.Text != "$0.00" && _totalPesoNeto > 0)
-            {
-                return txtCalificacion.Text;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private string GenerarGradoReporte()
-        {
-            if (txtImporte.Text != "$0.00" && _totalPesoNeto > 0)
-            {
-                return cbGrados.Text;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-
         private void EstablecerFechasValidasEnElCiclo()
         {
             var _ciclo = _repoCiclos.ObtenerPorCicloId(_IdCicloSeleccionado);
@@ -1057,14 +1109,51 @@ namespace FresamLogistica.Views.Mango
         {
             try
             {
-                txtPesoNeto.Text = (decimal.Parse(txtPesoBruto.Text) - decimal.Parse(txtTara.Text)).ToString("N2");
+                decimal porcentaje = decimal.Parse(txtPorcentaje.Text);
+                decimal peso = decimal.Parse(txtPesoBruto.Text) - decimal.Parse(txtTara.Text);
+                if (chkAfectaPeso.Checked)
+                {
+                    txtPesoNeto.Text = (peso - (peso * porcentaje / 100)).ToString("N2");
+                }
+                else
+                {
+                    txtPesoNeto.Text = peso.ToString("N2");
+                }
             }
             catch (Exception ex)
             {
             }
         }
+
         #endregion
 
+        private void chkAfectaPeso_CheckedChanged(object sender, EventArgs e)
+        {
+            CalcularPesoNeto();
+            CalcularPrecioTotal();
+        }
 
+        private void chkAplicaPorcentajeCostos_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPorcentajeCosto.Enabled = chkAplicaPorcentajeCostos.Checked;
+            if (!chkAplicaPorcentajeCostos.Checked) 
+            { 
+                txtPorcentajeCosto.Text = "0.00";
+                chkAfectaPeso.Checked = false;
+            }
+            else
+            {
+                chkAfectaPeso.Checked = false;
+            }
+
+                chkAfectaPeso.Enabled = !chkAplicaPorcentajeCostos.Checked;
+
+            CalcularPrecioTotal();
+        }
+
+        private void txtPorcentajeCosto_TextChanged(object sender, EventArgs e)
+        {
+            CalcularPrecioTotal();
+        }
     }
 }

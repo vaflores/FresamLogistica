@@ -48,7 +48,9 @@
             this.txtDesecho = new System.Windows.Forms.TextBox();
             this.txtPesoCaja = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.txtCalificacion = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.dgvCalidades = new System.Windows.Forms.DataGridView();
             this.tpMuestreos = new System.Windows.Forms.TabPage();
@@ -80,6 +82,10 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.tcRecepcion = new System.Windows.Forms.TabControl();
             this.tpCalidadDescuentoMuestreo = new System.Windows.Forms.TabPage();
+            this.txtCalificacionPromedio = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cbGradoPromedio = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtObservacionesPromedio = new System.Windows.Forms.TextBox();
             this.chkMateriaPromedio = new System.Windows.Forms.CheckBox();
@@ -91,18 +97,12 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.dgvCalidadesPromedio = new System.Windows.Forms.DataGridView();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtCalificacion = new System.Windows.Forms.TextBox();
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.txtFolioDiario = new System.Windows.Forms.TextBox();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.lblFechaInicial = new System.Windows.Forms.Label();
-            this.txtCalificacionPromedio = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.cbGradoPromedio = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.tsMenu.SuspendLayout();
             this.tpCalidadDescuento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCalidades)).BeginInit();
@@ -274,7 +274,7 @@
             this.txtObservaciones.Location = new System.Drawing.Point(461, 182);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(451, 92);
+            this.txtObservaciones.Size = new System.Drawing.Size(451, 87);
             this.txtObservaciones.TabIndex = 5;
             // 
             // chkMateria
@@ -336,6 +336,16 @@
             this.label16.TabIndex = 55;
             this.label16.Text = "Porcentaje:";
             // 
+            // txtCalificacion
+            // 
+            this.txtCalificacion.Enabled = false;
+            this.txtCalificacion.Location = new System.Drawing.Point(574, 8);
+            this.txtCalificacion.Name = "txtCalificacion";
+            this.txtCalificacion.Size = new System.Drawing.Size(150, 26);
+            this.txtCalificacion.TabIndex = 6;
+            this.txtCalificacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCalificacion.TextChanged += new System.EventHandler(this.txtCalificacion_TextChanged);
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -345,6 +355,16 @@
             this.label15.Size = new System.Drawing.Size(77, 20);
             this.label15.TabIndex = 55;
             this.label15.Text = "Desecho:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(458, 11);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(93, 20);
+            this.label18.TabIndex = 54;
+            this.label18.Text = "Calificación:";
             // 
             // label14
             // 
@@ -724,6 +744,44 @@
             this.tpCalidadDescuentoMuestreo.Text = "Calidad/Descuento del Muestreo";
             this.tpCalidadDescuentoMuestreo.UseVisualStyleBackColor = true;
             // 
+            // txtCalificacionPromedio
+            // 
+            this.txtCalificacionPromedio.Enabled = false;
+            this.txtCalificacionPromedio.Location = new System.Drawing.Point(574, 8);
+            this.txtCalificacionPromedio.Name = "txtCalificacionPromedio";
+            this.txtCalificacionPromedio.Size = new System.Drawing.Size(150, 26);
+            this.txtCalificacionPromedio.TabIndex = 72;
+            this.txtCalificacionPromedio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(458, 11);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(93, 20);
+            this.label23.TabIndex = 74;
+            this.label23.Text = "Calificación:";
+            // 
+            // cbGradoPromedio
+            // 
+            this.cbGradoPromedio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGradoPromedio.FormattingEnabled = true;
+            this.cbGradoPromedio.Location = new System.Drawing.Point(574, 37);
+            this.cbGradoPromedio.Name = "cbGradoPromedio";
+            this.cbGradoPromedio.Size = new System.Drawing.Size(150, 28);
+            this.cbGradoPromedio.TabIndex = 71;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(458, 40);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(58, 20);
+            this.label24.TabIndex = 73;
+            this.label24.Text = "Grado:";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -744,7 +802,7 @@
             this.txtObservacionesPromedio.Location = new System.Drawing.Point(461, 182);
             this.txtObservacionesPromedio.Multiline = true;
             this.txtObservacionesPromedio.Name = "txtObservacionesPromedio";
-            this.txtObservacionesPromedio.Size = new System.Drawing.Size(451, 92);
+            this.txtObservacionesPromedio.Size = new System.Drawing.Size(451, 87);
             this.txtObservacionesPromedio.TabIndex = 64;
             // 
             // chkMateriaPromedio
@@ -841,26 +899,6 @@
             this.dgvCalidadesPromedio.Size = new System.Drawing.Size(450, 269);
             this.dgvCalidadesPromedio.TabIndex = 60;
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(458, 11);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(93, 20);
-            this.label18.TabIndex = 54;
-            this.label18.Text = "Calificación:";
-            // 
-            // txtCalificacion
-            // 
-            this.txtCalificacion.Enabled = false;
-            this.txtCalificacion.Location = new System.Drawing.Point(574, 8);
-            this.txtCalificacion.Name = "txtCalificacion";
-            this.txtCalificacion.Size = new System.Drawing.Size(150, 26);
-            this.txtCalificacion.TabIndex = 6;
-            this.txtCalificacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtCalificacion.TextChanged += new System.EventHandler(this.txtCalificacion_TextChanged);
-            // 
             // cbEstado
             // 
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -915,44 +953,6 @@
             this.lblFechaInicial.Size = new System.Drawing.Size(58, 20);
             this.lblFechaInicial.TabIndex = 63;
             this.lblFechaInicial.Text = "Fecha:";
-            // 
-            // txtCalificacionPromedio
-            // 
-            this.txtCalificacionPromedio.Enabled = false;
-            this.txtCalificacionPromedio.Location = new System.Drawing.Point(574, 8);
-            this.txtCalificacionPromedio.Name = "txtCalificacionPromedio";
-            this.txtCalificacionPromedio.Size = new System.Drawing.Size(150, 26);
-            this.txtCalificacionPromedio.TabIndex = 72;
-            this.txtCalificacionPromedio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(458, 11);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(93, 20);
-            this.label23.TabIndex = 74;
-            this.label23.Text = "Calificación:";
-            // 
-            // cbGradoPromedio
-            // 
-            this.cbGradoPromedio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGradoPromedio.FormattingEnabled = true;
-            this.cbGradoPromedio.Location = new System.Drawing.Point(574, 37);
-            this.cbGradoPromedio.Name = "cbGradoPromedio";
-            this.cbGradoPromedio.Size = new System.Drawing.Size(150, 28);
-            this.cbGradoPromedio.TabIndex = 71;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(458, 40);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(58, 20);
-            this.label24.TabIndex = 73;
-            this.label24.Text = "Grado:";
             // 
             // MuestreoView
             // 

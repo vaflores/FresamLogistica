@@ -12,6 +12,8 @@ namespace FresamLogistica.Model
         public Empleados()
         {
             ConfiguracionFirmasReportes = new HashSet<ConfiguracionFirmasReportes>();
+            MangoMuestreos = new HashSet<MangoMuestreos>();
+            MangoMuestreos1 = new HashSet<MangoMuestreos>();
             Usuarios = new HashSet<Usuarios>();
         }
 
@@ -48,6 +50,12 @@ namespace FresamLogistica.Model
         public virtual ICollection<ConfiguracionFirmasReportes> ConfiguracionFirmasReportes { get; set; }
 
         public virtual Puestos Puestos { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MangoMuestreos> MangoMuestreos { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MangoMuestreos> MangoMuestreos1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuarios> Usuarios { get; set; }

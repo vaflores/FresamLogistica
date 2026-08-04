@@ -19,10 +19,6 @@ namespace FresamLogistica.Model
 
         public int mango_recepcion_id { get; set; }
 
-        public int numero_muestra { get; set; }
-
-        public bool rechazada { get; set; }
-
         [StringLength(500)]
         public string observaciones { get; set; }
 
@@ -37,6 +33,28 @@ namespace FresamLogistica.Model
         public string usuario_modifica { get; set; }
 
         public DateTime fecha_modifica { get; set; }
+
+        public DateTime fecha { get; set; }
+
+        public decimal peso_caja { get; set; }
+
+        public decimal desecho { get; set; }
+
+        public decimal porcentaje { get; set; }
+
+        public bool aceptado { get; set; }
+
+        public bool materia { get; set; }
+
+        public decimal? porcentaje_maduro { get; set; }
+
+        public int? responsable_empleado_id { get; set; }
+
+        public int? verifica_empleado_id { get; set; }
+
+        public virtual Empleados Empleados { get; set; }
+
+        public virtual Empleados Empleados1 { get; set; }
 
         public virtual MangoRecepciones MangoRecepciones { get; set; }
 

@@ -66,7 +66,9 @@ namespace FresamLogistica.Controllers.Mango
                     grado_id = entidad.GradoId,
                     importe = entidad.Importe,
                     precio_unitario = entidad.PrecioUnitario,
-                    estado = entidad.Estado
+                    estado = entidad.Estado,
+                    porcentaje_costo_afecta_peso = entidad.AplicarPorcentajeCosto,
+                    porcentaje_costo = entidad.PorcentajeCosto
                 };
                 SesionActualHelper.RegistrarSesionCrea(ref nuevaRecepcion);
                 _context.MangoRecepciones.Add(nuevaRecepcion);
@@ -102,7 +104,7 @@ namespace FresamLogistica.Controllers.Mango
             _repoDescuentos.CrearDescuentoRecepcionViewModel(entidad.Descuentos);
 
             // Crear calidades
-            foreach(CalidadesRecepcionesViewModel calidad in entidad.CalidadesInfo)
+            foreach(MangoCalidadesRecepcionesViewModel calidad in entidad.CalidadesInfo)
             {
                 if (calidad.Valor == 0) continue;
                 calidad.CalidadRecepcionId = entidad.RecepcionId;
@@ -153,6 +155,8 @@ namespace FresamLogistica.Controllers.Mango
                     registro.importe = entidad.Importe;
                     registro.precio_unitario = entidad.PrecioUnitario;
                     registro.estado = entidad.Estado;
+                    registro.porcentaje_costo_afecta_peso = entidad.AplicarPorcentajeCosto;
+                    registro.porcentaje_costo = entidad.PorcentajeCosto;
                     SesionActualHelper.RegistrarUsuarioModifica(ref registro);
                     _context.Entry(registro).CurrentValues.SetValues(registro);
                     _context.SaveChanges();
@@ -225,7 +229,7 @@ namespace FresamLogistica.Controllers.Mango
                 {
                     _repoCalidades.EliminarCalidadRecepcion(c.calidad_recepcion_id);
                 }
-            foreach (CalidadesRecepcionesViewModel calidad in entidad.CalidadesInfo)
+            foreach (MangoCalidadesRecepcionesViewModel calidad in entidad.CalidadesInfo)
             {
                 if (calidad.Valor == 0) continue;
                 calidad.CalidadRecepcionId = entidad.RecepcionId;
@@ -291,26 +295,33 @@ namespace FresamLogistica.Controllers.Mango
                         Placas = r.MangoVehiculoRecepcion.Select(vr => vr.Vehiculos.placas).FirstOrDefault(),
                         GradoId = r.grado_id,
                         CalidadPromedio = r.calidad_promedio,
-                        Estado = r.estado
+                        Estado = r.estado,
+                        AplicarPorcentajeCosto = r.porcentaje_costo_afecta_peso,
+                        PorcentajeCosto = r.porcentaje_costo
                     })
                     .FirstOrDefault();
             }
 
-            if(registro != null)
+            if (registro != null)
             {
                 registro.VehiculoInfo = _repoVehiculos.ObtenerVehiculoMangoRecepcionPorRecepcionId(registro.RecepcionId);
                 registro.Descuentos = _repoDescuentos.ObtenerPorRecepcionId(_idRecepcion);
 
                 registro.CalidadesInfo = _repoCalidades.ListarCalidadesPorRecepcionId(_idRecepcion);
                 registro.CalidadesActivas = _repoCalidades.ListarCalidadesActivasSinValorPorRecepcionId(_idRecepcion);
-                
-                if(registro.VehiculoInfo != null)
-                { 
+
+                if (registro.VehiculoInfo != null)
+                {
                     registro.VehiculoInfo.CondicionesVehiculoInfo = _repoCondiciones.ListarMangoCondicionesPorRecepcionId(_idRecepcion);
                     registro.VehiculoInfo.CondicionesVehiculoActivas = _repoCondiciones.ListarMangoCondicionesActivasSinValorPorRecepcionId(_idRecepcion);
                 }
-            }
 
+                using (var _context = new Model.Model())
+                {
+                    registro.ResponsableEmpleadoId = _context.MangoMuestreos.Where(m => m.mango_recepcion_id == registro.RecepcionId).Select(m => m.responsable_empleado_id).FirstOrDefault();
+                    registro.VerificaEmpleadoId = _context.MangoMuestreos.Where(m => m.mango_recepcion_id == registro.RecepcionId).Select(m => m.verifica_empleado_id).FirstOrDefault();
+                }
+            }
             return registro;
         }
 
@@ -351,7 +362,9 @@ namespace FresamLogistica.Controllers.Mango
                         Placas = r.MangoVehiculoRecepcion.Select(vr => vr.Vehiculos.placas).FirstOrDefault(),
                         GradoId = r.grado_id,
                         CalidadPromedio = r.calidad_promedio,
-                        Estado = r.estado
+                        Estado = r.estado,
+                        AplicarPorcentajeCosto = r.porcentaje_costo_afecta_peso,
+                        PorcentajeCosto = r.porcentaje_costo
                     })
                     .OrderBy(x => x.Fecha)
                     .ToList();
@@ -409,7 +422,9 @@ namespace FresamLogistica.Controllers.Mango
                         Placas = r.MangoVehiculoRecepcion.Select(vr => vr.Vehiculos.placas).FirstOrDefault(),
                         GradoId = r.grado_id,
                         CalidadPromedio = r.calidad_promedio,
-                        Estado = r.estado
+                        Estado = r.estado,
+                        AplicarPorcentajeCosto = r.porcentaje_costo_afecta_peso,
+                        PorcentajeCosto = r.porcentaje_costo
                     })
                     .Where(r => r.Fecha.Date == _fecha.Date)
                     .OrderBy(x => x.Fecha)
@@ -473,7 +488,9 @@ namespace FresamLogistica.Controllers.Mango
                         Placas = r.MangoVehiculoRecepcion.Select(vr => vr.Vehiculos.placas).FirstOrDefault(),
                         GradoId = r.grado_id,
                         CalidadPromedio = r.calidad_promedio,
-                        Estado = r.estado
+                        Estado = r.estado,
+                        AplicarPorcentajeCosto = r.porcentaje_costo_afecta_peso,
+                        PorcentajeCosto = r.porcentaje_costo
                     })
                     .Where(r => r.Fecha.Date >= _fechaInicio.Date && r.Fecha.Date <= _fechaFin.Date)
                     .OrderBy(x => x.Fecha)
@@ -663,6 +680,35 @@ namespace FresamLogistica.Controllers.Mango
 
                     command.Parameters.Add(new SqlParameter("@fechaInicio", fechaInicio));
                     command.Parameters.Add(new SqlParameter("@fechaFin", fechaFin));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
+            }
+        }
+
+        public async Task<DataTable> ObteneReporteMangoRecepcionesInspeccionVehiculosPorRangoFechasAsync(DateTime fechaInicio, DateTime fechaFin)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_ReporteMangoRecepcionesInspeccionVehiculosPorRangoFechas";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@fechaInicial", fechaInicio));
+                    command.Parameters.Add(new SqlParameter("@fechaFinal", fechaFin));
 
                     var table = new DataTable();
 

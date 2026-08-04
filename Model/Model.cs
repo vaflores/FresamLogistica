@@ -601,6 +601,16 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.Empleados)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Empleados>()
+                .HasMany(e => e.MangoMuestreos)
+                .WithOptional(e => e.Empleados)
+                .HasForeignKey(e => e.responsable_empleado_id);
+
+            modelBuilder.Entity<Empleados>()
+                .HasMany(e => e.MangoMuestreos1)
+                .WithOptional(e => e.Empleados1)
+                .HasForeignKey(e => e.verifica_empleado_id);
+
             modelBuilder.Entity<Empresa>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);

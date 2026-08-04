@@ -15,7 +15,7 @@ namespace FresamLogistica.Model
 
         public int calidad_id { get; set; }
 
-        public int valor { get; set; }
+        public decimal valor { get; set; }
 
         [Required]
         [StringLength(50)]

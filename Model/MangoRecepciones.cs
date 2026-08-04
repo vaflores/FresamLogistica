@@ -47,7 +47,7 @@ namespace FresamLogistica.Model
 
         public decimal peso_neto { get; set; }
 
-        public int? calidad_promedio { get; set; }
+        public decimal? calidad_promedio { get; set; }
 
         [StringLength(50)]
         public string grado_id { get; set; }
@@ -73,6 +73,10 @@ namespace FresamLogistica.Model
         public string usuario_modifica { get; set; }
 
         public DateTime fecha_modifica { get; set; }
+
+        public decimal? porcentaje_costo { get; set; }
+
+        public bool porcentaje_costo_afecta_peso { get; set; }
 
         public virtual Ciclos Ciclos { get; set; }
 

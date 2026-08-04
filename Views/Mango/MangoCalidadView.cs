@@ -117,6 +117,7 @@ namespace FresamLogistica.Views.Mango
                     cbEstado.SelectedValue = registro.estado;
                     chkAfectaCalificacion.Checked = registro.afecta_calificacion;
                     chkIncluyeReporte.Checked = registro.visible_reporte;
+                    chkPorcentajeChico.Checked = registro.uso_porcentaje_chico == true ? true : false;
                 }
                 else
                 {
@@ -137,7 +138,8 @@ namespace FresamLogistica.Views.Mango
                     nombre = txtNombre.Text,
                     estado = cbEstado.SelectedValue.ToString(),
                     afecta_calificacion = chkAfectaCalificacion.Checked,
-                    visible_reporte = chkIncluyeReporte.Checked
+                    visible_reporte = chkIncluyeReporte.Checked,
+                    uso_porcentaje_chico = chkPorcentajeChico.Checked
                 };
                 if (_IdRegistroSeleccionado == 0)
                 {
