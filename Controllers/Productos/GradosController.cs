@@ -137,5 +137,18 @@ namespace FresamLogistica.Controllers.Productos
                     .FirstOrDefault();
             }
         }
+
+        public string ObtenerGradoIdPorFrutaIdMangoCalificacion(int _frutaId, int _calificacion)
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.GradosFruta
+                    .Where(g => g.fruta_id == _frutaId
+                            && g.limite_inferior <= _calificacion
+                            && g.limite_superior+.99 >= _calificacion)
+                    .Select(g => g.grado_id)
+                    .FirstOrDefault();
+            }
+        }
     }
 }

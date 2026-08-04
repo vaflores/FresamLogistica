@@ -44,6 +44,14 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mangoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.calidadesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.localidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.muestreosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prediosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propietariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recepcionesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.frutasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frutasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.residuosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,6 +70,7 @@
             this.recepcionesPorAgricultorYCicloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.titulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.etiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.etiquetasDeMangoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inspeccionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +108,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.inspecciónDeVehículosMangoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -108,6 +118,7 @@
             this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
+            this.mangoToolStripMenuItem,
             this.frutasToolStripMenuItem,
             this.residuosToolStripMenuItem,
             this.reportesToolStripMenuItem,
@@ -119,7 +130,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(862, 29);
+            this.menuStrip.Size = new System.Drawing.Size(1071, 29);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -225,6 +236,69 @@
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
+            // mangoToolStripMenuItem
+            // 
+            this.mangoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.calidadesToolStripMenuItem2,
+            this.localidadesToolStripMenuItem,
+            this.muestreosToolStripMenuItem,
+            this.prediosToolStripMenuItem,
+            this.propietariosToolStripMenuItem,
+            this.proveedoresToolStripMenuItem,
+            this.recepcionesToolStripMenuItem1});
+            this.mangoToolStripMenuItem.Name = "mangoToolStripMenuItem";
+            this.mangoToolStripMenuItem.Size = new System.Drawing.Size(71, 25);
+            this.mangoToolStripMenuItem.Text = "Mango";
+            // 
+            // calidadesToolStripMenuItem2
+            // 
+            this.calidadesToolStripMenuItem2.Name = "calidadesToolStripMenuItem2";
+            this.calidadesToolStripMenuItem2.Size = new System.Drawing.Size(167, 26);
+            this.calidadesToolStripMenuItem2.Text = "Calidades";
+            this.calidadesToolStripMenuItem2.Click += new System.EventHandler(this.calidadesToolStripMenuItem2_Click);
+            // 
+            // localidadesToolStripMenuItem
+            // 
+            this.localidadesToolStripMenuItem.Name = "localidadesToolStripMenuItem";
+            this.localidadesToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.localidadesToolStripMenuItem.Text = "Localidades";
+            this.localidadesToolStripMenuItem.Click += new System.EventHandler(this.localidadesToolStripMenuItem_Click);
+            // 
+            // muestreosToolStripMenuItem
+            // 
+            this.muestreosToolStripMenuItem.Name = "muestreosToolStripMenuItem";
+            this.muestreosToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.muestreosToolStripMenuItem.Text = "Muestreos";
+            this.muestreosToolStripMenuItem.Click += new System.EventHandler(this.muestreosToolStripMenuItem_Click);
+            // 
+            // prediosToolStripMenuItem
+            // 
+            this.prediosToolStripMenuItem.Name = "prediosToolStripMenuItem";
+            this.prediosToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.prediosToolStripMenuItem.Text = "Predios";
+            this.prediosToolStripMenuItem.Click += new System.EventHandler(this.prediosToolStripMenuItem_Click);
+            // 
+            // propietariosToolStripMenuItem
+            // 
+            this.propietariosToolStripMenuItem.Name = "propietariosToolStripMenuItem";
+            this.propietariosToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.propietariosToolStripMenuItem.Text = "Propietarios";
+            this.propietariosToolStripMenuItem.Click += new System.EventHandler(this.propietariosToolStripMenuItem_Click);
+            // 
+            // proveedoresToolStripMenuItem
+            // 
+            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.proveedoresToolStripMenuItem.Text = "Proveedores";
+            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
+            // 
+            // recepcionesToolStripMenuItem1
+            // 
+            this.recepcionesToolStripMenuItem1.Name = "recepcionesToolStripMenuItem1";
+            this.recepcionesToolStripMenuItem1.Size = new System.Drawing.Size(167, 26);
+            this.recepcionesToolStripMenuItem1.Text = "Recepciones";
+            this.recepcionesToolStripMenuItem1.Click += new System.EventHandler(this.recepcionesToolStripMenuItem1_Click);
+            // 
             // frutasToolStripMenuItem
             // 
             this.frutasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -309,6 +383,7 @@
             this.gradosDeCalidadToolStripMenuItem,
             this.gradoDeCalidadDeLaFrutaProductoresToolStripMenuItem,
             this.inspecciónDeVehículosToolStripMenuItem,
+            this.inspecciónDeVehículosMangoToolStripMenuItem,
             this.muestreoDeCalidadToolStripMenuItem,
             this.recepcionesPorAgricultorYCicloToolStripMenuItem,
             this.titulosToolStripMenuItem,
@@ -360,6 +435,7 @@
             // 
             this.titulosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.etiquetasToolStripMenuItem,
+            this.etiquetasDeMangoToolStripMenuItem,
             this.gradosToolStripMenuItem,
             this.inspeccionesToolStripMenuItem,
             this.calidadesToolStripMenuItem,
@@ -374,6 +450,13 @@
             this.etiquetasToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
             this.etiquetasToolStripMenuItem.Text = "&Etiquetas";
             this.etiquetasToolStripMenuItem.Click += new System.EventHandler(this.etiquetasToolStripMenuItem_Click);
+            // 
+            // etiquetasDeMangoToolStripMenuItem
+            // 
+            this.etiquetasDeMangoToolStripMenuItem.Name = "etiquetasDeMangoToolStripMenuItem";
+            this.etiquetasDeMangoToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.etiquetasDeMangoToolStripMenuItem.Text = "Etiquetas de &Mango";
+            this.etiquetasDeMangoToolStripMenuItem.Click += new System.EventHandler(this.etiquetasDeMangoToolStripMenuItem_Click);
             // 
             // gradosToolStripMenuItem
             // 
@@ -636,7 +719,7 @@
             // 
             this.toolStrip.Location = new System.Drawing.Point(0, 29);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(862, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1071, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -644,9 +727,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 431);
+            this.statusStrip.Location = new System.Drawing.Point(0, 535);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(862, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1071, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -656,11 +739,18 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel.Text = "Estado";
             // 
+            // inspecciónDeVehículosMangoToolStripMenuItem
+            // 
+            this.inspecciónDeVehículosMangoToolStripMenuItem.Name = "inspecciónDeVehículosMangoToolStripMenuItem";
+            this.inspecciónDeVehículosMangoToolStripMenuItem.Size = new System.Drawing.Size(377, 26);
+            this.inspecciónDeVehículosMangoToolStripMenuItem.Text = "Inspección de Vehículos - Mango";
+            this.inspecciónDeVehículosMangoToolStripMenuItem.Click += new System.EventHandler(this.inspecciónDeVehículosMangoToolStripMenuItem_Click);
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 453);
+            this.ClientSize = new System.Drawing.Size(1071, 557);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
@@ -754,6 +844,16 @@
         private System.Windows.Forms.ToolStripMenuItem configuraciónDeFirmasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem puestosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mangoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem calidadesToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem propietariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem localidadesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prediosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recepcionesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem etiquetasDeMangoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem muestreosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inspecciónDeVehículosMangoToolStripMenuItem;
     }
 }
 

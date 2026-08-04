@@ -382,7 +382,6 @@ namespace FresamLogistica.Views.General
                     //Cargar Info Muestreos
                     CargarMuestreosPorRecepcion(_repoMuestreos.ObtenerMuestreosPorRecepcion(registro.RecepcionId));
 
-
                     //Cargar Info Descuentos
                     CargarDatosDescuentoPorRecepcion(registro.Descuentos);
 

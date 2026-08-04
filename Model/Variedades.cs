@@ -11,6 +11,7 @@ namespace FresamLogistica.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Variedades()
         {
+            MangoRecepciones = new HashSet<MangoRecepciones>();
             Sectores = new HashSet<Sectores>();
         }
 
@@ -41,6 +42,9 @@ namespace FresamLogistica.Model
         public DateTime fecha_modifica { get; set; }
 
         public virtual Frutas Frutas { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MangoRecepciones> MangoRecepciones { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sectores> Sectores { get; set; }

@@ -12,6 +12,7 @@ namespace FresamLogistica.Model
         public Condiciones()
         {
             CondicionesVehiculosRecepciones = new HashSet<CondicionesVehiculosRecepciones>();
+            MangoCondicionesVehiculoRecepcion = new HashSet<MangoCondicionesVehiculoRecepcion>();
         }
 
         [Key]
@@ -40,5 +41,8 @@ namespace FresamLogistica.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CondicionesVehiculosRecepciones> CondicionesVehiculosRecepciones { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MangoCondicionesVehiculoRecepcion> MangoCondicionesVehiculoRecepcion { get; set; }
     }
 }

@@ -94,7 +94,7 @@
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPrecioUnitario = new System.Windows.Forms.TextBox();
-            this.chkPrecioUnario = new System.Windows.Forms.CheckBox();
+            this.chkPrecioUnitario = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.txtFolioDiario = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -836,16 +836,16 @@
             this.txtPrecioUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrecioUnitario.TextChanged += new System.EventHandler(this.txtPrecioUnitario_TextChanged);
             // 
-            // chkPrecioUnario
+            // chkPrecioUnitario
             // 
-            this.chkPrecioUnario.AutoSize = true;
-            this.chkPrecioUnario.Location = new System.Drawing.Point(662, 112);
-            this.chkPrecioUnario.Name = "chkPrecioUnario";
-            this.chkPrecioUnario.Size = new System.Drawing.Size(78, 24);
-            this.chkPrecioUnario.TabIndex = 10;
-            this.chkPrecioUnario.Text = "Ajustar";
-            this.chkPrecioUnario.UseVisualStyleBackColor = true;
-            this.chkPrecioUnario.CheckedChanged += new System.EventHandler(this.chkPrecioUnario_CheckedChanged);
+            this.chkPrecioUnitario.AutoSize = true;
+            this.chkPrecioUnitario.Location = new System.Drawing.Point(662, 112);
+            this.chkPrecioUnitario.Name = "chkPrecioUnitario";
+            this.chkPrecioUnitario.Size = new System.Drawing.Size(78, 24);
+            this.chkPrecioUnitario.TabIndex = 10;
+            this.chkPrecioUnitario.Text = "Ajustar";
+            this.chkPrecioUnitario.UseVisualStyleBackColor = true;
+            this.chkPrecioUnitario.CheckedChanged += new System.EventHandler(this.chkPrecioUnario_CheckedChanged);
             // 
             // label19
             // 
@@ -938,7 +938,7 @@
             this.Controls.Add(this.txtFolioDiario);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.chkPrecioUnario);
+            this.Controls.Add(this.chkPrecioUnitario);
             this.Controls.Add(this.txtPrecioUnitario);
             this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.label7);
@@ -1049,7 +1049,7 @@
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtPrecioUnitario;
-        private System.Windows.Forms.CheckBox chkPrecioUnario;
+        private System.Windows.Forms.CheckBox chkPrecioUnitario;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtFolioDiario;
         private System.Windows.Forms.Label label20;

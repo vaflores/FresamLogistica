@@ -45,6 +45,23 @@ namespace FresamLogistica.Controllers.Herramientas
             }
         }
 
+        public void CrearMangoCondicionVehiculoViewModel(CondicionesVehiculoViewModel entidad)
+        {
+            using (var _context = new Model.Model())
+            {
+                MangoCondicionesVehiculoRecepcion nuevaCondicionVehiculo = new MangoCondicionesVehiculoRecepcion
+                {
+                    condicion_vehiculo_recepcion_id = entidad.CondicionVehiculoRecepcionId,
+                    mango_vehiculo_recepcion_id = entidad.VehiculoRecepcionId,
+                    condicion_id = entidad.CondicionId,
+                    valor = entidad.Valor
+                };
+                SesionActualHelper.RegistrarSesionCrea(ref nuevaCondicionVehiculo);
+                _context.MangoCondicionesVehiculoRecepcion.Add(nuevaCondicionVehiculo);
+                _context.SaveChanges();
+            }
+        }
+
         public void Actualizar(Condiciones entidad)
         {
             using (var _context = new Model.Model())
@@ -102,6 +119,19 @@ namespace FresamLogistica.Controllers.Herramientas
             }
         }
 
+        public void EliminarMangoCondicionVehiculoRecepcion(int id)
+        {
+            using (var _context = new Model.Model())
+            {
+                var registro = _context.MangoCondicionesVehiculoRecepcion.Find(id);
+                if (registro != null)
+                {
+                    _context.MangoCondicionesVehiculoRecepcion.Remove(registro);
+                    _context.SaveChanges();
+                }
+            }
+        }
+
         public Condiciones ObtenerPorId(int id)
         {
             using (var _context = new Model.Model())
@@ -145,6 +175,33 @@ namespace FresamLogistica.Controllers.Herramientas
                 return _condiciones;
         }
 
+        public List<CondicionesVehiculoViewModel> ListarMangoCondicionesPorRecepcionId(int _recepcionId)
+        {
+            List<CondicionesVehiculoViewModel> _condiciones;
+            using (var _context = new Model.Model())
+            {
+                var query = from cv in _context.MangoVehiculoRecepcion
+                            join cvr in _context.MangoCondicionesVehiculoRecepcion on cv.mango_vehiculo_recepcion_id equals cvr.mango_vehiculo_recepcion_id
+                            join c in _context.Condiciones on cvr.condicion_id equals c.condicion_id
+                            where cv.mango_recepcion_id == _recepcionId
+                            select new CondicionesVehiculoViewModel
+                            {
+                                CondicionVehiculoRecepcionId = cvr.condicion_vehiculo_recepcion_id,
+                                VehiculoRecepcionId = cv.mango_vehiculo_recepcion_id,
+                                CondicionId = c.condicion_id,
+                                Nombre = c.nombre,
+                                Valor = cvr.valor
+                            }
+            ;
+                _condiciones = query.ToList();
+
+            }
+            if (_condiciones.Count == 0)
+                return new List<CondicionesVehiculoViewModel>();
+            else
+                return _condiciones;
+        }
+
         public List<CondicionesVehiculosRecepciones> ListarCondicionesVehiculosRecepcionesPorRecepcionId(int _recepcionId)
         {
             using (var _context = new Model.Model())
@@ -152,6 +209,18 @@ namespace FresamLogistica.Controllers.Herramientas
                 var query = from cv in _context.VehiculosRecepciones
                             join cvr in _context.CondicionesVehiculosRecepciones on cv.vehiculo_recepcion_id equals cvr.vehiculo_recepcion_id
                             where cv.recepcion_id == _recepcionId
+                            select cvr;
+                return query.ToList();
+            }
+        }
+
+        public List<MangoCondicionesVehiculoRecepcion> ListarMangoCondicionesVehiculosRecepcionesPorRecepcionId(int _recepcionId)
+        {
+            using (var _context = new Model.Model())
+            {
+                var query = from cv in _context.MangoVehiculoRecepcion
+                            join cvr in _context.MangoCondicionesVehiculoRecepcion on cv.mango_vehiculo_recepcion_id equals cvr.mango_vehiculo_recepcion_id
+                            where cv.mango_recepcion_id == _recepcionId
                             select cvr;
                 return query.ToList();
             }
@@ -167,6 +236,30 @@ namespace FresamLogistica.Controllers.Herramientas
                              join cvr in _context.CondicionesVehiculosRecepciones
                                 on cv.vehiculo_recepcion_id equals cvr.vehiculo_recepcion_id
                              where cv.recepcion_id == _recepcionId
+                             select cvr.condicion_id
+                            ).Contains(c.condicion_id)
+                     select new CondicionesVehiculoViewModel
+                     {
+                         CondicionVehiculoRecepcionId = 0,
+                         VehiculoRecepcionId = 0,
+                         CondicionId = c.condicion_id,
+                         Nombre = c.nombre,
+                         Valor = false
+                     }).ToList();
+                return query.ToList();
+            }
+        }
+
+        public List<CondicionesVehiculoViewModel> ListarMangoCondicionesActivasSinValorPorRecepcionId(int _recepcionId)
+        {
+            using (var _context = new Model.Model())
+            {
+                var query =
+                    (from c in _context.Condiciones
+                     where !(from cv in _context.MangoVehiculoRecepcion
+                             join cvr in _context.MangoCondicionesVehiculoRecepcion
+                                on cv.mango_vehiculo_recepcion_id equals cvr.mango_vehiculo_recepcion_id
+                             where cv.mango_recepcion_id == _recepcionId
                              select cvr.condicion_id
                             ).Contains(c.condicion_id)
                      select new CondicionesVehiculoViewModel

@@ -63,6 +63,16 @@ namespace FresamLogistica.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap control_50 {
+            get {
+                object obj = ResourceManager.GetObject("control-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap create_50 {
             get {
                 object obj = ResourceManager.GetObject("create-50", resourceCulture);
@@ -76,6 +86,16 @@ namespace FresamLogistica.Properties {
         internal static System.Drawing.Bitmap delete_50 {
             get {
                 object obj = ResourceManager.GetObject("delete-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap etiqueta_50 {
+            get {
+                object obj = ResourceManager.GetObject("etiqueta-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +126,16 @@ namespace FresamLogistica.Properties {
         internal static System.Drawing.Bitmap money_50 {
             get {
                 object obj = ResourceManager.GetObject("money-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nota_50 {
+            get {
+                object obj = ResourceManager.GetObject("nota-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
