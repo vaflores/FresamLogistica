@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FresamLogistica.Controllers.General
 {
-    internal class CiclosController: ICatalogoCRUD<Ciclos, int>
+    internal class CiclosController : ICatalogoCRUD<Ciclos, int>
     {
         public CiclosController()
         {
@@ -108,7 +108,7 @@ namespace FresamLogistica.Controllers.General
                 return _context.Ciclos
                     .Where(p => p.estado == "A")
                     .OrderByDescending(p => p.ciclo_id)
-                    .Select(p=> p.ciclo_id)
+                    .Select(p => p.ciclo_id)
                     .FirstOrDefault();
             }
         }
@@ -118,7 +118,7 @@ namespace FresamLogistica.Controllers.General
             using (var _context = new Model.Model())
             {
                 var ciclo = _context.Ciclos
-                    .Where(p => p.fecha_inicio <= fecha && 
+                    .Where(p => p.fecha_inicio <= fecha &&
                                 (p.fecha_fin == null || p.fecha_fin >= fecha))
                     .FirstOrDefault();
                 return ciclo != null ? ciclo.ciclo_id : 0;
@@ -175,7 +175,6 @@ namespace FresamLogistica.Controllers.General
             }
         }
 
-
         private void AsignarIdSiCero(ref Ciclos entidad)
         {
             if (entidad.ciclo_id == 0)
@@ -191,6 +190,108 @@ namespace FresamLogistica.Controllers.General
                     entidad.ciclo_id = ultimoId + 1;
                 }
                 ;
+            }
+        }
+
+        public bool ValidarFechaInicialPrimeraRecepcionDelCiclo(int cicloId, DateTime fecha)
+        {
+            DateTime fechaPrimeraRecepcion = fecha;
+            DateTime fechaPrimeraRecepcionMango = fecha;
+
+            using (var _context = new Model.Model())
+            {
+                bool existeRecepcion = _context.Recepciones
+                    .Any(r => r.ciclo_id == cicloId);
+
+                bool existeMangoRecepcion = _context.MangoRecepciones
+                    .Any(r => r.ciclo_id == cicloId);
+
+                if (existeRecepcion)
+                {
+                    fechaPrimeraRecepcion = _context.Recepciones
+                        .Where(r => r.ciclo_id == cicloId)
+                        .OrderBy(r => r.fecha)
+                        .Select(r => r.fecha)
+                        .FirstOrDefault();
+                }
+
+                if(existeMangoRecepcion)
+                {
+                    fechaPrimeraRecepcionMango = _context.MangoRecepciones
+                        .Where(r => r.ciclo_id == cicloId)
+                        .OrderBy(r => r.fecha)
+                        .Select(r => r.fecha)
+                        .FirstOrDefault();
+                }
+
+                if (existeRecepcion && existeMangoRecepcion)
+                {
+                    return fechaPrimeraRecepcion > fecha && fechaPrimeraRecepcionMango > fecha;
+                }
+                else if (existeRecepcion)
+                {
+                    return fechaPrimeraRecepcion > fecha;
+                }
+                else if (existeMangoRecepcion)
+                {
+                    return fechaPrimeraRecepcionMango > fecha;
+                }
+                else
+                {
+                    // No hay recepciones ni de mango ni de fruta, por lo que no hay restricciones
+                    return true;
+                }
+
+            }
+        }
+
+        public bool ValidarFechaInicialUltimaRecepcion(int cicloId, DateTime fecha)
+        {
+            DateTime fechaPrimeraRecepcion = fecha;
+            DateTime fechaPrimeraRecepcionMango = fecha;
+
+            using (var _context = new Model.Model())
+            {
+                bool existeRecepcion = _context.Recepciones
+                    .Any();
+
+                bool existeMangoRecepcion = _context.MangoRecepciones
+                    .Any();
+
+                if (existeRecepcion)
+                {
+                    fechaPrimeraRecepcion = _context.Recepciones
+                        .OrderByDescending(r => r.fecha)
+                        .Select(r => r.fecha)
+                        .FirstOrDefault();
+                }
+
+                if (existeMangoRecepcion)
+                {
+                    fechaPrimeraRecepcionMango = _context.MangoRecepciones
+                        .OrderByDescending(r => r.fecha)
+                        .Select(r => r.fecha)
+                        .FirstOrDefault();
+                }
+
+                if (existeRecepcion && existeMangoRecepcion)
+                {
+                    return fechaPrimeraRecepcion < fecha && fechaPrimeraRecepcionMango < fecha;
+                }
+                else if (existeRecepcion)
+                {
+                    return fechaPrimeraRecepcion < fecha;
+                }
+                else if (existeMangoRecepcion)
+                {
+                    return fechaPrimeraRecepcionMango < fecha;
+                }
+                else
+                {
+                    // No hay recepciones ni de mango ni de fruta, por lo que no hay restricciones
+                    return true;
+                }
+
             }
         }
     }

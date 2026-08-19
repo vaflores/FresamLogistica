@@ -470,7 +470,7 @@ namespace FresamLogistica.Views.Mango
                 var registro = _repo.ObtenerRecepcionPorId(_IdRegistroSeleccionado);
                 if (registro != null)
                 {
-                    dtpFecha.Enabled = false;
+                    dtpFecha.Enabled = true;
                     cbCiclos.SelectedValue = registro.CicloId.ToString();
                     txtRecepcion.Text = registro.RecepcionId.ToString();
                     txtFolioCiclo.Text = registro.FolioCiclo.HasValue ? registro.FolioCiclo.Value.ToString() : string.Empty;
@@ -478,14 +478,15 @@ namespace FresamLogistica.Views.Mango
                     dtpFecha.Value = registro.Fecha;
                     txtGuiaSanitaria.Text = registro.GuiaSanitaria;
                     cbEstado.SelectedValue = registro.Estado;
-                    cbGrados.SelectedValue = registro.GradoId.ToString();
+                    cbGrados.SelectedValue = registro.GradoId == null ? "" : registro.GradoId.ToString();
                     txtCalificacion.Text = registro.CalidadPromedio.ToString();
                     txtPrecioUnitario.Text = registro.PrecioUnitario.HasValue ? registro.PrecioUnitario.Value.ToString("C2"): "$0.00";
                     txtImporte.Text = registro.Importe.HasValue ? registro.Importe.Value.ToString("C2") : "$0.00";
                     txtTicketBascula.Text = registro.TicketBascula;
                     txtPesoBruto.Text = registro.PesoBruto.ToString("N2");
                     txtTara.Text = registro.Tara.ToString("N2");
-                    txtPesoNeto.Text = registro.PesoNeto.ToString();
+                    txtPesoNeto.Text = registro.PesoNeto.ToString("N2");
+                    txtPesoDisponible.Text = registro.PesoNetoDisponible.ToString("N2");
                     txtPorcentajeCosto.Text = registro.PorcentajeCosto?.ToString("N2");
                     chkAplicaPorcentajeCostos.Checked = registro.AplicarPorcentajeCosto;
 
@@ -564,6 +565,9 @@ namespace FresamLogistica.Views.Mango
             try
             {
 
+                if (string.IsNullOrWhiteSpace(txtGuiaSanitaria.Text))
+                    MessageBox.Show("El número de guía es obligatorio. ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 //Cargar info recepción
                 var registro = new MangoRecepcionesViewModel()
                 {
@@ -581,16 +585,17 @@ namespace FresamLogistica.Views.Mango
                     GuiaSanitaria = txtGuiaSanitaria.Text,
                     TicketBascula = txtTicketBascula.Text,
                     PesoBruto = decimal.Parse(txtPesoBruto.Text),
-                    Tara = decimal.Parse(txtTara.Text),
-                    PesoNeto = decimal.Parse(txtPesoNeto.Text),
-                    CalidadPromedio = decimal.Parse(txtCalificacion.Text),
+                    Tara = string.IsNullOrWhiteSpace(txtTara.Text) ? 0 : decimal.Parse(txtTara.Text),
+                    PesoNeto = string.IsNullOrWhiteSpace(txtPesoNeto.Text) ? 0 : decimal.Parse(txtPesoNeto.Text),
+                    PesoNetoDisponible = string.IsNullOrWhiteSpace(txtPesoDisponible.Text) ? 0 : decimal.Parse(txtPesoDisponible.Text),
+                    CalidadPromedio = string.IsNullOrWhiteSpace(txtCalificacion.Text) ? 0 : decimal.Parse(txtCalificacion.Text),
                     GradoId = _IdGradoSeleccionado,
-                    Importe = decimal.Parse(txtImporte.Text, System.Globalization.NumberStyles.Currency),
+                    Importe = string.IsNullOrWhiteSpace(txtImporte.Text) ? 0 : decimal.Parse(txtImporte.Text, System.Globalization.NumberStyles.Currency),
                     Placas = txtPlacas.Text,
-                    PrecioUnitario = decimal.Parse(txtPrecioUnitario.Text, System.Globalization.NumberStyles.Currency),
+                    PrecioUnitario = string.IsNullOrWhiteSpace(txtPrecioUnitario.Text) ? 0 : decimal.Parse(txtPrecioUnitario.Text, System.Globalization.NumberStyles.Currency),
                     Estado = cbEstado.SelectedValue.ToString(),
                     AplicarPorcentajeCosto = chkAplicaPorcentajeCostos.Checked,
-                    PorcentajeCosto = decimal.Parse(txtPorcentajeCosto.Text)
+                    PorcentajeCosto = string.IsNullOrWhiteSpace(txtPorcentajeCosto.Text) ? 0 : decimal.Parse(txtPorcentajeCosto.Text)
                 };
 
                 //Cargar Info Vehiculo
@@ -949,6 +954,7 @@ namespace FresamLogistica.Views.Mango
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPesoBruto);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtTara);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPesoNeto);
+            Helper.TextBoxValidarNumerosDecimales.Attach(txtPesoDisponible);
 
             Helper.TextBoxValidarNumerosDecimales.Attach(txtPesoCaja);
             Helper.TextBoxValidarNumerosDecimales.Attach(txtDesecho);

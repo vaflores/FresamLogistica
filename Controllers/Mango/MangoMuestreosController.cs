@@ -373,9 +373,12 @@ namespace FresamLogistica.Controllers.General
                         foreach (DataRow row in table.Rows)
                         {
                             _count++;
-                            _porcentaje += Math.Round(Convert.ToDecimal(row["Tamaño chico (≤350 g)"]) * 100 / Convert.ToDecimal(row["peso_caja"]), 2);
+                            _porcentaje += Math.Round(Convert.ToDecimal(row["Tamaño chico (≤ 350 g)"]) * 100 / Convert.ToDecimal(row["peso_caja"]), 2);
                             
                         }
+
+                        if (_count == 0)
+                            return 0;
 
                         return _porcentaje/_count;
                     }

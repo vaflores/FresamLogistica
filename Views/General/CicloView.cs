@@ -1,6 +1,7 @@
 ﻿using FresamLogistica.Controllers.General;
 using FresamLogistica.Controllers.Productos;
 using FresamLogistica.Helper;
+using FresamLogistica.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -142,6 +143,33 @@ namespace FresamLogistica.Views.General
                     edicion = txtEdicion.Text
                 };
 
+                bool fechaInicialPrimeraRecepcion = _repo.ValidarFechaInicialPrimeraRecepcionDelCiclo(registro.ciclo_id,dtpFechaInicio.Value.Date);
+                
+                if (!fechaInicialPrimeraRecepcion)
+                {
+                   throw new Exception($"Existe una recepciones con fecha menor a la seleccionada.");
+                }
+
+                if(registro.ciclo_id == 0)
+                {
+                    bool fechaInicialUltimaRecepcion = _repo.ValidarFechaInicialUltimaRecepcion(registro.ciclo_id, dtpFechaInicio.Value.Date);
+                    if (!fechaInicialUltimaRecepcion)
+                    {
+                        throw new Exception($"Existe una recepcion con fecha mayor a la seleccionada.");
+                    }
+                }
+
+                Ciclos cicloAnterior = _repo.ObtenerCicloAnterior(registro);
+
+                if(cicloAnterior != null)
+                {
+                    bool fechaInicialUltimaRecepcion = _repo.ValidarFechaInicialUltimaRecepcion(cicloAnterior.ciclo_id, dtpFechaInicio.Value.Date);
+                    if (!fechaInicialUltimaRecepcion)
+                    {
+                        throw new Exception($"Existe una recepcion con fecha mayor a la seleccionada.");
+                    }
+                }
+
                 if (_IdRegistroSeleccionado == 0)
                 {
                     _repo.Crear(registro);
@@ -156,7 +184,7 @@ namespace FresamLogistica.Views.General
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar el registro. ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al guardar el registro. \n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }

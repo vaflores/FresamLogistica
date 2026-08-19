@@ -68,7 +68,8 @@ namespace FresamLogistica.Controllers.Mango
                     precio_unitario = entidad.PrecioUnitario,
                     estado = entidad.Estado,
                     porcentaje_costo_afecta_peso = entidad.AplicarPorcentajeCosto,
-                    porcentaje_costo = entidad.PorcentajeCosto
+                    porcentaje_costo = entidad.PorcentajeCosto,
+                    peso_neto_disponible = entidad.PesoNeto
                 };
                 SesionActualHelper.RegistrarSesionCrea(ref nuevaRecepcion);
                 _context.MangoRecepciones.Add(nuevaRecepcion);
@@ -290,6 +291,7 @@ namespace FresamLogistica.Controllers.Mango
                         PesoBruto = r.peso_bruto,
                         Tara = r.tara,
                         PesoNeto = r.peso_neto,
+                        PesoNetoDisponible = r.peso_neto_disponible,
                         Importe = r.importe,
                         PrecioUnitario = r.precio_unitario,
                         Placas = r.MangoVehiculoRecepcion.Select(vr => vr.Vehiculos.placas).FirstOrDefault(),
@@ -629,7 +631,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public async Task<DataTable> ObteneMuestreosPorFechaAsync(DateTime fecha)
+        public async Task<DataTable> ObtenerMuestreosPorFechaAsync(DateTime fecha)
         {
             using (var context = new Model.Model())
             {
@@ -664,7 +666,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public async Task<DataTable> ObteneReporteRecepcionesAsync(DateTime fechaInicio, DateTime fechaFin)
+        public async Task<DataTable> ObtenerReporteRecepcionesAsync(DateTime fechaInicio, DateTime fechaFin)
         {
             using (var context = new Model.Model())
             {
@@ -693,7 +695,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public async Task<DataTable> ObteneReporteMangoRecepcionesInspeccionVehiculosPorRangoFechasAsync(DateTime fechaInicio, DateTime fechaFin)
+        public async Task<DataTable> ObtenerReporteMangoRecepcionesInspeccionVehiculosPorRangoFechasAsync(DateTime fechaInicio, DateTime fechaFin)
         {
             using (var context = new Model.Model())
             {
@@ -705,6 +707,35 @@ namespace FresamLogistica.Controllers.Mango
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText = "dbo.sp_ReporteMangoRecepcionesInspeccionVehiculosPorRangoFechas";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@fechaInicial", fechaInicio));
+                    command.Parameters.Add(new SqlParameter("@fechaFinal", fechaFin));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
+            }
+        }
+
+        public async Task<DataTable> ObtenerReporteMangoPromediosRecepcionesPorRangoFechasAsync(DateTime fechaInicio, DateTime fechaFin)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_ReporteMangoPromediosRecepcionesPorRangoFechas";
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.Add(new SqlParameter("@fechaInicial", fechaInicio));

@@ -156,10 +156,10 @@ namespace FresamLogistica.Views.Reportes
 
                 if (dtpFechaFin.Checked)
                 {
-                    datos = await _repoRecepciones.ObteneReporteMangoRecepcionesInspeccionVehiculosPorRangoFechasAsync(dtpFechaInicio.Value, dtpFechaFin.Value);
+                    datos = await _repoRecepciones.ObtenerReporteMangoRecepcionesInspeccionVehiculosPorRangoFechasAsync(dtpFechaInicio.Value, dtpFechaFin.Value);
                 }
                 else {
-                    datos = await _repoRecepciones.ObteneReporteMangoRecepcionesInspeccionVehiculosPorRangoFechasAsync(dtpFechaInicio.Value, dtpFechaInicio.Value);
+                    datos = await _repoRecepciones.ObtenerReporteMangoRecepcionesInspeccionVehiculosPorRangoFechasAsync(dtpFechaInicio.Value, dtpFechaInicio.Value);
                 }
             
                 if(datos.Rows.Count == 0)

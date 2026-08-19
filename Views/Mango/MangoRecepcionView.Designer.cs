@@ -109,6 +109,8 @@
             this.tcRecepcion = new System.Windows.Forms.TabControl();
             this.txtPorcentajeCosto = new System.Windows.Forms.TextBox();
             this.chkAplicaPorcentajeCostos = new System.Windows.Forms.CheckBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txtPesoDisponible = new System.Windows.Forms.TextBox();
             this.tsMenu.SuspendLayout();
             this.tpCalidadDescuento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCalidades)).BeginInit();
@@ -959,7 +961,7 @@
             this.tcRecepcion.Name = "tcRecepcion";
             this.tcRecepcion.SelectedIndex = 0;
             this.tcRecepcion.Size = new System.Drawing.Size(1156, 366);
-            this.tcRecepcion.TabIndex = 18;
+            this.tcRecepcion.TabIndex = 19;
             // 
             // txtPorcentajeCosto
             // 
@@ -984,11 +986,32 @@
             this.chkAplicaPorcentajeCostos.UseVisualStyleBackColor = true;
             this.chkAplicaPorcentajeCostos.CheckedChanged += new System.EventHandler(this.chkAplicaPorcentajeCostos_CheckedChanged);
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(926, 137);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(87, 20);
+            this.label29.TabIndex = 67;
+            this.label29.Text = "Disponible:";
+            // 
+            // txtPesoDisponible
+            // 
+            this.txtPesoDisponible.Enabled = false;
+            this.txtPesoDisponible.Location = new System.Drawing.Point(1026, 134);
+            this.txtPesoDisponible.Name = "txtPesoDisponible";
+            this.txtPesoDisponible.Size = new System.Drawing.Size(125, 26);
+            this.txtPesoDisponible.TabIndex = 18;
+            this.txtPesoDisponible.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // MangoRecepcionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1180, 545);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.txtPesoDisponible);
             this.Controls.Add(this.chkAplicaPorcentajeCostos);
             this.Controls.Add(this.txtPorcentajeCosto);
             this.Controls.Add(this.label22);
@@ -1128,5 +1151,7 @@
         private System.Windows.Forms.CheckBox chkAplicaPorcentajeCostos;
         private System.Windows.Forms.TextBox txtPorcentajeMangoChico;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox txtPesoDisponible;
     }
 }

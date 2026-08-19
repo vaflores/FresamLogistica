@@ -14,6 +14,7 @@ namespace FresamLogistica.Model
             MangoCalidadesRecepcion = new HashSet<MangoCalidadesRecepcion>();
             MangoDescuentos = new HashSet<MangoDescuentos>();
             MangoMuestreos = new HashSet<MangoMuestreos>();
+            MangoRecepcionesSalidas = new HashSet<MangoRecepcionesSalidas>();
             MangoVehiculoRecepcion = new HashSet<MangoVehiculoRecepcion>();
         }
 
@@ -78,6 +79,8 @@ namespace FresamLogistica.Model
 
         public bool porcentaje_costo_afecta_peso { get; set; }
 
+        public decimal peso_neto_disponible { get; set; }
+
         public virtual Ciclos Ciclos { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -94,6 +97,9 @@ namespace FresamLogistica.Model
         public virtual MangoProveedores MangoProveedores { get; set; }
 
         public virtual Variedades Variedades { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MangoRecepcionesSalidas> MangoRecepcionesSalidas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MangoVehiculoRecepcion> MangoVehiculoRecepcion { get; set; }

@@ -122,6 +122,8 @@
     <Compile Include="Controllers\Mango\MangoCalidadesController.cs" />
     <Compile Include="Controllers\Mango\MangoRecepcionesController.cs" />
     <Compile Include="Controllers\Mango\MangoMuestreosController.cs" />
+    <Compile Include="Controllers\Mango\MangoRecepcionesSalidasController.cs" />
+    <Compile Include="Controllers\Mango\MangoRecepcionesSalidasDetalleController.cs" />
     <Compile Include="Controllers\Productos\FrutasController.cs" />
     <Compile Include="Controllers\General\EmpresaController.cs" />
     <Compile Include="Controllers\Herramientas\UnidadesMedidaController.cs" />
@@ -217,6 +219,9 @@
     <Compile Include="Model\MangoPropietarios.cs" />
     <Compile Include="Model\MangoProveedores.cs" />
     <Compile Include="Model\MangoRecepciones.cs" />
+    <Compile Include="Model\MangoRecepcionesSalidas.cs" />
+    <Compile Include="Model\MangoRecepcionesSalidasDetalle.cs" />
+    <Compile Include="Model\MangoTiposSalidas.cs" />
     <Compile Include="Model\MangoVehiculoRecepcion.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\MuestreosCalidadesRecepciones.cs" />
@@ -274,6 +279,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MuestreosDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Mango\MangoDetalleViajesProcesados\dtViajesProcesados.Designer.cs">
+      <DependentUpon>dtViajesProcesados.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Mango\MangoViajesProcesados\dtViajesProcesados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtViajesProcesados.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Reportes\GradosCalidadProductor\gradosCalidadProductorDataSet.cs">
       <DependentUpon>gradosCalidadProductorDataSet.xsd</DependentUpon>
     </Compile>
@@ -303,6 +318,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MangoInspeccionVehiculosDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Reportes\MangoPromedios\PromediosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromediosDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Reportes\MuestreoCalidad\muestreoCalidadDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -330,6 +350,7 @@
     <Compile Include="ViewModels\DetalleRegistroResiduoRecolectadoViewModel.cs" />
     <Compile Include="ViewModels\FoliosRegistroResiduoRecolectadoViewModel.cs" />
     <Compile Include="ViewModels\Mango\MangoCalidadesRecepcionesViewModel.cs" />
+    <Compile Include="ViewModels\Mango\MangoRecepcionSalidaDetalleViewModel.cs" />
     <Compile Include="ViewModels\Mango\MangoRecepcionesViewModel.cs" />
     <Compile Include="ViewModels\RecepcionesViewModel.cs" />
     <Compile Include="ViewModels\RegistroResiduoRecolectadoListViewModel.cs" />
@@ -426,6 +447,12 @@
     </Compile>
     <Compile Include="Views\General\CicloView.Designer.cs">
       <DependentUpon>CicloView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mango\MangoRecepcionSalidaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mango\MangoRecepcionSalidaView.Designer.cs">
+      <DependentUpon>MangoRecepcionSalidaView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\General\KardexMovimientoRecepcionView.cs">
       <SubType>Form</SubType>
@@ -540,6 +567,18 @@
     </Compile>
     <Compile Include="Views\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mango\MangoRecepcionSalidasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mango\MangoRecepcionSalidasView.Designer.cs">
+      <DependentUpon>MangoRecepcionSalidasView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mango\MangoRecepcionesSalidasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mango\MangoRecepcionesSalidasView.Designer.cs">
+      <DependentUpon>MangoRecepcionesSalidasView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mango\MangoPrediosView.cs">
       <SubType>Form</SubType>
@@ -697,11 +736,23 @@
     <Compile Include="Views\Reportes\GradosCalidadProductoresView.Designer.cs">
       <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\MangoPromediosRecepcionesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\MangoPromediosRecepcionesView.Designer.cs">
+      <DependentUpon>MangoPromediosRecepcionesView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\MangoInspeccionVehiculosView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Reportes\MangoInspeccionVehiculosView.Designer.cs">
       <DependentUpon>MangoInspeccionVehiculosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\MangoPorcentajeViajesProcesadosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\MangoPorcentajeViajesProcesadosView.Designer.cs">
+      <DependentUpon>MangoPorcentajeViajesProcesadosView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reportes\ReporteMuestrasCalidadesRecepcionesView.cs">
       <SubType>Form</SubType>
@@ -980,6 +1031,15 @@
     <Content Include="Reports\Reportes\MangoInspeccionVehiculo\rptMangoInspeccionVehiculos.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\Reportes\MangoPromedios\rptMangoPromedios.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Mango\MangoViajesProcesados\rptMangoViajesProcesados.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Mango\MangoDetalleViajesProcesados\rptMangoViajesProcesados.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\rptResumenRecepcionesProductoAgricultor.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -1030,6 +1090,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\General\CicloView.resx">
       <DependentUpon>CicloView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mango\MangoRecepcionSalidaView.resx">
+      <DependentUpon>MangoRecepcionSalidaView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\General\KardexMovimientoRecepcionView.resx">
       <DependentUpon>KardexMovimientoRecepcionView.cs</DependentUpon>
@@ -1087,6 +1150,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mango\MangoRecepcionSalidasView.resx">
+      <DependentUpon>MangoRecepcionSalidasView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mango\MangoRecepcionesSalidasView.resx">
+      <DependentUpon>MangoRecepcionesSalidasView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mango\MangoPrediosView.resx">
       <DependentUpon>MangoPrediosView.cs</DependentUpon>
@@ -1166,8 +1235,14 @@
     <EmbeddedResource Include="Views\Reportes\GradosCalidadProductoresView.resx">
       <DependentUpon>GradosCalidadProductoresView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\MangoPromediosRecepcionesView.resx">
+      <DependentUpon>MangoPromediosRecepcionesView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\MangoInspeccionVehiculosView.resx">
       <DependentUpon>MangoInspeccionVehiculosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\MangoPorcentajeViajesProcesadosView.resx">
+      <DependentUpon>MangoPorcentajeViajesProcesadosView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\ReporteMuestrasCalidadesRecepcionesView.resx">
       <DependentUpon>ReporteMuestrasCalidadesRecepcionesView.cs</DependentUpon>
@@ -1333,6 +1408,28 @@
     <None Include="Reports\Mango\MangoMuestreo\MuestreosDataSet.xss">
       <DependentUpon>MuestreosDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Reports\Mango\MangoDetalleViajesProcesados\dtViajesProcesados.xsc">
+      <DependentUpon>dtViajesProcesados.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Mango\MangoDetalleViajesProcesados\dtViajesProcesados.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtViajesProcesados.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\Mango\MangoDetalleViajesProcesados\dtViajesProcesados.xss">
+      <DependentUpon>dtViajesProcesados.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Mango\MangoViajesProcesados\dtViajesProcesados.xsc">
+      <DependentUpon>dtViajesProcesados.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Mango\MangoViajesProcesados\dtViajesProcesados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtViajesProcesados.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Mango\MangoViajesProcesados\dtViajesProcesados.xss">
+      <DependentUpon>dtViajesProcesados.xsd</DependentUpon>
+    </None>
     <None Include="Reports\Reportes\GradosCalidadProductor\gradosCalidadProductorDataSet.xsc">
       <DependentUpon>gradosCalidadProductorDataSet.xsd</DependentUpon>
     </None>
@@ -1376,6 +1473,17 @@
     </None>
     <None Include="Reports\Reportes\MangoInspeccionVehiculo\MangoInspeccionVehiculosDataSet.xss">
       <DependentUpon>MangoInspeccionVehiculosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\MangoPromedios\PromediosDataSet.xsc">
+      <DependentUpon>PromediosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Reportes\MangoPromedios\PromediosDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PromediosDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\Reportes\MangoPromedios\PromediosDataSet.xss">
+      <DependentUpon>PromediosDataSet.xsd</DependentUpon>
     </None>
     <None Include="Reports\Reportes\MuestreoCalidad\muestreoCalidadDataSet.xsc">
       <DependentUpon>muestreoCalidadDataSet.xsd</DependentUpon>

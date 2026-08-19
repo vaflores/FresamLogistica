@@ -31,6 +31,7 @@ namespace FresamLogistica.ViewModels.Mango
         public Decimal PesoBruto { get; set; }
         public Decimal Tara { get; set; }
         public Decimal PesoNeto { get; set; }
+        public Decimal PesoNetoDisponible { get; set; }
         public Decimal? CalidadPromedio { get; set; }
         public string GradoId { get; set; }
         public decimal? Importe { get; set; }
