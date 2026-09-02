@@ -21,6 +21,8 @@ namespace FresamLogistica.Model
         public virtual DbSet<CicloGrados> CicloGrados { get; set; }
         public virtual DbSet<CicloInspecciones> CicloInspecciones { get; set; }
         public virtual DbSet<CicloMangos> CicloMangos { get; set; }
+        public virtual DbSet<CicloMangosDestajo> CicloMangosDestajo { get; set; }
+        public virtual DbSet<CicloMangosTarimas> CicloMangosTarimas { get; set; }
         public virtual DbSet<Ciclos> Ciclos { get; set; }
         public virtual DbSet<CiclosResiduos> CiclosResiduos { get; set; }
         public virtual DbSet<Ciudades> Ciudades { get; set; }
@@ -48,6 +50,8 @@ namespace FresamLogistica.Model
         public virtual DbSet<MangoCondicionesVehiculoRecepcion> MangoCondicionesVehiculoRecepcion { get; set; }
         public virtual DbSet<MangoConfiguracion> MangoConfiguracion { get; set; }
         public virtual DbSet<MangoDescuentos> MangoDescuentos { get; set; }
+        public virtual DbSet<MangoDestajo> MangoDestajo { get; set; }
+        public virtual DbSet<MangoDestajoDetalleTarimas> MangoDestajoDetalleTarimas { get; set; }
         public virtual DbSet<MangoLocalidades> MangoLocalidades { get; set; }
         public virtual DbSet<MangoMuestreos> MangoMuestreos { get; set; }
         public virtual DbSet<MangoMuestreosCalidades> MangoMuestreosCalidades { get; set; }
@@ -57,6 +61,7 @@ namespace FresamLogistica.Model
         public virtual DbSet<MangoRecepciones> MangoRecepciones { get; set; }
         public virtual DbSet<MangoRecepcionesSalidas> MangoRecepcionesSalidas { get; set; }
         public virtual DbSet<MangoRecepcionesSalidasDetalle> MangoRecepcionesSalidasDetalle { get; set; }
+        public virtual DbSet<MangoRecepcionesSalidasTarimas> MangoRecepcionesSalidasTarimas { get; set; }
         public virtual DbSet<MangoTiposSalidas> MangoTiposSalidas { get; set; }
         public virtual DbSet<MangoVehiculoRecepcion> MangoVehiculoRecepcion { get; set; }
         public virtual DbSet<MuestreosCalidadesRecepciones> MuestreosCalidadesRecepciones { get; set; }
@@ -316,6 +321,56 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<CicloMangosDestajo>()
+                .Property(e => e.titulo1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosDestajo>()
+                .Property(e => e.titulo2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosDestajo>()
+                .Property(e => e.titulo3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosDestajo>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosDestajo>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosDestajo>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosTarimas>()
+                .Property(e => e.titulo1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosTarimas>()
+                .Property(e => e.titulo2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosTarimas>()
+                .Property(e => e.titulo3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosTarimas>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosTarimas>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloMangosTarimas>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Ciclos>()
                 .Property(e => e.estado)
                 .IsFixedLength()
@@ -363,6 +418,18 @@ namespace FresamLogistica.Model
 
             modelBuilder.Entity<Ciclos>()
                 .HasMany(e => e.CicloMangos)
+                .WithRequired(e => e.Ciclos)
+                .HasForeignKey(e => e.ciclo_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ciclos>()
+                .HasMany(e => e.CicloMangos1)
+                .WithRequired(e => e.Ciclos1)
+                .HasForeignKey(e => e.ciclo_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ciclos>()
+                .HasMany(e => e.CicloMangosDestajo)
                 .WithRequired(e => e.Ciclos)
                 .WillCascadeOnDelete(false);
 
@@ -926,6 +993,31 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<MangoDestajo>()
+                .Property(e => e.estado)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoDestajo>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoDestajo>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoDestajo>()
+                .HasMany(e => e.MangoDestajoDetalleTarimas)
+                .WithRequired(e => e.MangoDestajo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MangoDestajoDetalleTarimas>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoDestajoDetalleTarimas>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<MangoLocalidades>()
                 .Property(e => e.estado)
                 .IsFixedLength()
@@ -1095,6 +1187,11 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.MangoRecepcionesSalidas)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<MangoRecepcionesSalidas>()
+                .HasMany(e => e.MangoRecepcionesSalidasTarimas)
+                .WithRequired(e => e.MangoRecepcionesSalidas)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<MangoRecepcionesSalidasDetalle>()
                 .Property(e => e.observaciones)
                 .IsUnicode(false);
@@ -1106,6 +1203,27 @@ namespace FresamLogistica.Model
             modelBuilder.Entity<MangoRecepcionesSalidasDetalle>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepcionesSalidasTarimas>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepcionesSalidasTarimas>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepcionesSalidasTarimas>()
+                .Property(e => e.usuario_aprobacion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepcionesSalidasTarimas>()
+                .Property(e => e.usuario_cancela)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MangoRecepcionesSalidasTarimas>()
+                .HasMany(e => e.MangoDestajoDetalleTarimas)
+                .WithRequired(e => e.MangoRecepcionesSalidasTarimas)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MangoTiposSalidas>()
                 .Property(e => e.nombre)

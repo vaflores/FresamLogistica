@@ -164,7 +164,12 @@ namespace FresamLogistica.Views.Mango
                 new MangoRecepcionSalidaView(
                     _IdRegistroSeleccionado,
                     0,
-                     Convert.ToDecimal(txtPesoDisponible.Text)
+                     Convert.ToDecimal(txtPesoDisponible.Text),
+                     dtpFecha.Value,
+                     Convert.ToInt16(cbProveedores.SelectedValue),
+                     txtFolioCiclo.Text,
+                     cbVariedades.Text,
+                     cbPredios.Text
                     )
                 );
             _repoSalidas.RecalcularMangoRecepcionesSalidas(_IdRegistroSeleccionado);
@@ -182,7 +187,12 @@ namespace FresamLogistica.Views.Mango
                 new MangoRecepcionSalidaView(
                     _IdRegistroSeleccionado,
                     _registroId,
-                     Convert.ToDecimal(txtPesoDisponible.Text)
+                     Convert.ToDecimal(txtPesoDisponible.Text),
+                     dtpFecha.Value,
+                     Convert.ToInt16(cbProveedores.SelectedValue),
+                     txtFolioCiclo.Text,
+                     cbVariedades.Text,
+                     cbPredios.Text
                     )
                 );
             _repoSalidas.RecalcularMangoRecepcionesSalidas(_IdRegistroSeleccionado);
@@ -348,7 +358,7 @@ namespace FresamLogistica.Views.Mango
                     CargarVehiculoInfo(registro.VehiculoInfo);
 
                     //Cargar Info Muestreos
-                    CargarMuestreosPorRecepcion(await _repoSalidas.ConsultarMangoRecepcionesSalidasPorRecepcion(registro.RecepcionId));
+                    CargarMuestreosPorRecepcion(await _repoSalidas.ConsultarMangoRecepcionesSalidasPorRecepcionAsync(registro.RecepcionId));
 
                     //Cargar Info Condiciones
                     if(registro.VehiculoInfo != null)

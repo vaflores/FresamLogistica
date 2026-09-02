@@ -134,6 +134,8 @@
     <Compile Include="Controllers\Reportes\ReporteResiduosController.cs" />
     <Compile Include="Controllers\Reportes\ResumenRecepcionesProductoAgricultorController.cs" />
     <Compile Include="Controllers\Reportes\TitulosCalidadesController.cs" />
+    <Compile Include="Controllers\Reportes\TitulosMangoDestajoController.cs" />
+    <Compile Include="Controllers\Reportes\TitulosMangoTarimasController.cs" />
     <Compile Include="Controllers\Reportes\TitulosMangoEtiquetasController.cs" />
     <Compile Include="Controllers\Reportes\TitulosEtiquetasController.cs" />
     <Compile Include="Controllers\Reportes\TitulosGradosController.cs" />
@@ -185,6 +187,8 @@
     <Compile Include="Model\CicloGrados.cs" />
     <Compile Include="Model\CicloInspecciones.cs" />
     <Compile Include="Model\CicloMangos.cs" />
+    <Compile Include="Model\CicloMangosDestajo.cs" />
+    <Compile Include="Model\CicloMangosTarimas.cs" />
     <Compile Include="Model\Ciclos.cs" />
     <Compile Include="Model\CiclosResiduos.cs" />
     <Compile Include="Model\Ciudades.cs" />
@@ -212,6 +216,8 @@
     <Compile Include="Model\MangoCondicionesVehiculoRecepcion.cs" />
     <Compile Include="Model\MangoConfiguracion.cs" />
     <Compile Include="Model\MangoDescuentos.cs" />
+    <Compile Include="Model\MangoDestajo.cs" />
+    <Compile Include="Model\MangoDestajoDetalleTarimas.cs" />
     <Compile Include="Model\MangoLocalidades.cs" />
     <Compile Include="Model\MangoMuestreos.cs" />
     <Compile Include="Model\MangoMuestreosCalidades.cs" />
@@ -221,6 +227,7 @@
     <Compile Include="Model\MangoRecepciones.cs" />
     <Compile Include="Model\MangoRecepcionesSalidas.cs" />
     <Compile Include="Model\MangoRecepcionesSalidasDetalle.cs" />
+    <Compile Include="Model\MangoRecepcionesSalidasTarimas.cs" />
     <Compile Include="Model\MangoTiposSalidas.cs" />
     <Compile Include="Model\MangoVehiculoRecepcion.cs" />
     <Compile Include="Model\Model.cs" />
@@ -447,6 +454,12 @@
     </Compile>
     <Compile Include="Views\General\CicloView.Designer.cs">
       <DependentUpon>CicloView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mango\MangoAprobacionTarimasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mango\MangoAprobacionTarimasView.Designer.cs">
+      <DependentUpon>MangoAprobacionTarimasView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mango\MangoRecepcionSalidaView.cs">
       <SubType>Form</SubType>
@@ -814,6 +827,18 @@
     <Compile Include="Views\Reportes\Titulos\TitulosCalidadesView.Designer.cs">
       <DependentUpon>TitulosCalidadesView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosMangoDestajoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosMangoDestajoView.Designer.cs">
+      <DependentUpon>TitulosMangoDestajoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosMangoTarimasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reportes\Titulos\TitulosMangoTarimasView.Designer.cs">
+      <DependentUpon>TitulosMangoTarimasView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\Titulos\TitulosMangoEtiquetasView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1040,6 +1065,9 @@
     <Content Include="Reports\Mango\MangoDetalleViajesProcesados\rptMangoViajesProcesados.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\Mango\MangoTarimas\rptMangoTarimas.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\rptResumenRecepcionesProductoAgricultor.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -1090,6 +1118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\General\CicloView.resx">
       <DependentUpon>CicloView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mango\MangoAprobacionTarimasView.resx">
+      <DependentUpon>MangoAprobacionTarimasView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mango\MangoRecepcionSalidaView.resx">
       <DependentUpon>MangoRecepcionSalidaView.cs</DependentUpon>
@@ -1273,6 +1304,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\Titulos\TitulosCalidadesView.resx">
       <DependentUpon>TitulosCalidadesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\Titulos\TitulosMangoDestajoView.resx">
+      <DependentUpon>TitulosMangoDestajoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reportes\Titulos\TitulosMangoTarimasView.resx">
+      <DependentUpon>TitulosMangoTarimasView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reportes\Titulos\TitulosMangoEtiquetasView.resx">
       <DependentUpon>TitulosMangoEtiquetasView.cs</DependentUpon>

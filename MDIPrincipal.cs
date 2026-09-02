@@ -333,5 +333,20 @@ namespace FresamLogistica
         {
             Helper.FormulariosHelper.CargarFormularioHijo(new MangoPorcentajeViajesProcesadosView(), this);
         }
+
+        private void tarimasDeMangoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TitulosMangoTarimasView(), this);
+        }
+
+        private void aprobacionTarimasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoAprobacionTarimasView(), this);
+        }
+
+        private void mangoDestajoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TitulosMangoDestajoView(), this);
+        }
     }
 }

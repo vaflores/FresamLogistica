@@ -53,6 +53,7 @@
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recepcionesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.recepcionesTraspaleosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aprobacionTarimasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frutasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frutasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.residuosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,12 +78,14 @@
             this.inspeccionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.residuosRecolectadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tarimasDeMangoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteCalidadesPorRecepciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteMuestrasPorRecepcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteRecepcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.residuosRecolectadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resumenDeRecepciónDeProductoPorAgricultorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportePromediosRecepcionesMangoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteViajesProcesadosMangoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calidadesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.condicionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +114,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.reporteViajesProcesadosMangoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mangoDestajoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -249,7 +252,8 @@
             this.propietariosToolStripMenuItem,
             this.proveedoresToolStripMenuItem,
             this.recepcionesToolStripMenuItem1,
-            this.recepcionesTraspaleosToolStripMenuItem});
+            this.recepcionesTraspaleosToolStripMenuItem,
+            this.aprobacionTarimasToolStripMenuItem});
             this.mangoToolStripMenuItem.Name = "mangoToolStripMenuItem";
             this.mangoToolStripMenuItem.Size = new System.Drawing.Size(71, 25);
             this.mangoToolStripMenuItem.Text = "Mango";
@@ -309,6 +313,13 @@
             this.recepcionesTraspaleosToolStripMenuItem.Size = new System.Drawing.Size(243, 26);
             this.recepcionesTraspaleosToolStripMenuItem.Text = "Recepciones Traspaleos";
             this.recepcionesTraspaleosToolStripMenuItem.Click += new System.EventHandler(this.recepcionesTraspaleosToolStripMenuItem_Click);
+            // 
+            // aprobacionTarimasToolStripMenuItem
+            // 
+            this.aprobacionTarimasToolStripMenuItem.Name = "aprobacionTarimasToolStripMenuItem";
+            this.aprobacionTarimasToolStripMenuItem.Size = new System.Drawing.Size(243, 26);
+            this.aprobacionTarimasToolStripMenuItem.Text = "Aprobacion Tarimas";
+            this.aprobacionTarimasToolStripMenuItem.Click += new System.EventHandler(this.aprobacionTarimasToolStripMenuItem_Click);
             // 
             // frutasToolStripMenuItem
             // 
@@ -455,11 +466,13 @@
             // 
             this.titulosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.etiquetasToolStripMenuItem,
-            this.etiquetasDeMangoToolStripMenuItem,
             this.gradosToolStripMenuItem,
             this.inspeccionesToolStripMenuItem,
             this.calidadesToolStripMenuItem,
-            this.residuosRecolectadosToolStripMenuItem1});
+            this.residuosRecolectadosToolStripMenuItem1,
+            this.mangoDestajoToolStripMenuItem,
+            this.etiquetasDeMangoToolStripMenuItem,
+            this.tarimasDeMangoToolStripMenuItem});
             this.titulosToolStripMenuItem.Name = "titulosToolStripMenuItem";
             this.titulosToolStripMenuItem.Size = new System.Drawing.Size(423, 26);
             this.titulosToolStripMenuItem.Text = "&Titulos";
@@ -475,7 +488,7 @@
             // 
             this.etiquetasDeMangoToolStripMenuItem.Name = "etiquetasDeMangoToolStripMenuItem";
             this.etiquetasDeMangoToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
-            this.etiquetasDeMangoToolStripMenuItem.Text = "Etiquetas de &Mango";
+            this.etiquetasDeMangoToolStripMenuItem.Text = "M&ango - Etiquetas";
             this.etiquetasDeMangoToolStripMenuItem.Click += new System.EventHandler(this.etiquetasDeMangoToolStripMenuItem_Click);
             // 
             // gradosToolStripMenuItem
@@ -505,6 +518,13 @@
             this.residuosRecolectadosToolStripMenuItem1.Size = new System.Drawing.Size(244, 26);
             this.residuosRecolectadosToolStripMenuItem1.Text = "&Residuos Recolectados";
             this.residuosRecolectadosToolStripMenuItem1.Click += new System.EventHandler(this.residuosRecolectadosToolStripMenuItem1_Click);
+            // 
+            // tarimasDeMangoToolStripMenuItem
+            // 
+            this.tarimasDeMangoToolStripMenuItem.Name = "tarimasDeMangoToolStripMenuItem";
+            this.tarimasDeMangoToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.tarimasDeMangoToolStripMenuItem.Text = "Mango - &Tarimas";
+            this.tarimasDeMangoToolStripMenuItem.Click += new System.EventHandler(this.tarimasDeMangoToolStripMenuItem_Click);
             // 
             // reporteCalidadesPorRecepciónToolStripMenuItem
             // 
@@ -547,6 +567,13 @@
             this.reportePromediosRecepcionesMangoToolStripMenuItem.Size = new System.Drawing.Size(423, 26);
             this.reportePromediosRecepcionesMangoToolStripMenuItem.Text = "Reporte Promedios Recepciones - Mango";
             this.reportePromediosRecepcionesMangoToolStripMenuItem.Click += new System.EventHandler(this.reportePromediosRecepcionesMangoToolStripMenuItem_Click);
+            // 
+            // reporteViajesProcesadosMangoToolStripMenuItem
+            // 
+            this.reporteViajesProcesadosMangoToolStripMenuItem.Name = "reporteViajesProcesadosMangoToolStripMenuItem";
+            this.reporteViajesProcesadosMangoToolStripMenuItem.Size = new System.Drawing.Size(423, 26);
+            this.reporteViajesProcesadosMangoToolStripMenuItem.Text = "Reporte Porcentaje de Viajes Procesados - Mango";
+            this.reporteViajesProcesadosMangoToolStripMenuItem.Click += new System.EventHandler(this.reporteViajesProcesadosMangoToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -766,12 +793,12 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel.Text = "Estado";
             // 
-            // reporteViajesProcesadosMangoToolStripMenuItem
+            // mangoDestajoToolStripMenuItem
             // 
-            this.reporteViajesProcesadosMangoToolStripMenuItem.Name = "reporteViajesProcesadosMangoToolStripMenuItem";
-            this.reporteViajesProcesadosMangoToolStripMenuItem.Size = new System.Drawing.Size(423, 26);
-            this.reporteViajesProcesadosMangoToolStripMenuItem.Text = "Reporte Porcentaje de Viajes Procesados - Mango";
-            this.reporteViajesProcesadosMangoToolStripMenuItem.Click += new System.EventHandler(this.reporteViajesProcesadosMangoToolStripMenuItem_Click);
+            this.mangoDestajoToolStripMenuItem.Name = "mangoDestajoToolStripMenuItem";
+            this.mangoDestajoToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.mangoDestajoToolStripMenuItem.Text = "Mango - &Destajo";
+            this.mangoDestajoToolStripMenuItem.Click += new System.EventHandler(this.mangoDestajoToolStripMenuItem_Click);
             // 
             // MDIPrincipal
             // 
@@ -884,6 +911,9 @@
         private System.Windows.Forms.ToolStripMenuItem reportePromediosRecepcionesMangoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recepcionesTraspaleosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteViajesProcesadosMangoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tarimasDeMangoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aprobacionTarimasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mangoDestajoToolStripMenuItem;
     }
 }
 

@@ -309,6 +309,8 @@ namespace FresamLogistica.Reports.Mango.MangoDetalleViajesProcesados {
             
             private global::System.Data.DataColumn columnmadurado;
             
+            private global::System.Data.DataColumn columnpropietario;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public viajesDataTable() {
@@ -464,6 +466,14 @@ namespace FresamLogistica.Reports.Mango.MangoDetalleViajesProcesados {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn propietarioColumn {
+                get {
+                    return this.columnpropietario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -499,7 +509,23 @@ namespace FresamLogistica.Reports.Mango.MangoDetalleViajesProcesados {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public viajesRow AddviajesRow(string recepcion_id, string viaje, string viaje_proveedor, string codigo, string proveedor, string fecha, string peso_neto, string procesado, string peso_neto_disponible, string variedad, string grado, string porcentaje_procesado, string lavado, string podrido, string madurado) {
+            public viajesRow AddviajesRow(
+                        string recepcion_id, 
+                        string viaje, 
+                        string viaje_proveedor, 
+                        string codigo, 
+                        string proveedor, 
+                        string fecha, 
+                        string peso_neto, 
+                        string procesado, 
+                        string peso_neto_disponible, 
+                        string variedad, 
+                        string grado, 
+                        string porcentaje_procesado, 
+                        string lavado, 
+                        string podrido, 
+                        string madurado, 
+                        string propietario) {
                 viajesRow rowviajesRow = ((viajesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         recepcion_id,
@@ -516,7 +542,8 @@ namespace FresamLogistica.Reports.Mango.MangoDetalleViajesProcesados {
                         porcentaje_procesado,
                         lavado,
                         podrido,
-                        madurado};
+                        madurado,
+                        propietario};
                 rowviajesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviajesRow);
                 return rowviajesRow;
@@ -554,6 +581,7 @@ namespace FresamLogistica.Reports.Mango.MangoDetalleViajesProcesados {
                 this.columnlavado = base.Columns["lavado"];
                 this.columnpodrido = base.Columns["podrido"];
                 this.columnmadurado = base.Columns["madurado"];
+                this.columnpropietario = base.Columns["propietario"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -589,6 +617,8 @@ namespace FresamLogistica.Reports.Mango.MangoDetalleViajesProcesados {
                 base.Columns.Add(this.columnpodrido);
                 this.columnmadurado = new global::System.Data.DataColumn("madurado", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmadurado);
+                this.columnpropietario = new global::System.Data.DataColumn("propietario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpropietario);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -971,6 +1001,22 @@ namespace FresamLogistica.Reports.Mango.MangoDetalleViajesProcesados {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string propietario {
+                get {
+                    try {
+                        return ((string)(this[this.tableviajes.propietarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'propietario\' de la tabla \'viajes\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviajes.propietarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Isrecepcion_idNull() {
                 return this.IsNull(this.tableviajes.recepcion_idColumn);
             }
@@ -1147,6 +1193,18 @@ namespace FresamLogistica.Reports.Mango.MangoDetalleViajesProcesados {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetmaduradoNull() {
                 this[this.tableviajes.maduradoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IspropietarioNull() {
+                return this.IsNull(this.tableviajes.propietarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetpropietarioNull() {
+                this[this.tableviajes.propietarioColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -125,7 +125,7 @@ namespace FresamLogistica.Views.Mango
         private async void CargarRegistros()
         {
             dgvRegistros.DataSource = null;
-            dgvRegistros.DataSource = await _repo.ConsultarMangoRecepcionesSalidasPorFecha(dtpFecha.Value);
+            dgvRegistros.DataSource = await _repo.ConsultarMangoRecepcionesSalidasPorFechaAsync(dtpFecha.Value);
 
             //OrdernarPorFechaInicio();
 

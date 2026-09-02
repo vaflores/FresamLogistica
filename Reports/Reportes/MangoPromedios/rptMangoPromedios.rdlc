@@ -1980,7 +1980,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox11</rd:DefaultName>
-              <Top>1.40326cm</Top>
+              <Top>2.03826cm</Top>
               <Left>0.03998cm</Left>
               <Height>0.6cm</Height>
               <Width>8.5cm</Width>
@@ -2011,7 +2011,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox11</rd:DefaultName>
-              <Top>1.40326cm</Top>
+              <Top>2.03826cm</Top>
               <Left>8.71637cm</Left>
               <Height>0.6cm</Height>
               <Width>8.5cm</Width>
@@ -2043,7 +2043,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>responsableParam</rd:DefaultName>
-              <Top>2.10909cm</Top>
+              <Top>1.79159cm</Top>
               <Left>0.88621cm</Left>
               <Height>0.6cm</Height>
               <Width>7.65377cm</Width>
@@ -2075,7 +2075,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>responsableParam</rd:DefaultName>
-              <Top>2.10909cm</Top>
+              <Top>1.79159cm</Top>
               <Left>8.79531cm</Left>
               <Height>0.6cm</Height>
               <Width>8.42106cm</Width>
@@ -2275,7 +2275,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>70 - 99%</Value>
+                      <Value>00 - 79%</Value>
                       <Style>
                         <FontSize>6pt</FontSize>
                       </Style>

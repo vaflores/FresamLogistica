@@ -441,7 +441,7 @@ namespace FresamLogistica.Views.Mango
                     dtpFecha.Value = registro.Fecha;
                     txtGuiaSanitaria.Text = registro.GuiaSanitaria;
                     cbEstado.SelectedValue = registro.Estado;
-                    cbGrados.SelectedValue = registro.GradoId.ToString();
+                    cbGrados.SelectedValue = registro.GradoId == null ? "" : registro.GradoId.ToString();
                     txtCalificacion.Text = registro.CalidadPromedio.ToString();
                     txtPrecioUnitario.Text = registro.PrecioUnitario.HasValue ? registro.PrecioUnitario.Value.ToString("C2") : "$0.00";
                     txtImporte.Text = registro.Importe.HasValue ? registro.Importe.Value.ToString("C2") : "$0.00";

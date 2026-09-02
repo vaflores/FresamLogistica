@@ -144,9 +144,9 @@ namespace FresamLogistica.Views.Reportes
                 DataTable _recepciones;
 
                 if (chkMostrarDetalleProcesado.Checked)
-                    _recepciones = await _repoRecepciones.ConsultarMangoRecepcionesSalidasDetallePorCiclo(this._IdCicloSeleccionado);
+                    _recepciones = await _repoRecepciones.ConsultarMangoRecepcionesSalidasDetallePorCicloAsync(this._IdCicloSeleccionado);
                 else
-                    _recepciones = await _repoRecepciones.ConsultarMangoRecepcionesSalidasPorCiclo(this._IdCicloSeleccionado);
+                    _recepciones = await _repoRecepciones.ConsultarMangoRecepcionesSalidasPorCicloAsync(this._IdCicloSeleccionado);
 
                 if (_recepciones.Rows.Count == 0)
                 {
@@ -196,6 +196,7 @@ namespace FresamLogistica.Views.Reportes
                     _dtMaster.Columns.Add("variedad", typeof(string));
                     _dtMaster.Columns.Add("grado", typeof(string));
                     _dtMaster.Columns.Add("porcentaje", typeof(string));
+                    _dtMaster.Columns.Add("propietario", typeof(string));
 
                     _dtMaster.PrimaryKey = new DataColumn[] { _dtMaster.Columns["recepcion_id"] };
 
@@ -208,15 +209,16 @@ namespace FresamLogistica.Views.Reportes
                         row["viaje"] = _rec.ItemArray[1];
                         row["codigo"] = _rec.ItemArray[2];
                         row["proveedor"] = _rec.ItemArray[3];
-                        row["fecha"] = Convert.ToDateTime(_rec.ItemArray[4]).ToShortDateString();
-                        row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[5]), 2).ToString("N2");
-                        row["procesado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[6]), 2).ToString("N2");
-                        row["pendiente"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[7]), 2).ToString("N2");
-                        row["variedad"] = _rec.ItemArray[8];
-                        row["grado"] = _rec.ItemArray[9];
-                        row["porcentaje"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[10]), 2).ToString("N2");
+                        row["propietario"] = _rec.ItemArray[4];
+                        row["fecha"] = Convert.ToDateTime(_rec.ItemArray[5]).ToShortDateString();
+                        row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[6]), 2).ToString("N2");
+                        row["procesado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[7]), 2).ToString("N2");
+                        row["pendiente"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[8]), 2).ToString("N2");
+                        row["variedad"] = _rec.ItemArray[9];
+                        row["grado"] = _rec.ItemArray[10];
+                        row["porcentaje"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[11]), 2).ToString("N2");
 
-                        if (Convert.ToDecimal(_rec.ItemArray[7]) == 0 && !chkMostrarViajesSinSaldo.Checked)
+                        if (Convert.ToDecimal(_rec.ItemArray[11]) == 0 && !chkMostrarViajesSinSaldo.Checked)
                             continue;
 
                         _dtMaster.Rows.Add(row);
@@ -246,6 +248,7 @@ namespace FresamLogistica.Views.Reportes
                     _dtMaster.Columns.Add("lavado", typeof(string));
                     _dtMaster.Columns.Add("podrido", typeof(string));
                     _dtMaster.Columns.Add("madurado", typeof(string));
+                    _dtMaster.Columns.Add("propietario", typeof(string));
 
                     _dtMaster.PrimaryKey = new DataColumn[] { _dtMaster.Columns["recepcion_id"] };
 
@@ -259,18 +262,19 @@ namespace FresamLogistica.Views.Reportes
                         row["viaje_proveedor"] = _rec.ItemArray[2];
                         row["codigo"] = _rec.ItemArray[3];
                         row["proveedor"] = _rec.ItemArray[4];
-                        row["fecha"] = Convert.ToDateTime(_rec.ItemArray[5]).ToShortDateString();
-                        row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[6]), 2).ToString("N2");
-                        row["procesado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[7]), 2).ToString("N2");
-                        row["peso_neto_disponible"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[8]), 2).ToString("N2");
-                        row["variedad"] = _rec.ItemArray[9];
-                        row["grado"] = _rec.ItemArray[10];
-                        row["porcentaje_procesado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[11]), 2).ToString("N2");
-                        row["lavado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[12]), 2).ToString("N2");
-                        row["podrido"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[13]), 2).ToString("N2");
-                        row["madurado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[14]), 2).ToString("N2");
+                        row["propietario"] = _rec.ItemArray[5];
+                        row["fecha"] = Convert.ToDateTime(_rec.ItemArray[6]).ToShortDateString();
+                        row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[7]), 2).ToString("N2");
+                        row["procesado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[8]), 2).ToString("N2");
+                        row["peso_neto_disponible"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[9]), 2).ToString("N2");
+                        row["variedad"] = _rec.ItemArray[10];
+                        row["grado"] = _rec.ItemArray[11];
+                        row["porcentaje_procesado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[12]), 2).ToString("N2");
+                        row["lavado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[13]), 2).ToString("N2");
+                        row["podrido"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[14]), 2).ToString("N2");
+                        row["madurado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[15]), 2).ToString("N2");
 
-                        if (Convert.ToDecimal(_rec.ItemArray[7]) == 0 && !chkMostrarViajesSinSaldo.Checked)
+                        if (Convert.ToDecimal(_rec.ItemArray[12]) == 0 && !chkMostrarViajesSinSaldo.Checked)
                             continue;
 
                         _dtMaster.Rows.Add(row);

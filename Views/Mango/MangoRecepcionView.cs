@@ -514,6 +514,7 @@ namespace FresamLogistica.Views.Mango
                     }
                     else
                     {
+                        dgvCondiciones.Rows.Clear();
                         CargarDatosCondicionesActivas(_repoCondiciones.ListarMangoCondicionesActivasSinValorPorRecepcionId(0));
                     }
 
@@ -550,9 +551,11 @@ namespace FresamLogistica.Views.Mango
                 cbFrutas.SelectedValue = this._IdFrutaSeleccionada.ToString();
 
                 //Cargar Info Condiciones
+                dgvCondiciones.Rows.Clear();
                 CargarDatosCondicionesActivas(_repoCondiciones.ListarMangoCondicionesActivasSinValorPorRecepcionId(0));
 
                 //Cargar Info Calidades
+                dgvCalidades.Rows.Clear();
                 CargarDatosCalidadesActivas(_repoCalidades.ListarCalidadesActivasSinValorPorRecepcionId(0));
 
                 EstablecerCalificacion();
@@ -674,14 +677,16 @@ namespace FresamLogistica.Views.Mango
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar el registro. ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al guardar el registro. \n{ex.InnerException.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
 
         private void BorrarCampos()
         {
+            //recargar formulario
             this._IdRegistroSeleccionado = 0;
+
             CargarDatosRegistroSeleccionado();
         }
 
@@ -778,7 +783,7 @@ namespace FresamLogistica.Views.Mango
             chkAplicaPorcentajeCostos.Enabled = true;
             txtPorcentajeCosto.Enabled = true;
 
-            txtFolioCiclo.Enabled = false;
+            //txtFolioCiclo.Enabled = false;
             txtFolioProveedor.Enabled = false;
             txtPrecioUnitario.Enabled = true;
             txtImporte.Enabled = false;

@@ -301,6 +301,8 @@ namespace FresamLogistica.Reports.Mango.MangoViajesProcesados {
             
             private global::System.Data.DataColumn columnporcentaje;
             
+            private global::System.Data.DataColumn columnpropietario;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public viajesDataTable() {
@@ -424,6 +426,14 @@ namespace FresamLogistica.Reports.Mango.MangoViajesProcesados {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn propietarioColumn {
+                get {
+                    return this.columnpropietario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -459,7 +469,7 @@ namespace FresamLogistica.Reports.Mango.MangoViajesProcesados {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public viajesRow AddviajesRow(string recepcion_id, string viaje, string codigo, string proveedor, string fecha, string peso_neto, string procesado, string pendiente, string variedad, string grado, string porcentaje) {
+            public viajesRow AddviajesRow(string recepcion_id, string viaje, string codigo, string proveedor, string fecha, string peso_neto, string procesado, string pendiente, string variedad, string grado, string porcentaje, string propietario) {
                 viajesRow rowviajesRow = ((viajesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         recepcion_id,
@@ -472,7 +482,8 @@ namespace FresamLogistica.Reports.Mango.MangoViajesProcesados {
                         pendiente,
                         variedad,
                         grado,
-                        porcentaje};
+                        porcentaje,
+                        propietario};
                 rowviajesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviajesRow);
                 return rowviajesRow;
@@ -506,6 +517,7 @@ namespace FresamLogistica.Reports.Mango.MangoViajesProcesados {
                 this.columnvariedad = base.Columns["variedad"];
                 this.columngrado = base.Columns["grado"];
                 this.columnporcentaje = base.Columns["porcentaje"];
+                this.columnpropietario = base.Columns["propietario"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -533,6 +545,8 @@ namespace FresamLogistica.Reports.Mango.MangoViajesProcesados {
                 base.Columns.Add(this.columngrado);
                 this.columnporcentaje = new global::System.Data.DataColumn("porcentaje", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnporcentaje);
+                this.columnpropietario = new global::System.Data.DataColumn("propietario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpropietario);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -851,6 +865,22 @@ namespace FresamLogistica.Reports.Mango.MangoViajesProcesados {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string propietario {
+                get {
+                    try {
+                        return ((string)(this[this.tableviajes.propietarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'propietario\' de la tabla \'viajes\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviajes.propietarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Isrecepcion_idNull() {
                 return this.IsNull(this.tableviajes.recepcion_idColumn);
             }
@@ -979,6 +1009,18 @@ namespace FresamLogistica.Reports.Mango.MangoViajesProcesados {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetporcentajeNull() {
                 this[this.tableviajes.porcentajeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IspropietarioNull() {
+                return this.IsNull(this.tableviajes.propietarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetpropietarioNull() {
+                this[this.tableviajes.propietarioColumn] = global::System.Convert.DBNull;
             }
         }
         

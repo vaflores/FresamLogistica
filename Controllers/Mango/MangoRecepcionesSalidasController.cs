@@ -67,7 +67,7 @@ namespace FresamLogistica.Controllers.Mango
             throw new NotImplementedException();
         }
 
-        public async Task<DataTable> ConsultarMangoRecepcionesSalidasPorFecha(DateTime _fecha)
+        public async Task<DataTable> ConsultarMangoRecepcionesSalidasPorFechaAsync(DateTime _fecha)
         {
             using (var _context = new Model.Model())
             {
@@ -99,7 +99,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public async Task<DataTable> ConsultarMangoRecepcionesSalidasPorCiclo(int _cicloId)
+        public async Task<DataTable> ConsultarMangoRecepcionesSalidasPorCicloAsync(int _cicloId)
         {
             using (var _context = new Model.Model())
             {
@@ -131,7 +131,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public async Task<DataTable> ConsultarMangoRecepcionesSalidasDetallePorCiclo(int _cicloId)
+        public async Task<DataTable> ConsultarMangoRecepcionesSalidasDetallePorCicloAsync(int _cicloId)
         {
             using (var _context = new Model.Model())
             {
@@ -163,7 +163,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public async Task<DataTable> ConsultarMangoRecepcionesSalidasPorRecepcion(int recepcionId)
+        public async Task<DataTable> ConsultarMangoRecepcionesSalidasPorRecepcionAsync(int recepcionId)
         {
             using (var _context = new Model.Model())
             {
@@ -234,5 +234,210 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
+        public async Task<DataTable> ConsultaTarimasNoAprobadasPorDiaAsync(DateTime fechaTraspaleo)
+        {
+            using (var _context = new Model.Model())
+            {
+                var connection = _context.Database.Connection;
+
+                try
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "sp_ConsultaMangoTarimasNoAprobadasPorDia";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add(new SqlParameter("@fechaTraspaleo", fechaTraspaleo));
+
+                        DataTable table = new DataTable();
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            table.Load(reader);
+                        }
+
+                        return table;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public async Task<DataTable> ConsultaTarimasNoAprobadasAsync()
+        {
+            using (var _context = new Model.Model())
+            {
+                var connection = _context.Database.Connection;
+
+                try
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "sp_ConsultaMangoTarimasNoAprobadas";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        DataTable table = new DataTable();
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            table.Load(reader);
+                        }
+
+                        return table;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public async Task<DataTable> ConsultaTarimasAprobadasPorDiaAsync(DateTime fechaTraspaleo)
+        {
+            using (var _context = new Model.Model())
+            {
+                var connection = _context.Database.Connection;
+
+                try
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "sp_ConsultaMangoTarimasAprobadasPorDia";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add(new SqlParameter("@fechaTraspaleo", fechaTraspaleo));
+
+                        DataTable table = new DataTable();
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            table.Load(reader);
+                        }
+
+                        return table;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public async Task<DataTable> ConsultaTarimasAprobadasAsync()
+        {
+            using (var _context = new Model.Model())
+            {
+                var connection = _context.Database.Connection;
+
+                try
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "sp_ConsultaMangoTarimasAprobadas";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        DataTable table = new DataTable();
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            table.Load(reader);
+                        }
+
+                        return table;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public void AprobarTarima(int mango_recepcion_salida_tarima_id)
+        {
+            using (var _context = new Model.Model())
+            {
+                try
+                {
+                    var registro = _context.MangoRecepcionesSalidasTarimas.Find(mango_recepcion_salida_tarima_id);
+
+                    if (registro != null)
+                    {
+                        registro.aprobada = true;
+                        Helper.SesionActualHelper.RegistrarUsuarioModifica(ref registro);
+                        registro.fecha_aprobacion = DateTime.Now;
+                        registro.usuario_aprobacion = registro.usuario_modifica;
+                        _context.SaveChanges();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                }
+            }
+        }
+
+        public void DesAprobarTarima(int mango_recepcion_salida_tarima_id)
+        {
+            using (var _context = new Model.Model())
+            {
+                try
+                {
+                    var registro = _context.MangoRecepcionesSalidasTarimas.Find(mango_recepcion_salida_tarima_id);
+
+                    if (registro != null)
+                    {
+                        registro.aprobada = false;
+                        Helper.SesionActualHelper.RegistrarUsuarioModifica(ref registro);
+                        registro.fecha_aprobacion = DateTime.Now;
+                        registro.usuario_aprobacion = registro.usuario_modifica;
+                        _context.SaveChanges();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                }
+            }
+        }
     }
 }

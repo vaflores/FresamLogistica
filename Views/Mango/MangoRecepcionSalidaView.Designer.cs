@@ -46,11 +46,20 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tcRegistros = new System.Windows.Forms.TabControl();
             this.tpRegistros = new System.Windows.Forms.TabPage();
-            this.dgvCondicionesCajas = new System.Windows.Forms.DataGridView();
+            this.dgvCondiciones = new System.Windows.Forms.DataGridView();
+            this.tpTarimas = new System.Windows.Forms.TabPage();
+            this.tsOpciones = new System.Windows.Forms.ToolStrip();
+            this.tsbSyncGrid = new System.Windows.Forms.ToolStripButton();
+            this.tsbAddGrid = new System.Windows.Forms.ToolStripButton();
+            this.tsbDelGrid = new System.Windows.Forms.ToolStripButton();
+            this.dgvTarimas = new System.Windows.Forms.DataGridView();
             this.tsMenu.SuspendLayout();
             this.tcRegistros.SuspendLayout();
             this.tpRegistros.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCondicionesCajas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCondiciones)).BeginInit();
+            this.tpTarimas.SuspendLayout();
+            this.tsOpciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTarimas)).BeginInit();
             this.SuspendLayout();
             // 
             // tsMenu
@@ -67,7 +76,7 @@
             this.tsMenu.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsMenu.Name = "tsMenu";
             this.tsMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.tsMenu.Size = new System.Drawing.Size(483, 45);
+            this.tsMenu.Size = new System.Drawing.Size(759, 45);
             this.tsMenu.TabIndex = 6;
             this.tsMenu.Text = "tsMenu";
             // 
@@ -148,7 +157,7 @@
             this.txtObservaciones.Location = new System.Drawing.Point(12, 138);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(459, 91);
+            this.txtObservaciones.Size = new System.Drawing.Size(735, 91);
             this.txtObservaciones.TabIndex = 55;
             // 
             // label6
@@ -220,41 +229,115 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tcRegistros.Controls.Add(this.tpRegistros);
+            this.tcRegistros.Controls.Add(this.tpTarimas);
             this.tcRegistros.Location = new System.Drawing.Point(12, 235);
             this.tcRegistros.Name = "tcRegistros";
             this.tcRegistros.SelectedIndex = 0;
-            this.tcRegistros.Size = new System.Drawing.Size(459, 231);
+            this.tcRegistros.Size = new System.Drawing.Size(735, 343);
             this.tcRegistros.TabIndex = 57;
             // 
             // tpRegistros
             // 
-            this.tpRegistros.Controls.Add(this.dgvCondicionesCajas);
+            this.tpRegistros.Controls.Add(this.dgvCondiciones);
             this.tpRegistros.Location = new System.Drawing.Point(4, 29);
             this.tpRegistros.Name = "tpRegistros";
             this.tpRegistros.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRegistros.Size = new System.Drawing.Size(451, 198);
+            this.tpRegistros.Size = new System.Drawing.Size(727, 310);
             this.tpRegistros.TabIndex = 0;
             this.tpRegistros.Text = "Condiciones";
             this.tpRegistros.UseVisualStyleBackColor = true;
             // 
-            // dgvCondicionesCajas
+            // dgvCondiciones
             // 
-            this.dgvCondicionesCajas.AllowUserToAddRows = false;
-            this.dgvCondicionesCajas.AllowUserToDeleteRows = false;
-            this.dgvCondicionesCajas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCondicionesCajas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCondicionesCajas.Location = new System.Drawing.Point(3, 3);
-            this.dgvCondicionesCajas.Name = "dgvCondicionesCajas";
-            this.dgvCondicionesCajas.ReadOnly = true;
-            this.dgvCondicionesCajas.Size = new System.Drawing.Size(445, 192);
-            this.dgvCondicionesCajas.TabIndex = 0;
-            this.dgvCondicionesCajas.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCondicionesCajas_CellEndEdit);
+            this.dgvCondiciones.AllowUserToAddRows = false;
+            this.dgvCondiciones.AllowUserToDeleteRows = false;
+            this.dgvCondiciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCondiciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCondiciones.Location = new System.Drawing.Point(3, 3);
+            this.dgvCondiciones.Name = "dgvCondiciones";
+            this.dgvCondiciones.ReadOnly = true;
+            this.dgvCondiciones.Size = new System.Drawing.Size(721, 304);
+            this.dgvCondiciones.TabIndex = 0;
+            this.dgvCondiciones.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCondiciones_CellEndEdit);
+            this.dgvCondiciones.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvCondiciones_CellValidating);
+            // 
+            // tpTarimas
+            // 
+            this.tpTarimas.Controls.Add(this.tsOpciones);
+            this.tpTarimas.Controls.Add(this.dgvTarimas);
+            this.tpTarimas.Location = new System.Drawing.Point(4, 29);
+            this.tpTarimas.Name = "tpTarimas";
+            this.tpTarimas.Size = new System.Drawing.Size(727, 310);
+            this.tpTarimas.TabIndex = 1;
+            this.tpTarimas.Text = "Tarimas";
+            this.tpTarimas.UseVisualStyleBackColor = true;
+            // 
+            // tsOpciones
+            // 
+            this.tsOpciones.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsOpciones.ImageScalingSize = new System.Drawing.Size(30, 30);
+            this.tsOpciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbSyncGrid,
+            this.tsbAddGrid,
+            this.tsbDelGrid});
+            this.tsOpciones.Location = new System.Drawing.Point(0, 0);
+            this.tsOpciones.MinimumSize = new System.Drawing.Size(0, 45);
+            this.tsOpciones.Name = "tsOpciones";
+            this.tsOpciones.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.tsOpciones.Size = new System.Drawing.Size(727, 45);
+            this.tsOpciones.TabIndex = 9;
+            this.tsOpciones.Text = "toolStrip1";
+            // 
+            // tsbSyncGrid
+            // 
+            this.tsbSyncGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSyncGrid.Image = global::FresamLogistica.Properties.Resources.sync_50;
+            this.tsbSyncGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSyncGrid.Name = "tsbSyncGrid";
+            this.tsbSyncGrid.Size = new System.Drawing.Size(34, 42);
+            this.tsbSyncGrid.Text = "Buscar";
+            // 
+            // tsbAddGrid
+            // 
+            this.tsbAddGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAddGrid.Image = global::FresamLogistica.Properties.Resources.create_50;
+            this.tsbAddGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAddGrid.Name = "tsbAddGrid";
+            this.tsbAddGrid.Size = new System.Drawing.Size(34, 42);
+            this.tsbAddGrid.Text = "Crear";
+            this.tsbAddGrid.Click += new System.EventHandler(this.tsbAddGrid_Click);
+            // 
+            // tsbDelGrid
+            // 
+            this.tsbDelGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDelGrid.Image = global::FresamLogistica.Properties.Resources.remove_50;
+            this.tsbDelGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDelGrid.Name = "tsbDelGrid";
+            this.tsbDelGrid.Size = new System.Drawing.Size(34, 42);
+            this.tsbDelGrid.Text = "Eliminar";
+            this.tsbDelGrid.Click += new System.EventHandler(this.tsbDelGrid_Click);
+            // 
+            // dgvTarimas
+            // 
+            this.dgvTarimas.AllowUserToAddRows = false;
+            this.dgvTarimas.AllowUserToDeleteRows = false;
+            this.dgvTarimas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvTarimas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTarimas.Location = new System.Drawing.Point(3, 48);
+            this.dgvTarimas.Name = "dgvTarimas";
+            this.dgvTarimas.Size = new System.Drawing.Size(721, 259);
+            this.dgvTarimas.TabIndex = 8;
+            this.dgvTarimas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTarimas_CellContentClick);
+            this.dgvTarimas.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTarimas_CellEndEdit);
+            this.dgvTarimas.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTarimas_CellValidating);
             // 
             // MangoRecepcionSalidaView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 478);
+            this.ClientSize = new System.Drawing.Size(759, 590);
             this.Controls.Add(this.tcRegistros);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtObservaciones);
@@ -276,7 +359,12 @@
             this.tsMenu.PerformLayout();
             this.tcRegistros.ResumeLayout(false);
             this.tpRegistros.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCondicionesCajas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCondiciones)).EndInit();
+            this.tpTarimas.ResumeLayout(false);
+            this.tpTarimas.PerformLayout();
+            this.tsOpciones.ResumeLayout(false);
+            this.tsOpciones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTarimas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,6 +390,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabControl tcRegistros;
         private System.Windows.Forms.TabPage tpRegistros;
-        private System.Windows.Forms.DataGridView dgvCondicionesCajas;
+        private System.Windows.Forms.DataGridView dgvCondiciones;
+        private System.Windows.Forms.TabPage tpTarimas;
+        private System.Windows.Forms.ToolStrip tsOpciones;
+        private System.Windows.Forms.ToolStripButton tsbSyncGrid;
+        private System.Windows.Forms.ToolStripButton tsbAddGrid;
+        private System.Windows.Forms.ToolStripButton tsbDelGrid;
+        private System.Windows.Forms.DataGridView dgvTarimas;
     }
 }

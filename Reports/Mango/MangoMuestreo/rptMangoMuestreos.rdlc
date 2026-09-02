@@ -2201,7 +2201,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox11</rd:DefaultName>
-              <Top>2.70853cm</Top>
+              <Top>3.34353cm</Top>
               <Height>0.6cm</Height>
               <Width>8.5cm</Width>
               <Style>
@@ -2231,7 +2231,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox11</rd:DefaultName>
-              <Top>2.70853cm</Top>
+              <Top>3.34353cm</Top>
               <Left>8.67639cm</Left>
               <Height>0.6cm</Height>
               <Width>8.5cm</Width>
@@ -2263,7 +2263,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>responsableParam</rd:DefaultName>
-              <Top>3.41436cm</Top>
+              <Top>3.09686cm</Top>
               <Left>0.84623cm</Left>
               <Height>0.6cm</Height>
               <Width>7.65377cm</Width>
@@ -2295,7 +2295,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>responsableParam</rd:DefaultName>
-              <Top>3.41436cm</Top>
+              <Top>3.09686cm</Top>
               <Left>8.75533cm</Left>
               <Height>0.6cm</Height>
               <Width>8.42106cm</Width>
@@ -3228,7 +3228,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>70 - 99%</Value>
+                      <Value>79 - 0%</Value>
                       <Style>
                         <FontSize>6pt</FontSize>
                       </Style>

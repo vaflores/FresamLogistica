@@ -39,5 +39,7 @@ namespace FresamLogistica.Model
         public int ciclo_id { get; set; }
 
         public virtual Ciclos Ciclos { get; set; }
+
+        public virtual Ciclos Ciclos1 { get; set; }
     }
 }

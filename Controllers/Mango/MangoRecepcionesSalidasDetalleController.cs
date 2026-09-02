@@ -69,7 +69,7 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
-        public void Crear(MangoRecepcionesSalidas entidad, List<MangoRecepcionSalidaDetalleViewModel> salidas)
+        public int Crear(MangoRecepcionesSalidas entidad, List<MangoRecepcionSalidaDetalleViewModel> salidas, List<MangoRecepcionesSalidasTarimas> tarimas)
         {
             using (var _context = new Model.Model())
             {
@@ -93,10 +93,33 @@ namespace FresamLogistica.Controllers.Mango
                     _context.MangoRecepcionesSalidasDetalle.Add(nuevaSalida);
                 }
                 _context.SaveChanges();
+
+                //Crear nuevas tarimas
+                var tarimasExistentes = _context.MangoRecepcionesSalidasTarimas.Where(kcc => kcc.mango_recepcion_salida_id == entidad.mango_recepcion_salida_id).ToList();
+                _context.MangoRecepcionesSalidasTarimas.RemoveRange(tarimasExistentes);
+                _context.SaveChanges();
+
+                foreach (var tarima in tarimas)
+                {
+                    var nuevaTarima = new MangoRecepcionesSalidasTarimas
+                    {
+                        mango_recepcion_salida_id = entidad.mango_recepcion_salida_id,
+                        numero_tarima = ObtenerSiguienteNumeroTarimaPorDia(entidad.fecha),
+                        cantidad_cajas = tarima.cantidad_cajas,
+                        peso_neto = tarima.peso_neto,
+                        aprobada = tarima.aprobada,
+                    };
+                    SesionActualHelper.RegistrarSesionCrea(ref nuevaTarima);
+                    _context.MangoRecepcionesSalidasTarimas.Add(nuevaTarima);
+
+                    _context.SaveChanges();
+                }
+
+                return entidad.mango_recepcion_salida_id;
             }
         }
 
-        public void Actualizar(MangoRecepcionesSalidas entidad, List<MangoRecepcionSalidaDetalleViewModel> salidas)
+        public void Actualizar(MangoRecepcionesSalidas entidad, List<MangoRecepcionSalidaDetalleViewModel> salidas, List<MangoRecepcionesSalidasTarimas> tarimas)
         {
             using (var _context = new Model.Model())
             {
@@ -106,6 +129,7 @@ namespace FresamLogistica.Controllers.Mango
                 entidad.fecha_crea = registro.fecha_crea;
                 if (registro != null)
                 {
+                    entidad.consecutivo = registro.consecutivo;
                     _context.Entry(registro).CurrentValues.SetValues(entidad);
                     _context.SaveChanges();
 
@@ -125,6 +149,49 @@ namespace FresamLogistica.Controllers.Mango
                         _context.MangoRecepcionesSalidasDetalle.Add(nuevaSalida);
                     }
                     _context.SaveChanges();
+
+                    //Actualizar tarimas existentes y eliminar las que no estén en la lista
+                    var tarimasExistentes = _context.MangoRecepcionesSalidasTarimas.Where(kcc => kcc.mango_recepcion_salida_id == entidad.mango_recepcion_salida_id).ToList();
+                    var tarimasIds = tarimas.Select(t => t.mango_recepcion_salida_tarima_id).ToList();
+                    var tarimasAEliminar = tarimasExistentes.Where(t => !tarimasIds.Contains(t.mango_recepcion_salida_tarima_id)).ToList();
+                    _context.MangoRecepcionesSalidasTarimas.RemoveRange(tarimasAEliminar);
+                    _context.SaveChanges();
+
+                    foreach (var tarima in tarimas)
+                    {
+                        var tarimaExistente = _context.MangoRecepcionesSalidasTarimas.Find(tarima.mango_recepcion_salida_tarima_id);
+                        if (tarimaExistente != null)
+                        {
+                            tarimaExistente.cantidad_cajas = tarima.cantidad_cajas;
+                            tarimaExistente.peso_neto = tarima.peso_neto;
+                            if (tarima.numero_tarima == 0)
+                                tarimaExistente.numero_tarima = ObtenerSiguienteNumeroTarimaPorDia(entidad.fecha);
+                            SesionActualHelper.RegistrarUsuarioModifica(ref tarimaExistente);
+                            if(tarima.cancelada != tarimaExistente.cancelada)
+                            {
+                                tarimaExistente.cancelada = tarima.cancelada;
+                                tarimaExistente.fecha_cancela = tarimaExistente.fecha_modifica;
+                                tarimaExistente.usuario_cancela = tarimaExistente.usuario_modifica;
+                            }
+                            //_context.Entry(tarimaExistente).CurrentValues.SetValues(tarima);
+                        }
+                        else
+                        {
+                            if (tarima.numero_tarima == 0)
+                                tarima.numero_tarima = ObtenerSiguienteNumeroTarimaPorDia(entidad.fecha);
+                            var nuevaTarima = new MangoRecepcionesSalidasTarimas
+                            {
+                                mango_recepcion_salida_id = entidad.mango_recepcion_salida_id,
+                                numero_tarima = tarima.numero_tarima,
+                                cantidad_cajas = tarima.cantidad_cajas,
+                                peso_neto = tarima.peso_neto,
+                                aprobada = tarima.aprobada,
+                            };
+                            SesionActualHelper.RegistrarSesionCrea(ref nuevaTarima);
+                            _context.MangoRecepcionesSalidasTarimas.Add(nuevaTarima);
+                        }
+                        _context.SaveChanges();
+                    }
                 }
             }
         }
@@ -174,6 +241,27 @@ namespace FresamLogistica.Controllers.Mango
             }
         }
 
+        public List<MangoRecepcionesSalidasTarimas> ListarTarimas(int mangoRecepcionSalidaId)
+        {
+            using (var _context = new Model.Model())
+            {
+                return _context.MangoRecepcionesSalidasTarimas
+                    .Where(t => t.mango_recepcion_salida_id == mangoRecepcionSalidaId)
+                    .ToList();
+            }
+        }
 
+        public int ObtenerSiguienteNumeroTarimaPorDia(DateTime fecha)
+        {
+            using (var _context = new Model.Model())
+            {
+                var fechaInicio = fecha.Date;
+                var fechaFin = fecha.Date.AddDays(1).AddTicks(-1);
+                var maxNumeroTarima = _context.MangoRecepcionesSalidasTarimas
+                    .Where(t => t.MangoRecepcionesSalidas.fecha >= fechaInicio && t.MangoRecepcionesSalidas.fecha <= fechaFin)
+                    .Max(t => (int?)t.numero_tarima) ?? 0;
+                return maxNumeroTarima + 1;
+            }
+        }
     }
 }

@@ -459,11 +459,11 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <TopBorder>
+              <BottomBorder>
                 <Color>Black</Color>
                 <Style>Solid</Style>
                 <Width>1pt</Width>
-              </TopBorder>
+              </BottomBorder>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -496,11 +496,11 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <TopBorder>
+              <BottomBorder>
                 <Color>Black</Color>
                 <Style>Solid</Style>
                 <Width>1pt</Width>
-              </TopBorder>
+              </BottomBorder>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
