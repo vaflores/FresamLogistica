@@ -46,6 +46,12 @@ namespace FresamLogistica.Model
 
         public DateTime fecha_modifica { get; set; }
 
+        public int? tarima_destajo_id { get; set; }
+
+        public DateTime? fecha_hora_destajo { get; set; }
+
         public virtual Recepciones Recepciones { get; set; }
+
+        public virtual TarimasDestajos TarimasDestajos { get; set; }
     }
 }

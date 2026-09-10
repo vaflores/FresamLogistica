@@ -385,6 +385,45 @@ namespace FresamLogistica.Controllers.Mango
                 }
             }
         }
+        
+        public async Task<DataTable> ConsultaTarimasAprobadasPendientesProcesarAsync(int cicloId)
+        {
+            using (var _context = new Model.Model())
+            {
+                var connection = _context.Database.Connection;
+
+                try
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "sp_ConsultaMangoTarimasAprobadasPendientesProcesar";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add(new SqlParameter("@cicloId", cicloId));
+
+                        DataTable table = new DataTable();
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            table.Load(reader);
+                        }
+
+                        return table;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
 
         public void AprobarTarima(int mango_recepcion_salida_tarima_id)
         {
@@ -436,6 +475,22 @@ namespace FresamLogistica.Controllers.Mango
                 }
                 finally
                 {
+                }
+            }
+        }
+
+        public bool VetificarSiTarimaEstaProcesada(int mango_recepcion_salida_tarima_id)
+        {
+            using (var _context = new Model.Model())
+            {
+                var registro = _context.MangoRecepcionesSalidasTarimas.Find(mango_recepcion_salida_tarima_id);
+                if (registro != null)
+                {
+                    return registro.mango_destajo_id.HasValue;
+                }
+                else
+                {
+                    throw new Exception("No se encontró la tarima con el ID proporcionado.");
                 }
             }
         }

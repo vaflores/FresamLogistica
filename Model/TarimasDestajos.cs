@@ -6,17 +6,16 @@ namespace FresamLogistica.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("MangoDestajo")]
-    public partial class MangoDestajo
+    public partial class TarimasDestajos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MangoDestajo()
+        public TarimasDestajos()
         {
-            MangoDestajoDetalleTarimas = new HashSet<MangoDestajoDetalleTarimas>();
+            Tarimas = new HashSet<Tarimas>();
         }
 
         [Key]
-        public int mango_destajo_id { get; set; }
+        public int tarima_destajo_id { get; set; }
 
         public DateTime fecha_hora_inicio { get; set; }
 
@@ -46,6 +45,6 @@ namespace FresamLogistica.Model
         public string usuario_modifica { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MangoDestajoDetalleTarimas> MangoDestajoDetalleTarimas { get; set; }
+        public virtual ICollection<Tarimas> Tarimas { get; set; }
     }
 }

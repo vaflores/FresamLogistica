@@ -8,12 +8,6 @@ namespace FresamLogistica.Model
 
     public partial class MangoRecepcionesSalidasTarimas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MangoRecepcionesSalidasTarimas()
-        {
-            MangoDestajoDetalleTarimas = new HashSet<MangoDestajoDetalleTarimas>();
-        }
-
         [Key]
         public int mango_recepcion_salida_tarima_id { get; set; }
 
@@ -50,8 +44,11 @@ namespace FresamLogistica.Model
         [StringLength(50)]
         public string usuario_cancela { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MangoDestajoDetalleTarimas> MangoDestajoDetalleTarimas { get; set; }
+        public int? mango_destajo_id { get; set; }
+
+        public DateTime? fecha_hora_destajo { get; set; }
+
+        public virtual MangoDestajos MangoDestajos { get; set; }
 
         public virtual MangoRecepcionesSalidas MangoRecepcionesSalidas { get; set; }
     }

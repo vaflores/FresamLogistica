@@ -115,6 +115,8 @@
     <Compile Include="Controllers\Herramientas\CondicionesController.cs" />
     <Compile Include="Controllers\Mango\MangoDescuentosController.cs" />
     <Compile Include="Controllers\Mango\MangoConfiguracionController.cs" />
+    <Compile Include="Controllers\General\TarimasDestajosController.cs" />
+    <Compile Include="Controllers\Mango\MangoDestajosController.cs" />
     <Compile Include="Controllers\Mango\MangoPrediosController.cs" />
     <Compile Include="Controllers\Mango\MangoLocalidadesController.cs" />
     <Compile Include="Controllers\Mango\MangoPropietariosController.cs" />
@@ -216,8 +218,7 @@
     <Compile Include="Model\MangoCondicionesVehiculoRecepcion.cs" />
     <Compile Include="Model\MangoConfiguracion.cs" />
     <Compile Include="Model\MangoDescuentos.cs" />
-    <Compile Include="Model\MangoDestajo.cs" />
-    <Compile Include="Model\MangoDestajoDetalleTarimas.cs" />
+    <Compile Include="Model\MangoDestajos.cs" />
     <Compile Include="Model\MangoLocalidades.cs" />
     <Compile Include="Model\MangoMuestreos.cs" />
     <Compile Include="Model\MangoMuestreosCalidades.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Model\Sectores.cs" />
     <Compile Include="Model\sysdiagrams.cs" />
     <Compile Include="Model\Tarimas.cs" />
+    <Compile Include="Model\TarimasDestajos.cs" />
     <Compile Include="Model\TipoResiduo.cs" />
     <Compile Include="Model\TiposDestinoResiduo.cs" />
     <Compile Include="Model\TitulosReporteResiduos.cs" />
@@ -277,6 +279,19 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReciboDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\General\TarimasDestajo\dtsTarimasDestajo.cs">
+      <DependentUpon>dtsTarimasDestajo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\General\TarimasDestajo\dtsTarimasDestajo.Designer.cs">
+      <DependentUpon>dtsTarimasDestajo.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Mango\MangoDestajos\dtsTarimasDestajo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsTarimasDestajo.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reports\Mango\MangoMuestreo\MuestreosDataSet.cs">
       <DependentUpon>MuestreosDataSet.xsd</DependentUpon>
@@ -455,11 +470,53 @@
     <Compile Include="Views\General\CicloView.Designer.cs">
       <DependentUpon>CicloView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\General\TarimasDestajoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\TarimasDestajoView.Designer.cs">
+      <DependentUpon>TarimasDestajoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\TarimasDestajosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\TarimasDestajosView.Designer.cs">
+      <DependentUpon>TarimasDestajosView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\TarimasDestajoTarimasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\General\TarimasDestajoTarimasView.Designer.cs">
+      <DependentUpon>TarimasDestajoTarimasView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Helpers\SeleccionarHoraView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Helpers\SeleccionarHoraView.Designer.cs">
+      <DependentUpon>SeleccionarHoraView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mango\MangoDestajoTarimasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mango\MangoDestajoTarimasView.Designer.cs">
+      <DependentUpon>MangoDestajoTarimasView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mango\MangoDestajosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mango\MangoDestajosView.Designer.cs">
+      <DependentUpon>MangoDestajosView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mango\MangoAprobacionTarimasView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Mango\MangoAprobacionTarimasView.Designer.cs">
       <DependentUpon>MangoAprobacionTarimasView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mango\MangoDestajoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mango\MangoDestajoView.Designer.cs">
+      <DependentUpon>MangoDestajoView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mango\MangoRecepcionSalidaView.cs">
       <SubType>Form</SubType>
@@ -1068,6 +1125,12 @@
     <Content Include="Reports\Mango\MangoTarimas\rptMangoTarimas.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\Mango\MangoDestajos\rptMangoTarimasDestajo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\General\TarimasDestajo\rptTarimasDestajo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\Reportes\ResumenRecepcionesProductoAgricultor\rptResumenRecepcionesProductoAgricultor.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -1119,8 +1182,29 @@
     <EmbeddedResource Include="Views\General\CicloView.resx">
       <DependentUpon>CicloView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\TarimasDestajoView.resx">
+      <DependentUpon>TarimasDestajoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\TarimasDestajosView.resx">
+      <DependentUpon>TarimasDestajosView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\General\TarimasDestajoTarimasView.resx">
+      <DependentUpon>TarimasDestajoTarimasView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Helpers\SeleccionarHoraView.resx">
+      <DependentUpon>SeleccionarHoraView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mango\MangoDestajoTarimasView.resx">
+      <DependentUpon>MangoDestajoTarimasView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mango\MangoDestajosView.resx">
+      <DependentUpon>MangoDestajosView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Mango\MangoAprobacionTarimasView.resx">
       <DependentUpon>MangoAprobacionTarimasView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mango\MangoDestajoView.resx">
+      <DependentUpon>MangoDestajoView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mango\MangoRecepcionSalidaView.resx">
       <DependentUpon>MangoRecepcionSalidaView.cs</DependentUpon>
@@ -1433,6 +1517,28 @@
     </None>
     <None Include="Reports\General\RecepcionReport\ReciboDataSet.xss">
       <DependentUpon>ReciboDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\General\TarimasDestajo\dtsTarimasDestajo.xsc">
+      <DependentUpon>dtsTarimasDestajo.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\General\TarimasDestajo\dtsTarimasDestajo.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsTarimasDestajo.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\General\TarimasDestajo\dtsTarimasDestajo.xss">
+      <DependentUpon>dtsTarimasDestajo.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Mango\MangoDestajos\dtsTarimasDestajo.xsc">
+      <DependentUpon>dtsTarimasDestajo.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Mango\MangoDestajos\dtsTarimasDestajo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsTarimasDestajo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Mango\MangoDestajos\dtsTarimasDestajo.xss">
+      <DependentUpon>dtsTarimasDestajo.xsd</DependentUpon>
     </None>
     <None Include="Reports\Mango\MangoMuestreo\MuestreosDataSet.xsc">
       <DependentUpon>MuestreosDataSet.xsd</DependentUpon>

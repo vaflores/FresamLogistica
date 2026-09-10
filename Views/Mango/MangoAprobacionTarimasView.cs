@@ -178,6 +178,13 @@ namespace FresamLogistica.Views.Mango
                 return;
             }
 
+            //Verificar si la tarima esta procesada
+            if(_repo.VetificarSiTarimaEstaProcesada(_IdRegistro))
+            {
+                MessageBox.Show("No se puede desaprobar la tarima porque ya ha sido procesada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 _repo.DesAprobarTarima(_IdRegistro);

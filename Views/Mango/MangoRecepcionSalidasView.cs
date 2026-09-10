@@ -520,30 +520,6 @@ namespace FresamLogistica.Views.Mango
             };
         }
 
-        private void ConfigurarDataGridViewCalidades(DataGridView dgv)
-        {
-            DataGridViewHelper.SetDataGridViewProperties(dgv);
-
-            dgv.SelectionMode = DataGridViewSelectionMode.CellSelect;
-
-            dgv.Columns.Clear();
-
-            //Crear columnas
-            DataGridViewHelper.AddColumn(dgv, "CalidadRecepcionId", "CalidadRecepcionId", 150, false);
-            DataGridViewHelper.AddColumn(dgv, "CalidadId", "CalidadId", 150, false);
-            DataGridViewHelper.AddColumn(dgv, "Calidad", "Nombre", 250, true, true);
-            DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Valor", "valor", 150, true, false);
-            DataGridViewHelper.AddColumnCheckBox(dgv, "AfectaCalificacion", "AfectaCalificacion", 100, false);
-            DataGridViewHelper.AddColumnCheckBox(dgv, "UsoPorcentajeMangoChico", "UsoPorcentajeMangoChico", 100, false);
-
-            //dgv.CellValueChanged += dgvTarimas_CellValueChanged;
-
-            dgv.CurrentCellDirtyStateChanged += (s, e) =>
-            {
-                if (dgv.IsCurrentCellDirty)
-                    dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            };
-        }
 
         private void CargarDatosCondicionesActivas(List<CondicionesVehiculoViewModel> _registros)
         {
@@ -577,26 +553,6 @@ namespace FresamLogistica.Views.Mango
                 _fila.Cells[3].Value = t.Nombre;
                 _fila.Cells[4].Value = t.Valor;
                 dgvCondiciones.Rows.Add(_fila);
-            }
-        }
-
-        private void CargarDatosCalidadesActivas(List<MangoCalidadesRecepcionesViewModel> _registros, DataGridView _dgv)
-        {
-            _dgv.Rows.Clear();
-            if (_registros.Count == 0) return;
-
-            DataGridViewRow _fila = new DataGridViewRow();
-            foreach (MangoCalidadesRecepcionesViewModel t in _registros)
-            {
-                _fila = new DataGridViewRow();
-                _fila.CreateCells(_dgv);
-                _fila.Cells[0].Value = t.CalidadRecepcionId;
-                _fila.Cells[1].Value = t.CalidadId;
-                _fila.Cells[2].Value = t.Nombre;
-                _fila.Cells[3].Value = t.Valor.ToString("N2");
-                _fila.Cells[4].Value = t.AfectaCalificacion;
-                _fila.Cells[5].Value = t.UsoPorcentajeMangoChico;
-                _dgv.Rows.Add(_fila);
             }
         }
 

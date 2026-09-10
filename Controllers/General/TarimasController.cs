@@ -4,6 +4,8 @@ using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,6 +99,46 @@ namespace FresamLogistica.Controllers.General
                     entidad.tarima_id = ultimoId + 1;
                 }
                 ;
+            }
+        }
+
+
+        public async Task<DataTable> ConsultaTarimasPendientesProcesarAsync(int cicloId)
+        {
+            using (var _context = new Model.Model())
+            {
+                var connection = _context.Database.Connection;
+
+                try
+                {
+                    if (connection.State != ConnectionState.Open)
+                        connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "sp_ConsultaTarimasPendientesProcesar";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add(new SqlParameter("@cicloId", cicloId));
+
+                        DataTable table = new DataTable();
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            table.Load(reader);
+                        }
+
+                        return table;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
 

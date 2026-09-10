@@ -348,5 +348,15 @@ namespace FresamLogistica
         {
             Helper.FormulariosHelper.CargarFormularioHijo(new TitulosMangoDestajoView(), this);
         }
+
+        private void produccionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoDestajosView(), this);
+        }
+
+        private void produccionesDestajoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TarimasDestajosView(), this);
+        }
     }
 }
