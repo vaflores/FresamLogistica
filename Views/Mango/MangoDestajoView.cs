@@ -355,6 +355,7 @@ namespace FresamLogistica.Views.Mango
             DataGridViewHelper.AddColumn(dgv, "Distribuidor", "proveedor", 150);
             DataGridViewHelper.AddColumn(dgv, "Predio", "predio", 100);
             DataGridViewHelper.AddColumn(dgv, "Variedad", "variedad", 100);
+            DataGridViewHelper.AddColumn(dgv, "Grado", "grado_id", 100);
             DataGridViewHelper.AddColumnFecha(dgv, "Fecha Traspaleo", "fecha_traspaleo", 50);
             DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Número Tarima", "numero_tarima", 50);
             DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Cantidad de Cajas", "cantidad_cajas", 120);
@@ -500,17 +501,17 @@ namespace FresamLogistica.Views.Mango
                 {
                     DataRow row = _dtMaster.NewRow();
 
-                    row["fecha_recepcion"] = Convert.ToDateTime(_rec.ItemArray[3]).ToString("dd/MM/yyyy");
-                    row["fecha_lavado"] = Convert.ToDateTime(_rec.ItemArray[8]).ToString("dd/MM/yyyy");
+                    row["fecha_recepcion"] = Convert.ToDateTime(_rec.ItemArray[3]).ToString("ddMMyy");
+                    row["fecha_lavado"] = Convert.ToDateTime(_rec.ItemArray[9]).ToString("ddMMyy");
                     row["proveedor"] = _rec.ItemArray[5];
                     row["predio"] = _rec.ItemArray[6];
                     row["codigo_proveedor"] = _rec.ItemArray[4];
                     row["numero_viaje"] = _rec.ItemArray[2];
-                    row["cantidad_cajas"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[10]), 2).ToString("N0");
-                    row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[11]), 2).ToString("N0");
+                    row["cantidad_cajas"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[11]), 2).ToString("N0");
+                    row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[12]), 2).ToString("N0");
                     row["hora"] = Convert.ToDateTime(_rec.ItemArray[1]).ToString("HH:mm");
                     row["variedad"] = _rec.ItemArray[7];
-                    row["numero_tarima"] = _rec.ItemArray[9];
+                    row["numero_tarima"] = _rec.ItemArray[10];
                     _dtMaster.Rows.Add(row);
 
                 }
@@ -522,7 +523,7 @@ namespace FresamLogistica.Views.Mango
                     new ReportParameter("titulo1Param", _titulos == null ? "" : _titulos.titulo1),
                     new ReportParameter("titulo2Param", _titulos == null ? "" : _titulos.titulo2),
                     new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
-                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("ddMMyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),

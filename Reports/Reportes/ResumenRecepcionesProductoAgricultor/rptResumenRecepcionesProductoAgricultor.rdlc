@@ -785,7 +785,7 @@
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <DataSetName>Detalle</DataSetName>
             <Left>0.76083cm</Left>
-            <Height>2.10896cm</Height>
+            <Height>2.10897cm</Height>
             <Width>18.18854cm</Width>
             <Style>
               <Border>
@@ -928,6 +928,10 @@
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
+                    <TextRun>
+                      <Value>Fecha: </Value>
+                      <Style />
+                    </TextRun>
                     <TextRun>
                       <Value>=Parameters!fechaReporteParam.Value</Value>
                       <Style />

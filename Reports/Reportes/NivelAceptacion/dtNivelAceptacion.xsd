@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtNivelAceptacion" targetNamespace="http://tempuri.org/dtNivelAceptacion.xsd" xmlns:mstns="http://tempuri.org/dtNivelAceptacion.xsd" xmlns="http://tempuri.org/dtNivelAceptacion.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtNivelAceptacion" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="dtNivelAceptacion" msprop:Generator_DataSetName="dtNivelAceptacion">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NivelAceptacion" msprop:Generator_RowEvHandlerName="NivelAceptacionRowChangeEventHandler" msprop:Generator_RowDeletedName="NivelAceptacionRowDeleted" msprop:Generator_RowDeletingName="NivelAceptacionRowDeleting" msprop:Generator_RowEvArgName="NivelAceptacionRowChangeEvent" msprop:Generator_TablePropName="NivelAceptacion" msprop:Generator_RowChangedName="NivelAceptacionRowChanged" msprop:Generator_RowChangingName="NivelAceptacionRowChanging" msprop:Generator_TableClassName="NivelAceptacionDataTable" msprop:Generator_RowClassName="NivelAceptacionRow" msprop:Generator_TableVarName="tableNivelAceptacion" msprop:Generator_UserTableName="NivelAceptacion">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_UserColumnName="nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="ingrediente" msprop:Generator_ColumnPropNameInRow="ingrediente" msprop:Generator_ColumnPropNameInTable="ingredienteColumn" msprop:Generator_ColumnVarNameInTable="columningrediente" msprop:Generator_UserColumnName="ingrediente" type="xs:string" minOccurs="0" />
+              <xs:element name="superior" msprop:Generator_ColumnPropNameInRow="superior" msprop:Generator_ColumnPropNameInTable="superiorColumn" msprop:Generator_ColumnVarNameInTable="columnsuperior" msprop:Generator_UserColumnName="superior" type="xs:string" minOccurs="0" />
+              <xs:element name="excelente" msprop:Generator_ColumnPropNameInRow="excelente" msprop:Generator_ColumnPropNameInTable="excelenteColumn" msprop:Generator_ColumnVarNameInTable="columnexcelente" msprop:Generator_UserColumnName="excelente" type="xs:string" minOccurs="0" />
+              <xs:element name="satisfactorio" msprop:Generator_ColumnPropNameInRow="satisfactorio" msprop:Generator_ColumnPropNameInTable="satisfactorioColumn" msprop:Generator_ColumnVarNameInTable="columnsatisfactorio" msprop:Generator_UserColumnName="satisfactorio" type="xs:string" minOccurs="0" />
+              <xs:element name="condicionado" msprop:Generator_ColumnPropNameInRow="condicionado" msprop:Generator_ColumnPropNameInTable="condicionadoColumn" msprop:Generator_ColumnVarNameInTable="columncondicionado" msprop:Generator_UserColumnName="condicionado" type="xs:string" minOccurs="0" />
+              <xs:element name="rechazado" msprop:Generator_ColumnPropNameInRow="rechazado" msprop:Generator_ColumnPropNameInTable="rechazadoColumn" msprop:Generator_ColumnVarNameInTable="columnrechazado" msprop:Generator_UserColumnName="rechazado" type="xs:string" minOccurs="0" />
+              <xs:element name="fecha" msprop:Generator_ColumnPropNameInRow="fecha" msprop:Generator_ColumnPropNameInTable="fechaColumn" msprop:Generator_ColumnVarNameInTable="columnfecha" msprop:Generator_UserColumnName="fecha" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

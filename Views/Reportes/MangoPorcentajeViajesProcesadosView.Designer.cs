@@ -39,6 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.chkMostrarViajesSinSaldo = new System.Windows.Forms.CheckBox();
             this.chkMostrarDetalleProcesado = new System.Windows.Forms.CheckBox();
+            this.tsbTitulos = new System.Windows.Forms.ToolStripButton();
             this.tsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,8 @@
             this.tsbCrear,
             this.tsbGuardar,
             this.tsbEliminar,
-            this.tsbImprimir});
+            this.tsbImprimir,
+            this.tsbTitulos});
             this.tsMenu.Location = new System.Drawing.Point(0, 0);
             this.tsMenu.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsMenu.Name = "tsMenu";
@@ -168,6 +170,16 @@
             this.chkMostrarDetalleProcesado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkMostrarDetalleProcesado.UseVisualStyleBackColor = true;
             // 
+            // tsbTitulos
+            // 
+            this.tsbTitulos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbTitulos.Image = global::FresamLogistica.Properties.Resources.titulo_50;
+            this.tsbTitulos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTitulos.Name = "tsbTitulos";
+            this.tsbTitulos.Size = new System.Drawing.Size(34, 42);
+            this.tsbTitulos.Text = "Títulos";
+            this.tsbTitulos.Click += new System.EventHandler(this.tsbTitulos_Click);
+            // 
             // MangoPorcentajeViajesProcesadosView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -206,5 +218,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkMostrarViajesSinSaldo;
         private System.Windows.Forms.CheckBox chkMostrarDetalleProcesado;
+        private System.Windows.Forms.ToolStripButton tsbTitulos;
     }
 }

@@ -1,10 +1,11 @@
 ﻿using FresamLogistica.Controllers.General;
-using FresamLogistica.Controllers.Residuos;
 using FresamLogistica.Controllers.Productos;
 using FresamLogistica.Controllers.Reportes;
+using FresamLogistica.Controllers.Residuos;
 using FresamLogistica.Helper;
 using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
+using FresamLogistica.Views.Reportes.Titulos;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -172,7 +173,7 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("titulo1Param", _titulos == null ? "" : _titulos.titulo1),
                     new ReportParameter("titulo2Param", "Resumen de Recepciones de Producto por Agricultor "),
                     new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
-                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper() + " AL " + dtpFechaFin.Value.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("ddMMyy").ToUpper() + " AL " + dtpFechaFin.Value.ToString("ddMMyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
@@ -191,7 +192,7 @@ namespace FresamLogistica.Views.Reportes
                 {
                     DataRow row = _dtMaster.NewRow();
                     row["Agricultor"] = fila["Agricultor"];
-                    row["Fecha"] = Convert.ToDateTime(fila["Fecha"]).ToShortDateString();
+                    row["Fecha"] = Convert.ToDateTime(fila["Fecha"]).ToString("ddMMyy");
                     row["TotalCajas"] = fila["TotalCajas"];
                     row["TotalKgs"] = fila["TotalKgs"];
 
@@ -233,6 +234,11 @@ namespace FresamLogistica.Views.Reportes
         private void ConfigurarComboBoxAgricultores()
         {
             EstadosHelper.GenerarEstadosDesdeLista(ref cbAgricultores, _repoAgricultores.ListarComboBox());
+        }
+
+        private void tsbTitulos_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarDialogoFormulario(new TitulosInspeccionesView());
         }
     }
 }

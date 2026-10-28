@@ -709,7 +709,7 @@
             this.dgvCondiciones.Location = new System.Drawing.Point(559, 0);
             this.dgvCondiciones.Name = "dgvCondiciones";
             this.dgvCondiciones.ReadOnly = true;
-            this.dgvCondiciones.Size = new System.Drawing.Size(431, 245);
+            this.dgvCondiciones.Size = new System.Drawing.Size(586, 330);
             this.dgvCondiciones.TabIndex = 5;
             // 
             // txtMarcaModelo

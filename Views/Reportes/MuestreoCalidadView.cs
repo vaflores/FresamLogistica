@@ -4,6 +4,7 @@ using FresamLogistica.Controllers.Reportes;
 using FresamLogistica.Helper;
 using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
+using FresamLogistica.Views.Reportes.Titulos;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -183,7 +184,7 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("titulo1Param", _titulos == null ? "" : _titulos.titulo1),
                     new ReportParameter("titulo2Param", _titulos == null ? "" : _titulos.titulo2),
                     new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
-                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("ddMMyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
@@ -224,12 +225,13 @@ namespace FresamLogistica.Views.Reportes
                     row["AgricultorId"] = _rec.AgriculorId.ToString();
                     row["AgricultorNombre"] = _rec.AgricultorNombre.ToUpper();
                     row["RanchoId"] = _rec.RanchoId.ToString();
+                    row["RanchoId"] = _rec.RanchoId.ToString();
                     row["RanchoNombre"] = _rec.RanchoNombre.ToUpper();
                     row["SectorId"] = _rec.SectorId.ToString();
                     row["SectorNombre"] = _rec.SectorNombre.ToUpper();
                     row["VariedadId"] = _rec.VariedadId.ToString();
                     row["VariedadNombre"] = _rec.VariedadNombre.ToUpper();
-                    row["Fecha"] = _rec.Fecha.ToString("dd/MM/yyyy").ToUpper();
+                    row["Fecha"] = _rec.Fecha.ToString("ddMMyy").ToUpper();
                     row["Hora"] = _rec.Fecha.ToString("hh:mm tt").ToUpper();
                     row["TotalCajas"] = _rec.TarimasInfo != null ? _rec.TarimasInfo.Sum(t => t.cajas).ToString() : "0";
                     row["PesoCaja"] = _rec.Descuentos.peso_caja.ToString("N2");
@@ -290,6 +292,11 @@ namespace FresamLogistica.Views.Reportes
             }
             catch (Exception ex)
             { }
+        }
+
+        private void tsbTitulos_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarDialogoFormulario(new TitulosCalidadesView());
         }
     }
 }

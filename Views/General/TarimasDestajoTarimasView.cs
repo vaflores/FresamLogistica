@@ -33,6 +33,7 @@ namespace FresamLogistica.Views.General
             InitializeComponent();
             this.KeyPreview = true;
             _repo = new TarimasDestajosController();
+            this.WindowState = FormWindowState.Maximized;
 
             _destajoIdSeleccionado = destajoIdSeleccionado;
             _fechaDestajoSeleccionado = fechaDestajoSeleccionado;
@@ -42,7 +43,7 @@ namespace FresamLogistica.Views.General
             ConfigurarDataGridViewAprobadas(dgvTarimasAprobadas);
             CargarRegistros();
 
-            this.Tag = "40"; // Asignar un ID de pantalla único para permisos (ajustar según corresponda)
+            this.Tag = "41"; // Asignar un ID de pantalla único para permisos (ajustar según corresponda)
 
             ValidarPermisos();
         }
@@ -172,17 +173,17 @@ namespace FresamLogistica.Views.General
 
             //Crear columnas
             DataGridViewHelper.AddColumn(dgv, "Tarima", "tarima_id", 50, false);
-            DataGridViewHelper.AddColumn(dgv, "Folio Ciclo", "folio_recepcion", 50);
+            DataGridViewHelper.AddColumn(dgv, "Folio Ciclo", "folio_ciclo", 50);
             DataGridViewHelper.AddColumnFecha(dgv, "Fecha Recepción", "fecha_recepcion", 150);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Cantidad de Cajas", "cajas", 120);
+            DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Peso Neto", "peso_neto", 120);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Número Tarima", "no_tarima", 50);
             DataGridViewHelper.AddColumn(dgv, "Código", "agricultor_id", 50);
             DataGridViewHelper.AddColumn(dgv, "Agricultor", "agricultor", 150);
             DataGridViewHelper.AddColumn(dgv, "Rancho", "rancho", 150);
             DataGridViewHelper.AddColumn(dgv, "Sector", "sector", 150);
             DataGridViewHelper.AddColumn(dgv, "Variedad", "variedad", 100);
             DataGridViewHelper.AddColumn(dgv, "Grado", "grado", 100);
-            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Número Tarima", "no_tarima", 50);
-            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Cantidad de Cajas", "cajas", 120);
-            DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Peso Neto", "peso_neto", 120);
 
             DataGridViewHelper.AddButtonColumn(dgv, "Procesar", "Procesar", 50);
 

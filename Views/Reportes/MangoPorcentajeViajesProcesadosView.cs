@@ -210,7 +210,7 @@ namespace FresamLogistica.Views.Reportes
                         row["codigo"] = _rec.ItemArray[2];
                         row["proveedor"] = _rec.ItemArray[3];
                         row["propietario"] = _rec.ItemArray[4];
-                        row["fecha"] = Convert.ToDateTime(_rec.ItemArray[5]).ToShortDateString();
+                        row["fecha"] = Convert.ToDateTime(_rec.ItemArray[5]).ToString("ddMMyy");
                         row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[6]), 2).ToString("N2");
                         row["procesado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[7]), 2).ToString("N2");
                         row["pendiente"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[8]), 2).ToString("N2");
@@ -263,7 +263,7 @@ namespace FresamLogistica.Views.Reportes
                         row["codigo"] = _rec.ItemArray[3];
                         row["proveedor"] = _rec.ItemArray[4];
                         row["propietario"] = _rec.ItemArray[5];
-                        row["fecha"] = Convert.ToDateTime(_rec.ItemArray[6]).ToShortDateString();
+                        row["fecha"] = Convert.ToDateTime(_rec.ItemArray[6]).ToString("ddMMyy");
                         row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[7]), 2).ToString("N2");
                         row["procesado"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[8]), 2).ToString("N2");
                         row["peso_neto_disponible"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[9]), 2).ToString("N2");
@@ -311,6 +311,9 @@ namespace FresamLogistica.Views.Reportes
 
         }
 
+        private void tsbTitulos_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

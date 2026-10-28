@@ -49,6 +49,7 @@
             this.cbElabora = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tsbTitulos = new System.Windows.Forms.ToolStripButton();
             this.tsMenu.SuspendLayout();
             this.tcRegistros.SuspendLayout();
             this.tpRegistros.SuspendLayout();
@@ -64,7 +65,8 @@
             this.tsbCrear,
             this.tsbGuardar,
             this.tsbEliminar,
-            this.tsbImprimir});
+            this.tsbImprimir,
+            this.tsbTitulos});
             this.tsMenu.Location = new System.Drawing.Point(0, 0);
             this.tsMenu.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsMenu.Name = "tsMenu";
@@ -154,6 +156,7 @@
             this.dtpFechaFin.ShowCheckBox = true;
             this.dtpFechaFin.Size = new System.Drawing.Size(145, 26);
             this.dtpFechaFin.TabIndex = 34;
+            this.dtpFechaFin.Visible = false;
             // 
             // label1
             // 
@@ -164,6 +167,7 @@
             this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 35;
             this.label1.Text = "Fecha final:";
+            this.label1.Visible = false;
             // 
             // btnGenerar
             // 
@@ -255,7 +259,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 142);
+            this.label3.Location = new System.Drawing.Point(13, 142);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 20);
             this.label3.TabIndex = 48;
@@ -264,11 +268,21 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 111);
+            this.label2.Location = new System.Drawing.Point(13, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(151, 20);
             this.label2.TabIndex = 47;
             this.label2.Text = "Firma Responsable:";
+            // 
+            // tsbTitulos
+            // 
+            this.tsbTitulos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbTitulos.Image = global::FresamLogistica.Properties.Resources.titulo_50;
+            this.tsbTitulos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTitulos.Name = "tsbTitulos";
+            this.tsbTitulos.Size = new System.Drawing.Size(34, 42);
+            this.tsbTitulos.Text = "Títulos";
+            this.tsbTitulos.Click += new System.EventHandler(this.tsbTitulos_Click);
             // 
             // ReporteRecepcionesView
             // 
@@ -325,5 +339,6 @@
         private System.Windows.Forms.ComboBox cbElabora;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripButton tsbTitulos;
     }
 }

@@ -1967,6 +1967,12 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>Fecha: </Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
                       <Value>=Parameters!fechaReporteParam.Value</Value>
                       <Style>
                         <FontSize>9pt</FontSize>

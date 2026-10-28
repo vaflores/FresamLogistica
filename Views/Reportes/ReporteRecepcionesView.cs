@@ -6,6 +6,7 @@ using FresamLogistica.Controllers.Residuos;
 using FresamLogistica.Helper;
 using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
+using FresamLogistica.Views.Reportes.Titulos;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace FresamLogistica.Views.Reportes
             this.KeyPreview = true;
 
             _repo = new TitulosCalidadesController();
-            dtpFechaFin.Checked = true;
+            dtpFechaFin.Checked = false;
 
             //this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -136,8 +137,12 @@ namespace FresamLogistica.Views.Reportes
             dgvRegistros.Rows.Add("Calidad", false, "calidad");
             dgvRegistros.Rows.Add("Grado", true, "grado_id");
             dgvRegistros.Rows.Add("Descuento", true, "descuento");
-            dgvRegistros.Rows.Add("Cantidad de Cajas", true, "no_tarimas");
-            dgvRegistros.Rows.Add("Peso Neto", false, "peso_neto");
+            dgvRegistros.Rows.Add("Cajas Recibidas", true, "cajas_recibidas");
+            dgvRegistros.Rows.Add("Cajas Procesadas", true, "cajas_procesadas");
+            dgvRegistros.Rows.Add("Cajas Pendientes", true, "cajas_pendientes");
+            dgvRegistros.Rows.Add("Peso Neto Recibido", false, "peso_neto_recibido");
+            dgvRegistros.Rows.Add("Peso Neto Procesado", false, "peso_neto_procesado");
+            dgvRegistros.Rows.Add("Peso Neto Pendiente", false, "peso_neto_pendiente");
             dgvRegistros.Rows.Add("Precio Unitario", false, "precio_unitario");
             dgvRegistros.Rows.Add("Importe", false, "importe");
             dgvRegistros.Rows.Add("Estado", false, "estado");
@@ -198,7 +203,8 @@ namespace FresamLogistica.Views.Reportes
                 var _titulos = _repo.ObtenerPorCicloId(_ciclos);
                 var _empresa = _repoEmpresa.ObtenerPorId(1);
                 byte[] _logoByte = _empresa.logo;
-                var totalCajas = TotalCajas(_recepciones);
+
+                Totales totales = TotalCajas(_recepciones);
 
 
                 List<ReportParameter> parametros = new List<ReportParameter>()
@@ -209,8 +215,8 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("titulo2Param", "Resumen de Recepciones de Producto por Agricultor "),
                     new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
                     new ReportParameter("fechaReporteParam", !dtpFechaFin.Checked ?
-                        dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper() :
-                        dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper() + " AL " + dtpFechaFin.Value.ToString("dd/MM/yyyy").ToUpper()),
+                        dtpFechaInicio.Value.ToString("ddMMyy").ToUpper() :
+                        dtpFechaInicio.Value.ToString("ddMMyy").ToUpper() + " AL " + dtpFechaFin.Value.ToString("ddMMyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
@@ -225,13 +231,22 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("variedad", ElCampoEsVisible("Variedad")),
                     new ReportParameter("calidad", ElCampoEsVisible("Calidad")),
                     new ReportParameter("grado", ElCampoEsVisible("Grado")),
-                    new ReportParameter("no_tarimas", ElCampoEsVisible("Cantidad de Cajas")),
-                    new ReportParameter("peso_neto", ElCampoEsVisible("Peso Neto")),
+                    new ReportParameter("cajasRecibidasParam", ElCampoEsVisible("Cajas Recibidas")),
+                    new ReportParameter("cajasProcesadasParam", ElCampoEsVisible("Cajas Procesadas")),
+                    new ReportParameter("cajasPendientesParam", ElCampoEsVisible("Cajas Pendientes")),
+                    new ReportParameter("pesoNetoRecibidoParam", ElCampoEsVisible("Peso Neto Recibido")),
+                    new ReportParameter("pesoNetoProcesadoParam", ElCampoEsVisible("Peso Neto Procesado")),
+                    new ReportParameter("pesoNetoPendienteParam", ElCampoEsVisible("Peso Neto Pendiente")),
                     new ReportParameter("precio_unitario", ElCampoEsVisible("Precio Unitario")),
                     new ReportParameter("importe", ElCampoEsVisible("Importe")),
                     new ReportParameter("estado", ElCampoEsVisible("Estado")),
                     new ReportParameter("descuento", ElCampoEsVisible("Descuento")),
-                    new ReportParameter("totalCajas", totalCajas.ToString("N0")),
+                    new ReportParameter("totalCajasRecibidas", totales.CajasRecibidas.ToString("N0")),
+                    new ReportParameter("totalCajasProcesadas", totales.CajasProcesadas.ToString("N0")),
+                    new ReportParameter("totalCajasPendientes", totales.CajasPendientes.ToString("N0")),
+                    new ReportParameter("totalPesoNetoRecibido", totales.PesoNetoRecibido.ToString("N2")),
+                    new ReportParameter("totalPesoNetoProcesado", totales.PesoNetoProcesado.ToString("N2")),
+                    new ReportParameter("totalPesoNetoPendiente", totales.PesoNetoPendiente.ToString("N2")),
 
                     new ReportParameter("responsableParam", nombreElabora),
                     new ReportParameter("verificaParam", nombreVerifica)
@@ -251,8 +266,12 @@ namespace FresamLogistica.Views.Reportes
                 _dtMaster.Columns.Add("calidad", typeof(string));
                 _dtMaster.Columns.Add("grado_id", typeof(string));
                 _dtMaster.Columns.Add("descuento", typeof(string));
-                _dtMaster.Columns.Add("no_tarimas", typeof(string));
-                _dtMaster.Columns.Add("peso_neto", typeof(string));
+                _dtMaster.Columns.Add("cajas_recibidas", typeof(string));
+                _dtMaster.Columns.Add("cajas_procesadas", typeof(string));
+                _dtMaster.Columns.Add("cajas_pendientes", typeof(string));
+                _dtMaster.Columns.Add("peso_neto_recibido", typeof(string));
+                _dtMaster.Columns.Add("peso_neto_procesado", typeof(string));
+                _dtMaster.Columns.Add("peso_neto_pendiente", typeof(string));
                 _dtMaster.Columns.Add("precio_unitario", typeof(string));
                 _dtMaster.Columns.Add("importe", typeof(string));
                 _dtMaster.Columns.Add("estado", typeof(string));
@@ -262,7 +281,7 @@ namespace FresamLogistica.Views.Reportes
                 {
                     DataRow _row = _dtMaster.NewRow();
                     _row["recepcion_id"] = fila["recepcion_id"].ToString();
-                    _row["fecha"] = Convert.ToDateTime(fila["fecha"]).ToString("dd/MM/yyyy");
+                    _row["fecha"] = Convert.ToDateTime(fila["fecha"]).ToString("ddMMyy").ToUpper();
                     _row["id_folio_diario"] = fila["id_folio_diario"].ToString();
                     _row["agricultor"] = fila["agricultor"].ToString();
                     _row["rancho"] = fila["rancho"].ToString();
@@ -271,8 +290,12 @@ namespace FresamLogistica.Views.Reportes
                     _row["calidad"] = Convert.ToInt32(fila["calidad"]).ToString("N0");
                     _row["grado_id"] = fila["grado_id"].ToString();
                     _row["descuento"] = Convert.ToDecimal(fila["descuento"]).ToString("N2");
-                    _row["no_tarimas"] = Convert.ToInt32(fila["no_tarimas"]).ToString("N0");
-                    _row["peso_neto"] = Convert.ToDecimal(fila["peso_neto"]).ToString("N2");
+                    _row["cajas_recibidas"] = Convert.ToInt32(fila["cajas_recibidas"]).ToString("N0");
+                    _row["cajas_pendientes"] = Convert.ToInt32(fila["cajas_pendientes"]).ToString("N0");
+                    _row["cajas_procesadas"] = Convert.ToInt32(fila["cajas_procesadas"]).ToString("N0");
+                    _row["peso_neto_recibido"] = Convert.ToDecimal(fila["peso_neto_recibido"]).ToString("N2");
+                    _row["peso_neto_procesado"] = Convert.ToDecimal(fila["peso_neto_procesado"]).ToString("N2");
+                    _row["peso_neto_pendiente"] = Convert.ToDecimal(fila["peso_neto_pendiente"]).ToString("N2");
                     _row["precio_unitario"] = Convert.ToDecimal(fila["precio_unitario"]).ToString("C2");
                     _row["importe"] = Convert.ToDecimal(fila["importe"]).ToString("C2");
                     _row["estado"] = fila["estado"].ToString();
@@ -307,15 +330,26 @@ namespace FresamLogistica.Views.Reportes
             return "False";
         }
 
-        public int TotalCajas(DataTable recepcionesDt)
+        public Totales TotalCajas(DataTable recepcionesDt)
         {
-            var totalCajas = 0;
+            Totales totales = new Totales();
             foreach (DataRow fila in recepcionesDt.Rows)
             {
-                totalCajas += Convert.ToInt32(fila["no_tarimas"]);
+                //Si la fecha es igual al inicio del reporte
+
+                if(Convert.ToDateTime(fila["fecha"]).Date == dtpFechaInicio.Value.Date)
+                {
+                    totales.CajasRecibidas += Convert.ToInt32(fila["cajas_recibidas"]);
+                    totales.CajasProcesadas += Convert.ToInt32(fila["cajas_procesadas"]);
+                    totales.PesoNetoRecibido += Convert.ToDecimal(fila["peso_neto_recibido"]);
+                    totales.PesoNetoProcesado += Convert.ToDecimal(fila["peso_neto_procesado"]);
+                }
+
+                totales.CajasPendientes += Convert.ToInt32(fila["cajas_pendientes"]);
+                totales.PesoNetoPendiente += Convert.ToDecimal(fila["peso_neto_pendiente"]);
             }
 
-            return totalCajas;
+            return totales;
         }
 
         private bool ValidarFechas()
@@ -351,5 +385,20 @@ namespace FresamLogistica.Views.Reportes
             catch (Exception ex)
             { }
         }
+
+        private void tsbTitulos_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarDialogoFormulario(new TitulosCalidadesView());
+        }
+    }
+
+    public class Totales
+    {
+        public int CajasRecibidas { get; set; }
+        public int CajasProcesadas { get; set; }
+        public int CajasPendientes { get; set; }
+        public decimal PesoNetoRecibido { get; set; }
+        public decimal PesoNetoProcesado { get; set; }
+        public decimal PesoNetoPendiente { get; set; }
     }
 }

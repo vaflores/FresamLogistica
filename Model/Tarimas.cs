@@ -50,6 +50,11 @@ namespace FresamLogistica.Model
 
         public DateTime? fecha_hora_destajo { get; set; }
 
+        public bool? es_venta { get; set; }
+
+        [StringLength(50)]
+        public string usuario_aprueba_venta { get; set; }
+
         public virtual Recepciones Recepciones { get; set; }
 
         public virtual TarimasDestajos TarimasDestajos { get; set; }

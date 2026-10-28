@@ -53,6 +53,7 @@ namespace FresamLogistica.Views.General
         private decimal _totalPrecio = 0;
         private decimal _precioFrutaGrado = 0;
         private int _totalCajas = 0;
+        private bool _muestraVenta = false;
 
         private System.Windows.Forms.Timer delayTimerVehiculo;
         private System.Windows.Forms.Timer delayTimerPrecioUnitario;
@@ -91,7 +92,9 @@ namespace FresamLogistica.Views.General
 
             ValidarPermisos();
 
+            ValidarColumnaVentaEnTarimas();
         }
+
 
         #region EventosFormulario
         private void RecepcionView_Load(object sender, EventArgs e)
@@ -506,6 +509,7 @@ namespace FresamLogistica.Views.General
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Recibo");
             tsbImprimir.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Imprimir Etiqueta");
             chkPrecioUnitario.Enabled = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Editar Precio Unitario");
+            _muestraVenta = SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Aprobar Venta");
             HabilitarControlesTpCalidadDescuento(SesionActualHelper.Permisos.Any(p => p.PantallaId == Convert.ToInt32(this.Tag) && p.NombrePermiso == "Modificar Calidad/Descuento"));
         }
 
@@ -546,7 +550,7 @@ namespace FresamLogistica.Views.General
         
         private void ConfigurarComboBoxSectores()
         {
-            EstadosHelper.GenerarEstadosDesdeLista(ref cbSector, _repoSectores.ListarPorRanchoCicloComboBox(this._IdRanchoSeleccionado, this._IdCicloSeleccionado));
+            EstadosHelper.GenerarEstadosDesdeLista(ref cbSector, _repoSectores.ListarPorRanchoCicloActivosYActualComboBox(this._IdRanchoSeleccionado, this._IdCicloSeleccionado, this._IdSectorSeleccionado));
         }
         
         private void ConfigurarComboBoxFrutas()
@@ -578,6 +582,7 @@ namespace FresamLogistica.Views.General
                     txtFolioDiario.Text = registro.FolioRecepcionDiaria.HasValue ? registro.FolioRecepcionDiaria.Value.ToString() : string.Empty;
                     cbAgricultor.SelectedValue = registro.AgriculorId.ToString();
                     cbRancho.SelectedValue = registro.RanchoId.ToString();
+                    this._IdSectorSeleccionado = registro.SectorId;
                     ConfigurarComboBoxSectores();
                     cbSector.SelectedValue = registro.SectorId.ToString();
                     cbFruta.SelectedValue = registro.FrutaId.ToString();
@@ -704,7 +709,9 @@ namespace FresamLogistica.Views.General
                         peso_neto = row.Cells["peso_neto"].Value != null ? Convert.ToDecimal(row.Cells["peso_neto"].Value) : 0,
                         grado_id = registro.GradoId,
                         calificacion = int.Parse(txtCalificacion.Text),
-                        importe = (row.Cells["peso_neto"].Value != null ? Convert.ToDecimal(row.Cells["peso_neto"].Value) : 0) * _precioFrutaGrado
+                        importe = (row.Cells["peso_neto"].Value != null ? Convert.ToDecimal(row.Cells["peso_neto"].Value) : 0) * _precioFrutaGrado,
+                        es_venta = row.Cells["es_venta"].Value != null ? Convert.ToBoolean(row.Cells["es_venta"].Value) : false,
+                        usuario_aprueba_venta = _muestraVenta ? (row.Cells["es_venta"].Value != null && Convert.ToBoolean(row.Cells["es_venta"].Value) ? SesionActualHelper.UsuarioId : null) : null,
                     };
                     tarimas.Add(tarima);
                 }
@@ -819,7 +826,7 @@ namespace FresamLogistica.Views.General
                 new ReportParameter("logoParam", Convert.ToBase64String(_logoByte)),
                 new ReportParameter("recepcionIdParam", _IdRegistroSeleccionado.ToString().ToUpper()),
                 new ReportParameter("agricultorParam", cbAgricultor.Text.ToUpper()),
-                new ReportParameter("fechaParam", dtpFecha.Value.ToString("dd/MMMM/yyyy hh:mm tt").ToUpper()),
+                new ReportParameter("fechaParam", dtpFecha.Value.ToString("ddMMyy hh:mm tt").ToUpper()),
                 new ReportParameter("frutaParam", cbFruta.Text.ToUpper()),
                 new ReportParameter("variedadParam", cbVariedad.Text.ToUpper()),
                 new ReportParameter("gradoParam", GenerarGradoReporte().ToUpper()),
@@ -830,7 +837,9 @@ namespace FresamLogistica.Views.General
                 new ReportParameter("totalCajasParam", _totalCajas.ToString()),
                 new ReportParameter("mostrarImporteParam", chkMostrarImporte.Checked.ToString()),
                 new ReportParameter("totalCajasPrestamo", txtTotalCajas.Text),
-                new ReportParameter("precioCaja", _repoKardexCajas.ObtenerPrecioCaja().ToString("N2"))
+                new ReportParameter("precioCaja", _repoKardexCajas.ObtenerPrecioCaja().ToString("N2")),
+
+                new ReportParameter("muestraCajasInfo", Convert.ToInt16(txtTotalCajas.Text) == 0 ? "True" : "False")
             };
 
             ReportHelper reporte = new ReportHelper("Reports/General/RecepcionReport/rptReciboRecepcion.rdlc", parametros, _dt);
@@ -884,9 +893,9 @@ namespace FresamLogistica.Views.General
                 row["VariedadId"] = _IdVariedadSeleccionada.ToString();
                 row["VariedadNombre"] = cbVariedad.Text;
                 row["TotalCajas"] = _t.Cells["cajas"].Value != null ? _t.Cells["cajas"].Value.ToString() : "0";
-                row["TotalKgs"] = _t.Cells["peso_neto"].Value != null ? _t.Cells["peso_neto"].Value.ToString() : "0.00";
+                row["TotalKgs"] = ((_t.Cells["peso_neto"].Value != null ? Convert.ToDecimal(_t.Cells["peso_neto"].Value) : 0) + (_t.Cells["tara2"].Value != null ? Convert.ToDecimal(_t.Cells["tara2"].Value) : 0)).ToString("N2");
                 row["GradoId"] = GenerarGradoReporte().ToUpper();
-                row["Fecha"] = dtpFecha.Value.ToString("dd/MM/yyyy");
+                row["Fecha"] = dtpFecha.Value.ToString("ddMMyy");
                 row["Hora"] = dtpFecha.Value.ToString("hh:mm tt");
                 row["FolioDia"] = txtFolioDiario.Text;
                 _dt.Rows.Add(row);
@@ -907,7 +916,6 @@ namespace FresamLogistica.Views.General
                 new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                 new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
                 new ReportParameter("edicionParam", _ciclo?.edicion)
-
             };
 
             ReportHelper reporte = new ReportHelper("Reports/General/RecepcionReport/rptEtiquetaRecepcion.rdlc", parametros, _dt);
@@ -975,6 +983,8 @@ namespace FresamLogistica.Views.General
             DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Tara 1", "tara1", 150, true, false);
             DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Tara 2", "tara2", 150, true, false);
             DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Peso Neto", "peso_neto", 150, true, true);
+            DataGridViewHelper.AddColumnCheckBox(dgv, "Aprobar para Venta", "es_venta", 150);
+            DataGridViewHelper.AddColumnCheckBox(dgv, "Procesada", "tarima_destajo_id", 150, true, true);
 
             dgv.CellValueChanged += dgvTarimas_CellValueChanged;
 
@@ -1056,6 +1066,12 @@ namespace FresamLogistica.Views.General
                 _fila.Cells[4].Value = t.tara1.ToString("N2");
                 _fila.Cells[5].Value = t.tara2.ToString("N2");
                 _fila.Cells[6].Value = t.peso_neto.ToString("N2");
+                _fila.Cells[7].Value = t.es_venta;
+                _fila.Cells[8].Value = t.tarima_destajo_id != null ? true : false;
+                if (t.tarima_destajo_id != null ? true : false)
+                {
+                    _fila.Cells[7].ReadOnly = true;
+                }
                 dgvTarimas.Rows.Add(_fila);
             }
         }
@@ -1073,6 +1089,8 @@ namespace FresamLogistica.Views.General
                 _fila.Cells[4].Value = 0.ToString("N2");
                 _fila.Cells[5].Value = 0.ToString("N2");
                 _fila.Cells[6].Value = 0.ToString("N2");
+                _fila.Cells[7].Value = false;
+                _fila.Cells[8].Value = false;
             dgvTarimas.Rows.Add(_fila);
 
         }
@@ -1385,12 +1403,29 @@ namespace FresamLogistica.Views.General
                 if (dgvTarimas.Columns[i].Name == "tarima_id")
                 {
                     dgvTarimas.Rows[rowIndex].Cells[i].Value = 0;
-                } else
+                }
+                else if (dgvTarimas.Columns[i].Name == "es_venta")
+                {
+                    dgvTarimas.Rows[rowIndex].Cells[i].Value = false;
+                }
+                else
                     dgvTarimas.Rows[rowIndex].Cells[i].Value =
                         dgvTarimas.CurrentRow.Cells[i].Value;
             }
 
             NumerarTarimas();
         }
+
+        private void ValidarColumnaVentaEnTarimas()
+        {
+            //Validar si el usuario tiene permiso para ver la columna de venta en el DataGridView de tarimas
+            
+            if (dgvTarimas.Columns.Contains("es_venta"))
+            {
+                dgvTarimas.Columns["es_venta"].Visible = _muestraVenta;
+                dgvTarimas.Columns["es_venta"].ReadOnly = !_muestraVenta;
+            }
+        }
+
     }
 }

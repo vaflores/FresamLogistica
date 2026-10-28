@@ -146,6 +146,22 @@ namespace FresamLogistica.Controllers.General
                     .ToList();
         }
 
+        public List<KeyValuePair<string, string>> ListarPorRanchoCicloActivosYActualComboBox(int _ranchoId, int cicloId, int sectorActualId = 0)
+        {
+            List<SectoresVariedadesViewModel> lista =
+                ListarPorRanchoCiclo(_ranchoId, cicloId);
+
+            return lista
+                    .Where(s =>
+                        s.estado == "A" ||
+                        (sectorActualId != 0 && s.sector_id == sectorActualId))
+                    .OrderBy(s => s.nombre)
+                    .Select(s => new KeyValuePair<string, string>(
+                        s.sector_id.ToString(),
+                        s.nombre))
+                    .ToList();
+        }
+
         public List<KeyValuePair<string, string>> ListarPorRanchoComboBox(int _ranchoId)
         {
             List<SectoresVariedadesViewModel> _list = ListarPorRancho(_ranchoId);

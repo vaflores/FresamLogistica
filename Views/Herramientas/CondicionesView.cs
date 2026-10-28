@@ -138,7 +138,10 @@ namespace FresamLogistica.Views.Herramientas
 
             //Crear columnas
             DataGridViewHelper.AddColumn(dgv, "Condición Id", _columnaSeleccionada, 500);
+            DataGridViewHelper.AddColumn(dgv, "Código", "codigo", 100);
             DataGridViewHelper.AddColumn(dgv, "Descripción", "nombre", 300);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Calificacion", "ponderacion", 300);
+            DataGridViewHelper.AddColumnCheckBox(dgv, "Es Evaluación total", "es_evaluacion_total", 300);
             DataGridViewHelper.AddColumn(dgv, "Estado", "estado", 500);
 
             DataGridViewHelper.AddColumnEditar(dgv, "Editar", "Editar", 50);

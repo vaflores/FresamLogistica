@@ -28,6 +28,8 @@ namespace FresamLogistica.Views.Herramientas
 
             ConfigurarComboBoxEstado();
 
+            Helper.TextBoxValidarEnteros.Attach(txtPonderacion);
+
             CargarDatosRegistroSeleccionado();
 
             ValidarPermisos();
@@ -113,6 +115,9 @@ namespace FresamLogistica.Views.Herramientas
                 {
                     txtNombre.Text = registro.nombre;
                     cbEstado.SelectedValue = registro.estado;
+                    txtPonderacion.Text = registro.ponderacion.ToString("N0");
+                    chkEsEvaluacionTotal.Checked = registro.es_evaluacion_total ?? false;
+                    txtCodigo.Text = registro.codigo;
                 }
                 else
                 {
@@ -131,7 +136,10 @@ namespace FresamLogistica.Views.Herramientas
                 {
                     condicion_id = _IdRegistroSeleccionado,
                     nombre = txtNombre.Text,
-                    estado = cbEstado.SelectedValue.ToString()
+                    estado = cbEstado.SelectedValue.ToString(),
+                    ponderacion = int.Parse(txtPonderacion.Text),
+                    es_evaluacion_total = chkEsEvaluacionTotal.Checked,
+                    codigo = txtCodigo.Text
                 };
                 if (_IdRegistroSeleccionado == 0)
                 {
@@ -157,6 +165,9 @@ namespace FresamLogistica.Views.Herramientas
             _IdRegistroSeleccionado = 0;
             txtNombre.Clear();
             cbEstado.SelectedIndex = 0;
+            txtPonderacion.Text = "0"; // Asignar un valor predeterminado o ajustarlo según sea necesario
+            chkEsEvaluacionTotal.Checked = false;
+            txtCodigo.Clear();
         }
 
         private void EliminarRegistro()

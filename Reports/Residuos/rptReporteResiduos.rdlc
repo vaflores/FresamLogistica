@@ -885,6 +885,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>Fecha: </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
                       <Value>=Parameters!fechaReporteParam.Value</Value>
                       <Style />
                     </TextRun>

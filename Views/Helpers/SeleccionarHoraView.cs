@@ -40,7 +40,7 @@ namespace FresamLogistica.Views.Helpers
         private void ConfigurarFormulario()
         {
             dtpHora.Format = DateTimePickerFormat.Custom;
-            dtpHora.CustomFormat = "hh:mm tt";
+            dtpHora.CustomFormat = "HH:mm";
             dtpHora.ShowUpDown = true;
 
             // Iniciar con la hora actual

@@ -14,15 +14,22 @@ namespace FresamLogistica.Model
 
         public virtual DbSet<AgricultorCajasSaldo> AgricultorCajasSaldo { get; set; }
         public virtual DbSet<Agricultores> Agricultores { get; set; }
+        public virtual DbSet<AgricultoresAnalisisCampo> AgricultoresAnalisisCampo { get; set; }
+        public virtual DbSet<AgricultoresAnalisisCampoDetalle> AgricultoresAnalisisCampoDetalle { get; set; }
+        public virtual DbSet<AgricultoresAnalisisCampoDocumentos> AgricultoresAnalisisCampoDocumentos { get; set; }
         public virtual DbSet<Calidades> Calidades { get; set; }
         public virtual DbSet<CalidadesRecepciones> CalidadesRecepciones { get; set; }
+        public virtual DbSet<CatTiposAnalisisCampo> CatTiposAnalisisCampo { get; set; }
+        public virtual DbSet<CicloBitacoraAgricultores> CicloBitacoraAgricultores { get; set; }
         public virtual DbSet<CicloCalidades> CicloCalidades { get; set; }
+        public virtual DbSet<CicloCalificaciones> CicloCalificaciones { get; set; }
         public virtual DbSet<CicloEtiquetas> CicloEtiquetas { get; set; }
         public virtual DbSet<CicloGrados> CicloGrados { get; set; }
         public virtual DbSet<CicloInspecciones> CicloInspecciones { get; set; }
         public virtual DbSet<CicloMangos> CicloMangos { get; set; }
         public virtual DbSet<CicloMangosDestajo> CicloMangosDestajo { get; set; }
         public virtual DbSet<CicloMangosTarimas> CicloMangosTarimas { get; set; }
+        public virtual DbSet<CicloNivelesAceptacion> CicloNivelesAceptacion { get; set; }
         public virtual DbSet<Ciclos> Ciclos { get; set; }
         public virtual DbSet<CiclosResiduos> CiclosResiduos { get; set; }
         public virtual DbSet<Ciudades> Ciudades { get; set; }
@@ -70,6 +77,9 @@ namespace FresamLogistica.Model
         public virtual DbSet<Permisos> Permisos { get; set; }
         public virtual DbSet<Precios> Precios { get; set; }
         public virtual DbSet<Producciones> Producciones { get; set; }
+        public virtual DbSet<ProveedoresAnalisisCampo> ProveedoresAnalisisCampo { get; set; }
+        public virtual DbSet<ProveedoresAnalisisCampoDetalle> ProveedoresAnalisisCampoDetalle { get; set; }
+        public virtual DbSet<ProveedoresAnalisisCampoDocumentos> ProveedoresAnalisisCampoDocumentos { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
         public virtual DbSet<Ranchos> Ranchos { get; set; }
         public virtual DbSet<Recepciones> Recepciones { get; set; }
@@ -145,6 +155,11 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.Agricultores);
 
             modelBuilder.Entity<Agricultores>()
+                .HasMany(e => e.AgricultoresAnalisisCampo)
+                .WithRequired(e => e.Agricultores)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Agricultores>()
                 .HasMany(e => e.KardexCajas)
                 .WithRequired(e => e.Agricultores)
                 .WillCascadeOnDelete(false);
@@ -158,6 +173,52 @@ namespace FresamLogistica.Model
                 .HasMany(e => e.Recepciones)
                 .WithRequired(e => e.Agricultores)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampo>()
+                .Property(e => e.estado)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampo>()
+                .Property(e => e.observaciones)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampo>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampo>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampo>()
+                .HasMany(e => e.AgricultoresAnalisisCampoDetalle)
+                .WithRequired(e => e.AgricultoresAnalisisCampo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampo>()
+                .HasMany(e => e.AgricultoresAnalisisCampoDocumentos)
+                .WithRequired(e => e.AgricultoresAnalisisCampo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampoDetalle>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampoDetalle>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampoDocumentos>()
+                .Property(e => e.nombre_archivo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampoDocumentos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AgricultoresAnalisisCampoDocumentos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Calidades>()
                 .Property(e => e.nombre)
@@ -196,6 +257,65 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<CatTiposAnalisisCampo>()
+                .Property(e => e.codigo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CatTiposAnalisisCampo>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CatTiposAnalisisCampo>()
+                .Property(e => e.descripcion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CatTiposAnalisisCampo>()
+                .Property(e => e.ponderacion)
+                .HasPrecision(5, 2);
+
+            modelBuilder.Entity<CatTiposAnalisisCampo>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CatTiposAnalisisCampo>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CatTiposAnalisisCampo>()
+                .HasMany(e => e.AgricultoresAnalisisCampoDetalle)
+                .WithRequired(e => e.CatTiposAnalisisCampo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CatTiposAnalisisCampo>()
+                .HasMany(e => e.ProveedoresAnalisisCampoDetalle)
+                .WithRequired(e => e.CatTiposAnalisisCampo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CicloBitacoraAgricultores>()
+                .Property(e => e.titulo1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloBitacoraAgricultores>()
+                .Property(e => e.titulo2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloBitacoraAgricultores>()
+                .Property(e => e.titulo3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloBitacoraAgricultores>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloBitacoraAgricultores>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloBitacoraAgricultores>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<CicloCalidades>()
                 .Property(e => e.titulo1)
                 .IsUnicode(false);
@@ -218,6 +338,31 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<CicloCalidades>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloCalificaciones>()
+                .Property(e => e.titulo1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloCalificaciones>()
+                .Property(e => e.titulo2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloCalificaciones>()
+                .Property(e => e.titulo3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloCalificaciones>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloCalificaciones>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloCalificaciones>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
@@ -368,6 +513,31 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<CicloMangosTarimas>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloNivelesAceptacion>()
+                .Property(e => e.titulo1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloNivelesAceptacion>()
+                .Property(e => e.titulo2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloNivelesAceptacion>()
+                .Property(e => e.titulo3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloNivelesAceptacion>()
+                .Property(e => e.estado)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloNivelesAceptacion>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CicloNivelesAceptacion>()
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
@@ -397,7 +567,17 @@ namespace FresamLogistica.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Ciclos>()
+                .HasMany(e => e.CicloBitacoraAgricultores)
+                .WithRequired(e => e.Ciclos)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ciclos>()
                 .HasMany(e => e.CicloCalidades)
+                .WithRequired(e => e.Ciclos)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ciclos>()
+                .HasMany(e => e.CicloCalificaciones)
                 .WithRequired(e => e.Ciclos)
                 .WillCascadeOnDelete(false);
 
@@ -430,6 +610,11 @@ namespace FresamLogistica.Model
 
             modelBuilder.Entity<Ciclos>()
                 .HasMany(e => e.CicloMangosDestajo)
+                .WithRequired(e => e.Ciclos)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Ciclos>()
+                .HasMany(e => e.CicloNivelesAceptacion)
                 .WithRequired(e => e.Ciclos)
                 .WillCascadeOnDelete(false);
 
@@ -521,6 +706,10 @@ namespace FresamLogistica.Model
 
             modelBuilder.Entity<Condiciones>()
                 .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Condiciones>()
+                .Property(e => e.codigo)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Condiciones>()
@@ -1102,6 +1291,11 @@ namespace FresamLogistica.Model
                 .WithRequired(e => e.MangoProveedores)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<MangoProveedores>()
+                .HasMany(e => e.ProveedoresAnalisisCampo)
+                .WithRequired(e => e.MangoProveedores)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<MangoRecepciones>()
                 .Property(e => e.grado_id)
                 .IsUnicode(false);
@@ -1367,6 +1561,52 @@ namespace FresamLogistica.Model
                 .Property(e => e.usuario_modifica)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<ProveedoresAnalisisCampo>()
+                .Property(e => e.estado)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampo>()
+                .Property(e => e.observaciones)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampo>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampo>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampo>()
+                .HasMany(e => e.ProveedoresAnalisisCampoDetalle)
+                .WithRequired(e => e.ProveedoresAnalisisCampo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampo>()
+                .HasMany(e => e.ProveedoresAnalisisCampoDocumentos)
+                .WithRequired(e => e.ProveedoresAnalisisCampo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampoDetalle>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampoDetalle>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampoDocumentos>()
+                .Property(e => e.nombre_archivo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampoDocumentos>()
+                .Property(e => e.usuario_crea)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProveedoresAnalisisCampoDocumentos>()
+                .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Puestos>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -1556,6 +1796,10 @@ namespace FresamLogistica.Model
 
             modelBuilder.Entity<Tarimas>()
                 .Property(e => e.usuario_modifica)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Tarimas>()
+                .Property(e => e.usuario_aprueba_venta)
                 .IsUnicode(false);
 
             modelBuilder.Entity<TarimasDestajos>()

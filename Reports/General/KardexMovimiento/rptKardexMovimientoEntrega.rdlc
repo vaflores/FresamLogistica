@@ -146,9 +146,6 @@
             <Height>0.6cm</Height>
             <Width>4.33594cm</Width>
             <ZIndex>4</ZIndex>
-            <Visibility>
-              <Hidden>=Parameters!pEntrada.Value</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -459,11 +456,11 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BottomBorder>
+              <TopBorder>
                 <Color>Black</Color>
                 <Style>Solid</Style>
                 <Width>1pt</Width>
-              </BottomBorder>
+              </TopBorder>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -496,11 +493,11 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BottomBorder>
+              <TopBorder>
                 <Color>Black</Color>
                 <Style>Solid</Style>
                 <Width>1pt</Width>
-              </BottomBorder>
+              </TopBorder>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -672,6 +669,40 @@
                 <Style>Solid</Style>
                 <Width>1pt</Width>
               </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox16">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!pNombreEmpleado.Value</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>9.28205cm</Top>
+            <Left>2.2594cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.99179cm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>

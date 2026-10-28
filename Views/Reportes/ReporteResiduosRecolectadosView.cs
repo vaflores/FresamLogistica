@@ -6,6 +6,7 @@ using FresamLogistica.Controllers.Residuos;
 using FresamLogistica.Helper;
 using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
+using FresamLogistica.Views.Reportes.Titulos;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace FresamLogistica.Views.Reportes
             dtpFechaFin.Checked = true;
 
             //this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            //this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             ValidarPermisos();
 
@@ -217,7 +218,7 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("titulo1Param", _titulos.titulo1.ToString()),
                     new ReportParameter("titulo2Param", _titulos.titulo2.ToString()),
                     new ReportParameter("titulo3Param", _titulos.titulo3.ToString()),
-                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("ddMMyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
@@ -242,7 +243,7 @@ namespace FresamLogistica.Views.Reportes
                 foreach (DataRow fila in _residuos.Rows)
                 {
                     DataRow row = _dtMaster.NewRow();
-                    row["fecha"] = Convert.ToDateTime(fila["fecha"]).ToShortDateString();
+                    row["fecha"] = Convert.ToDateTime(fila["fecha"]).ToString("ddMMyy").ToUpper();
                     row["operador"] = fila["operador"];
                     row["fruta"] = fila["fruta"];
                     row["tipo_residuo"] = fila["tipo_residuo"];
@@ -378,6 +379,11 @@ namespace FresamLogistica.Views.Reportes
             }
             catch (Exception ex)
             { }
+        }
+
+        private void tsbTitulos_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarDialogoFormulario(new TitulosReporteResiduosView());
         }
     }
 }

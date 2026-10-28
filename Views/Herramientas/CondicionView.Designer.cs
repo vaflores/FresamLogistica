@@ -38,6 +38,11 @@
             this.tsbGuardar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
+            this.txtPonderacion = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkEsEvaluacionTotal = new System.Windows.Forms.CheckBox();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +54,7 @@
             this.cbEstado.Location = new System.Drawing.Point(412, 48);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(121, 28);
-            this.cbEstado.TabIndex = 22;
+            this.cbEstado.TabIndex = 2;
             // 
             // label1
             // 
@@ -69,7 +74,7 @@
             this.txtNombre.Location = new System.Drawing.Point(116, 48);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(218, 26);
-            this.txtNombre.TabIndex = 18;
+            this.txtNombre.TabIndex = 1;
             // 
             // lblNombre
             // 
@@ -149,11 +154,61 @@
             this.tsbImprimir.Text = "Imprimir";
             this.tsbImprimir.Click += new System.EventHandler(this.tsbImprimir_Click);
             // 
+            // txtPonderacion
+            // 
+            this.txtPonderacion.Location = new System.Drawing.Point(116, 106);
+            this.txtPonderacion.Name = "txtPonderacion";
+            this.txtPonderacion.Size = new System.Drawing.Size(121, 26);
+            this.txtPonderacion.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 109);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 20);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Ponderación:";
+            // 
+            // chkEsEvaluacionTotal
+            // 
+            this.chkEsEvaluacionTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkEsEvaluacionTotal.AutoSize = true;
+            this.chkEsEvaluacionTotal.Location = new System.Drawing.Point(243, 79);
+            this.chkEsEvaluacionTotal.Name = "chkEsEvaluacionTotal";
+            this.chkEsEvaluacionTotal.Size = new System.Drawing.Size(161, 24);
+            this.chkEsEvaluacionTotal.TabIndex = 4;
+            this.chkEsEvaluacionTotal.Text = "Es evaluacion total";
+            this.chkEsEvaluacionTotal.UseVisualStyleBackColor = true;
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Location = new System.Drawing.Point(116, 77);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(121, 26);
+            this.txtCodigo.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 83);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 20);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Código:";
+            // 
             // CondicionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 87);
+            this.ClientSize = new System.Drawing.Size(545, 142);
+            this.Controls.Add(this.txtCodigo);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.chkEsEvaluacionTotal);
+            this.Controls.Add(this.txtPonderacion);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNombre);
@@ -184,5 +239,10 @@
         private System.Windows.Forms.ToolStripButton tsbGuardar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.ToolStripButton tsbImprimir;
+        private System.Windows.Forms.TextBox txtPonderacion;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkEsEvaluacionTotal;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.Label label3;
     }
 }

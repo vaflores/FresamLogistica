@@ -717,7 +717,7 @@ namespace FresamLogistica.Views.Mango
                 {
                     DataRow row = _dtMaster.NewRow();
 
-                    row["fecha_recepcion"] = _rec.ItemArray[0];
+                    row["fecha_recepcion"] = Convert.ToDateTime(_rec.ItemArray[0]).ToString("ddMMyy");
                     row["hora"] = _rec.ItemArray[1];
                     row["codigo"] = _rec.ItemArray[2];
                     row["folio_ciclo"] = _rec.ItemArray[3];
@@ -728,7 +728,7 @@ namespace FresamLogistica.Views.Mango
                     _pBueno += Convert.ToDecimal(row["mango_bueno"]);
                     row["mango_grado"] = _rec.ItemArray[8];
                     row["recepcion_id"] = _rec.ItemArray[9];
-                    row["fecha"] = _rec.ItemArray[10];
+                    row["fecha"] = Convert.ToDateTime(_rec.ItemArray[10]).ToString("ddMMyy");
                     row["peso_caja"] = _rec.ItemArray[11];
                     row["desecho"] = _rec.ItemArray[12];
                     _defecto += Convert.ToDecimal(row["desecho"]);
@@ -785,13 +785,13 @@ namespace FresamLogistica.Views.Mango
                     new ReportParameter("titulo1Param", _titulos == null ? "" : _titulos.titulo1),
                     new ReportParameter("titulo2Param", "Muestreo de calidad del mango"),
                     new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
-                    new ReportParameter("fechaReporteParam", dtpFecha.Value.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("fechaReporteParam", dtpFecha.Value.ToString("ddMMyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
                     new ReportParameter("edicionParam", _ciclo?.edicion),
 
-                    new ReportParameter("fechaRecepcion", dtpFecha.Value.ToShortDateString()),
+                    new ReportParameter("fechaRecepcion", dtpFecha.Value.ToString("ddMMyy")),
                     new ReportParameter("proveedorRecepcion", cbProveedores.Text),
                     new ReportParameter("numeroViaje", txtFolioCiclo.Text),
                     new ReportParameter("variedadRecepcion", cbVariedades.Text),

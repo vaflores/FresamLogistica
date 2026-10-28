@@ -3,6 +3,8 @@ using FresamLogistica.Interfaces;
 using FresamLogistica.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -292,6 +294,148 @@ namespace FresamLogistica.Controllers.General
                     return true;
                 }
 
+            }
+        }
+
+        public async Task<DataTable> ObtenerReporteSaldoRecepcionesAsync(DateTime fechaInicio, DateTime fechaFin)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_ReporteSaldoRecepciones";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@FechaInicial", fechaInicio));
+                    command.Parameters.Add(new SqlParameter("@FechaFinal", fechaFin));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
+            }
+        }
+
+        public async Task<DataTable> ObtenerReporteMangoSaldoRecepcionesAsync(DateTime fechaInicio, DateTime fechaFin)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_ReporteMangoSaldoRecepciones";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@FechaInicial", fechaInicio));
+                    command.Parameters.Add(new SqlParameter("@FechaFinal", fechaFin));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
+            }
+        }
+
+        public async Task<DataTable> ObtenerReporteNivelesAceptacionAgricultoresAsync(DateTime fechaInicio)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_ReporteNivelAceptacionAgricultores";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@Fecha", fechaInicio));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
+            }
+        }
+
+        public async Task<DataTable> ObtenerReporteNivelAceptacionProveedoresAsync(DateTime fechaInicio)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_ReporteNivelAceptacionProveedores";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@Fecha", fechaInicio));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
+            }
+        }
+
+        public async Task<DataTable> ObtenerReporteBitacoranAgricultoresAsync(int cicloId)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_ReporteProveedoresAprobados";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@CicloId", cicloId));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
             }
         }
     }

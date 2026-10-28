@@ -52,6 +52,7 @@
             this.cbElabora = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tsbTitulos = new System.Windows.Forms.ToolStripButton();
             this.tsMenu.SuspendLayout();
             this.tpTotales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTotales)).BeginInit();
@@ -71,7 +72,8 @@
             this.tsbCrear,
             this.tsbGuardar,
             this.tsbEliminar,
-            this.tsbImprimir});
+            this.tsbImprimir,
+            this.tsbTitulos});
             this.tsMenu.Location = new System.Drawing.Point(0, 0);
             this.tsMenu.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsMenu.Name = "tsMenu";
@@ -324,6 +326,16 @@
             this.label2.TabIndex = 47;
             this.label2.Text = "Firma Responsable:";
             // 
+            // tsbTitulos
+            // 
+            this.tsbTitulos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbTitulos.Image = global::FresamLogistica.Properties.Resources.titulo_50;
+            this.tsbTitulos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTitulos.Name = "tsbTitulos";
+            this.tsbTitulos.Size = new System.Drawing.Size(34, 42);
+            this.tsbTitulos.Text = "Títulos";
+            this.tsbTitulos.Click += new System.EventHandler(this.tsbTitulos_Click);
+            // 
             // ReporteResiduosRecolectadosView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -343,7 +355,6 @@
             this.Controls.Add(this.lblFechaInicial);
             this.Controls.Add(this.tsMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ReporteResiduosRecolectadosView";
             this.Tag = "31";
@@ -389,5 +400,6 @@
         private System.Windows.Forms.ComboBox cbElabora;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripButton tsbTitulos;
     }
 }

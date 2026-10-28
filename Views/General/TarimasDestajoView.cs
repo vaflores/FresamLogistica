@@ -354,6 +354,7 @@ namespace FresamLogistica.Views.General
             DataGridViewHelper.AddColumn(dgv, "Rancho", "rancho", 100);
             DataGridViewHelper.AddColumn(dgv, "Sector", "sector", 100);
             DataGridViewHelper.AddColumn(dgv, "Variedad", "variedad", 100);
+            DataGridViewHelper.AddColumn(dgv, "Grado", "grado", 100);
             DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Número Tarima", "no_tarima", 50);
             DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Cantidad de Cajas", "cajas", 120);
             DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Peso Neto", "peso_neto", 120);
@@ -452,6 +453,12 @@ namespace FresamLogistica.Views.General
             try
             {
 
+                if (ValidarHoraFinEsMayorAUltimaTarimaDetalle())
+                {
+                    MessageBox.Show("La fecha y hora de cierre no pueden ser menor a la fecha y hora de la ultima tarima de produccion (destajo).", "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (_destajoIdSeleccionado <= 0)
                     return;
 
@@ -501,7 +508,7 @@ namespace FresamLogistica.Views.General
                 {
                     DataRow row = _dtMaster.NewRow();
 
-                    row["fecha_recepcion"] = Convert.ToDateTime(_rec.ItemArray[3]).ToString("dd/MM/yyyy");
+                    row["fecha_recepcion"] = Convert.ToDateTime(_rec.ItemArray[3]).ToString("ddMMyy");
                     row["agricultor"] = _rec.ItemArray[6];
                     row["rancho"] = _rec.ItemArray[7];
                     row["sector"] = _rec.ItemArray[8];
@@ -510,8 +517,8 @@ namespace FresamLogistica.Views.General
                     row["cantidad_cajas"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[12]), 2).ToString("N0");
                     row["peso_neto"] = Math.Round(Convert.ToDecimal(_rec.ItemArray[13]), 2).ToString("N0");
                     row["hora"] = Convert.ToDateTime(_rec.ItemArray[1]).ToString("HH:mm");
-                    row["variedad"] = _rec.ItemArray[9];
-                    _fruta = _rec.ItemArray[10].ToString();
+                    row["variedad"] = _rec.ItemArray[10];
+                    _fruta = _rec.ItemArray[9].ToString();
                     row["numero_tarima"] = _rec.ItemArray[11];
                     row["grado"] = _rec.ItemArray[4];
                     _dtMaster.Rows.Add(row);
@@ -525,7 +532,7 @@ namespace FresamLogistica.Views.General
                     new ReportParameter("titulo1Param", _titulos == null ? "" : _titulos.titulo1),
                     new ReportParameter("titulo2Param", _titulos == null ? "" : _titulos.titulo2),
                     new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
-                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("ddMMyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
@@ -550,6 +557,18 @@ namespace FresamLogistica.Views.General
             {
                 MessageBox.Show("Ocurrió un error al generar el reporte: " + ex.Message, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool ValidarHoraFinEsMayorAUltimaTarimaDetalle()
+        {
+            //Buscar en la fila de la tarima que la fecha y hora final sean mayores a la fecha de la tarima
+            foreach (DataGridViewRow fila in dgvTarimas.Rows)
+            {
+                if (dtpFechaTermino.Value <= Convert.ToDateTime(fila.Cells["fecha_hora_destajo"].Value))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

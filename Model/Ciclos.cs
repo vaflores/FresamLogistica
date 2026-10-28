@@ -11,13 +11,16 @@ namespace FresamLogistica.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ciclos()
         {
+            CicloBitacoraAgricultores = new HashSet<CicloBitacoraAgricultores>();
             CicloCalidades = new HashSet<CicloCalidades>();
+            CicloCalificaciones = new HashSet<CicloCalificaciones>();
             CicloEtiquetas = new HashSet<CicloEtiquetas>();
             CicloGrados = new HashSet<CicloGrados>();
             CicloInspecciones = new HashSet<CicloInspecciones>();
             CicloMangos = new HashSet<CicloMangos>();
             CicloMangos1 = new HashSet<CicloMangos>();
             CicloMangosDestajo = new HashSet<CicloMangosDestajo>();
+            CicloNivelesAceptacion = new HashSet<CicloNivelesAceptacion>();
             MangoRecepciones = new HashSet<MangoRecepciones>();
             Recepciones = new HashSet<Recepciones>();
             Sectores = new HashSet<Sectores>();
@@ -57,7 +60,13 @@ namespace FresamLogistica.Model
         public string edicion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CicloBitacoraAgricultores> CicloBitacoraAgricultores { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CicloCalidades> CicloCalidades { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CicloCalificaciones> CicloCalificaciones { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CicloEtiquetas> CicloEtiquetas { get; set; }
@@ -76,6 +85,9 @@ namespace FresamLogistica.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CicloMangosDestajo> CicloMangosDestajo { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CicloNivelesAceptacion> CicloNivelesAceptacion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MangoRecepciones> MangoRecepciones { get; set; }

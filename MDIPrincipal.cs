@@ -358,5 +358,65 @@ namespace FresamLogistica
         {
             Helper.FormulariosHelper.CargarFormularioHijo(new TarimasDestajosView(), this);
         }
+
+        private void condicionesDeCampoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new CondicionesCampoView(), this);
+        }
+
+        private void análisisDeCampoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoProveedoresAnalisisView(), this);
+        }
+
+        private void agricultoresAnálisisDeCampoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new AgricultoresAnalisisView(), this);
+        }
+
+        private void reporteCalificacionDelAgricultorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ReporteCalificacionAgricultorView(), this);
+        }
+
+        private void reporteCalificacionDelProveedorMangoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ReporteCalificacionProveedorView(), this);
+        }
+
+        private void reporteSaldoCajasYPesoNetoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new ReporteSaldoCajasPesoNetoView(), this);
+        }
+
+        private void reporteSaldoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new MangoReporteSaldoCajasPesoNetoView(), this);
+        }
+
+        private void calificacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TitulosCalificacionesView(), this);
+        }
+
+        private void nivelesDeAceptaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TitulosNivelesAceptacionView(), this);
+        }
+
+        private void reporteDeNivelesDeAceptaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new NivelesAceptacionView(), this);
+        }
+
+        private void bitácoraDeAgricultoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new TitulosBitacoraAgricultoresView(), this);
+        }
+
+        private void bitácoraDeAgricultoresToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarFormularioHijo(new BitacoraAgricultoresView(), this);
+        }
     }
 }

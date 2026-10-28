@@ -293,10 +293,6 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             private global::System.Data.DataColumn columnvariedad;
             
-            private global::System.Data.DataColumn columnno_tarimas;
-            
-            private global::System.Data.DataColumn columnpeso_neto;
-            
             private global::System.Data.DataColumn columnprecio_unitario;
             
             private global::System.Data.DataColumn columnimporte;
@@ -308,6 +304,18 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             private global::System.Data.DataColumn columngrado_id;
             
             private global::System.Data.DataColumn columndescuento;
+            
+            private global::System.Data.DataColumn columncajas_recibidas;
+            
+            private global::System.Data.DataColumn columncajas_procesadas;
+            
+            private global::System.Data.DataColumn columncajas_pendientes;
+            
+            private global::System.Data.DataColumn columnpeso_neto_recibido;
+            
+            private global::System.Data.DataColumn columnpeso_neto_procesado;
+            
+            private global::System.Data.DataColumn columnpeso_neto_pendiente;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -400,22 +408,6 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn no_tarimasColumn {
-                get {
-                    return this.columnno_tarimas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn peso_netoColumn {
-                get {
-                    return this.columnpeso_neto;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn precio_unitarioColumn {
                 get {
                     return this.columnprecio_unitario;
@@ -464,6 +456,54 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn cajas_recibidasColumn {
+                get {
+                    return this.columncajas_recibidas;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn cajas_procesadasColumn {
+                get {
+                    return this.columncajas_procesadas;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn cajas_pendientesColumn {
+                get {
+                    return this.columncajas_pendientes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn peso_neto_recibidoColumn {
+                get {
+                    return this.columnpeso_neto_recibido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn peso_neto_procesadoColumn {
+                get {
+                    return this.columnpeso_neto_procesado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn peso_neto_pendienteColumn {
+                get {
+                    return this.columnpeso_neto_pendiente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -499,7 +539,26 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RecepcionesRow AddRecepcionesRow(string recepcion_id, string fecha, string id_folio_diario, string agricultor, string rancho, string sector, string variedad, string no_tarimas, string peso_neto, string precio_unitario, string importe, string estado, string calidad, string grado_id, string descuento) {
+            public RecepcionesRow AddRecepcionesRow(
+                        string recepcion_id, 
+                        string fecha, 
+                        string id_folio_diario, 
+                        string agricultor, 
+                        string rancho, 
+                        string sector, 
+                        string variedad, 
+                        string precio_unitario, 
+                        string importe, 
+                        string estado, 
+                        string calidad, 
+                        string grado_id, 
+                        string descuento, 
+                        string cajas_recibidas, 
+                        string cajas_procesadas, 
+                        string cajas_pendientes, 
+                        string peso_neto_recibido, 
+                        string peso_neto_procesado, 
+                        string peso_neto_pendiente) {
                 RecepcionesRow rowRecepcionesRow = ((RecepcionesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         recepcion_id,
@@ -509,14 +568,18 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
                         rancho,
                         sector,
                         variedad,
-                        no_tarimas,
-                        peso_neto,
                         precio_unitario,
                         importe,
                         estado,
                         calidad,
                         grado_id,
-                        descuento};
+                        descuento,
+                        cajas_recibidas,
+                        cajas_procesadas,
+                        cajas_pendientes,
+                        peso_neto_recibido,
+                        peso_neto_procesado,
+                        peso_neto_pendiente};
                 rowRecepcionesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRecepcionesRow);
                 return rowRecepcionesRow;
@@ -546,14 +609,18 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
                 this.columnrancho = base.Columns["rancho"];
                 this.columnsector = base.Columns["sector"];
                 this.columnvariedad = base.Columns["variedad"];
-                this.columnno_tarimas = base.Columns["no_tarimas"];
-                this.columnpeso_neto = base.Columns["peso_neto"];
                 this.columnprecio_unitario = base.Columns["precio_unitario"];
                 this.columnimporte = base.Columns["importe"];
                 this.columnestado = base.Columns["estado"];
                 this.columncalidad = base.Columns["calidad"];
                 this.columngrado_id = base.Columns["grado_id"];
                 this.columndescuento = base.Columns["descuento"];
+                this.columncajas_recibidas = base.Columns["cajas_recibidas"];
+                this.columncajas_procesadas = base.Columns["cajas_procesadas"];
+                this.columncajas_pendientes = base.Columns["cajas_pendientes"];
+                this.columnpeso_neto_recibido = base.Columns["peso_neto_recibido"];
+                this.columnpeso_neto_procesado = base.Columns["peso_neto_procesado"];
+                this.columnpeso_neto_pendiente = base.Columns["peso_neto_pendiente"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -573,10 +640,6 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
                 base.Columns.Add(this.columnsector);
                 this.columnvariedad = new global::System.Data.DataColumn("variedad", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvariedad);
-                this.columnno_tarimas = new global::System.Data.DataColumn("no_tarimas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnno_tarimas);
-                this.columnpeso_neto = new global::System.Data.DataColumn("peso_neto", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpeso_neto);
                 this.columnprecio_unitario = new global::System.Data.DataColumn("precio_unitario", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprecio_unitario);
                 this.columnimporte = new global::System.Data.DataColumn("importe", typeof(string), null, global::System.Data.MappingType.Element);
@@ -589,6 +652,18 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
                 base.Columns.Add(this.columngrado_id);
                 this.columndescuento = new global::System.Data.DataColumn("descuento", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescuento);
+                this.columncajas_recibidas = new global::System.Data.DataColumn("cajas_recibidas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncajas_recibidas);
+                this.columncajas_procesadas = new global::System.Data.DataColumn("cajas_procesadas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncajas_procesadas);
+                this.columncajas_pendientes = new global::System.Data.DataColumn("cajas_pendientes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncajas_pendientes);
+                this.columnpeso_neto_recibido = new global::System.Data.DataColumn("peso_neto_recibido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpeso_neto_recibido);
+                this.columnpeso_neto_procesado = new global::System.Data.DataColumn("peso_neto_procesado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpeso_neto_procesado);
+                this.columnpeso_neto_pendiente = new global::System.Data.DataColumn("peso_neto_pendiente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpeso_neto_pendiente);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -843,38 +918,6 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string no_tarimas {
-                get {
-                    try {
-                        return ((string)(this[this.tableRecepciones.no_tarimasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'no_tarimas\' de la tabla \'Recepciones\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecepciones.no_tarimasColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string peso_neto {
-                get {
-                    try {
-                        return ((string)(this[this.tableRecepciones.peso_netoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'peso_neto\' de la tabla \'Recepciones\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecepciones.peso_netoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string precio_unitario {
                 get {
                     try {
@@ -971,6 +1014,104 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string cajas_recibidas {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecepciones.cajas_recibidasColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'cajas_recibidas\' de la tabla \'Recepciones\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecepciones.cajas_recibidasColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string cajas_procesadas {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecepciones.cajas_procesadasColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'cajas_procesadas\' de la tabla \'Recepciones\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecepciones.cajas_procesadasColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string cajas_pendientes {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecepciones.cajas_pendientesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'cajas_pendientes\' de la tabla \'Recepciones\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecepciones.cajas_pendientesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string peso_neto_recibido {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecepciones.peso_neto_recibidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'peso_neto_recibido\' de la tabla \'Recepciones\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecepciones.peso_neto_recibidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string peso_neto_procesado {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecepciones.peso_neto_procesadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'peso_neto_procesado\' de la tabla \'Recepciones\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableRecepciones.peso_neto_procesadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string peso_neto_pendiente {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecepciones.peso_neto_pendienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'peso_neto_pendiente\' de la tabla \'Recepciones\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableRecepciones.peso_neto_pendienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Isrecepcion_idNull() {
                 return this.IsNull(this.tableRecepciones.recepcion_idColumn);
             }
@@ -1055,30 +1196,6 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Isno_tarimasNull() {
-                return this.IsNull(this.tableRecepciones.no_tarimasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setno_tarimasNull() {
-                this[this.tableRecepciones.no_tarimasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Ispeso_netoNull() {
-                return this.IsNull(this.tableRecepciones.peso_netoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setpeso_netoNull() {
-                this[this.tableRecepciones.peso_netoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Isprecio_unitarioNull() {
                 return this.IsNull(this.tableRecepciones.precio_unitarioColumn);
             }
@@ -1147,6 +1264,78 @@ namespace FresamLogistica.Reports.Reportes.ReporteRecepciones {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetdescuentoNull() {
                 this[this.tableRecepciones.descuentoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Iscajas_recibidasNull() {
+                return this.IsNull(this.tableRecepciones.cajas_recibidasColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setcajas_recibidasNull() {
+                this[this.tableRecepciones.cajas_recibidasColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Iscajas_procesadasNull() {
+                return this.IsNull(this.tableRecepciones.cajas_procesadasColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setcajas_procesadasNull() {
+                this[this.tableRecepciones.cajas_procesadasColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Iscajas_pendientesNull() {
+                return this.IsNull(this.tableRecepciones.cajas_pendientesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setcajas_pendientesNull() {
+                this[this.tableRecepciones.cajas_pendientesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Ispeso_neto_recibidoNull() {
+                return this.IsNull(this.tableRecepciones.peso_neto_recibidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setpeso_neto_recibidoNull() {
+                this[this.tableRecepciones.peso_neto_recibidoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Ispeso_neto_procesadoNull() {
+                return this.IsNull(this.tableRecepciones.peso_neto_procesadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setpeso_neto_procesadoNull() {
+                this[this.tableRecepciones.peso_neto_procesadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Ispeso_neto_pendienteNull() {
+                return this.IsNull(this.tableRecepciones.peso_neto_pendienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void Setpeso_neto_pendienteNull() {
+                this[this.tableRecepciones.peso_neto_pendienteColumn] = global::System.Convert.DBNull;
             }
         }
         

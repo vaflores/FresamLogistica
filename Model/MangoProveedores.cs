@@ -12,6 +12,7 @@ namespace FresamLogistica.Model
         public MangoProveedores()
         {
             MangoRecepciones = new HashSet<MangoRecepciones>();
+            ProveedoresAnalisisCampo = new HashSet<ProveedoresAnalisisCampo>();
         }
 
         [Key]
@@ -43,5 +44,8 @@ namespace FresamLogistica.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MangoRecepciones> MangoRecepciones { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProveedoresAnalisisCampo> ProveedoresAnalisisCampo { get; set; }
     }
 }

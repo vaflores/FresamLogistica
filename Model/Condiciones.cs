@@ -39,7 +39,12 @@ namespace FresamLogistica.Model
 
         public DateTime fecha_modifica { get; set; }
 
-        public decimal calificacion { get; set; }
+        public decimal ponderacion { get; set; }
+
+        public bool? es_evaluacion_total { get; set; }
+
+        [StringLength(30)]
+        public string codigo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CondicionesVehiculosRecepciones> CondicionesVehiculosRecepciones { get; set; }

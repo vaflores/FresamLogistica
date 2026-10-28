@@ -260,5 +260,15 @@ namespace FresamLogistica.Views.Reportes
             }
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbTitulos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

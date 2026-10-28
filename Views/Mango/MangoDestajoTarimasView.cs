@@ -42,7 +42,7 @@ namespace FresamLogistica.Views.Mango
             ConfigurarDataGridViewAprobadas(dgvTarimasAprobadas);
             CargarRegistros();
 
-            this.Tag = "40"; // Asignar un ID de pantalla único para permisos (ajustar según corresponda)
+            this.Tag = "41"; // Asignar un ID de pantalla único para permisos (ajustar según corresponda)
 
             ValidarPermisos();
         }
@@ -174,14 +174,14 @@ namespace FresamLogistica.Views.Mango
             DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Viaje", "mango_recepcion_salida_tarima_id", 50, false);
             DataGridViewHelper.AddColumn(dgv, "Folio Ciclo", "folio_ciclo", 50);
             DataGridViewHelper.AddColumnFecha(dgv, "Fecha Recepción", "fecha_recepcion", 150);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Cantidad de Cajas", "cantidad_cajas", 120);
+            DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Peso Neto", "peso_neto", 120);
+            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Número Tarima", "numero_tarima", 50);
             DataGridViewHelper.AddColumn(dgv, "Código", "codigo", 50);
             DataGridViewHelper.AddColumn(dgv, "Distribuidor", "proveedor", 150);
             DataGridViewHelper.AddColumn(dgv, "Predio", "predio", 100);
             DataGridViewHelper.AddColumn(dgv, "Variedad", "variedad", 100);
             DataGridViewHelper.AddColumnFecha(dgv, "Fecha Traspaleo", "fecha_traspaleo", 50);
-            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Número Tarima", "numero_tarima", 50);
-            DataGridViewHelper.AddColumnNumeroSinDecimales(dgv, "Cantidad de Cajas", "cantidad_cajas", 120);
-            DataGridViewHelper.AddColumnNumeroConDecimales(dgv, "Peso Neto", "peso_neto", 120);
             DataGridViewHelper.AddColumnCheckBox(dgv, "Aprobada", "aprobada", 120, false);
 
             DataGridViewHelper.AddButtonColumn(dgv, "Procesar", "Procesar", 50);

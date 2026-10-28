@@ -506,14 +506,22 @@ namespace FresamLogistica.Controllers.General
 
         public List<RecepcionesViewModel> ListarPorCiclo(int _cicloId, DateTime _fecha)
         {
-            if (_repoCiclos.ObtenerPorId(_cicloId)==null)
+            if (_repoCiclos.ObtenerPorId(_cicloId) == null)
             {
                 _cicloId = _repoCiclos.ObtenerUltimoCicloActivo();
             }
+
+            DateTime fechaInicio = _fecha.Date;
+            DateTime fechaFin = fechaInicio.AddDays(1);
+
             using (var _context = new Model.Model())
             {
                 return _context.Recepciones
-                    .Where(r => r.ciclo_id == _cicloId)
+                    .AsNoTracking()
+                    .Where(r =>
+                        r.ciclo_id == _cicloId &&
+                        r.fecha >= fechaInicio &&
+                        r.fecha < fechaFin)
                     .Select(r => new RecepcionesViewModel
                     {
                         RecepcionId = r.recepcion_id,
@@ -536,20 +544,23 @@ namespace FresamLogistica.Controllers.General
                         FrutaNombre = r.Sectores.Variedades.Frutas.nombre,
 
                         NoTarimas = r.Tarimas.Count(),
-                        PesoNeto = r.Tarimas.Count() == 0 ? 0 : r.Tarimas.Sum(t => t.peso_neto),
+
+                        PesoNeto = r.Tarimas
+                            .Select(t => (decimal?)t.peso_neto)
+                            .Sum() ?? 0m,
+
                         Importe = r.importe,
                         PrecioUnitario = r.precio_unitario,
 
-                        Placas = r.VehiculosRecepciones.Any() ? r.VehiculosRecepciones.FirstOrDefault().Vehiculos.placas : string.Empty,
+                        Placas = r.VehiculosRecepciones
+                            .Select(vr => vr.Vehiculos.placas)
+                            .FirstOrDefault() ?? string.Empty,
 
                         GradoId = r.grado_id,
                         Folio = r.folio_reception,
-                        Estado = r.estado,
-
+                        Estado = r.estado
                     })
-                    .ToList()
-                    .Where(r => r.Fecha.Date == _fecha.Date)
-                    .OrderByDescending(x => x.Fecha)
+                    .OrderByDescending(r => r.Fecha)
                     .ToList();
             }
         }

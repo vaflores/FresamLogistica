@@ -3,6 +3,8 @@ using FresamLogistica.Interfaces;
 using FresamLogistica.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -107,5 +109,81 @@ namespace FresamLogistica.Controllers.General
                 ;
             }
         }
+
+        public async Task<DataTable> ObtenerReporteCalificacionAgricultorAnalisisCampoAsync(int agricultorId, DateTime fechaInicio, DateTime fechaFin)
+        {
+            using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_CalificacionAgricultorAnalisisCampo";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@AgricultorId", agricultorId));
+                    command.Parameters.Add(new SqlParameter("@FechaInicial", fechaInicio));
+                    command.Parameters.Add(new SqlParameter("@FechaFinal", fechaFin));
+
+                    var table = new DataTable();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        table.Load(reader);
+                    }
+
+                    return table;
+                }
+            }
+        }
+
+        public async Task<(DataTable Summarizado, DataTable DetalleCampo, DataTable DetalleRegistros)> ObtenerReporteCalificacionAgricultorAnalisisCampoDetalleAsync(int agricultorId, DateTime fechaInicio, DateTime fechaFin)
+        {
+                using (var context = new Model.Model())
+            {
+                var connection = context.Database.Connection;
+
+                if (connection.State != ConnectionState.Open)
+                    await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "dbo.sp_CalificacionAgricultorAnalisisCampoDetalles";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@AgricultorId", agricultorId));
+                    command.Parameters.Add(new SqlParameter("@FechaInicial", fechaInicio));
+                    command.Parameters.Add(new SqlParameter("@FechaFinal", fechaFin));
+
+                    var tableSummarizado = new DataTable("Summarizado");
+                    var tableDetalleCampo = new DataTable("DetalleCampo");
+                    var tableDetalleRegistros = new DataTable("DetalleRegistros");
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        // 1. Primer Result Set: Summarizado
+                        tableSummarizado.Load(reader);
+
+                        // 2. Segundo Result Set: Detalle Campo
+                        //if (await reader.NextResultAsync())
+                        //{
+                        tableDetalleCampo.Load(reader);
+                        //}
+
+                        // 3. Tercer Result Set: Detalle Registros
+                        //if (await reader.NextResultAsync())
+                        //{
+                        tableDetalleRegistros.Load(reader);
+                        //}
+                    }
+
+                    return (tableSummarizado, tableDetalleCampo, tableDetalleRegistros);
+                }
+            }
+        }
+
     }
 }

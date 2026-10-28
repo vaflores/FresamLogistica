@@ -371,7 +371,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MangoDestajoView";
-            this.Tag = "35";
+            this.Tag = "41";
             this.Text = "Producción";
             this.Load += new System.EventHandler(this.RecepcionView_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);

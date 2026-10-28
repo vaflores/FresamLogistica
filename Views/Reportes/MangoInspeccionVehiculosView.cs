@@ -1,10 +1,11 @@
 ﻿using FresamLogistica.Controllers.Configuracion;
 using FresamLogistica.Controllers.General;
-using FresamLogistica.Controllers.Reportes;
 using FresamLogistica.Controllers.Mango;
+using FresamLogistica.Controllers.Reportes;
 using FresamLogistica.Helper;
 using FresamLogistica.Model;
 using FresamLogistica.ViewModels;
+using FresamLogistica.Views.Reportes.Titulos;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -187,7 +188,7 @@ namespace FresamLogistica.Views.Reportes
                     new ReportParameter("titulo1Param", _titulos == null ? "" : _titulos.titulo1),
                     new ReportParameter("titulo2Param", _titulos == null ? "" : _titulos.titulo2),
                     new ReportParameter("titulo3Param", _titulos == null ? "" : _titulos.titulo3),
-                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("fechaReporteParam", dtpFechaInicio.Value.ToString("ddMMyy").ToUpper()),
 
                     new ReportParameter("proximaRevisionParam", _ciclo?.proxima_revision),
                     new ReportParameter("fechaEmisionParam", _ciclo?.fecha_emision),
@@ -296,6 +297,11 @@ namespace FresamLogistica.Views.Reportes
             }
             catch (Exception ex)
             { }
+        }
+
+        private void tsbTitulos_Click(object sender, EventArgs e)
+        {
+            Helper.FormulariosHelper.CargarDialogoFormulario(new TitulosInspeccionesView());
         }
     }
 }

@@ -634,8 +634,8 @@ namespace FresamLogistica.Views.Mango
                         new ReportParameter("edicionParam", _ciclo?.edicion),
 
                         new ReportParameter("numeroTarima", numTarima.ToString()),
-                        new ReportParameter("fechaRecepcion", _fechaRecepcion.ToShortDateString()),
-                        new ReportParameter("fechaTraspaleo", dtpFecha.Value.ToShortDateString()),
+                        new ReportParameter("fechaRecepcion", _fechaRecepcion.ToString("ddMMyy")),
+                        new ReportParameter("fechaTraspaleo", dtpFecha.Value.ToString("ddMMyy")),
                         new ReportParameter("distribuidor", proveedor.nombre.ToString()),
                         new ReportParameter("codigo", proveedor.codigo.ToString()),
                         new ReportParameter("viaje", _viaje.ToString()),

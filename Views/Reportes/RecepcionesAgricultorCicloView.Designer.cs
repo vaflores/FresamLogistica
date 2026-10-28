@@ -39,6 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cbAgricultor = new System.Windows.Forms.ComboBox();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.tsbTitulos = new System.Windows.Forms.ToolStripButton();
             this.tsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,8 @@
             this.tsbCrear,
             this.tsbGuardar,
             this.tsbEliminar,
-            this.tsbImprimir});
+            this.tsbImprimir,
+            this.tsbTitulos});
             this.tsMenu.Location = new System.Drawing.Point(0, 0);
             this.tsMenu.MinimumSize = new System.Drawing.Size(0, 45);
             this.tsMenu.Name = "tsMenu";
@@ -145,6 +147,7 @@
             this.label4.Size = new System.Drawing.Size(47, 20);
             this.label4.TabIndex = 44;
             this.label4.Text = "Ciclo:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // cbAgricultor
             // 
@@ -167,6 +170,16 @@
             this.lblNombre.Size = new System.Drawing.Size(80, 20);
             this.lblNombre.TabIndex = 46;
             this.lblNombre.Text = "Agricultor:";
+            // 
+            // tsbTitulos
+            // 
+            this.tsbTitulos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbTitulos.Image = global::FresamLogistica.Properties.Resources.titulo_50;
+            this.tsbTitulos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTitulos.Name = "tsbTitulos";
+            this.tsbTitulos.Size = new System.Drawing.Size(34, 42);
+            this.tsbTitulos.Text = "Títulos";
+            this.tsbTitulos.Click += new System.EventHandler(this.tsbTitulos_Click);
             // 
             // RecepcionesAgricultorCicloView
             // 
@@ -206,5 +219,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbAgricultor;
         private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.ToolStripButton tsbTitulos;
     }
 }

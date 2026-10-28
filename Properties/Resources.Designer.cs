@@ -93,6 +93,16 @@ namespace FresamLogistica.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap download_pdf_50 {
+            get {
+                object obj = ResourceManager.GetObject("download-pdf-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap etiqueta_50 {
             get {
                 object obj = ResourceManager.GetObject("etiqueta-50", resourceCulture);
@@ -183,9 +193,29 @@ namespace FresamLogistica.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap titulo_50 {
+            get {
+                object obj = ResourceManager.GetObject("titulo-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap transfer_50 {
             get {
                 object obj = ResourceManager.GetObject("transfer-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap view_doc_50 {
+            get {
+                object obj = ResourceManager.GetObject("view-doc-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

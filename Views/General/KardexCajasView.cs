@@ -255,7 +255,7 @@ namespace FresamLogistica.Views.General
                     new ReportParameter("pEmpresa", _empresa.nombre),
                     new ReportParameter("pTipoMovimiento", tipoMovimiento.ToUpper()),
                     new ReportParameter("pFolio", folioId.ToString()),
-                    new ReportParameter("pFecha", fechaMovimiento.ToString("dd/MM/yyyy").ToUpper()),
+                    new ReportParameter("pFecha", fechaMovimiento.ToString("ddMMyy").ToUpper()),
                     new ReportParameter("pAgricultor", cbAgricultor.Text),
                     new ReportParameter("pCantidadCajas", cantCajas),
                     new ReportParameter("pObservaciones", observaciones),

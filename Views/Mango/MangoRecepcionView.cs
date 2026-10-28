@@ -718,7 +718,7 @@ namespace FresamLogistica.Views.Mango
                 new ReportParameter("edicionParam", _ciclo?.edicion),
 
                 new ReportParameter("folioCicloParam", txtFolioCiclo.Text),
-                new ReportParameter("fechaRecepcionParam", dtpFecha.Value.ToShortDateString()),
+                new ReportParameter("fechaRecepcionParam", dtpFecha.Value.ToString("ddMMyy")),
                 new ReportParameter("proveedorNombreParam", _nombreProveedor),
                 new ReportParameter("variedadNombreParam", cbVariedades.Text),
                 new ReportParameter("propietarioNombreParam", cbPropietarios.Text),
@@ -757,7 +757,7 @@ namespace FresamLogistica.Views.Mango
                 new ReportParameter("edicionParam", _ciclo?.edicion),
 
                 new ReportParameter("folioCicloParam", txtFolioCiclo.Text),
-                new ReportParameter("fechaRecepcionParam", dtpFecha.Value.ToShortDateString()),
+                new ReportParameter("fechaRecepcionParam", dtpFecha.Value.ToString("ddMMyy")),
                 new ReportParameter("proveedorNombreParam", _nombreProveedor),
                 new ReportParameter("variedadNombreParam", cbVariedades.Text),
                 new ReportParameter("propietarioNombreParam", cbPropietarios.Text),
